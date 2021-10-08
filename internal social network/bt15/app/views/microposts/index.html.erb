@@ -1,0 +1,73 @@
+<%=javascript_include_tag('manager/micropost.js') %>
+
+<% provide :title, "Microposts" %>
+<h1><%=I18n.t("microposts.title") %></h1>
+
+<table id="example" class="table table-striped">
+  <thead>
+    <tr>
+      <th style="margin:5px"><%=I18n.t("microposts.user_Id") %></th>
+      <th> <%=I18n.t("microposts.content") %></th>
+      <th> <%=I18n.t("microposts.author") %></th>
+      <th> <%=I18n.t("microposts.create_at") %></th>
+      <th colspan="3" style="text-align:center;"><%=I18n.t("microposts.actions") %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+   <%= link_to '<button class="btn btn-primary"> <i class="fa fa-plus"></i> </button>'.html_safe , new_micropost_path %>
+     <div style="justify-content: flex-end; display: flex;" > 
+        <div class="form-outline">
+          <input type="search" id="form1" name="content" placeholder=<%= I18n.t("actions.search content")%> class="form-control content" />
+        </div>
+          <a href=<%= microposts_path	%> class="btn_search"> 
+            <button type="button" class="btn btn-primary-color">
+              <i class="fa fa-search"></i>
+            </button>
+          </a>
+      </div>
+  
+    <% @microposts.each do |micropost| %>
+      <tr >
+        <td><%= micropost.user_id %></td>
+        <td><%= micropost.content %></td>
+        <td>
+          <% if author_of_micropost?(micropost.user_id) %>
+             <%= @user.name %>
+          <% end %>
+         </td>
+         <td>
+           <%= micropost.created_at %>
+        </td>
+     
+
+        <td>
+          <%= link_to '<button class="btn btn-success"> <i class="fa fa-info-circle"></i> </button>'.html_safe , micropost, style: 'color:#FFFFFF' %>
+        </td>
+
+        <td>
+          <% if current_user&.admin ||  current_user?(@user) %>
+                <%= link_to '<button class="btn btn-info"> <i class="fa fa-edit"></i> </button>'.html_safe , edit_micropost_path(micropost), style: 'color:#FFFFFF' %>
+          <% end %>  
+        </td >
+
+         <td>
+           <% if current_user&.admin ||  current_user?(@user) %>
+             <%= link_to '<button class="btn btn-danger"> <i class="fa fa-trash"></i> </button>'.html_safe , micropost, method: :delete, data: { confirm: 'Are you sure?' }, style: 'color:#FFFFFF' %>
+           <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div style="justify-content: center;display: flex;"> 
+  <%= will_paginate @microposts %> 
+<div>
+
+<script>
+$('.btn_search').on('click', function(){
+  content = $('.content').val();
+  location.href ="<%= microposts_path %>"+"?content=" + content
+});
+</script>

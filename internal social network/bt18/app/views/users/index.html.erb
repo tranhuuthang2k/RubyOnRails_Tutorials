@@ -1,0 +1,67 @@
+<%=javascript_include_tag('manager/user.js') %>
+<h1><%=I18n.t("users.list member") %></h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%=I18n.t("users.Avt") %></th>
+      <th><%=I18n.t("users.Name") %></th>
+      <th><%=I18n.t("users.Email") %></th>
+      <th><%=I18n.t("users.Phone") %></th>
+      <th><%=I18n.t("users.Age") %></th>
+      <th><%=I18n.t("users.Birthday") %></th>
+      <th><%=I18n.t("users.Gender") %></th>
+      <th colspan="3" style="text-align:center;"><%=I18n.t("users.Actions") %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+ <%= link_to '<button class="btn btn-primary"> <i class="fa fa-user-plus"></i> </button>'.html_safe , new_user_path %>
+    <div style="justify-content: flex-end; display: flex;" > 
+      <div class="form-outline">
+        <input type="search" id="form1" name="email" placeholder=<%= I18n.t("actions.search email") %> class="form-control email" />
+      </div>
+        <a href=<%=users_path %> class="btn_search"> 
+           <button type="button" class="btn btn-primary-color">
+             <i class="fa fa-search"></i>
+           </button>
+        </a>
+    </div>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= gravatar_for user, size: 50 %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.phone %></td>
+        <td><%= user.age %></td>
+        <td><%= user.date_of_birth %></td>
+        <td><%= user.gender == "false" ? I18n.t("users.female") : I18n.t("users.male") %></td>
+        <td>
+          <%= link_to '<button class="btn btn-success"> <i class="fa fa-info-circle"></i> </button>'.html_safe , user,style: 'color:#FFFFFF' %>
+        <td>
+          <% if current_user&.admin ||  current_user?(user) %>
+               <%= link_to '<button class="btn btn-info"> <i class="fa fa-edit"></i> </button>'.html_safe , edit_user_path(user), style: 'color:#FFFFFF' %>
+          <% end %>
+        </td>
+        <td>
+           <% if current_user&.admin &&  !current_user?(user) %>
+             <%= link_to '<button class="btn btn-danger"> <i class="fa fa-trash"></i> </button>'.html_safe , user, method: :delete, data: { confirm: 'Are you sure?' }, style: 'color:#FFFFFF' %>
+           <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+ <div style="justify-content: center;display: flex;"> 
+  <%= will_paginate @user %> 
+ <div>
+
+
+
+<script>
+  $( ".btn_search" ).click(function() {
+  email =  $( ".email" ).val();
+  window.location.href = '<%=users_path %>' +'/?email=' +email;
+});
+</script>

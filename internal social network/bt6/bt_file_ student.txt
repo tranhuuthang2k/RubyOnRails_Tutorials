@@ -1,0 +1,16 @@
+{
+  "school_center": "Awesome academy",
+  "class_name": "Awesome Academy - PR1701",
+  "students": [
+    {
+      "name": "Hoang Lao Ta",
+      "age": "80",
+      "sex": "male"
+    },
+    {
+      "name": "Donald Trump",
+      "age": "40",
+      "sex": "male"
+    }
+  ]
+}

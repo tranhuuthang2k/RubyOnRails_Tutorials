@@ -1,0 +1,67 @@
+<%= stylesheet_link_tag 'register', media: 'all', 'data-turbolinks-track': 'reload' %>
+<div class="container" style="display: flex;justify-content: center;">
+    <div class="card register-form">
+        <div class="card-body">
+            <%= render "shared/error_messages" %>
+            <h3 class="card-title text-center">Register</h3>
+            <div class="card-text">
+                <!--
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> -->
+                <form action='/users' method="post"> 
+                    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="name" class="form-control form-control-sm" id="name" name="user[name]" aria-describedby="name" value="<%= @user.name.present? ? @user.name : ''%> ">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control form-control-sm" id="email" name="user[email]" aria-describedby="email" value="<%= @user.email.present? ? @user.email : ''%> ">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="age" class="form-control form-control-sm" id="age" name="user[age]" aria-describedby="age" value="<%= @user.age.present? ? @user.age : ''%> ">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date_of_birth">Birthday</label>
+                        <input type="date_of_birth" class="form-control form-control-sm" id="date_of_birth" name="user[date_of_birth]" aria-describedby="birthday" value="<%= @user.date_of_birth.present? ? @user.date_of_birth : ''%> ">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="phone" class="form-control form-control-sm" id="phone" name="user[phone]" aria-describedby="phone" value="<%= @user.phone.present? ? @user.phone : ''%> ">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <% if @user.gender =="female" %>
+                          <input type="radio" name="user[gender]" value="female" checked> Female
+                        <% else %>
+                          <input type="radio" name="user[gender]" value="female"> Female
+                        <% end %>
+
+                        <% if @user.gender =="male" %>
+                           <input type="radio" name="user[gender]" value="male" checked> Male
+                        <% else %>
+                            <input type="radio" name="user[gender]" value="male"> Male
+                        <% end %>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control form-control-sm"  name="user[password]" id="password" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password_confirmation">Confirm Password</label>
+                        <input type="password" class="form-control form-control-sm" name="user[password_confirmation]" id="password_confirmation" >
+                    </div>
+                        <button type="submit" class="btn btn-primary btn-block">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<%= link_to 'Back', users_path %>

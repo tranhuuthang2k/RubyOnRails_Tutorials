@@ -1,0 +1,7 @@
+<% provide :title, 'Edit user' %>
+<h1><%= I18n.t('users.edit user') %></h1>
+
+<%= render 'form', user: @user %>
+
+<%= link_to I18n.t('actions.show'), @user %> |
+<%= link_to I18n.t('actions.back'), users_path %>

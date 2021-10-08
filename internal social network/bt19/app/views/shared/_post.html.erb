@@ -1,0 +1,103 @@
+<input type="text" style="width:70%" placeholder="What's on your mind,<%=current_user.name%>?" id="myBtn"/>
+<div class="form-popup col-md-4" id="myForm">
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+          <span><%= link_to gravatar_for(current_user, size: 50), current_user %></span>
+          <h2 style="color: black;">Create post</h2>
+        </div>
+        <div class="modal-body">
+          <%= form_for @micropost do |f| %>
+            <div class="field">
+              <%= f.text_area :content, placeholder: "What's on your mind," + current_user.name + "?", style:"width: 100%;" %>
+            </div>
+            <span class="image">
+              <label for="file-upload" class="custom-file-upload">
+                <i class="fas fa-cloud-upload-alt" aria-hidden="true" style="color:red"></i> Upload image
+              </label>
+              <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", id: "file-upload" %>
+            </span>
+            <%= f.submit "Post", class: "btn btn-primary", style: "margin-top: 20px;margin-bottom: 20px;"%>
+          <% end %>
+        </div>
+      </div>
+    </div>
+</div>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 30%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: #1f1c1c;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 0px 4px;
+  background-color: #fff;
+  color: #8a8282;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-header .close {
+  margin-top: 10px;
+  width: 6%;
+  text-align: center;
+  border: solid 1px white;
+  border-radius: 32px;
+  background-color: #7d7777;
+}
+</style>

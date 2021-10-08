@@ -1,0 +1,104 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+en:
+  hello: "Hello world"
+  welcome_to_Mr_Katsu: "welcome to Mr.Katsu"
+  invalid_email_password_combination: "invalid email or password"
+  You must be admin or this user: "You must be admin or this user"
+  You must be role create user: "You must be role create user"
+  You must be role create user: "You must be role create user"
+  User was successfully updated: "User was successfully updated"
+  Please login: "Please login"
+  Micropost was successfully created: "Micropost was successfully created"
+  Micropost was successfully destroyed: "Micropost was successfully destroyed"
+  Micropost was successfully updated: "Micropost was successfully updated"
+  Comment was successfully: "Comment was successfully"
+  logo: "Mr.Katsu"
+  headers:
+    login: "Login"
+    register: "Register"  
+  login:
+    email_address: "email address"
+    password: "password"
+    sign_in: "sign in"
+    save_password: "Save password?"
+    Forgot_password: "Forgot password"
+    Don't_have_an_account: "Don't have an account"
+    create one: "create one"
+  sidebar:
+    micropost: "Micropost"
+    users: "Users"
+    Dashboard: "Dashboard"
+  account:
+    Account: "Account"
+    Profile: "Profile"
+    Settings: "Settings"
+    Logout: "Logout"
+  users:
+    Avt: "Avt"
+    Name: "Name"
+    Email: "Email"
+    Phone: "Phone"
+    Age: "Age"
+    Birthday: "Birthday"
+    Gender: "Gender"
+    Actions: "Actions"
+    male: "Male"
+    female: "Female"
+    list member: "List member"
+    add user: "add user"
+    Register: "Register"
+    Password: "Password"
+    Confirm Password: "Confirm Password"
+    edit user: "Edit User"
+  actions:
+    show: "show"
+    edit: "edit"
+    back: "back"
+    create: "create"
+    search email: "email"
+    search content: "search content"
+    submit: "Submit"  
+    update: "update"   
+  microposts:
+    title: "List Micropost"
+    user_Id: "User_Id"
+    author: "Author"
+    content: "Content"
+    create_at: "Create_at"
+    actions: "Actions"
+    new micropost: "new micropost"
+    edit micropost: "edit micropost"
+  roles:
+    Admin: "Admin"
+    Member: "Member"
+  languages: "Languages"

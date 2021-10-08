@@ -1,0 +1,37 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  session_id: MyString
+  token: MyString
+  status: 1
+  subTotal: 1.5
+  itemDiscount: 1.5
+  tax: 1.5
+  shipping: 1.5
+  total: 1.5
+  discount: 1.5
+  username: MyString
+  email: MyString
+  mobile: MyString
+  address: MyString
+  city: MyString
+  postalCode: 1
+  country: MyString
+
+two:
+  session_id: MyString
+  token: MyString
+  status: 1
+  subTotal: 1.5
+  itemDiscount: 1.5
+  tax: 1.5
+  shipping: 1.5
+  total: 1.5
+  discount: 1.5
+  username: MyString
+  email: MyString
+  mobile: MyString
+  address: MyString
+  city: MyString
+  postalCode: 1
+  country: MyString

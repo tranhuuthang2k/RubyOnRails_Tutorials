@@ -1,0 +1,2 @@
+      invoke  active_record
+      create    db/migrate/20210718063819_add_detail_to_users.rb

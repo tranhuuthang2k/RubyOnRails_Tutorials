@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= full_title yield :title %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'jquery' %>
+    <%= javascript_include_tag 'bootstrap.min' %>
+    <%= javascript_include_tag 'jquery-filterable' %>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js" defer></script>
+
+    <script>
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js" integrity="sha512-aUhL2xOCrpLEuGD5f6tgHbLYEXRpYZ8G5yD+WlFrXrPy2IrWBlu6bih5C9H6qGsgqnU6mgx6KtU8TreHpASprw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </head>
+  <body>
+
+<div id="viewport" style=<%=!logged_in? ? "padding-left:0px" : "padding-left: 250px" %>>
+  <!-- Sidebar -->
+  <% if logged_in? %>
+    <%= render "shared/sidebar" %>
+  <% end %>
+  
+  <!-- Content -->
+  <div id="content">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+          <ul class="nav navbar-nav navbar-right">
+              <%= render "shared/header" %>
+          </ul> 
+          
+      </div>
+    </nav>
+    <div class="container-fluid">
+     <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><span><%= message %></span></div>
+     <% end %> 
+      <%= render "shared/listfriend" %> 
+       <%= yield %>
+    </div>
+  </div>
+</div>
+  </body>
+</html>

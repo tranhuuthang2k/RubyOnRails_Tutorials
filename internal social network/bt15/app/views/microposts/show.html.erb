@@ -1,0 +1,13 @@
+<% provide :title, "Show Micropost" %>
+<p>
+  <strong><%= I18n.t("microposts.user_Id")%></strong>
+  <%= @micropost.user_id %>
+</p>
+
+<p>
+  <strong><%= I18n.t("microposts.content")%></strong>
+  <%= @micropost.content %>
+</p>
+
+<%= link_to I18n.t("actions.edit"), edit_micropost_path(@micropost) %> |
+<%= link_to I18n.t("actions.back"), microposts_path %>

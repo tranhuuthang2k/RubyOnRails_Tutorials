@@ -1,0 +1,34 @@
+<%= form_with(model: micropost) do |form| %>
+  <% if micropost.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(micropost.errors.count, "error") %> prohibited this micropost from being saved:</h2>
+
+      <ul>
+        <% micropost.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% if @edit %>
+      <div class="form-group">
+        <%= form.label I18n.t('microposts.user_Id') + ": #{ @micropost&.user.id} "  %>
+        <%= form.hidden_field :user_id, :value => @micropost&.user.id , class: "form-control" %>
+    </div>
+    <% else %>
+    <div class="form-group">
+        <%= form.label I18n.t('microposts.user_Id') + ":#{current_user.id} "  %>
+        <%= form.hidden_field :user_id, :value => current_user.id , class: "form-control" %>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= form.label  I18n.t('microposts.content')  %>
+    <%= form.text_area :content, class: "form-control" %>
+  </div>
+
+   <div class="actions">
+    <%= form.submit I18n.t('actions.submit'), class: "btn btn-primary" %>
+  </div>
+<% end %>

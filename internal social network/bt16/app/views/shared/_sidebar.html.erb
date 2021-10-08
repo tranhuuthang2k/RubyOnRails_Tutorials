@@ -1,0 +1,22 @@
+<div id="sidebar">
+    <header>
+      <a href="#"><%= I18n.t("logo") %> </a>
+    </header>
+    <ul class="nav">
+      <li>
+        <a href="#">
+          <i class="zmdi zmdi-view-dashboard"></i> <%= I18n.t("sidebar.Dashboard") %> 
+        </a>
+      </li>
+      <li>
+        <a href="<%= users_path %>">
+          <i class="zmdi zmdi-widgets"></i> <%= I18n.t("sidebar.users") %> 
+        </a>
+      </li>
+      <li>
+        <a href="<%= microposts_path %>">
+          <i class="zmdi zmdi-link"></i> <%= I18n.t("sidebar.micropost") %> 
+        </a>
+      </li>
+    </ul>
+  </div>

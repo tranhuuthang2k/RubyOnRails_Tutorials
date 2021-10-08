@@ -1,0 +1,30 @@
+<%=javascript_include_tag('frontend/categories.js') %>
+<div class="panel-group category-products " id="accordian"><!--category-productsr-->
+  <% @results[:categories].each do |category| %>
+    <div class="panel panel-default categories">
+        <div class="panel-heading" id= "<%= category.id %>">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordian" href="#mens">
+                    <span class="badge pull-right category">
+                    <i class="fa fa-plus"></i>
+                    </span>
+                    <%= category.name %>
+                </a>
+            </h4>
+        </div>
+        <div id="<%= category.name %>" class="panel-collapse collapse list-category">
+        </div>
+    </div>
+  <% end %>
+</div><!--/category-products-->
+<script id="list-category-tempale" type="text/x-handlebars-template">
+{{#if categories}}
+  <div class="panel-body">
+      <ul>
+      {{#each categories}}
+          <li><a href="#"> {{name}}</a></li>
+      {{/each}}
+      </ul>
+  </div>
+  {{/if}}
+</script>

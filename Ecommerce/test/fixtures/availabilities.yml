@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  availability_id: MyString
+  ,: MyString
+  status: 
+  number_instock: 1
+
+two:
+  availability_id: MyString
+  ,: MyString
+  status: 
+  number_instock: 1

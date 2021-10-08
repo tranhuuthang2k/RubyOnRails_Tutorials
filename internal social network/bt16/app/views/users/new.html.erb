@@ -1,0 +1,67 @@
+<%= stylesheet_link_tag 'register', media: 'all', 'data-turbolinks-track': 'reload' %>
+<div class="container" style="display: flex;justify-content: center;">
+    <div class="card register-form">
+        <div class="card-body">
+            <%= render "shared/error_messages" %>
+            <h3 class="card-title text-center"><%= I18n.t("users.Register") %></h3>
+            <div class="card-text">
+                <!--
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> -->
+                <form action=<%= users_path%>  method="post"> 
+                    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                    <div class="form-group">
+                        <label for="name"><%= I18n.t("users.Name") %></label>
+                        <input type="name" class="form-control form-control-sm" id="name" name="user[name]" aria-describedby="name" value="<%= @user.name.present? ? @user.name : ''%> ">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email"><%= I18n.t("users.Email") %></label>
+                        <input type="email" class="form-control form-control-sm" id="email" name="user[email]" aria-describedby="email" value="<%= @user.email.present? ? @user.email : ''%> ">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age"><%= I18n.t("users.Age") %></label>
+                        <input type="age" class="form-control form-control-sm" id="age" name="user[age]" aria-describedby="age" value="<%= @user.age.present? ? @user.age : ''%> ">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date_of_birth"><%= I18n.t("users.Birthday") %></label>
+                        <input type="date_of_birth" class="form-control form-control-sm" id="date_of_birth" name="user[date_of_birth]" aria-describedby="birthday" value="<%= @user.date_of_birth.present? ? @user.date_of_birth : ''%> ">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone"><%= I18n.t("users.Phone") %></label>
+                        <input type="phone" class="form-control form-control-sm" id="phone" name="user[phone]" aria-describedby="phone" value="<%= @user.phone.present? ? @user.phone : ''%> ">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender"><%= I18n.t("users.Gender") %></label>
+                        <% if @user.gender =="female" %>
+                          <input type="radio" name="user[gender]" value="female" checked> <%= I18n.t("users.female")%>
+                        <% else %>
+                          <input type="radio" name="user[gender]" value="female"> <%= I18n.t("users.female")%>
+                        <% end %>
+
+                        <% if @user.gender =="male" %>
+                           <input type="radio" name="user[gender]" value="male" checked> <%= I18n.t("users.male")%>
+                        <% else %>
+                            <input type="radio" name="user[gender]" value="male"> <%= I18n.t("users.male")%>
+                        <% end %>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password"><%= I18n.t("users.Password")%></label>
+                        <input type="password" class="form-control form-control-sm"  name="user[password]" id="password" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password_confirmation"><%= I18n.t("users.Confirm Password")%></label>
+                        <input type="password" class="form-control form-control-sm" name="user[password_confirmation]" id="password_confirmation" >
+                    </div>
+                        <button type="submit" class="btn btn-primary btn-block"><%= I18n.t("users.Register")%></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<a href=<%= users_path %>><%= I18n.t("actions.back")%></a>

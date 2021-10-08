@@ -1,0 +1,13 @@
+<%= javascript_include_tag('manager/post.js') %>
+<div class="row">
+  <div class="col-md-10">
+    <% if @microposts.any? %>
+      <ol class="microposts">
+        <%= render 'shared/post', user: current_user %>
+        <%= render @microposts %>
+      </ol>
+    <%= will_paginate @microposts %>
+    <% end %>
+  </div>
+</div>
+

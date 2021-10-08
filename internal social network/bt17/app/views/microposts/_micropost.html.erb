@@ -1,0 +1,61 @@
+<%= stylesheet_link_tag 'micropost', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+<li id="micropost-<%= micropost.id %>">
+  
+  <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
+  <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
+  <span class="content">
+      <%= micropost.content %>
+      <%= image_tag(micropost.image, :size => "500x280") if micropost.image.attached? %>
+    
+  </span>
+  <span class="timestamp">
+      Posted <%= time_ago_in_words micropost.created_at %> ago.
+      <% if current_user? micropost.user %>
+      <%= link_to "delete", micropost, method: :delete,
+      data: {confirm: "You sure?"} %>
+      <% end %>
+      <a href="javascript:void(0);" class="btn-addcomment">Comment</a>
+   </span>
+
+  <span class="user-comment" style="display: none">
+    <div class="form-outline" style="margin-left: 8%; margin-right: 8%;display: flex;justify-content: center;align-items: center;">
+      <%= link_to gravatar_for(current_user, size: 40), current_user, class: 'avatar-cmt' %>
+      <input type="text" id="formControlDefault" class="form-control in-comment" placeholder="What's on your mind, <%= current_user.name %>?" />
+       <a href="javascript:void(0);" class="btn-donecomment">ok</a>
+    </div>
+  </span>
+  <% if micropost.comments.size > 0 %>
+    <span class="view-comments" style="color: green; cursor: pointer;"> See more <%= micropost.comments.size %> comments </span>
+  <% end %>
+<div id="show_comments" style="display:none">
+   <span class="list-comment" style="display: flex;flex-direction: column;">
+    <% micropost.comments.each do |comment| %>
+      <div class="form-outline list-cmt-span" style="margin-left: 8%; margin-right: 8%;">
+          <%= link_to gravatar_for(comment.user, size: 40), comment.user, class: 'avatar-cmt' %>
+        <span>
+          <%= comment.user.name %> </br>
+          <%= comment.content %></br>
+         Posted <%= time_ago_in_words comment.created_at %> ago.
+          <% if current_user?(comment.user)   %>
+            <%= link_to "delete", comment, method: :delete,
+            data: {confirm: "You sure?"} %>
+          <% end %>
+        </span>
+      </div>
+ 
+    <% end %>
+  </span>
+</div> 
+<script id="list-comment-template"  type="text/x-handlebars-template" >
+  <div class="form-outline list-cmt-span" style="margin-left: 8%; margin-right: 8%;">
+    <span>
+      <a class="avatar-cmt" href="#"><img alt="" class="gravatar" src={{avatar}}></a>
+        <span> <%= current_user.name%> </span> </br>
+        <span>{{ comment.content }}</span> </br>
+        <span> just now </span>
+    </span>
+</script>
+</li>
+
+

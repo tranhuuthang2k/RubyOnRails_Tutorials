@@ -1,0 +1,47 @@
+<%= javascript_include_tag('manager/post.js') %>
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+       <%= link_to gravatar_for(current_user, size: 50), current_user %>
+        <h1><%= current_user.name %></h1>
+        <span><%= link_to "view my profile", current_user %></span>
+        <span><%= pluralize current_user.microposts.count, "micropost" %></span>         </br>
+         <span>
+           following <%= current_user.following.count %>
+          <img class="hu5pjgll cwsop09l" src="https://static.xx.fbcdn.net/rsrc.php/v3/yv/r/JanwljMyOww.png" alt="" height="20" width="20" title="aaa">
+         </span>
+
+         <span>
+           follower <%= current_user.followers.count %>
+          <img class="hu5pjgll cwsop09l" src="https://static.xx.fbcdn.net/rsrc.php/v3/yv/r/JanwljMyOww.png" alt="" height="20" width="20">
+         </span>
+    </section>
+
+
+    <section class="micropost_form">
+        <%= form_for @micropost do |f| %>
+        <%= render "shared/error_messages", object: f.object %>
+        <div class="field">
+        <%= f.text_area :content, placeholder: "Compose new micropost..." %>
+        </div>
+        <%= f.submit "Post", class: "btn btn-primary" %>
+        <span class="image">
+        <%= f.file_field :image %>
+        </span>
+        <% end %>
+        
+    </section>
+
+
+  </aside>
+<div class="col-md-8">
+  <% if @microposts.any? %>
+    <h3>Microposts (<%= @microposts.count %>)</h3>
+      <ol class="microposts">
+      <%= render @microposts%>
+    </ol>
+    <%= will_paginate @microposts %>
+  <% end %>
+</div>
+</div>

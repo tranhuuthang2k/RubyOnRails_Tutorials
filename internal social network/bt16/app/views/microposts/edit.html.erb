@@ -1,0 +1,7 @@
+<% provide :title, "Edit Micropost" %>
+
+<h1><%= I18n.t('microposts.edit micropost') %></h1>
+
+<%= render 'form', micropost: @micropost %>
+<%= link_to I18n.t('actions.show'), @micropost %> |
+<%= link_to I18n.t('actions.back'), users_path %>

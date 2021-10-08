@@ -1,0 +1,44 @@
+<%=javascript_include_tag('manager/post.js') %>
+<% if logged_in? %>
+    <li class="notifications" style="padding-right: 10px;" onclick="myFunction()" > 
+        <a href="javascript:void(0);" >Notifications <i class="fas fa-bell" style="font-size:15px"></i>
+        <div id="icon-badge-<%=current_user.id %>" class="icon-badge" ><%= badge_notifications %></div> 
+        </a>
+        <ul id="list-notifications" style="display: none">
+        </ul>
+    </li>
+    <li class="dropdown"> 
+    <%= link_to I18n.t("account.Account"), "#",class:"dropdown-toggle", 'data-toggle' => 'dropdown'  %>
+    <ul class="dropdown-menu"> 
+        <li><%= link_to I18n.t("account.Profile"), current_user %></li>
+        <li><%= link_to I18n.t("account.Settings"), '#' %> </li>
+        <li class="divider"> </li>
+        <li><%= link_to I18n.t("account.Logout"), logout_path %> </li>
+    <ul>
+    </li>
+    <% else %>
+        <li><%= link_to I18n.t("headers.login"), login_path %></li>
+        <li><%= link_to  I18n.t("headers.register"), register_path %></li>
+       <%= link_to  I18n.t('languages'), "#", id:"dropdown-language", class:"dropdown-toggle", 'data-toggle' => 'dropdown' %> 
+     
+        <ul class="dropdown-menu"> 
+            <li> <%= link_to "English 🏴󠁧󠁢󠁥󠁮󠁧󠁿", locale:"en" %> </li>
+            <li> <%= link_to "Japanese 🇯🇵", locale:"ja" %></li>
+        <ul>
+<% end %>
+  
+<script type="text/javascript">
+function myFunction() {
+  var x = document.getElementById("list-notifications");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+<script id="notification-template"  type="text/x-handlebars-template" >
+    {{#each notifications}}
+    <li>  {{ content }}</li> 
+    {{/each}}
+</script>

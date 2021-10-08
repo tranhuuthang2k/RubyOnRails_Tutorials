@@ -1,0 +1,82 @@
+<div class="container rounded bg-white mt-5 mb-5">
+  <div class="row">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <div class="col-md-3 border-right">
+          <% if resource.avatar.attached?%>
+            <%= image_tag resource.avatar, class: "rounded-circle" %>
+          <% else %>
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"></div>
+          <% end %>  
+          <%= f.file_field :avatar %>
+          </div>
+      <div class="col-md-5 border-right">
+          <div class="p-3 py-5">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h4 class="text-right">Profile Settings</h4>
+              </div>
+              <div class="row mt-3">
+                  <%= render "devise/shared/error_messages", resource: resource %>  
+                  <div class="col-md-12">
+                      <%= f.label :name %>
+                      <%= f.text_field :username, class: 'form-control' %>
+                    </div>
+                    <div class="col-md-12">
+                      <%= f.label :email %>
+                      <%= f.text_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+                    </div>
+
+                    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                    <% end %>
+
+                    <div class="col-md-12">
+                      <%= f.label :mobile %>
+                      <%= f.text_field :mobile, class: 'form-control' %>
+                    </div>
+
+                    <div class="col-md-12">
+                      <%= f.label :address %>
+                      <%= f.text_field :address, class: 'form-control' %>
+                    </div>
+
+                    <div class="col-md-12">
+                      <label class="control-label"  for="gender"><%= t("users.index.gender")%></label>
+                      </br>
+                      <% if current_user.gender == "male" %>
+                        <input type="radio" id="male" name="user[gender]" value="male" checked >
+                        <label for="male">Male</label><br>
+                        <input type="radio" id="female" name="user[gender]" value="female">
+                        <label for="female">Female</label><br> 
+                      <% else %>
+                        <input type="radio" id="male" name="user[gender]" value="male">
+                        <label for="male">Male</label><br>
+                        <input type="radio" id="female" name="user[gender]" value="female" checked >
+                        <label for="female">Female</label><br>
+                      <% end %>                  
+                    </div>
+              
+                    <div class="col-md-12">
+                      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+                      <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+                      <% if @minimum_password_length %>
+                        <br />
+                        <em><%= @minimum_password_length %> characters minimum</em>
+                      <% end %>
+                    </div>
+
+                    <div class="col-md-12">
+                      <%= f.label :password_confirmation %><br />
+                      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+                    </div>
+
+                    <div class="col-md-12">
+                      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+                      <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control' %>
+                    </div>
+                    <%= f.submit "Save changes", class: "btn btn-primary" %>
+              </div>
+          </div>
+      </div>
+    <% end %>
+  </div>
+</div>
