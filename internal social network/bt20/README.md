@@ -22,3 +22,11 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+- Function of web
+1. Login, logout, register
+2. Post, comment, role
+3. Story, follow friends
+4. Notification when user add friend
+5. Action cable realtime 
+6. CURD, manager, validation...
+7. Reply comment, change your avt...
