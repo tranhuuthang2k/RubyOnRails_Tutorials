@@ -23,10 +23,10 @@ Things you may want to cover:
 
 * ...
 - Function of web
-1. Login, logout, register
+1. Login, logout, register, forget password, rember password
 2. Post, comment, role
 3. Story, follow friends
-4. Notification when user add friend
+4. Show Notification when user add friend
 5. Action cable realtime 
 6. CURD, manager, validation...
 7. Reply comment, change your avt...
