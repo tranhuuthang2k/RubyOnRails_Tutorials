@@ -23,6 +23,8 @@ Things you may want to cover:
 
 * ...
 -------------------------------------------------------------------------------------------------------------------------
+Eshopper Web functions:
+
 1. Login (email, password, facebook)
 2. Register
 3. Reset password,
