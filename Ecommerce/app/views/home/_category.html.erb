@@ -8,7 +8,7 @@
                     <span class="badge pull-right category">
                     <i class="fa fa-plus"></i>
                     </span>
-                    <%= category.name %>
+                    <a href="/category/<%= category.name %>~<%=category.id%>"><%= category.name %></a>
                 </a>
             </h4>
         </div>
@@ -22,7 +22,7 @@
   <div class="panel-body">
       <ul>
       {{#each categories}}
-          <li><a href="#"> {{name}}</a></li>
+          <li><a href="/category/{{name}}~{{id}}"> {{name}}</a></li>
       {{/each}}
       </ul>
   </div>

@@ -24,7 +24,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-9 padding-right">
+            <div class="col-sm-9 padding-right check">
                 <div class="product-details">
                     <!--product-details-->
                     <div class="col-sm-5">
@@ -32,7 +32,7 @@
                             <img class="imageProduct"
                                 src="<%= url_for(@results[:product].image) if @results[:product].image.attached? %>"
                                 alt="" />
-                            <a href="<%= url_for(@results[:product].image) if @results[:product].image.attached? %>"
+                                <a href="<%= url_for(@results[:product].image) if @results[:product].image.attached? %>"
                                 rel="prettyPhoto" class="zoom-image">
                                 <h3>ZOOM</h3>
                             </a>
@@ -43,12 +43,11 @@
                         <div class="carousel-inner">
                         
                             <div class="item active">
-                                    <% @results[:product].photos.take(3).each do |item| %>
-                                        <% item.images.each do |img| %>
-                                         <a href="javascript:void(0)"><img src="<%= url_for(img) %>" alt="" class="image"></a>
-                                        <% end %>
-                                   <% end %>
-                               
+                                <% @results[:product].photos.take(3).each do |item| %>
+                                    <% item.images.each do |img| %>
+                                        <a href="javascript:void(0)"><img src="<%= url_for(img) %>" alt="" class="image"></a>
+                                    <% end %>
+                                <% end %>
                             </div>
                         
                             <div class="item">
@@ -63,14 +62,15 @@
                         </div>
 
                             <!-- Controls -->
-                            <a class="left item-control" href="#similar-product" data-slide="prev">
-                                <i class="fa fa-angle-left"></i>
-                            </a>
-                            <a class="right item-control" href="#similar-product" data-slide="next">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
+                            <% unless @results[:product].image.attached? %>
+                                <a class="left item-control" href="#similar-product" data-slide="prev">
+                                     <i class="fa fa-angle-left"></i>
+                                 </a>
+                                <a class="right item-control" href="#similar-product" data-slide="next">
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            <% end %>
                         </div>
-
                     </div>
                     <div class="col-sm-7">
                         <div class="product-information ">
@@ -78,7 +78,20 @@
                             <input type="hidden" id="<%= @results[:product].id %>" class="id" value="">
                             <img src="/assets/product-details/new.jpg" class="newarrival" alt="" />
                             <h2 class="title"><%= @results[:product].title %></h2>
-                            <img src="/assets/product-details/rating.png" alt="" />
+                            <div  class="list-rate">
+                              <% if user_signed_in?  %>
+                                <% if ProductRate.where(user_id: current_user.id, product_id: @results[:product].id ).present? %>
+                                  <input id= "check_rate" value = "<%= @results[:avg] %>" type="hidden">
+                                <% else %>
+                                  <input id= "check_rate" value = "0" type="hidden">
+                                <% end %>
+                              <%  end %> 
+                              <p>(<%= @results[:avg] %>/5)</p>
+                            </div>
+                                <% for i in 1..5 do %>
+                                  <span class="fa fa-star <%= "checked" if @results[:avg] >= i  %>" id="star-<%= i %>"></span>
+                                <% end %>
+                               
                             <span class="product_love"> 
                              <% if user_signed_in?  %>
                                     <% if  (current_user.product_favorites.where(product_id: @results[:product].id)).exists? %>
@@ -101,12 +114,19 @@
                                     Add to cart
                                 </button>
                             </span>
-
+                            <div>
+                            <span> <b> Choose size </b> </span>
+                              <div class="sprd-select__items">
+                              <%  @results[:product].sizes.each_with_index do |item ,index| %>
+                                  <div class="button <%= index == 0 ? "active" : "" %>"><%= item.name %></div>  
+                              <% end %>
+                              </div>
+                            </div>
                             <p><b>Availability:</b> <%= @results[:product].availability.status if @results[:product].availability.present? %></p>
                             <p><b>Number instock:</b>  <%= @results[:product].availability.number_instock if @results[:product].availability.present? %></p>
-                            <p><b>Brand:</b> E-SHOPPER</p>
-                            <a href="javascript:void(0)"><img src="/assets/product-details/share.png" class="share img-responsive"
-                                    alt="" /></a>
+                            <p><b>Brand:</b> <%= @results[:product].brand ?  @results[:product].brand.name  : ""%></p>
+                            <p><b>View: </b> <%= @results[:product].product_views.count %> <i class="fa fa-eye"></i></p>
+                            <p><b>Share:</b> <a href="https://www.facebook.com/share.php?u=http://70bf-14-165-107-96.ngrok.io/product-details/<%= @results[:product].title.parameterize%>~<%=@results[:product].id%>"><i class="fa fa-facebook-square fa-2x facebook" style="font-size: 1.5em;"></i></a></p>
                         </div>
                         <!--/product-information-->
                     </div>
@@ -117,206 +137,90 @@
                     <!--category-tab-->
                     <div class="col-sm-12">
                         <ul class="nav nav-tabs">
-                            <li><a href="#details" data-toggle="tab">Details</a></li>
-                            <li><a href="#companyprofile" data-toggle="tab">Company Profile</a></li>
-                            <li><a href="#tag" data-toggle="tab">Tag</a></li>
-                            <li class="active"><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>
+                            <li class="active" ><a href="#details" data-toggle="tab">Details</a></li>
+                            <li><a href="#product_orther" data-toggle="tab">Product Orther</a></li>
+                            <li><a href="#reviews" data-toggle="tab">Reviews (<%= @results[:comments].size %>)</a></li>   
                         </ul>
                     </div>
                     <div class="tab-content">
-                        <div class="tab-pane fade" id="details">
-                            <div class="col-sm-3">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <img src="/assets/home/gallery1.jpg" alt="" />
-                                            <h2>$56</h2>
-                                            <p>Easy Polo Black Edition</p>
-                                            <button type="button" class="btn btn-default add-to-cart"><i
-                                                    class="fa fa-shopping-cart"></i>Add to cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <img src="/assets/home/gallery2.jpg" alt="" />
-                                            <h2>$56</h2>
-                                            <p>Easy Polo Black Edition</p>
-                                            <button type="button" class="btn btn-default add-to-cart"><i
-                                                    class="fa fa-shopping-cart"></i>Add to cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <img src="/assets/home/gallery3.jpg" alt="" />
-                                            <h2>$56</h2>
-                                            <p>Easy Polo Black Edition</p>
-                                            <button type="button" class="btn btn-default add-to-cart"><i
-                                                    class="fa fa-shopping-cart"></i>Add to cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <img src="/assets/home/gallery4.jpg" alt="" />
-                                            <h2>$56</h2>
-                                            <p>Easy Polo Black Edition</p>
-                                            <button type="button" class="btn btn-default add-to-cart"><i
-                                                    class="fa fa-shopping-cart"></i>Add to cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="tab-pane fade" id="companyprofile">
-                            <div class="col-sm-3">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <img src="/assets/home/gallery1.jpg" alt="" />
-                                            <h2>$56</h2>
-                                            <p>Easy Polo Black Edition</p>
-                                            <button type="button" class="btn btn-default add-to-cart"><i
-                                                    class="fa fa-shopping-cart"></i>Add to cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <img src="/assets/home/gallery3.jpg" alt="" />
-                                            <h2>$56</h2>
-                                            <p>Easy Polo Black Edition</p>
-                                            <button type="button" class="btn btn-default add-to-cart"><i
-                                                    class="fa fa-shopping-cart"></i>Add to cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <img src="/assets/home/gallery2.jpg" alt="" />
-                                            <h2>$56</h2>
-                                            <p>Easy Polo Black Edition</p>
-                                            <button type="button" class="btn btn-default add-to-cart"><i
-                                                    class="fa fa-shopping-cart"></i>Add to cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <img src="/assets/home/gallery4.jpg" alt="" />
-                                            <h2>$56</h2>
-                                            <p>Easy Polo Black Edition</p>
-                                            <button type="button" class="btn btn-default add-to-cart"><i
-                                                    class="fa fa-shopping-cart"></i>Add to cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="tab-pane fade" id="tag">
-                            <div class="col-sm-3">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <img src="/assets/home/gallery1.jpg" alt="" />
-                                            <h2>$56</h2>
-                                            <p>Easy Polo Black Edition</p>
-                                            <button type="button" class="btn btn-default add-to-cart"><i
-                                                    class="fa fa-shopping-cart"></i>Add to cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <img src="/assets/home/gallery2.jpg" alt="" />
-                                            <h2>$56</h2>
-                                            <p>Easy Polo Black Edition</p>
-                                            <button type="button" class="btn btn-default add-to-cart"><i
-                                                    class="fa fa-shopping-cart"></i>Add to cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <img src="/assets/home/gallery3.jpg" alt="" />
-                                            <h2>$56</h2>
-                                            <p>Easy Polo Black Edition</p>
-                                            <button type="button" class="btn btn-default add-to-cart"><i
-                                                    class="fa fa-shopping-cart"></i>Add to cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <img src="/assets/home/gallery4.jpg" alt="" />
-                                            <h2>$56</h2>
-                                            <p>Easy Polo Black Edition</p>
-                                            <button type="button" class="btn btn-default add-to-cart"><i
-                                                    class="fa fa-shopping-cart"></i>Add to cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="tab-pane fade active in" id="reviews">
+                        <div class="tab-pane fade active in" id="details">
                             <div class="col-sm-12">
-                                <ul>
-                                    <li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
-                                    <li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
-                                    <li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
-                                </ul>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure
-                                    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                    pariatur.</p>
-                                <p><b>Write Your Review</b></p>
-
-                                <form action="#">
-                                    <span>
-                                        <input type="text" placeholder="Your Name" />
-                                        <input type="email" placeholder="Email Address" />
-                                    </span>
-                                    <textarea name=""></textarea>
-                                    <b>Rating: </b> <img src="/assets/product-details/rating.png" alt="" />
-                                    <button type="button" class="btn btn-default pull-right">
-                                        Submit
-                                    </button>
-                                </form>
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <p><%= @results[:product].description if @results[:product].present?%> </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
+                        <div class="tab-pane fade" id="product_orther">
+                          <% @results[:products].each do |item| %>
+                                <div class="col-sm-3">      
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <a href="/product-details/<%= item.title.parameterize%>~<%=item.id%>"> <img class="imageProduct" src="<%= url_for(item.image) if item.image.attached? %>" alt="" /></a>
+                                            <h2>$<%= item.price%></h2>
+                                            <p><%= item.title%></p>
+                                             <a href="javascript:void(0)" class="btn btn-default add-to-cart"><i
+                                              class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           <% end %>
+                        </div>
+
+                        <div class="tab-pane fade " id="reviews">
+                          <div class="col-sm-12">
+                            <ul>
+                              <li><a href=""><i class="fa fa-user"></i><%= @results[:admin].username %></a></li>
+                              <li><a href=""><i class="fa fa-clock-o"></i><%= @results[:product].created_at.strftime("%I:%M %p") %></a></li>
+                              <li><a href=""><i class="fa fa-calendar-o"></i><%= @results[:product].created_at.strftime("%d/%m/%Y") %></a></li>
+                            </ul>
+                            <p><b>Write Your Review</b></p>
+                            <span class="comments" id= "<%= @results[:product].id %>">
+                              <div class="form-outline" style=" margin-right: 8%;">
+                                <input type="text"  class="form-control in-comment" placeholder="please enter your comment" />
+                              </div>
+                            </span>
+                            <% if user_signed_in?  %>
+                              <span class = "login" id = "<%= 1 %>"></span>
+                            <% else %>
+                              <span class = "login" id = "<%= 2 %>"></span>
+                            <% end %>
+                          </div>
+                          <div class="response-area">
+                            <h5 class="view_more">​ㅤ</h5>
+                              <ul class="media-list list-comment" >
+                                <%  @results[:comments].each do |comment| %>
+                                  <li class="media delete_comment">
+                                    <a class="pull-left" href="#">
+                                    <% if comment.user.avatar.attached? %>
+                                      <img class="media-object" src="<%= url_for(comment.user.avatar) %>" width="121" height="57"alt="">
+                                    <% else %>
+                                      <img class="media-object" src="/assets/home/iframe2.png" alt="">
+                                    <% end %>
+                                    </a>
+                                    <div class="media-body comments">
+                                      <ul class="sinlge-post-meta">
+                                        <li><i class="fa fa-user"></i><%= comment.user.username %></li>
+                                        <li><i class="fa fa-clock-o"></i><%= comment.created_at.strftime("%I:%M %p")%></li>
+                                        <li><i class="fa fa-calendar"></i><%= comment.created_at.strftime("%d/%m/%Y") %></li>
+                                        <% if user_signed_in? && comment.user_id == current_user.id%>
+                                          <li><a class="delete-comment"> delete </a></i></li>
+                                          <li><a class="edit-comment" id="comment-<%= comment.id %>" > edit </a></i></li>
+                                          <input type="text"  class="form-control in-comment-edit" value="<%= comment.content %>" style="display:none" />
+                                        <% end %>
+                                      </ul>
+                                    <p class="list-edit-comment"><%= comment.content %></p>
+                                    </div>
+                                  </li>
+                                <% end %>
+                              </ul>
+                              <%= paginate @results[:comments] %>
+                          </div>
+                        </div>
                     </div>
                 </div>
                 <!--/category-tab-->
@@ -353,11 +257,40 @@
         color: red;
     }
 
+    .checked {
+        color: orange;
+      }
     
+    .qcont{
+        text-transform: capitalize;
+      }
+      .sprd-select__items {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-bottom: .5rem;
+      }
+      .button {
+        background-color: #fff;
+        height: 30px;
+        width: 30px;
+        margin-top: 5px;
+        border: 2px solid #e7e7e7;
+        margin-right: 10px;
+        text-align: center;
+        line-height: 28px;
+        cursor: pointer;
+      }
+      .button.active {
+          border: 2px solid #00b2a5;
+      }
+
 </style>
 
 <script type="text/javascript">
-
+    $('.button').on('click', function() {
+        $(this).addClass('active').siblings().removeClass('active');
+    });
 function myFunction(val) {
   var x = document.getElementById("numberInput");
   x.value = val;
@@ -374,4 +307,33 @@ $(".image")
 {{#if productLove}}
   <i class="fa fa-heart " product-id="{{productLove.product_id}}" id="heart-red"></i>
 {{/if}}
+</script>
+
+
+<script id="list-comment-template" type="text/x-handlebars-template">
+    <li class="media delete_comment">
+      <a class="pull-left" href="#">
+      <img class="media-object" src="{{ comment.avatar }}" alt="">
+      </a>
+      <div class="media-body comments">
+        <ul class="sinlge-post-meta">
+        <li><i class="fa fa-user"></i>{{ name }}</li>
+        <li><i class="fa fa-clock-o"></i>{{ comment.created_at_clock }}</li>
+        <li><i class="fa fa-calendar"></i>{{ comment.created_at }}</li>
+        <li><a class="delete-comment"> delete </a></i></li>
+        <li><a class="edit-comment" id= "comment-{{comment.id}}" > edit </a></i></li>
+        <input type="text"  class="form-control in-comment-edit" value="{{ comment.content }}" style="display:none"/>
+        </ul>
+      <p class="list-edit-comment">{{ comment.content }}</p>
+      </div>
+    </li>
+</script>
+
+<script id="list-rate-template" type="text/x-handlebars-template">
+    <input id= "check_rate" value="{{ avg }}" type="hidden">
+    <p>({{ avg }}/5)</p>
+</script>
+
+<script id="list-edit-comment-template" type="text/x-handlebars-template">
+   {{comment.content}}
 </script>

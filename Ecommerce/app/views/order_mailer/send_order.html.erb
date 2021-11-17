@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+       <h5>Your Order Code: <%= @product_order.id%></h5>
+       <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Image</th>
+      <th scope="col">Size</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Status</th>
+      <th scope="col">Price</th>
+      <th scope="col">Total Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% JSON.parse(@product_order.product_order).each_with_index do |order, index| %>
+    <tr>
+      <td><%= index + 1 %> </td>
+      <td><%= order["name_product"] %></td>
+      <td > <img src="<%= order["image_product"] %> " alt="Girl in a jacket" width="50%">
+       </td>
+      <td><%= order["size_product"] %> </td>
+      <td><%= order["quantity"] %> </td>
+      <td class="cart_description">
+         <%= @product_order.status %>
+      </td>
+      
+      <td><%= order["price_product"] %> </td>
+      <td><%= order["price_product"].to_f * order["quantity"].to_i %> </td>
+    </tr>
+    
+  <% end %>
+  </tbody>
+</table>
+   <div class="px-4 py-5">
+        <h4 class="mt-5 theme-color mb-5"> <b>Your Total Order </b> </h4> 
+        <div class="mb-3">
+            <hr class="new1">
+        </div>
+        <div class="d-flex justify-content-between"> <span class="font-weight-bold">Total_Order: </span> <span>$<%= @Total_order =  JSON.parse(@product_order.product_order).map{|order| order["price_product"].to_f * order["quantity"].to_i}.sum  %></span> </div>
+        <div class="d-flex justify-content-between"> <span class="font-weight-bold">Shipping: </span> <small> + $30.00</small> </div>
+        <div class="d-flex justify-content-between"> <span class="font-weight-bold">Voucher: </span> <small> - $<%= @product_order&.voucher ? @product_order.voucher : 0 %></small> </div>
+        <span>------------------------------------ <span>
+        <% if @product_order&.voucher  %>
+            <div class="d-flex justify-content-between mt-3"> <span class="font-weight-bold" style="color:red" ><b>Payment:</b> </span> <span class="font-weight-bold theme-color">$<%= @Total_order - @product_order.voucher  + 30.00 %></span> </div>
+            <% else %>
+            <div class="d-flex justify-content-between mt-3"> <span class="font-weight-bold" style="color:red" ><b>Payment:</b> </span> <span class="font-weight-bold theme-color">$<%= @Total_order + 30.00 %></span> </div>
+        <% end %>
+    </div>
+    <span> Date shipping for 2-3 days <span>
+    <p >Thanks for joining and have a great day!</p>
+
+</body>
+</html>

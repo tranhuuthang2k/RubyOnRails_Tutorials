@@ -54,25 +54,6 @@
                         <label for="female">Female</label><br>
                       <% end %>                  
                     </div>
-              
-                    <div class="col-md-12">
-                      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-                      <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
-                      <% if @minimum_password_length %>
-                        <br />
-                        <em><%= @minimum_password_length %> characters minimum</em>
-                      <% end %>
-                    </div>
-
-                    <div class="col-md-12">
-                      <%= f.label :password_confirmation %><br />
-                      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
-                    </div>
-
-                    <div class="col-md-12">
-                      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-                      <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control' %>
-                    </div>
                     <%= f.submit "Save changes", class: "btn btn-primary" %>
               </div>
           </div>

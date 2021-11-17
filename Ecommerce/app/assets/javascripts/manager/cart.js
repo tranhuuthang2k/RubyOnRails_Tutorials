@@ -1,10 +1,15 @@
 function Cart(options) {
   var module = this;
+  const shipping = 30;
   var defaults = {
     template: {
       carts: $("#list-cart-template"),
     },
-    api: {},
+    api: {
+      checkout: "/api/v1/checkout",
+      voucher: "/api/v1/voucher",
+      api_token: Cookies.get("api_token"),
+    },
     data: {},
   };
   module.settings = $.extend({}, defaults, options);
@@ -24,7 +29,7 @@ function Cart(options) {
     shopping_carts = localStorage.getItem("carts")
       ? JSON.parse(localStorage.getItem("carts"))
       : [];
-    $(".add-to-cart").click(function () {
+    $(document).on("click", ".add-to-cart", function () {
       el = $(this).closest(".single-products");
       infoProduct = el.find(".productinfo");
       id_product = parseInt(infoProduct.find(".id").attr("id"));
@@ -54,6 +59,7 @@ function Cart(options) {
       shopping_cart = {
         id: id_product,
         name_product,
+        size_product: "S",
         price_product,
         image_product,
         quantity: 1,
@@ -92,7 +98,10 @@ function Cart(options) {
         })
       );
       $(".Cart_Sub_Total").get(0).innerText = "$" + getTotal();
-      $(".totalOrder").get(0).innerText = "$" + getTotal();
+      carts?.length > 0
+        ? $(".check_out").css("display", "block")
+        : $(".check_out").css("display", "none");
+      $(".totalOrder").get(0).innerText = "$" + parseInt(shipping + getTotal());
       $("#lblCartCount").get(0).innerText = shopping_carts.length;
     }
   };
@@ -124,7 +133,7 @@ function Cart(options) {
             el.find(".cart_quantity_input").val(quantityInput);
             setCart(shopping_carts);
             $(".Cart_Sub_Total").get(0).innerText = "$" + getTotal();
-            $(".totalOrder").get(0).innerText = getTotal();
+            $(".totalOrder").get(0).innerText = parseInt(shipping + getTotal());
             $(elLiscart)
               .find(".cart_total")
               .find(".cart_total_price")
@@ -166,7 +175,8 @@ function Cart(options) {
           el.find(".cart_quantity_input").val(quantityInput);
           setCart(shopping_carts);
           $(".Cart_Sub_Total").get(0).innerText = "$" + getTotal();
-          $(".totalOrder").get(0).innerText = "$" + getTotal();
+          $(".totalOrder").get(0).innerText =
+            "$" + parseInt(shipping + getTotal());
           $(elLiscart)
             .find(".cart_total")
             .find(".cart_total_price")
@@ -200,7 +210,8 @@ function Cart(options) {
             product.total_price = parseInt(price_product);
             setCart(shopping_carts);
             $(".Cart_Sub_Total").get(0).innerText = "$" + getTotal();
-            $(".totalOrder").get(0).innerText = "$" + getTotal();
+            $(".totalOrder").get(0).innerText =
+              "$" + parseInt(shipping + getTotal());
             $(elLiscart)
               .find(".cart_total")
               .find(".cart_total_price")
@@ -215,7 +226,8 @@ function Cart(options) {
             product.total_price = quantityInput * parseInt(price_product);
             setCart(shopping_carts);
             $(".Cart_Sub_Total").get(0).innerText = "$" + getTotal();
-            $(".totalOrder").get(0).innerText = "$" + getTotal();
+            $(".totalOrder").get(0).innerText =
+              "$" + parseInt(shipping + getTotal());
             $(elLiscart)
               .find(".cart_total")
               .find(".cart_total_price")
@@ -240,7 +252,8 @@ function Cart(options) {
         $("#lblCartCount").get(0).innerText =
           shopping_carts?.length > 0 ? shopping_carts.length : "";
         $(".Cart_Sub_Total").get(0).innerText = "$" + getTotal();
-        $(".totalOrder").get(0).innerText = "$" + getTotal();
+        $(".totalOrder").get(0).innerText =
+          "$" + parseInt(shipping + getTotal());
         module.removeCart();
         shopping_carts.length < 1 && module.showCarts();
       });
@@ -258,6 +271,8 @@ function Cart(options) {
       image_product =
         document.location.origin +
         el.closest(".product-details").find(".imageProduct").attr("src");
+      size_product = $(".sprd-select__items").find(".active").get(0).innerText;
+
       if (isNaN(quantity_product_input)) {
         Swal.fire("so luong phai la so");
         parseInt(el.find(".quantity").val(1));
@@ -281,6 +296,7 @@ function Cart(options) {
       shopping_cart = {
         id: id_product,
         name_product,
+        size_product,
         price_product,
         image_product,
         quantity: quantity_product_input,
@@ -298,6 +314,85 @@ function Cart(options) {
       });
     });
   };
+  module.checkout = function () {
+    shopping_carts = localStorage.getItem("carts")
+      ? JSON.parse(localStorage.getItem("carts"))
+      : [];
+    $(".check_out").click(function () {
+      voucher_code = $(".voucher_code").val().trim();
+      $.ajax({
+        url: module.settings.api.checkout,
+        headers: {
+          Authorization: "Bearer " + module.settings.api.api_token, //z9SNcLnCMHJUXdtzU0VBeQ
+        },
+        type: "POST",
+        data: {
+          token: module.settings.api.api_token,
+          data: shopping_carts,
+          voucher_code: voucher_code,
+        },
+        dataType: "json",
+        success: function (data) {
+          if (data.code == 200) {
+            localStorage.clear();
+            Swal.fire("Order Success!", "Order Success", "success").then(() => {
+              window.location = "/users/orders";
+            });
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "shopping cart is invalid",
+              text: "or does not exist",
+              footer: "Please remove cart and add it again",
+            });
+          }
+        },
+        error: function () {},
+      });
+    });
+  };
+
+  module.checkVoucher = function () {
+    shopping_carts = localStorage.getItem("carts")
+      ? JSON.parse(localStorage.getItem("carts"))
+      : [];
+    $(".voucher").click(function () {
+      voucher_code = $(".voucher_code").val().trim();
+      $.ajax({
+        url: module.settings.api.voucher,
+        headers: {
+          Authorization: "Bearer " + module.settings.api.api_token, //z9SNcLnCMHJUXdtzU0VBeQ
+        },
+        type: "POST",
+        data: { voucher_code: voucher_code },
+        dataType: "json",
+        success: function (data) {
+          if (data.code == 200) {
+            console.log(data);
+            Swal.fire({
+              icon: "success",
+              title: "Voucher cost is: $" + data.data.cost,
+              showConfirmButton: false,
+              timer: 2500,
+            });
+            total_payment =
+              parseInt(shipping + getTotal()) - parseInt(data.data.cost);
+            $(".totalOrder").get(0).innerText = "$" + total_payment;
+          } else {
+            $(".totalOrder").get(0).innerText =
+              "$" + parseInt(shipping + getTotal());
+            Swal.fire({
+              icon: "error",
+              title: "Voucher is invalid",
+              text: "or expired",
+            });
+          }
+        },
+        error: function () {},
+      });
+    });
+  };
+
   module.init = function () {
     module.addToCart();
     module.showCarts();
@@ -307,6 +402,8 @@ function Cart(options) {
     module.removeCart();
     module.showBadegs();
     module.addToCartInDetail();
+    module.checkout();
+    module.checkVoucher();
   };
 }
 

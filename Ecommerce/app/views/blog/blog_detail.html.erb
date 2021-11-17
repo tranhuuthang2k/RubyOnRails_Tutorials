@@ -1,0 +1,116 @@
+<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="left-sidebar">
+                        <!--category-->
+						<h2>Category</h2>
+                          <%= render 'home/category' %>
+                        <!--/category-->
+
+                        <!--brands_products-->
+						<div class="brands_products">
+						<h2>Brands</h2>
+						  <%= render 'home/brands' %>
+						</div>
+						<!--/brands_products-->
+
+                        <!--price-range-shipping-->
+                        <%= render 'home/price-range-shipping' %>
+                        <!--/price-range-shipping-->
+					</div>
+				</div>
+				<div class="col-sm-9">
+					<div class="blog-post-area">
+						<h2 class="title text-center"><%= @results[:post].title %></h2>
+						<div class="single-blog-post">
+							<div class="post-meta">
+								<ul>
+									<li><i class="fa fa-user"></i> <%=  @results[:post].user.username %></li>
+									<li><i class="fa fa-clock-o"></i> <%=  @results[:post].created_at.strftime("%I:%M %p")%></li>
+									<li><i class="fa fa-calendar"></i> <%=  @results[:post].created_at.strftime("%d/%m/%Y") %></li>
+								</ul>
+								<span>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star-half-o"></i>
+								</span>
+							</div>
+							<a href="">
+								<img src="<%= url_for( @results[:post].image) if  @results[:post].image.attached? %>" alt="">
+							</a>
+                            <span style="word-wrap: break-word;"> <%=  @results[:post].body.body%></span>
+							
+							<div class="pager-area">
+								<ul class="pager pull-right">
+									<li><a href="#">Pre</a></li>
+									<li><a href="#">Next</a></li>
+								</ul>
+							</div>
+						</div>
+					</div><!--/blog-post-area-->
+
+					<div class="rating-area">
+						<ul class="ratings">
+							<li class="rate-this">Rate this item:</li>
+							<li>
+								<i class="fa fa-star color"></i>
+								<i class="fa fa-star color"></i>
+								<i class="fa fa-star color"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+							</li>
+							<li class="color">(6 votes)</li>
+						</ul>
+						<ul class="tag">
+							<li>TAG: </li>
+							<li><a class="color" href="#"> <%=  @results[:post].category_post.name %> </a></li>
+
+						</ul>
+					</div><!--/rating-area-->
+
+					<div class="socials-share">
+						<a href=""><img src="images/blog/socials.png" alt=""></a>
+					</div><!--/socials-share-->
+
+					<div class="media commnets">
+						<a class="pull-left" href="#">
+							<img class="media-object" src="<%= url_for( @results[:post].user.avatar) if  @results[:post].user.avatar.attached? %>" alt="">
+						</a>
+						<div class="media-body">
+							<h4 class="media-heading">Athor: <span style="color: #FE980F;"><%=  @results[:post].user.username %></span></h4>
+							<p><%=  @results[:post].user.profile %></p>
+							<div class="blog-socials">
+								<ul>
+									<li><a href=""><i class="fa fa-facebook"></i></a></li>
+									<li><a href=""><i class="fa fa-twitter"></i></a></li>
+									<li><a href=""><i class="fa fa-dribbble"></i></a></li>
+									<li><a href=""><i class="fa fa-google-plus"></i></a></li>
+								</ul>
+							</div>
+						</div>		
+				</div>	
+					<h2 class="title text-center">Other Posts</h2>
+						<% @results[:post_other].each do |item| %>
+							<div style="display:flex;margin-bottom: 30px;">
+								<img style="width: 40%" src="<%= url_for(item.image) if item.image.attached? %>" alt="Image">
+								<div class="content_description" style="margin-left: 40px;width: 50%;word-wrap: break-word;">
+										<h3><%= item.title %></h3>
+										<p  style="overflow: hidden; height: 100px; width: 100%;"><%= item.content %></p>
+										<a  class="btn btn-primary" href="/blog/<%= item.title.parameterize%>~<%=item.id %>">Read More</a>
+								</div>
+							</div>
+						<% end %>
+			    </div>
+        </div>
+</section>
+<style>
+.current{
+	width: 50px;
+    height: 40px;
+    text-align: center;
+    line-height: 26px;
+}
+</style>

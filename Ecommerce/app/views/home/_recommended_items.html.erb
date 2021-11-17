@@ -14,7 +14,6 @@
                                  <a href="/product-details/<%= item.title.parameterize%>~<%=item.id%>"> <img class="imageProduct" src="<%= url_for(item.image) if item.image.attached? %>" alt="" /></a>
                                 <p class="title"><%= item.title  %></p>
                                 <h2 class="price">$<%= item.price %></h2>
-                                <p><%= item.description %></p>
                                 <a href="javascript:void(0)" class="btn btn-default add-to-cart"><i
                                         class="fa fa-shopping-cart"></i>Add to cart</a>
                             </div>
@@ -33,7 +32,6 @@
                            <a href="/product-details/<%= item.title.parameterize%>~<%=item.id%>"> <img class="imageProduct" src="<%= url_for(item.image) if item.image.attached? %>" alt="" /></a>
                                 <p class="title"><%= item.title  %></p>
                                 <h2 class="price">$<%= item.price %></h2>
-                                <p><%= item.description %></p>
                                 <a href="javascript:void(0)" class="btn btn-default add-to-cart"><i
                                         class="fa fa-shopping-cart"></i>Add to cart</a>
                             </div>

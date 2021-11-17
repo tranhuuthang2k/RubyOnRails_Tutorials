@@ -20,6 +20,7 @@
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="//cdn.jsdelivr.net/npm/js-cookie@3.0.1"></script>
 
+<%# <script src="https://cdnjs.cloudflare.com/ajax/libs/chartkick/1.3.0/chartkick.min.js" integrity="sha512-yZq6Kg/RKA6FcdT1iQcce5DN5WqzlzuVDpEWa3dWwpqcArOkiE/1ueacDGZ0LHVIP+7jJLSYETeOD1lEqQMIjA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> %>
   <%=stylesheet_link_tag('price-range.css') %>
   <%=stylesheet_link_tag('font-awesome.min.css') %>
   <%=stylesheet_link_tag('animate.css') %>
@@ -28,7 +29,7 @@
   <%=javascript_include_tag('jquery.scrollUp.min.js') %>
   <%=javascript_include_tag('price-range.js') %>
   <%=javascript_include_tag('jquery.prettyPhoto.js') %>
-  <%=javascript_include_tag('main.js') %>
+  <%=javascript_include_tag('manager/product.js') %>
 </head>
 
 <body>
@@ -43,12 +44,12 @@
     <div id="notice_wraper">
       <p class="notice"><%= notice %></p>
     </div>
-  <% elsif alert %>
-    <div id="notice_wraper">
-      <p class="alert"><%= alert %></p>
-    </div>
+  <% elsif flash %>
+    <% flash.each do |message_type, message| %>
+      <div  style="align-items: center; text-align: center;" class="alert alert-<%= message_type %>"><span><%= message %></span></div>
+    <% end %> 
   <% end %>
-    <%= yield %>
+  <%= yield %>
   <%= render 'layouts/footer' %>
 </body>
 </html>
@@ -61,116 +62,185 @@
       });
     }, 2000);
   });
+  
 </script>
+<script id="list-search-template" type="text/x-handlebars-template">
+    <div class="features_items">
+    <h2 class="title text-center"> Product search</h2>
+    {{#if products.length }}
+      {{#each products}}
+      <div class="col-sm-4">
+        <div class="product-image-wrapper">
+            <div class="single-products">
+                <div class="productinfo text-center">
+                    <input type="hidden" id="{{id}}" class="id" value="{{id}}">
+                    <a href="/product-details/{{title}}~{{id}}"> <img class="imageProduct" src="{{image_url1}}" alt="" /></a>
+                    <h2 class="price">${{price}}</h2>
+                    <p class="title">{{title}}</p>
+                    <a href="javascript:void(0)" class="btn btn-default add-to-cart"><i
+                            class="fa fa-shopping-cart"></i>Add to cart</a>
+                </div>
+
+            </div>
+            <div class="choose">
+                <ul class="nav nav-pills nav-justified">
+                    <li><a href="javascript:void(0)"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                    <li><a href="/product-details/{{title}}~{{id}}"><i class="fa fa-plus-square"></i>See more...</a></li>
+                </ul>
+            </div>
+        </div>
+      </div>
+      {{/each}}  
+    </div>
+  {{else}}
+    <div class="features_items">
+      <h2 style=" text-align: center;"> Your product not find </h2>
+    </div>
+  {{/if}}
+</script>
+<!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+      var chatbox = document.getElementById('fb-customer-chat');
+      chatbox.setAttribute("page_id", "2741635706062292");
+      chatbox.setAttribute("attribution", "biz_inbox");
+
+      window.fbAsyncInit = function() {
+        FB.init({
+          xfbml            : true,
+          version          : 'v12.0'
+        });
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+
 <style>
-  #loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: rgba(255, 255, 255, 1);
-    z-index: 100000000;
-    opacity: 1;
-    overflow: hidden;
-    text-align: center;
-    display: flex;
+.alert{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 1);
+  z-index: 100000000;
+  opacity: 1;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
 
+}
+
+#loader {
+  background-color: #fff;
+}
+
+.home-slider #loader {
+  z-index: 9999;
+  background: #fff;
+}
+
+div.ldr {
+  width: 8vmax;
+  height: 8vmax;
+  border-right: 4px solid #2d3a4b;
+  border-radius: 100%;
+  -webkit-animation: spinRight 800ms linear infinite;
+  animation: spinRight 800ms linear infinite;
+}
+
+div.ldr:before,
+div.ldr:after {
+  content: '';
+  width: 6vmax;
+  height: 6vmax;
+  display: block;
+  position: absolute;
+  top: calc(50% - 3vmax);
+  left: calc(50% - 3vmax);
+  border-left: 3px solid #2d3a4b;
+  border-radius: 100%;
+  -webkit-animation: spinLeft 800ms linear infinite;
+  animation: spinLeft 800ms linear infinite;
+}
+
+div.ldr:after {
+  width: 4vmax;
+  height: 4vmax;
+  top: calc(50% - 2vmax);
+  left: calc(50% - 2vmax);
+  border: 0;
+  border-right: 2px solid #2d3a4b;
+  -webkit-animation: none;
+  animation: none;
+}
+
+@-webkit-keyframes spinLeft {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 
-  #loader {
-    background-color: #fff;
+  to {
+    -webkit-transform: rotate(720deg);
+    transform: rotate(720deg);
+  }
+}
+
+@keyframes spinLeft {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 
-  .home-slider #loader {
-    z-index: 9999;
-    background: #fff;
+  to {
+    -webkit-transform: rotate(720deg);
+    transform: rotate(720deg);
+  }
+}
+
+@-webkit-keyframes spinRight {
+  from {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 
-  div.ldr {
-    width: 8vmax;
-    height: 8vmax;
-    border-right: 4px solid #2d3a4b;
-    border-radius: 100%;
-    -webkit-animation: spinRight 800ms linear infinite;
-    animation: spinRight 800ms linear infinite;
+  to {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes spinRight {
+  from {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 
-  div.ldr:before,
-  div.ldr:after {
-    content: '';
-    width: 6vmax;
-    height: 6vmax;
-    display: block;
-    position: absolute;
-    top: calc(50% - 3vmax);
-    left: calc(50% - 3vmax);
-    border-left: 3px solid #2d3a4b;
-    border-radius: 100%;
-    -webkit-animation: spinLeft 800ms linear infinite;
-    animation: spinLeft 800ms linear infinite;
+  to {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
   }
+}
 
-  div.ldr:after {
-    width: 4vmax;
-    height: 4vmax;
-    top: calc(50% - 2vmax);
-    left: calc(50% - 2vmax);
-    border: 0;
-    border-right: 2px solid #2d3a4b;
-    -webkit-animation: none;
-    animation: none;
-  }
-
-  @-webkit-keyframes spinLeft {
-    from {
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
-    }
-
-    to {
-      -webkit-transform: rotate(720deg);
-      transform: rotate(720deg);
-    }
-  }
-
-  @keyframes spinLeft {
-    from {
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
-    }
-
-    to {
-      -webkit-transform: rotate(720deg);
-      transform: rotate(720deg);
-    }
-  }
-
-  @-webkit-keyframes spinRight {
-    from {
-      -webkit-transform: rotate(360deg);
-      transform: rotate(360deg);
-    }
-
-    to {
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
-    }
-  }
-
-  @keyframes spinRight {
-    from {
-      -webkit-transform: rotate(360deg);
-      transform: rotate(360deg);
-    }
-
-    to {
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
-    }
-  }
-
-  .hom-slie {
-    position: absolute !important;
-  }
+.hom-slie {
+  position: absolute !important;
+}
 </style>

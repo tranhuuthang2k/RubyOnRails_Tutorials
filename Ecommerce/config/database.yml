@@ -27,7 +27,7 @@ test:
   database: sample_sqlite3_test
   pool: 5
   username: root
-  password:
+  password: welcome123
   socket: /tmp/mysql.sock
 
 production:

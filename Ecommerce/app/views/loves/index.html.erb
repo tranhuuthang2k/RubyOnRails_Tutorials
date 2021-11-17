@@ -1,0 +1,50 @@
+<section>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="left-sidebar">
+      <%= render 'orders/left' %>
+      </div>
+    </div>
+    
+    <div class="col-sm-9 padding-right">
+    <section id="cart_items">
+		<div class="">
+			<div class="table-responsive cart_info">
+				<table class="table table-condensed">
+					<thead>
+						<tr class="cart_menu">
+            	<td class="id">ID</td>
+							<td class="image">Image</td>
+							<td class="description">Products</td>
+              <td class="date">Day<td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+          <% @results[:product_favorites].each do |loves| %>
+              <tr>
+                <td><p><%=loves.id%></p></td>
+                <td class="cart_product">
+                <% if loves.product.image.attached? %>
+                  <a href="/product-details/<%= loves.product.title.parameterize%>~<%=loves.id%>"><img src="<%= url_for(loves.product.image) %>" alt=""width="110" height="110"</a>
+                <% end %>
+                </td>
+                <td class="cart_title">
+                  <h4><a href="/product-details/<%= loves.product.title.parameterize%>~<%=loves.id%>"><%= loves.product.title %></a></h4>
+                </td>
+                <td><%= loves.created_at.strftime("%d/%m/%Y") %></td>
+              </tr>
+          <% end %>
+          <%= paginate @results[:product_favorites] %>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</section> <!--/#cart_items-->
+      
+    </div>
+  </div>
+</div>
+</section>

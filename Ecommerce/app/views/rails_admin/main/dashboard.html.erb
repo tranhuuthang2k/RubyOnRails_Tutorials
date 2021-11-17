@@ -1,0 +1,14 @@
+<%# http://www.antleon.com/2015/04/rails-admin-custom-dashboard/ %>
+<%# mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -p mysql %>
+
+<%= javascript_include_tag "//www.google.com/jsapi" %>
+<%=javascript_include_tag('chartkick.min.js') %>
+<h2> About order for the week </h2>
+<%= column_chart  OrderItem.group_by_day_of_week(:created_at,format: "%a").count %>
+<h2> About order status  </h2>
+<%=  pie_chart OrderItem.group(:status).count%>
+<p>  STATUS = { 'pending': 0, 'confirmed': 1, 'cancel': 2 } </p>
+<h2> About statistical user/admin </h2>
+<%= pie_chart User.group(:admin).count %>
+<h2> About Product for  Brand </h2>
+<%=  bar_chart Brand.select('brands.name').joins(:products).group("brands.name").count %>

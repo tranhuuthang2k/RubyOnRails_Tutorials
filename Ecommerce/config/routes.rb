@@ -18,13 +18,33 @@ Rails.application.routes.draw do
     get 'users/carts', to: 'carts#index'
   end
   get 'product-details/:id', to: 'product_details#index'
-  
+  get 'category/:id', to: 'categories#categories'
+  get 'contact', to: 'contact#index'
+  post 'contact', to: 'contact#create'
+  get 'brand/:id', to: 'brand#brands'
+  get 'blog', to: 'blog#index'
+  get 'blog/:id', to: 'blog#blog_detail'
+  get 'users/orders', to: 'orders#index'
+  get 'users/loves', to: 'loves#index'
+  get 'users/history_product', to: 'product_view#index'
+  get 'notification/:id', to: 'notification#index'
+  get 'admin/system', to: 'notification#index'
+
+
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      get "/category", to: "categories#index"
-      post "/love", to: "loves#index"
-      delete "/unlove", to: "loves#unlove"
+      get '/category', to: 'categories#index'
+      post '/love', to: 'loves#index'
+      post '/comment', to: 'loves#comment'
+      post '/rate', to: 'loves#rate'
+      post '/checkout', to: 'carts#checkout'
+      delete '/unlove', to: 'loves#unlove'
+      post 'edit-comment', to: 'loves#edit_comment'
+      delete '/delete-comment', to: 'loves#delete_comment'
+      post '/product', to: 'products#products_of_month'
+      post '/search', to: 'products#search'
+      post '/voucher', to: 'products#voucher'
+      post '/delete_order', to: 'products#delete_order'
     end
-   
   end
 end

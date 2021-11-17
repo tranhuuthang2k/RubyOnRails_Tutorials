@@ -17,8 +17,7 @@
             </div>
             <div class="choose">
                 <ul class="nav nav-pills nav-justified">
-                    <li><a href="javascript:void(0)"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                    <li><a href="/products/<%= item.id %>"><i class="fa fa-plus-square"></i>See more...</a></li>
+                    <li><a href="/product-details/<%= item.title.parameterize%>~<%=item.id%>"><i class="fa fa-plus-square"></i>See more...</a></li>
                 </ul>
             </div>
         </div>

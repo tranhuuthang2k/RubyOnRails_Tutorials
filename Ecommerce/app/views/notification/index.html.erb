@@ -1,0 +1,99 @@
+<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="left-sidebar">
+                        <!--category-->
+						<h2>Category</h2>
+                          <%= render 'home/category' %>
+                        <!--/category-->
+
+                        <!--brands_products-->
+						<div class="brands_products">
+						<h2>Brands</h2>
+						  <%= render 'home/brands' %>
+						</div>
+						<!--/brands_products-->
+
+                        <!--price-range-shipping-->
+                        <%= render 'home/price-range-shipping' %>
+                        <!--/price-range-shipping-->
+					</div>
+				</div>
+				<div class="col-sm-9">
+					<div class="blog-post-area">
+						<h2 class="title text-center">Notification</h2>
+						<div class="single-blog-post">
+							<h3><%= @results[:notification_detail].title %></h3>
+							<div class="post-meta">
+								
+								<span>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star-half-o"></i>
+								</span>
+							</div>
+							<a href="">
+							</a>
+                            <span style="word-wrap: break-word;"> <%= @results[:notification_detail].content.body%></span>
+							
+							<div class="pager-area">
+								<ul class="pager pull-right">
+									<li><a href="#">Pre</a></li>
+									<li><a href="#">Next</a></li>
+								</ul>
+							</div>
+						</div>
+					</div><!--/blog-post-area-->
+
+					<div class="rating-area">
+						<ul class="ratings">
+							<li class="rate-this">Rate this item:</li>
+							<li>
+								<i class="fa fa-star color"></i>
+								<i class="fa fa-star color"></i>
+								<i class="fa fa-star color"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+							</li>
+							<li class="color">(6 votes)</li>
+						</ul>
+						<ul class="tag">
+							<li>TAG:</li>
+							<li><a class="color" href="">Notification <span></span></a></li>
+						</ul>
+					</div><!--/rating-area-->
+
+					<div class="socials-share">
+						<a href=""><img src="images/blog/socials.png" alt=""></a>
+					</div><!--/socials-share-->
+
+					<div class="media commnets">
+						<a class="pull-left" href="#">
+						</a>
+						<div class="media-body">
+							<div class="blog-socials">
+								<ul>
+									<li><a href=""><i class="fa fa-facebook"></i></a></li>
+									<li><a href=""><i class="fa fa-twitter"></i></a></li>
+									<li><a href=""><i class="fa fa-dribbble"></i></a></li>
+									<li><a href=""><i class="fa fa-google-plus"></i></a></li>
+								</ul>
+								<a class="btn btn-primary" href="">Other Posts</a>
+							</div>
+						</div>
+						
+				</div>	
+			</div>
+        </div>
+</section>
+<style>
+.current{
+	width: 50px;
+    height: 40px;
+    text-align: center;
+    line-height: 26px;
+}
+</style>

@@ -1,5 +1,29 @@
+require Rails.root.join('lib', 'rails_admin', 'show_order_item.rb')
+RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::ShowOrderItem)
 RailsAdmin.config do |config|
   # https://github.com/sferik/rails_admin/wiki/Fields
+  require Rails.root.join('lib', 'rails_admin.rb')
+
+  config.model 'ActiveStorage::Blob' do
+    visible false
+  end
+
+  config.model 'ActiveStorage::Attachment' do
+    visible false
+  end
+
+  config.model 'ActiveStorage::VariantRecord' do
+    visible false
+  end
+  config.model 'ActionText::RichText' do
+    visible false
+  end
+  config.model 'Cart' do
+    visible false
+  end
+  config.model 'CartItem' do
+    visible false
+  end
 
   config.model 'User' do
     edit do
@@ -30,6 +54,23 @@ RailsAdmin.config do |config|
       configure :last_sign_in_at do
         hide
       end
+      configure :provider do
+        hide
+      end
+      configure :comment do
+        hide
+      end
+      configure :uid do
+        hide
+      end
+      configure :post do
+        hide
+      end
+      configure :api_token_digest do
+        hide
+      end
+
+
     end
     navigation_label 'Manage User'
   end
@@ -59,20 +100,28 @@ RailsAdmin.config do |config|
   ## == Gravatar integration ==
   ## To disable Gravatar integration in Navigation Bar set to false
   # config.show_gravatar = true
+  config.main_app_name = %w[Shopee Admin]
 
   config.actions do
-    dashboard                     # mandatory
-    index                         # mandatory
-    new
+    dashboard
+    index
+    new do
+      except ['OrderItem']
+    end
     export
     bulk_delete
-    show
+
+    # phan show cua OrderItem se duoc custom nhung khong anh huong den show cua cac thanh phan khac
+
+    show do
+      except ['OrderItem']
+    end
+
     edit
     delete
+    show_order_item do
+      only ['OrderItem']
+    end
     show_in_app
-
-    ## With an audit adapter, you can add:
-    # history_index
-    # history_show
   end
 end

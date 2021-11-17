@@ -1,0 +1,117 @@
+<%=javascript_include_tag('manager/product.js') %>
+<section>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="left-sidebar">
+      <%= render 'orders/left' %>
+      </div>
+    </div>
+    
+    <div class="col-sm-9 padding-right">
+    <label for="start">Start month:</label>
+    <input type="month" id="start" name="start" min="2018-03" value="2021-10">
+    <button id="submit">Search</button>
+    <section id="cart_items">
+		<div class="">
+			<div class="table-responsive cart_info">
+      <% if @results[:carts_order].size > 0 %>
+      <table class="table table-condensed">
+					<thead>
+						<tr class="cart_menu">
+							<td class="image">Image</td>
+							<td class="description product_month">Name</td>
+              <td class="description quantity">Quantity</td>
+              <td class="description">Size</td>
+							<td class="description">Total</td>
+							<td class="description">Status</td>
+							<td class="description">Buy date</td>
+							<td>Action</td>
+						</tr>
+					</thead>
+          <% else %>
+           <h2 style="text-align: center"> You have not ordered products yet <h2>
+      <% end %>
+			
+					<tbody class="tbody">
+          <% @results[:carts_order].each do |order| %>
+            <% order[:product_order].each do |c| %>
+              <tr>
+                <td class="cart_product">
+                  <a href=""><img src="<%= c["image_product"] %>" alt=""width="110" height="110"</a>
+                </td>
+                <td class="cart_description">
+                  <h4><a href=""><%= c["name_product"] %></a></h4>
+                  <p>Orders ID: <%= order[:order].id %></p>
+                </td>
+                <td class="cart_description">
+                  <p><%= c["quantity"] %></p>
+                </td>
+                 <td class="cart_description">
+                  <p><%= c["size_product"] %></p>
+                </td>
+                <td class="cart_description">
+                  <p class="cart_total_price">$<%= c["total"] %></p>
+                </td>
+                <td class="cart_description">
+                  <% case order[:order].status %>
+                  <% when 0 %>
+                    <p class="">Pending</p>
+                    <% when 1 %>
+                    <p class="">Confirm</p>
+                    <% when 2 %>
+                    <p class="">Cancel</p>
+                  <% end %>
+                </td>
+                <td class="cart_description">
+                  <p><%= order[:order].created_at.strftime("%d/%m/%Y") %></p>
+                </td>
+                <% if order[:order].status != 1 %>
+                      <td><button class="submit_delete btn btn-danger"  product_id="<%= c["id"] %>" order_id="<%= order[:order].id %>"  > Cancel Order </button> </td>
+                <% end %>
+              </tr>
+              <% end %>
+          <% end %>
+					</tbody>
+				</table>
+          <%= paginate @results[:orders] %>
+
+			</div>
+		</div>  
+    </div>
+  </div>
+</div>
+</section>
+<script id="list-product-template" type="text/x-handlebars-template">
+  {{#if carts_order.length }}
+    {{#each product_of_month}}
+      <tr>
+        <td class="cart_description">
+          <p>Orders ID: {{ id }}</p>
+        </td>
+        <td class="cart_description">
+          <p class="cart_total_price">${{total_order}}</p>
+        </td>
+        <td class="cart_description">   
+            <p class="">Confirm</p>
+        </td>
+        <td class="cart_description">
+          <p>{{created_at}}</p>
+        </td>
+      </tr>
+  {{/each}}
+  <style type="text/css">
+    .product_month{
+        display:none
+    }
+  </style>
+  {{else}}
+    <style type="text/css">
+    thead{
+        display:none
+    }
+  </style>
+      <h2 style=" text-align: center;"> Du lieu khong dc tim thay </h2>
+  {{/if}}
+
+</script>

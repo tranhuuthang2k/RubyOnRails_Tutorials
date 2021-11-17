@@ -1,0 +1,2 @@
+class KeywordSearch < ApplicationRecord
+end

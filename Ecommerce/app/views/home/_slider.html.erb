@@ -10,6 +10,22 @@
 						</ol>
 						
 						<div class="carousel-inner">
+						<% if @results[:sliders].count > 0 %>
+						  	<% @results[:sliders].each.with_index do |item, index| %>
+								 <div class="item <%= index === 0 ? "active" : ''%> ">
+									<div class="col-sm-6">
+										<h1><span>E</span><%= item.logoName %></h1>
+										<h2><%= item.title %></h2>
+										<p><%= item.description %></p>
+										<button type="button" class="btn btn-default get">Get it now</button>
+									</div>
+									<div class="col-sm-6">
+										<img src="<%= url_for(item.image) if item.image.attached? %>" class="girl img-responsive" alt="" />
+										<img src="/assets/home/pricing.png"  class="pricing" alt="" />
+									</div>
+								</div>  
+							<% end %>
+						<% else %>
 							<div class="item active">
 								<div class="col-sm-6">
 									<h1><span>E</span>-SHOPPER</h1>
@@ -47,9 +63,9 @@
 									<img src="/assets/home/pricing.png" class="pricing" alt="" />
 								</div>
 							</div>
-							
+						<% end %>
 						</div>
-						
+					
 						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
 							<i class="fa fa-angle-left"></i>
 						</a>

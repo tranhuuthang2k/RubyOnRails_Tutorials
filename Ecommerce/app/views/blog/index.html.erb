@@ -1,0 +1,71 @@
+<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="left-sidebar">
+                        <!--category-->
+						<h2>Category</h2>
+                          <%= render 'home/category' %>
+                        <!--/category-->
+
+                        <!--brands_products-->
+						<div class="brands_products">
+						<h2>Brands</h2>
+						  <%= render 'home/brands' %>
+						</div>
+						<!--/brands_products-->
+
+                        <!--price-range-shipping-->
+                        <%= render 'home/price-range-shipping' %>
+                        <!--/price-range-shipping-->
+					</div>
+				</div>
+					<div class="col-sm-9">
+					<div class="blog-post-area">
+						<h2 class="title text-center">Latest From our Blog</h2>
+						<% @results[:posts].each do |item| %>
+							<div class="single-blog-post">
+								<h3><%= item.title %></h3>
+							<div class="post-meta">
+								<ul>
+									<li><i class="fa fa-user"></i> <%= item.user.username %></li>
+									<li><i class="fa fa-clock-o"></i> <%= item.created_at.strftime("%I:%M %p")%></li>
+									<li><i class="fa fa-calendar"></i> <%= item.created_at.strftime("%d/%m/%Y") %></li>
+								</ul>
+								<span>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-half-o"></i>
+								</span>
+							</div>
+								<a href="/blog/<%= item.title.parameterize%>~<%=item.id %>">
+									<img src="<%= url_for(item.image) if item.image.attached? %>" alt="Image">
+								</a>
+								<p  style="overflow: hidden;"><%= item.content %></p>
+								<a  class="btn btn-primary" href="/blog/<%= item.title.parameterize%>~<%=item.id %>">Read More</a>
+							</div>
+						<% end %>
+									
+						
+ 
+				<div class="pagination-area">
+							<ul class="pagination">
+								<li style="line-height: 26px;">	<%= paginate @results[:posts] %></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+        </div>
+</section>
+<style>
+.current{
+	width: 50px;
+    height: 40px;
+    text-align: center;
+    line-height: 26px;
+}
+</style>

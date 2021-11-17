@@ -59,9 +59,20 @@
 					<div class="col-md-8 clearfix">
 						<div class="shop-menu clearfix pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href=""><i class="fa fa-user"></i> Account</a></li>
-								<li><a href=""><i class="fa fa-star"></i> Wishlist</a></li>
-								<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+								<li><a href="/profile"><i class="fa fa-user"></i> Account</a></li>
+						 <li class="notifications" style="padding-right: 10px;" onclick="myFunction()" > 
+							<a href="javascript:void(0);" > <i class="fa fa-bell" style="font-size:15px"></i> Notifications 
+								<div class="icon-badge"></div> 
+							</a>
+							<ul id="list-notifications" style="display: none">
+								<% if current_user %>
+								<% @results[:notifications].each do |item| %>
+									<li class="item-notification">🔔 <a href="/notification/<%= item.title.parameterize%>~<%=item.id%>"><%= item.title %></a></li>
+									<% end %>
+								<% end %>
+							</ul>
+						</li>
+								<li><a href="<%= users_carts_path %>"><i class="fa fa-crosshairs"></i> Checkout</a></li>
 								<li style="cursor: pointer;"><a onclick="location.href='<%= users_carts_path %>'">Cart <i class="fa fa-shopping-cart"></i> <span class='badge badge-warning' id='lblCartCount'>  </span></a></li>
 								<% if user_signed_in? %>
 								<% if current_user.admin? %>
@@ -69,7 +80,7 @@
 								<% else %>
 									<li><a href="<%= edit_user_registration_path %>"><i class="fa fa-lock"></i> <%= current_user.username %></a></li>
                   				<% end %>
-                  <li><a href="<%= destroy_user_session_path %>"><i class="fa fa-lock"></i> Logout</a></li>
+									<li><a href="<%= destroy_user_session_path %>"><i class="fa fa-lock"></i> Logout</a></li>
 								<% else %>
 								  <li><a href="<%= new_user_session_path %>"><i class="fa fa-lock"></i> Login</a></li>
 								<% end %>
@@ -94,33 +105,67 @@
 						</div>
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="index.html" class="active">Home</a></li>
+								<li><a href="<%= root_path %>" class="active">Home</a></li>
 								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Products</a></li>
-										<li><a href="product-details.html">Product Details</a></li> 
-										<li><a href="checkout.html">Checkout</a></li> 
-										<li><a href="cart.html">Cart</a></li> 
-										<li><a href="login.html">Login</a></li> 
+										<li><a href="/profile">Profile</a></li> 
+										<li><a href="<%= users_carts_path %>">Checkout</a></li> 
+										<li><a href="<%= users_carts_path %>">Cart</a></li> 
+										<li><a href="<%= login_path %>">Login</a></li> 
+										<li><a href="<%= contact_path %>">Contact</a></li>
                                     </ul>
                                 </li> 
 								<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog List</a></li>
-										<li><a href="blog-single.html">Blog Single</a></li>
+                                        <li><a href="<%= blog_path %>">Blog List</a></li>
                                     </ul>
                                 </li> 
-								<li><a href="404.html">404</a></li>
-								<li><a href="contact-us.html">Contact</a></li>
+								<li><a href="<%= contact_path %>">Contact</a></li>
+								<% if user_signed_in? %>
+								<li><a href="<%= users_orders_path %>">My Orders</a></li>
+								<% end %>
 							</ul>
 						</div>
 					</div>
-					<div class="col-sm-3">
-						<div class="search_box pull-right">
-							<input type="text" placeholder="Search"/>
-						</div>
-					</div>
+          <div class="col-sm-3">
+            <div class="search_box pull-right">
+              <input class ="in-search"type="text" style="color: #000; font-weight: 700;" placeholder="Search product"/>
+            </div>
+          </div>
 				</div>
 			</div>
 		</div><!--/header-bottom-->
 </header><!--/header-->
+<style>
+#list-notifications{
+    height: auto;
+    width: 300px;
+    position: absolute;
+	-moz-box-shadow:    3px 3px 5px 6px #ccc;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+    box-shadow: 2px 2px 4px 2px #ccc;
+	padding-left: 1px;
+}
+#list-notifications >li{
+	width: 100%;
+	border: 1px solid #ebebeb
+}
+</style>
+<script>
+// $(".in-search").on('keypress',function(e) {
+//     if(e.which == 13) {
+// 		key_word = $('.in-search').val();
+//         location.href = "/search?query=" + key_word
+//     }
+// });
+
+function myFunction() {
+  var x = document.getElementById("list-notifications");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+</script>
