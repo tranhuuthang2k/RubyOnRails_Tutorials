@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :username
       t.string :mobile
       t.string :gender
-      t.integer :admin,:limit => 2
+      t.integer :admin,:default => 0
       t.text :profile
 
       t.timestamps

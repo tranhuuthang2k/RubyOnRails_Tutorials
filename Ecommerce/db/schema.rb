@@ -168,27 +168,6 @@ ActiveRecord::Schema.define(version: 2021_11_16_012904) do
     t.integer "total_order"
   end
 
-  create_table "orders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "session_id"
-    t.string "token"
-    t.integer "status"
-    t.float "subTotal"
-    t.float "itemDiscount"
-    t.float "tax"
-    t.float "shipping"
-    t.float "total"
-    t.float "discount"
-    t.string "username"
-    t.string "email"
-    t.string "mobile"
-    t.string "address"
-    t.string "city"
-    t.integer "postalCode"
-    t.string "country"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "photos", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "product_id"
     t.datetime "created_at", precision: 6, null: false
@@ -275,7 +254,7 @@ ActiveRecord::Schema.define(version: 2021_11_16_012904) do
     t.string "username"
     t.string "mobile"
     t.string "gender"
-    t.boolean "admin"
+    t.boolean "admin", default: false
     t.string "address"
     t.text "profile"
     t.datetime "created_at", precision: 6, null: false
