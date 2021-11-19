@@ -1,6 +1,11 @@
 class ContactController < ApplicationController
-  def index; end
-  
+  def index
+    notifications = Notification.newest.limit(5)
+    @results = {
+      notifications: notifications
+    }
+  end
+
   def create
     @contact = Contact.new(name: params[:name], email: params[:email], subject: params[:subject],
                            message: params[:message])
