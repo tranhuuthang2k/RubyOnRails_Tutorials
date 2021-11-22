@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_16_012904) do
+ActiveRecord::Schema.define(version: 2022_02_05_051009) do
 
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -110,6 +110,12 @@ ActiveRecord::Schema.define(version: 2021_11_16_012904) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "cities", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "comfy_blog_posts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "site_id", null: false
     t.string "title", null: false
@@ -166,6 +172,8 @@ ActiveRecord::Schema.define(version: 2021_11_16_012904) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "total_order"
+    t.string "service"
+    t.float "fee"
   end
 
   create_table "photos", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -219,6 +227,8 @@ ActiveRecord::Schema.define(version: 2021_11_16_012904) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+    t.integer "post_id"
+    t.string "ip_post"
   end
 
   create_table "products", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -233,7 +243,23 @@ ActiveRecord::Schema.define(version: 2021_11_16_012904) do
     t.string "availability_id"
     t.integer "user_id"
     t.integer "categories_id"
+    t.integer "sold", default: 0
     t.index ["title"], name: "index_products_on_title", type: :fulltext
+  end
+
+  create_table "shipping_cities", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "city_id"
+    t.integer "shipping_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "shippings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.float "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "sizes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -254,7 +280,7 @@ ActiveRecord::Schema.define(version: 2021_11_16_012904) do
     t.string "username"
     t.string "mobile"
     t.string "gender"
-    t.boolean "admin", default: false
+    t.integer "admin"
     t.string "address"
     t.text "profile"
     t.datetime "created_at", precision: 6, null: false
@@ -267,6 +293,7 @@ ActiveRecord::Schema.define(version: 2021_11_16_012904) do
     t.string "provider"
     t.string "uid"
     t.string "api_token_digest"
+    t.integer "city_id"
   end
 
   create_table "vouchers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

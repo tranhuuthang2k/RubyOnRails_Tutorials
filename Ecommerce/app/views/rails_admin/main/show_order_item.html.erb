@@ -53,13 +53,14 @@
                         <hr class="new1">
                     </div>
                     <div class="d-flex justify-content-between"> <span class="font-weight-bold">Total_Order: </span> <span>$<%= @Total_order =  JSON.parse(@order.product_order).map{|order| order["price_product"].to_f * order["quantity"].to_i}.sum  %></span> </div>
-                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Shipping: </span> <small> + $30.00</small> </div>
+                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Fee Shipping: </span> <small> + $<%=  @order.fee %> </small> </div>
+                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Service: </span> <%= @order.service  %></div>
                     <div class="d-flex justify-content-between"> <span class="font-weight-bold">Voucher: </span> <small> - $<%= @order&.voucher ? @order.voucher : 0 %></small> </div>
                     <span>------------------------------------ <span>
                     <% if @order&.voucher  %>
-                        <div class="d-flex justify-content-between mt-3"> <span class="font-weight-bold">Payment: </span> <span class="font-weight-bold theme-color">$<%= @Total_order - @order.voucher  + 30.00 %></span> </div>
+                        <div class="d-flex justify-content-between mt-3"> <span class="font-weight-bold">Payment: </span> <span class="font-weight-bold theme-color">$<%= @Total_order - @order.voucher  + @order.fee %></span> </div>
                       <% else %>
-                        <div class="d-flex justify-content-between mt-3"> <span class="font-weight-bold">Payment: </span> <span class="font-weight-bold theme-color">$<%= @Total_order + 30.00 %></span> </div>
+                        <div class="d-flex justify-content-between mt-3"> <span class="font-weight-bold">Payment: </span> <span class="font-weight-bold theme-color">$<%= @Total_order +  @order.fee %></span> </div>
                     <% end %>
                     <div class="text-center mt-5"> <button class="btn btn-primary"  data-dismiss="modal" >OK</button> </div>
                 </div>
@@ -67,3 +68,148 @@
         </div>
     </div>
 </div>
+
+<button type="button" class="btn btn-primary launch" data-toggle="modal" data-target="#invoice"> <i class="fa fa-info"></i> Export invoice
+</button>
+
+<div class="modal fade" id="invoice" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"> <div class="modal-dialog">
+<div class="container bootdey">
+<div class="row invoice row-printable">
+    <div class="col-md-9">
+        <!-- col-lg-12 start here -->
+        <div class="panel panel-default plain" id="dash_0">
+            <!-- Start .panel -->
+            <div class="panel-body p30" >
+                <div class="row">
+                    <!-- Start .row -->
+                    <div class="col-lg-6">
+                        <!-- col-lg-6 start here -->
+                        <div class="invoice-logo"><img width="100" src="/assets/home/logo.png" alt="Invoice logo"></div>
+                    </div>
+                    <!-- col-lg-6 end here -->
+                    <div class="col-lg-6">
+                        <!-- col-lg-6 start here -->
+                        <div class="invoice-from">
+                            <ul class="list-unstyled text-right">
+                                <li>EShopper</li>
+                                <li>270 TRUONG CHINH, DA NANG</li>
+                                <li>0372964842</li>
+                                <li>VAT Number 50000</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- col-lg-6 end here -->
+                    <div class="col-lg-12">
+                        <!-- col-lg-12 start here -->
+                        <div class="invoice-details mt25">
+                            <div class="well">
+                                <ul class="list-unstyled mb0">
+                                    <li><strong>Invoice</strong> #<%= @order.id%></li>
+                                    <li><strong>Invoice Date:</strong> <%= @order.created_at.strftime("%d/%m/%Y") %></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="invoice-to mt25">
+                            <ul class="list-unstyled">
+                                <li><strong>Invoiced To</strong></li>
+                                <li>Customer: <%= @order.user.username %></li>
+                                <li>Phone: <%= @order.user.mobile %></li>
+                                <li>Address:  <%= @order.user.address %></li>
+                                <li>Sales:  <%= current_user.username %></li>
+                            </ul>
+                        </div>
+                        <div class="invoice-items">
+                            <div class="table-responsive" style="overflow: hidden; outline: none;" tabindex="0">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="per70 text-center">Name</th>
+                                            <th class="per70 text-center">Size</th>
+                                            <th class="per5 text-center">Quantity</th>
+                                            <th class="per25 text-center">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <%  JSON.parse(@order.product_order).each do |order| %>
+                                       <tr>
+                                            <td><%= order["name_product"] %></td>
+                                            <td class="text-center"> <%= order["size_product"] %></td>
+                                            <td class="text-center"> <%= order["quantity"] %></td>
+                                            <td class="text-center">$<%= order["price_product"] %></td>
+                                        </tr>
+                                    <% end %>
+                                    </tbody>
+                                    <tbody>
+                                        <tr>
+                                            <th colspan="2" class="text-right">Sub Total:</th>
+                                            <th class="text-center">$<%= @Total_order %></th>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2" class="text-right">Fee ship:</th>
+                                            <th class="text-center">$<%= @order.fee %> </th>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2" class="text-right">Service:</th>
+                                            <th class="text-center"><%= @order.service  %></th>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2" class="text-right">Voucher:</th>
+                                            <th class="text-center">$<%= @order&.voucher ? @order.voucher : 0 %></th>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2" class="text-right">Total:</th>
+                                            <% if @order&.voucher  %>
+                                              <th class="text-center">$<%= @Total_order - @order.voucher  + @order.fee %></th>
+                                              <% else %>
+                                              <th class="text-center">$  <%= @Total_order +  @order.fee %></th>
+                                            <% end %>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="invoice-footer mt25">
+                            <p class="text-center">Generated on <%= Time.now.strftime("%B %d, %Y,%H:%M:%S") %></p>
+                        </div>
+                    </div>
+                    <!-- col-lg-12 end here -->
+                </div>
+                <!-- End .row -->
+            </div>
+            <div class="text-center mt-5" id="action">
+              <a href="#" onclick="export_pdf()" class="btn btn-default ml15"><i class="fa fa-print mr5"></i> Print</a>
+              <button class="btn btn-primary"  data-dismiss="modal" >X</button> 
+            </div>
+        </div>
+        <!-- End .panel -->
+    </div>
+    <!-- col-lg-12 end here -->
+</div>
+
+</div>
+    </div>
+</div>
+<style>
+@page {
+	size: auto;
+	margin: 0;
+}
+@media print {
+
+  html, body {
+    height:100%; 
+    margin: 0 !important; 
+    padding: 0 !important;
+    overflow: hidden;
+  }
+
+}
+</style>
+<script>
+function export_pdf()
+{
+  document.getElementById("invoice").style.background = "white"
+  document.getElementById("action").style.display = "none"
+  window.print()
+}
+</script>

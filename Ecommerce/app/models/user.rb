@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
@@ -11,6 +12,8 @@ class User < ApplicationRecord
   has_many :product_rates
   has_many :order_items
   has_many :posts
+  validates :city, presence: true
+  belongs_to :city
 
   validates :username, presence: true, length: { maximum: 20 }
   validates :mobile,  presence: true,

@@ -5,26 +5,17 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version 3.0.0
 
-* System dependencies
+* Rails version 6.1.4
 
-* Configuration
+* Amazon active storage 
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+* Heroku
 
 * ...
--------------------------------------------------------------------------------------------------------------------------
-Eshopper Web functions:
-
+# Functions of Ecommerce E-shopper
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 1. Login (email, password, facebook)
 2. Register
 3. Reset password,
@@ -77,7 +68,48 @@ Eshopper Web functions:
 50. Cancel order
 51. Manage brand
 52. Comment product
-53. Dashboard
-
-is updating.........
-# final_project
+53. Method Shipping
+54. Manage shipping, service
+55. Manage city
+56. Product Sold
+57. Export Invoice
+58. Dashboard 
+    + Revenue of each month, year...
+    + Hot selling products
+    + Total products in the system
+    + Total warehouse of the system
+    + Best selling products in month, year
+    + The most searched keywords of the month
+    + Products with the most views in the month
+    + Total number of voucher codes for the month
+    + Most ordered products of the week (what day, quantity)
+    + Status of orders
+    + Total number of brands in the system
+    + Most order month
+- is updating.........
+----------------------------------------------------------------------------------
+- Youtude demo : https://youtu.be/YARRuNM518o 
+- facebook: https://facebook.com/thangneymar44
+- Web demo : http://shopmrkatsu.herokuapp.com/
+----------------------------------------------------------------------------------
+- Run commanlines need to run project 
+- bundle install
+- rails db:migrate
+- rails db:seed
+- rails s
+-----------------------------------------------------------------------------------
+- if errors database missing then connect your mysql
+- step 1:  mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -p mysql
+- step 2:  sudo mysql -u root -p
+- step 3:  SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+------------------------------------------------------------------------------------
+custom rails admin 
+- http://www.antleon.com/2015/04/rails-admin-custom-dashboard/
+------------------------------------------------------------------------------------
+refresh && update my code heroku
+- bundle exec rake assets:precompile 
+run again heroku app, if code dont update then
+- heroku restart
+-----------------------------------------------------------------------------------
+clear cache
+- rake tmp:cache:clear

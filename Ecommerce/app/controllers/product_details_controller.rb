@@ -13,10 +13,10 @@ class ProductDetailsController < ApplicationController
     if current_user && p_view&.ip_address == client_ip && !p_view.user_id
       p_view.update_attribute(:user_id, current_user.id)
     end
-    product_view.save unless p_view
+    product_view.save(validate: false) unless p_view
     recommend_items = Product.show_products Product::SHOW_HOME[:feature]
-    product = Product.find_by(id: id)
-    admin = User.find_by(id: product.user_id)
+    product = Product.find(id)
+    admin = User.find(product.user_id)
     categories = Category.show_category.limit(4)
     products = Product.where(categories_id: product.categories_id).limit(4)
     comments = Comment.includes(:user).where(product_id: id).page(params[:page]).per(2)

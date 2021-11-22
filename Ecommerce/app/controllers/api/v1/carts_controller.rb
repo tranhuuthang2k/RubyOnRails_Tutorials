@@ -1,18 +1,30 @@
 class Api::V1::CartsController < Api::V1::BaseController
   skip_before_action :require_jwt
-  before_action :load_user, only: %i[index checkout]
+  before_action :load_user, only: %i[index checkout payment_momo]
 
-  def checkout
+  def success
+    secretKey = 'K951B6PE1waDMi640xX08PD3vg6EkVlz'
+    rawSignature = 'http://localhost:3000/api/v1/checkout_success?partnerCode=MOMO&orderId=595f5241-2c47-47d9-af2f-a6b586a2aa29&requestId=2159428c-037d-4c92-8d9e-d4c77b369418&amount=60000&orderInfo=pay+with+MoMo&orderType=momo_wallet&transId=2644569745&resultCode=0&message=Giao+d%E1%BB%8Bch+th%C3%A0nh+c%C3%B4ng.&payType=qr&responseTime=1645076866338&extraData=&signature=92b4c1e15e093ea457955d7533347cc64ea28f8a0c0f9e11dcf89b9051177d9e'
+    signature = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), secretKey, rawSignature)
+    if params[:resultCode] == '0'
+      # session[:current_user_id]
+      render json: success_message('Successfully')
+    end
+    # render json: error_message('error_message')
+  end
+
+  def base_checkout(data, voucher_code, method_shipping, status = {})
     temp_carts = []
-    params[:data].select { |_, value| temp_carts << value }
+    data.select { |_, value| temp_carts << value }
     carts_order = []
     product_ids = temp_carts.map { |p| p[:id] }.compact
     total_order = 0
     products = Product.where(id: product_ids).index_by(&:id)
-    check_voucher = Voucher.find_by(code: params[:voucher_code])
+    check_voucher = Voucher.find_by(code: voucher_code)
+    check_shipping = Shipping.find_by(id: method_shipping)
     temp_carts.each do |p|
       product = products[p[:id].to_i]
-      if product.nil? || product.price != p[:price_product].to_f || product.title.downcase != p[:name_product].downcase || p[:image_product] != url_for(product.image)
+      if product.nil? || product.price != p[:price_product].to_f || product.title != p[:name_product] || p[:image_product] != url_for(product.image)
         carts_order = []
         break
       end
@@ -24,12 +36,23 @@ class Api::V1::CartsController < Api::V1::BaseController
                        image_product: p[:image_product],
                        total: p[:price_product].to_f * p[:quantity].to_i }
     end
-    total_order = carts_order.sum { |cart_order| cart_order[:total].to_f }
     voucher_cost = check_voucher && check_voucher.expire.future? ? check_voucher.cost.to_f : 0
-    if carts_order.size > 0
+    total_order = carts_order.sum do |cart_order|
+      cart_order[:total].to_f
+    end - voucher_cost + check_shipping.price
+    results = { total_order: total_order, status: status, voucher_cost: voucher_cost, check_shipping: check_shipping,
+                carts_order: carts_order.to_json }
+  end
+
+  def checkout
+    data = base_checkout(params[:data], params[:voucher_code], params[:method_shipping])
+    if data[:carts_order].size > 0 && data[:check_shipping]
       product_order = @user.order_items.new(user_id: @user.id, status: Product::STATUS[:pending],
-                                            product_order: carts_order.to_json, total_order: total_order - voucher_cost,
-                                            voucher: voucher_cost)
+                                            product_order: data[:carts_order],
+                                            total_order: data[:total_order],
+                                            voucher: data[:voucher_cost],
+                                            service: data[:check_shipping].name,
+                                            fee: data[:check_shipping].price)
       if product_order.save
         OrderMailer.send_order(@user, product_order).deliver
         render json: success_message('Successfully', product_order: product_order)
@@ -37,6 +60,55 @@ class Api::V1::CartsController < Api::V1::BaseController
     else
       render json: error_message(t('shopping cart is invalid or does not exist'))
     end
+  end
+
+  def payment_momo
+    data = base_checkout(params[:data], params[:voucher_code], params[:method_shipping], Product::STATUS[:confirmed])
+    endpoint = 'https://test-payment.momo.vn/v2/gateway/api/create'
+    partnerCode = 'MOMO'
+    accessKey = 'F8BBA842ECF85'
+    secretKey = 'K951B6PE1waDMi640xX08PD3vg6EkVlz'
+    orderInfo = 'pay with MoMo'
+    redirectUrl = 'http://localhost:3000/api/v1/checkout_success'
+    ipnUrl = 'http://localhost:3000/api/v1/checkout_success'
+    amount = (data[:total_order] * 22.790 * 1000).to_i.to_s
+    orderId = SecureRandom.uuid
+    requestId = SecureRandom.uuid
+    requestType = 'captureWallet'
+    extraData = '' # pass empty value or Encode base64 JsonString
+
+    # before sign HMAC SHA256 with format: accessKey=$accessKey&amount=$amount&extraData=$extraData&ipnUrl=$ipnUrl&orderId=$orderId&orderInfo=$orderInfo&partnerCode=$partnerCode&redirectUrl=$redirectUrl&requestId=$requestId&requestType=$requestType
+    rawSignature = 'accessKey=' + accessKey + '&amount=' + amount + '&extraData=' + extraData + '&ipnUrl=' + ipnUrl + '&orderId=' + orderId + '&orderInfo=' + orderInfo + '&partnerCode=' + partnerCode + '&redirectUrl=' + redirectUrl + '&requestId=' + requestId + '&requestType=' + requestType
+    signature = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), secretKey, rawSignature)
+    puts signature
+    # json object send to MoMo endpoint
+    jsonRequestToMomo = {
+      partnerCode: partnerCode,
+      partnerName: 'Test',
+      storeId: 'MomoTestStore',
+      requestId: requestId,
+      amount: amount,
+      orderId: orderId,
+      orderInfo: orderInfo,
+      redirectUrl: redirectUrl,
+      ipnUrl: ipnUrl,
+      lang: 'vi',
+      extraData: extraData,
+      requestType: requestType,
+      signature: signature
+    }
+    # Create the HTTP objects
+    uri = URI.parse(endpoint)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    request = Net::HTTP::Post.new(uri.path)
+    request.add_field('Content-Type', 'application/json')
+    request.body = jsonRequestToMomo.to_json
+
+    response = http.request(request)
+    result = JSON.parse(response.body)
+    render json: success_message('Successfully', url: result['payUrl'])
   end
 
   private

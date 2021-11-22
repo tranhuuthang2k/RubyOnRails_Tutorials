@@ -8,6 +8,7 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
   validates :body, presence: true
+  has_many :product_views, dependent: :destroy
 
   rails_admin do
     create do

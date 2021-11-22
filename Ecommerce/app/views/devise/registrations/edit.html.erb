@@ -54,6 +54,18 @@
                         <label for="female">Female</label><br>
                       <% end %>                  
                     </div>
+                    <span>Select city </span>
+                    <div class="custom-select" style="width:200px;">
+                      <select  name="user[city_id]">
+                      <% unless current_user.city.blank?  %>
+                        <option value="<%=  current_user.city.id %>" > <%=  current_user.city.name %>  </option>
+                        <% else %>
+                      <% end %>
+                        <% @results[:cities].each do |item| %>
+                            <option value="<%= item.id.to_i %>"> <%= item.name %></option>
+                        <% end %>
+                      </select>
+                    </div>
                     <%= f.submit "Save changes", class: "btn btn-primary" %>
               </div>
           </div>

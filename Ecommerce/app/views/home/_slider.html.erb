@@ -20,8 +20,10 @@
 										<button type="button" class="btn btn-default get">Get it now</button>
 									</div>
 									<div class="col-sm-6">
-										<img src="<%= url_for(item.image) if item.image.attached? %>" class="girl img-responsive" alt="" />
-										<img src="/assets/home/pricing.png"  class="pricing" alt="" />
+									 <% if  item.image.attached? %>
+										<%= image_tag url_for(item.image), class: "girl img-responsive"%>
+									 <% end %>
+										<%= image_tag '/assets/home/pricing.png', class:"pricing" %>
 									</div>
 								</div>  
 							<% end %>
@@ -29,13 +31,13 @@
 							<div class="item active">
 								<div class="col-sm-6">
 									<h1><span>E</span>-SHOPPER</h1>
-									<h2>Free E-Commerce Template</h2>
+									<h2>BUY EVERYTHING</h2>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 									<button type="button" class="btn btn-default get">Get it now</button>
 								</div>
 								<div class="col-sm-6">
-									<img src="/assets/home/girl1.jpg" class="girl img-responsive" alt="" />
-									<img src="/assets/home/pricing.png"  class="pricing" alt="" />
+									<%= image_tag '/assets/home/girl1.jpg', alt:"img" , class: "girl img-responsive" %>
+									<%= image_tag '/assets/home/pricing.png', alt:"img" , class: "pricing" %>
 								</div>
 							</div>
 							<div class="item">
@@ -46,8 +48,8 @@
 									<button type="button" class="btn btn-default get">Get it now</button>
 								</div>
 								<div class="col-sm-6">
-									<img src="/assets/home/girl2.jpg" class="girl img-responsive" alt="" />
-									<img src="/assets/home/pricing.png"  class="pricing" alt="" />
+									<%= image_tag '/assets/home/girl2.jpg', alt:"img" , class: "girl img-responsive" %>
+									<%= image_tag '/assets/home/pricing.png', alt:"img" , class: "pricing" %>
 								</div>
 							</div>
 							
@@ -59,8 +61,8 @@
 									<button type="button" class="btn btn-default get">Get it now</button>
 								</div>
 								<div class="col-sm-6">
-									<img src="/assets/home/girl3.jpg" class="girl img-responsive" alt="" />
-									<img src="/assets/home/pricing.png" class="pricing" alt="" />
+									<%= image_tag '/assets/home/girl3.jpg', alt:"img" , class: "girl img-responsive" %>
+									<%= image_tag '/assets/home/pricing.png', alt:"img" , class: "pricing" %>
 								</div>
 							</div>
 						<% end %>

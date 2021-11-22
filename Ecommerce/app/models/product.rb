@@ -3,6 +3,8 @@ class Product < ApplicationRecord
   SHOW_HOME = { feature: 1, recomand: 0 }
   STATUS = { 'pending': 0, 'confirmed': 1, 'cancel': 2 }.freeze # 0 -> pending, 1 -> confirm, 2 -> cancel
   scope :show_products, ->(val) { where.not(show_home: val.to_s).limit(val === 0 ? 9 : 3) }
+  scope :by_ids, ->(ids) { where(id: ids) }
+
   has_one_attached :image
   validates :title, presence: true
   validates :price, numericality: true
@@ -23,6 +25,11 @@ class Product < ApplicationRecord
   belongs_to :availability
   belongs_to :brand
   after_commit :add_default_image
+  before_save :uppercase_title
+
+  def uppercase_title
+    title.upcase!
+  end
 
   def add_default_image
     return if image.attached?
@@ -48,6 +55,7 @@ class Product < ApplicationRecord
       field :sizes
       field :description
       field :availability
+      field :categories
       field :image
       field :brand_id, :enum do
         enum do

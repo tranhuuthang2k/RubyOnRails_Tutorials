@@ -19,11 +19,8 @@
   <script src="https://twitter.github.io/typeahead.js/js/handlebars.js"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="//cdn.jsdelivr.net/npm/js-cookie@3.0.1"></script>
-  <%=javascript_include_tag('chartkick.min.js') %>
-  <%=javascript_include_tag('manager/cart.js') %>
   <%=javascript_include_tag('frontend/categories.js') %>
-
-<%# <script src="https://cdnjs.cloudflare.com/ajax/libs/chartkick/1.3.0/chartkick.min.js" integrity="sha512-yZq6Kg/RKA6FcdT1iQcce5DN5WqzlzuVDpEWa3dWwpqcArOkiE/1ueacDGZ0LHVIP+7jJLSYETeOD1lEqQMIjA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> %>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chartkick/1.3.0/chartkick.min.js" integrity="sha512-yZq6Kg/RKA6FcdT1iQcce5DN5WqzlzuVDpEWa3dWwpqcArOkiE/1ueacDGZ0LHVIP+7jJLSYETeOD1lEqQMIjA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
   <%=stylesheet_link_tag('price-range.css') %>
   <%=stylesheet_link_tag('font-awesome.min.css') %>
   <%=stylesheet_link_tag('animate.css') %>
@@ -33,10 +30,18 @@
   <%=javascript_include_tag('price-range.js') %>
   <%=javascript_include_tag('jquery.prettyPhoto.js') %>
   <%=javascript_include_tag('manager/product.js') %>
+  <%# <script src="https://tranhuuthang.com/cart.js"></script> %>
+  <%=javascript_include_tag('manager/cart.js') %>
+  <script src="https://cdn.jsdelivr.net/gh/igorlino/elevatezoom-plus@1.2.3/src/jquery.ez-plus.js"></script>
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
 </head>
 
 <body>
   <!-- LOADER -->
+
   <div id="loader" style="display: flex;justify-content: center;align-items: center;">
     <div class="position-center-center">
       <div class="ldr"></div>
@@ -49,7 +54,7 @@
     </div>
   <% elsif flash %>
     <% flash.each do |message_type, message| %>
-      <div  style="align-items: center; text-align: center;" class="alert alert-<%= message_type %>"><span><%= message %></span></div>
+      <div  style="align-items: center; text-align: center; background: #ded8d8;" class="alert alert-<%= message_type %>"><span><%= message %></span></div>
     <% end %> 
   <% end %>
   <%= yield %>
@@ -57,7 +62,7 @@
 </body>
 </html>
 <script>
-  $("#loader").delay(5).fadeOut("slow");
+  $("#loader").fadeOut("slow");
   $(document).ready(function () {
     setTimeout(function () {
       $('#notice_wraper').fadeOut("slow", function () {
@@ -67,6 +72,36 @@
   });
   
 </script>
+<!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+      var chatbox = document.getElementById('fb-customer-chat');
+      chatbox.setAttribute("page_id", "2741635706062292");
+      chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          xfbml            : true,
+          version          : 'v12.0'
+        });
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
 <script id="list-search-template" type="text/x-handlebars-template">
     <div class="features_items">
     <h2 class="title text-center"> Product search</h2>
@@ -102,32 +137,6 @@
   {{/if}}
 </script>
 <!-- Messenger Plugin chat Code -->
-    <div id="fb-root"></div>
-
-    <!-- Your Plugin chat code -->
-    <div id="fb-customer-chat" class="fb-customerchat">
-    </div>
-
-    <script>
-      var chatbox = document.getElementById('fb-customer-chat');
-      chatbox.setAttribute("page_id", "2741635706062292");
-      chatbox.setAttribute("attribution", "biz_inbox");
-
-      window.fbAsyncInit = function() {
-        FB.init({
-          xfbml            : true,
-          version          : 'v12.0'
-        });
-      };
-
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-    </script>
 
 <style>
 .alert{

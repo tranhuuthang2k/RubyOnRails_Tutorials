@@ -6,6 +6,20 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+City.create([
+              { name: 'Da nang' },
+              { name: 'Hue' },
+              { name: 'Can tho' }
+
+            ])
+Shipping.create(
+  [
+    { name: 'viettel post', description: 'received for 3-5 days', price: 30 },
+    { name: 'giao hang tiet kiem', description: 'received for 2-3 days', price: 50 }
+
+  ]
+)
+
 Brand.create!([
                 { id: 1, name: 'NIKE' },
                 { id: 2, name: 'T-SHIRT' },
@@ -16,11 +30,11 @@ Brand.create!([
               ])
 
 User.create!([
-               { email: 'testadmin@mvmanor.co.uk', username: 'test', mobile: '12345678910', gender: 'female',
+               { email: 'testadmin@mvmanor.co.uk', username: 'test', mobile: '12345678910', city_id: 1, gender: 'female',
                  encrypted_password: '#$taawktljasktlw4aaglj', password: 'Thang%%%123', password_confirmation: 'Thang%%%123', reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, admin: true },
-               { email: 'testuser@mvmanor.co.uk', username: 'test', mobile: '12345678910', gender: 'female',
+               { email: 'testuser@mvmanor.co.uk', username: 'test', mobile: '12345678910', city_id: 2, gender: 'female',
                  encrypted_password: '#$taawktljasktlw4aaglj', password: 'Thang%%%123', password_confirmation: 'Thang%%%123', reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, admin: false },
-               { email: 'testcustomer@customer.co.uk', username: 'test', mobile: '12345678910', gender: 'female',
+               { email: 'testcustomer@customer.co.uk', username: 'test', mobile: '12345678910', city_id: 1, gender: 'female',
                  encrypted_password: '#$taawktljasktlw4aaglj', password: 'Thang%%%123', password_confirmation: 'Thang%%%123', reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, admin: false }
              ])
 
@@ -82,3 +96,8 @@ ProductCategory.create([
                          { product_id: 3, category_id: 1 },
                          { product_id: 1, category_id: 2 }
                        ])
+Size.create([
+              { name: 'XL' },
+              { name: 'S' },
+              { name: 'L' }
+            ])

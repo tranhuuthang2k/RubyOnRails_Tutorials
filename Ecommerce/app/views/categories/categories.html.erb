@@ -15,9 +15,6 @@
 						</div>
 						<!--/brands_products-->
 
-                        <!--price-range-shipping-->
-                        <%= render 'home/price-range-shipping' %>
-                        <!--/price-range-shipping-->
 					</div>
 				</div>
 				
@@ -25,31 +22,40 @@
 					<div class="features_items">
           <!--features_items-->
           <h2 class="title text-center">Products</h2>
-          <% @results[:products].each do |item| %>
-            <div class="col-sm-4">
-                <div class="product-image-wrapper">
-                    <div class="single-products">
-                        <div class="productinfo text-center">
-                            <input type="hidden" id="<%= item.id %>" class="id" value="">
-                            <a href="/product-details/<%= item.title.parameterize%>~<%=item.id%>"> <img class="imageProduct" src="<%= url_for(item.image) if item.image.attached? %>" alt="" /></a>
-                            <h2 class="price">$<%= item.price  %></h2>
-                            <p class="title"><%= item.title  %></p>
-                            <a href="javascript:void(0)" class="btn btn-default add-to-cart"><i
-                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+          <% if @results[:products].present? %>
+            <% @results[:products].each do |item| %>
+                <div class="col-sm-4">
+                    <div class="product-image-wrapper">
+                        <div class="single-products">
+                            <div class="productinfo text-center">
+                                <input type="hidden" id="<%= item.id %>" class="id" value="">
+                                <a href="/product-details/<%= item.title.parameterize%>~<%=item.id%>"> <img class="imageProduct" src="<%= url_for(item.image) if item.image.attached? %>" alt="" /></a>
+                                <h2 class="price">$<%= item.price  %></h2>
+                                <p class="title"><%= item.title  %></p>
+                                <a href="javascript:void(0)" class="btn btn-default add-to-cart"><i
+                                        class="fa fa-shopping-cart"></i>Add to cart</a>
+                            </div>
+                        
                         </div>
-                      
-                    </div>
-                    <div class="choose">
-                        <ul class="nav nav-pills nav-justified">
-                            <li><a href="/product-details/<%= item.title.parameterize%>~<%=item.id%>"><i class="fa fa-plus-square"></i>See more...</a></li>
-                        </ul>
+                        <div class="choose">
+                            <ul class="nav nav-pills nav-justified">
+                                <li><a href="/product-details/<%= item.title.parameterize%>~<%=item.id%>"><i class="fa fa-plus-square"></i>See more...</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <% end %>
           <% end %>
+     
       </div>
-      <%= paginate @results[:products] %>
-				</div>
-			</div>
-		</div>
+
+            <div class="pagination-area">
+                <% if @results[:products].present? %>
+                        <ul class="pagination">
+                                <li style="line-height: 26px;">	<%=   paginate @results[:products] %></li>
+                        </ul>
+                <% end %>
+            </div>
+        </div>
+    </div>
 </section>

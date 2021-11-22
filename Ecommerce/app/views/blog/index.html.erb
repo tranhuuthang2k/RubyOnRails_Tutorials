@@ -14,58 +14,107 @@
 						  <%= render 'home/brands' %>
 						</div>
 						<!--/brands_products-->
-
-                        <!--price-range-shipping-->
-                        <%= render 'home/price-range-shipping' %>
-                        <!--/price-range-shipping-->
 					</div>
 				</div>
-					<div class="col-sm-9">
-					<div class="blog-post-area">
-						<h2 class="title text-center">Latest From our Blog</h2>
-						<% @results[:posts].each do |item| %>
-							<div class="single-blog-post">
-								<h3><%= item.title %></h3>
-							<div class="post-meta">
-								<ul>
-									<li><i class="fa fa-user"></i> <%= item.user.username %></li>
-									<li><i class="fa fa-clock-o"></i> <%= item.created_at.strftime("%I:%M %p")%></li>
-									<li><i class="fa fa-calendar"></i> <%= item.created_at.strftime("%d/%m/%Y") %></li>
-								</ul>
-								<span>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-half-o"></i>
-								</span>
-							</div>
-								<a href="/blog/<%= item.title.parameterize%>~<%=item.id %>">
-									<img src="<%= url_for(item.image) if item.image.attached? %>" alt="Image">
-								</a>
-								<p  style="overflow: hidden;"><%= item.content %></p>
-								<a  class="btn btn-primary" href="/blog/<%= item.title.parameterize%>~<%=item.id %>">Read More</a>
-							</div>
-						<% end %>
-									
-						
- 
-				<div class="pagination-area">
+                <div class= col-sm-9>
+		<main>
+			 <h2 class="title text-center">Latest From our Blog</h2>
+			<% @results[:posts].each do |item| %>
+				<a href="/blog/<%= item.title.parameterize%>~<%=item.id %>" style="color: black">
+				<article>
+					<img src="<%= url_for(item.image) if item.image.attached? %>" alt="Image" class="list_post">
+					<div class="text">
+						<h4><%= item.title %></h4>
+						<p>
+						<i class="fa fa-calendar"></i> <%= item.created_at.strftime("%d/%m/%Y") %>
+						<i class="fa fa-user"></i> <%= item.user.username %>
+						</p>
+						<p><%= item.content %></p>
+						<a  class="btn btn-primary" href="/blog/<%= item.title.parameterize%>~<%=item.id %>">Read More</a>
+					</div>
+				</article>
+				</a>
+			<% end %>
+        </main>
+			<div class="pagination-area">
 							<ul class="pagination">
 								<li style="line-height: 26px;">	<%= paginate @results[:posts] %></li>
 							</ul>
 						</div>
 					</div>
-				</div>
-				
+			</div>
+				<div>
 			</div>
         </div>
 </section>
 <style>
+.list_post{
+    width: 250px;
+    height: auto;
+}
 .current{
 	width: 50px;
     height: 40px;
     text-align: center;
     line-height: 26px;
+}
+/* Layout */
+
+main{
+    display: flex;
+    flex-direction: column;
+    max-width: 780px;
+    margin: 0 auto;
+}
+article{
+    display: flex;
+    align-items: flex-start;
+}
+#heading{
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+}
+
+
+/* Styling */
+
+article{
+    border-bottom: 1px solid #e1e1e1;
+    margin-bottom: 20px;
+    padding-bottom:20px;
+}
+article img{
+    margin-right: 15px;
+}
+span{
+    font-size: 11px;
+}
+p{
+    font-size: 13px;
+}
+h2{
+    margin: 0;
+    padding: 0;
+    line-height:1em;
+}
+
+@media (max-width: 779px){
+    main{
+        max-width: 90%;
+        margin: 0 auto;
+    }
+    article{
+        flex-direction: column;
+    }
+    article img{
+        width: 100%;
+        margin-bottom: 20px;
+    }
+	.list_post{
+		width: 100%;
+		height: auto;
+	}
+
 }
 </style>

@@ -46,8 +46,11 @@
 				</table>
 
 			</div>
-              <%= paginate @results[:history_products] %>
-
+          <div class="pagination-area">
+              <ul class="pagination">
+                <li style="line-height: 26px;">	<%= paginate @results[:history_products] %></li>
+              </ul>
+          </div>
 		</div>
 	</section> <!--/#cart_items-->
       

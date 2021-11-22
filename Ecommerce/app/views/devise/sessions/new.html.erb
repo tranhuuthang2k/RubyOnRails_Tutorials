@@ -15,8 +15,7 @@
                       <div class="field">
                         <%= f.label :password %><br />
                         <%= f.password_field :password, autocomplete: "current-password",placeholder:"Enter password"%>
-                      </div>
-                   
+                      </div>                 
                       <% if devise_mapping.rememberable? %>
                         <span>
                           <input class="checkbox" type="checkbox" value="1" name="user[remember_me]" id="user_remember_me">
@@ -55,13 +54,21 @@
                     <% if @minimum_password_length %>
                     <em>(<%= @minimum_password_length %> characters minimum,include special characters, numbers and uppercase letters)</em>
                     <% end %><br />
+                    <p>Example Password: <span style="color: green">Thanh%%%123</span> , <span style="color: green">%Thang%2000</span> </p>
                     <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password" %>
                   </div>
                 
                   <div class="field" >
                     <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm Password" %>
                   </div>
-                
+                  <span>Select city: </span>
+                   <div class="custom-select" style="width:200px;">
+                      <select  name="user[city_id]">
+                        <% City.all.each do |item| %>
+                            <option value="<%= item.id %>"> <%= item.name %></option>
+                        <% end %>
+                      </select>
+                    </div>
                   <div class="actions">
                     <%= f.button "Sign up", class: "btn btn-default" %>
                   </div>

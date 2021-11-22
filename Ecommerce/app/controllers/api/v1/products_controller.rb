@@ -5,19 +5,16 @@ class Api::V1::ProductsController < Api::V1::BaseController
   def products_of_month
     product_of_month = OrderItem.where(user_id: @user.id)
                                 .this_month(params[:year], params[:month])
-                                .total_order('100')
-                                .this_status('0')
+                                .this_status(Product::STATUS[:confirmed])
     carts_order = []
     product_of_month.each do |order|
       carts_order += JSON.parse(order.product_order)
     end
-    render json: success_message('Successfully', { carts_order: carts_order,
-                                                   product_of_month: ActiveModelSerializers::SerializableResource.new(product_of_month,
-                                                                                                                      each_serializer: ProductSerializer) })
+    render json: success_message('Successfully', { carts_order: carts_order })
   end
 
   def search
-    products = Product.where('title LIKE ? OR price = ?', "%#{params[:search]}%", params[:search].to_f)
+    products = Product.where('title LIKE ? OR price = ?', "%#{params[:search].upcase}%", params[:search].to_f)
     key_word = KeywordSearch.find_by(key_word: params[:search].strip.downcase)
     if key_word
       key_word.update_attribute(:count, key_word.count + 1)
