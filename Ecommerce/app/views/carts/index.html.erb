@@ -50,32 +50,55 @@
                     <a class="btn btn-default voucher" href="javascript:void(0)">Get Voucher</a>
                 </div>
             </div>
-            
+           
             <div class="col-sm-6">
                 <div class="total_area" >
+                <span>Service Shipping </span>
+                 <select class="form-select" aria-label="Default select example">
+                 <% if @results[:shippings].size %>
+                    <% @results[:shippings].each_with_index do |item,index| %>
+                         <option <%= index == 0 ? "selected" : ""%> value="<%= item.id %>"><%= item.name %> - $<%= item.price %> - <%= item.description %></option>
+                    <% end %>
+                 <% end %>
+                       
+                </select>
                     <ul>
                         <li>Cart Sub Total <span class="Cart_Sub_Total">$0</span></li>
-                        <li>Eco Tax <span>$0</span></li>
-                        <li>Shipping Cost <span>$30</span></li>
+                        <li class="shipping-cost">Shipping Cost <span class="price_shipping">$0</span></li>
                         <li>Total <span class="totalOrder">$0</span></li>
-                    </ul>
+                    </ul>         
                     <% if user_signed_in? %>
-                        <% if current_user.address.blank? %>
+                        <% if current_user.address.blank? || current_user.city.blank? %>
                             <a class="btn btn-warning" style="margin-left: 40px" href="<%= edit_user_registration_path %>">Please add your address while checkout</a>
                         <% else %>
-                            <span style="float: left">Address:  </span>
-                            <h5  class="address" style="color: red "> 
-                                <%= current_user.address %> </br>SDT  <%= current_user.mobile %>
-                            </h5>
+                         <div class="bg-light py-6 service-5">
+                            <div class="container">
+                                <!-- Row  -->
+                                <div class="row"> 
+                                    <div class="col-md-6 wrap-service5-box" style="width: 100%" >
+                                        <div class="card card-shadow border-0 mb-4">
+                                            <div class="card-body d-flex">
+                                                <div class="mr-4 mb-2 text-success-gradiant" style="font-size: 20px">Billing Information</div>
+                                                <div class="">
+                                                    <h6 class="font-weight-medium"><a href="/profile" class="linking">Address: <%= current_user.address %> </br>Phone : <%= current_user.mobile %></a></h6>
+                                                    <p class="mt-3">City:  <h5 class="city" style="color: red;   font-size: 16px; "><%=current_user.city.name %></h5>.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <a class="btn btn-default check_out" href="javascript:void(0)"  id="btnFetch" style="display: none">Check Out</a>
-                        <% end %>
+                        </div>	                        
+                        <% end %>                     
                     <% else %>
-                        <a href="javascript:void(0)" class="btn btn-default <%= user_signed_in? ? "check_out" : ""  %>" onClick="alert('you must login to the checkout')">Check Out</a>
+                        <a href="javascript:void(0)" style="color: #333; background-color: #fe980f; border-color: #ccc; text-align: center; margin-left: 40px;" class="btn btn-default <%= user_signed_in? ? "check_out" : ""  %>" onClick="alert('you must login to the checkout')">Check Out</a>
                     <% end %>
                 </div>
             </div>
         </div>
     </div>
+    <a href="<%= users_checkout_vnpay_pay_path %>">Thanh Toan VNPAY </a>
 </section>
 <!--/#do_action-->
 
@@ -150,13 +173,95 @@
      color: #FE980F
  }
 
- .fa {
-     color: #FE980F
- }
-
  .fa:hover {
      color: #FE980F
  }
+ .service-5 {
+  font-family: "Montserrat", sans-serif;
+	color: #8d97ad;
+  font-weight: 300;
+}
+
+.service-5 h1, .service-5 h2, .service-5 h3, .service-5 h4, .service-5 h5, .service-5 h6 {
+  color: #3e4555;
+}
+
+.service-5 a{
+	text-decoration: none;
+}
+
+.service-5 .linking{
+	color: #3e4555;
+    font-size: 16px;
+}
+}
+
+.service-5 .linking:hover{
+	color: #316ce8;
+}
+
+.service-5 .font-weight-medium {
+	font-weight: 500;
+}
+
+.service-5 .bg-light {
+    background-color: #f4f8fa !important;
+}
+
+.service-5 .subtitle {
+    color: #8d97ad;
+    line-height: 24px;
+}
+
+.service-5 .card.card-shadow {
+    -webkit-box-shadow: 0px 0px 30px rgba(115, 128, 157, 0.1);
+    box-shadow: 0px 0px 30px rgba(115, 128, 157, 0.1);
+}
+
+.service-5 .wrap-service5-box .card-body {
+    padding: 30px;
+}
+
+.service-5 .wrap-service5-box .text-success-gradiant {
+	background: #2cdd9b;
+	background: -webkit-linear-gradient(legacy-direction(to right), #2cdd9b 0%, #1dc8cc 100%);
+	background: -webkit-gradient(linear, left top, right top, from(#2cdd9b), to(#1dc8cc));
+	background: -webkit-linear-gradient(left, #2cdd9b 0%, #1dc8cc 100%);
+	background: -o-linear-gradient(left, #2cdd9b 0%, #1dc8cc 100%);
+	background: linear-gradient(to right, #2cdd9b 0%, #1dc8cc 100%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-fill-color: transparent;
+}
+
+.service-5 .wrap-service5-box .icon-size{
+    font-size: 26px;
+    text-align: center;
+}
+
+.service-5 .btn-success-gradiant {
+	  background: #2cdd9b;
+    background: -webkit-linear-gradient(legacy-direction(to right), #2cdd9b 0%, #1dc8cc 100%);
+    background: -webkit-gradient(linear, left top, right top, from(#2cdd9b), to(#1dc8cc));
+    background: -webkit-linear-gradient(left, #2cdd9b 0%, #1dc8cc 100%);
+    background: -o-linear-gradient(left, #2cdd9b 0%, #1dc8cc 100%);
+    background: linear-gradient(to right, #2cdd9b 0%, #1dc8cc 100%);
+}
+
+.service-5 .btn-success-gradiant:hover {
+	  background: #1dc8cc;
+    background: -webkit-linear-gradient(legacy-direction(to right), #1dc8cc 0%, #2cdd9b 100%);
+    background: -webkit-gradient(linear, left top, right top, from(#1dc8cc), to(#2cdd9b));
+    background: -webkit-linear-gradient(left, #1dc8cc 0%, #2cdd9b 100%);
+    background: -o-linear-gradient(left, #1dc8cc 0%, #2cdd9b 100%);
+    background: linear-gradient(to right, #1dc8cc 0%, #2cdd9b 100%);
+}
+
+.service-5 .btn-md {
+    padding: 15px 45px;
+    font-size: 16px;
+}
 </style>
 <script>
 $("#btnFetch").click(function() {

@@ -4,9 +4,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :load_notification
   # GET /resource/sign_up
   def new
-  
     super
   end
+
   # DELETE /resource
   def destroy
     super
@@ -15,24 +15,28 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :mobile])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[username mobile city_id])
   end
-  
+
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:username, :mobile, :email, :address, :gender, :password, :avatar])
-  end 
+    devise_parameter_sanitizer.permit(:account_update,
+                                      keys: %i[username mobile email address gender password avatar city_id])
+  end
 
   def after_update_path_for(_resource)
-    edit_user_registration_path
+    users_carts_path
   end
 
   def update_resource(resource, params)
     resource.update(params)
   end
+
   def load_notification
     notifications = Notification.newest.limit(5)
-    @results ={
-      notifications: notifications
+    cities = City.all
+    @results = {
+      notifications: notifications,
+      cities: cities
     }
   end
 end

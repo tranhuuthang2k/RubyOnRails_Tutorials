@@ -7,9 +7,25 @@
             <div class="single-products">
                 <div class="productinfo text-center">
                     <input type="hidden" id="<%= item.id %>" class="id" value="">
-                     <a href="/product-details/<%= item.title.parameterize%>~<%=item.id%>"> <img class="imageProduct" src="<%= url_for(item.image) if item.image.attached? %>" alt="" /></a>
+                     <a href="/product-details/<%= item.title.parameterize%>~<%=item.id%>">
+                     <% if item.image.attached?  %>
+                          <%= image_tag url_for(item.image) , alt: "img",  class: "imageProduct" ,size: "100x100" %>
+                     <% end %>
+                    </a>
                     <h2 class="price">$<%= item.price  %></h2>
                     <p class="title"><%= item.title  %></p>
+                    <div>
+                        <i class="fa fa-star" style="color: #fe950f;"></i>
+                        <i class="fa fa-star" style="color: #fe950f;"></i>
+                        <i class="fa fa-star" style="color: #fe950f;"></i>
+                        <i class="fa fa-star" style="color: #fe950f;"></i>
+                        <i class="fa fa-star" style="color: #fe950f;"></i>
+                    </div>
+                    <% if item.sold > 0 %>
+                        <p class="title">Sold: <%= item.sold %> products</p>
+                    <% else %>
+                        <p class="title"> &nbsp;</p>
+                    <% end %>
                     <a href="javascript:void(0)" class="btn btn-default add-to-cart"><i
                             class="fa fa-shopping-cart"></i>Add to cart</a>
                 </div>

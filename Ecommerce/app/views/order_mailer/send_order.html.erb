@@ -23,7 +23,7 @@
     <tr>
       <td><%= index + 1 %> </td>
       <td><%= order["name_product"] %></td>
-      <td > <img src="<%= order["image_product"] %> " alt="Girl in a jacket" width="50%">
+      <td ><img src="<%= order["image_product"] %> " alt="<%= order["name_product"] %>" width="150px">
        </td>
       <td><%= order["size_product"] %> </td>
       <td><%= order["quantity"] %> </td>
@@ -44,13 +44,14 @@
             <hr class="new1">
         </div>
         <div class="d-flex justify-content-between"> <span class="font-weight-bold">Total_Order: </span> <span>$<%= @Total_order =  JSON.parse(@product_order.product_order).map{|order| order["price_product"].to_f * order["quantity"].to_i}.sum  %></span> </div>
-        <div class="d-flex justify-content-between"> <span class="font-weight-bold">Shipping: </span> <small> + $30.00</small> </div>
+        <div class="d-flex justify-content-between"> <span class="font-weight-bold">Fee Shipping: </span> <small> + $<%= @product_order.fee %> </small> </div>
+        <div class="d-flex justify-content-between"> <span class="font-weight-bold">Service: </span><%= @product_order.service %></div>
         <div class="d-flex justify-content-between"> <span class="font-weight-bold">Voucher: </span> <small> - $<%= @product_order&.voucher ? @product_order.voucher : 0 %></small> </div>
         <span>------------------------------------ <span>
         <% if @product_order&.voucher  %>
-            <div class="d-flex justify-content-between mt-3"> <span class="font-weight-bold" style="color:red" ><b>Payment:</b> </span> <span class="font-weight-bold theme-color">$<%= @Total_order - @product_order.voucher  + 30.00 %></span> </div>
+            <div class="d-flex justify-content-between mt-3"> <span class="font-weight-bold" style="color:red" ><b>Payment:</b> </span> <span class="font-weight-bold theme-color">$<%= @Total_order - @product_order.voucher  + @product_order.fee %></span> </div>
             <% else %>
-            <div class="d-flex justify-content-between mt-3"> <span class="font-weight-bold" style="color:red" ><b>Payment:</b> </span> <span class="font-weight-bold theme-color">$<%= @Total_order + 30.00 %></span> </div>
+            <div class="d-flex justify-content-between mt-3"> <span class="font-weight-bold" style="color:red" ><b>Payment:</b> </span> <span class="font-weight-bold theme-color">$<%= @Total_order + @product_order.fee %></span> </div>
         <% end %>
     </div>
     <span> Date shipping for 2-3 days <span>

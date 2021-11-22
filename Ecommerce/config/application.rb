@@ -1,6 +1,5 @@
 require_relative 'boot'
 require 'active_storage/engine'
-
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
@@ -15,6 +14,7 @@ module FinalProject
     config.autoload_paths << config.root.join('lib/concerns')
     config.autoload_paths << config.root.join('app/services')
     config.autoload_paths << config.root.join('app/serializers')
+    config.time_zone = 'Europe/Paris'
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

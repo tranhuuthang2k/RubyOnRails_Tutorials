@@ -10,9 +10,10 @@ class Api::V1::CartsController < Api::V1::BaseController
     total_order = 0
     products = Product.where(id: product_ids).index_by(&:id)
     check_voucher = Voucher.find_by(code: params[:voucher_code])
+    check_shipping = Shipping.find_by(id: params[:method_shipping])
     temp_carts.each do |p|
       product = products[p[:id].to_i]
-      if product.nil? || product.price != p[:price_product].to_f || product.title.downcase != p[:name_product].downcase || p[:image_product] != url_for(product.image)
+      if product.nil? || product.price != p[:price_product].to_f || product.title != p[:name_product] || p[:image_product] != url_for(product.image)
         carts_order = []
         break
       end
@@ -24,12 +25,16 @@ class Api::V1::CartsController < Api::V1::BaseController
                        image_product: p[:image_product],
                        total: p[:price_product].to_f * p[:quantity].to_i }
     end
-    total_order = carts_order.sum { |cart_order| cart_order[:total].to_f }
     voucher_cost = check_voucher && check_voucher.expire.future? ? check_voucher.cost.to_f : 0
-    if carts_order.size > 0
+    if carts_order.size > 0 && check_shipping
       product_order = @user.order_items.new(user_id: @user.id, status: Product::STATUS[:pending],
-                                            product_order: carts_order.to_json, total_order: total_order - voucher_cost,
-                                            voucher: voucher_cost)
+                                            product_order: carts_order.to_json,
+                                            total_order: carts_order.sum do |cart_order|
+                                                           cart_order[:total].to_f
+                                                         end - voucher_cost + check_shipping.price,
+                                            voucher: voucher_cost,
+                                            service: check_shipping.name,
+                                            fee: check_shipping.price)
       if product_order.save
         OrderMailer.send_order(@user, product_order).deliver
         render json: success_message('Successfully', product_order: product_order)

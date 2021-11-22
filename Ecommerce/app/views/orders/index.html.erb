@@ -9,9 +9,11 @@
     </div>
     
     <div class="col-sm-9 padding-right">
-    <label for="start">Start month:</label>
+    <label for="start">Search Month:</label>
     <input type="month" id="start" name="start" min="2018-03" value="2021-10">
-    <button id="submit">Search</button>
+    <button id="submit" style="color: #fff;
+    background-color: #fe980f;" class="btn"> <span> <i class="fa fa-search"></i></span></button>
+    
     <section id="cart_items">
 		<div class="">
 			<div class="table-responsive cart_info">
@@ -20,10 +22,11 @@
 					<thead>
 						<tr class="cart_menu">
 							<td class="image">Image</td>
-							<td class="description product_month">Name</td>
-              <td class="description quantity">Quantity</td>
+							<td class="description ">Name</td>
               <td class="description">Size</td>
-							<td class="description">Total</td>
+              <td class="description quantity">Quantity</td>
+              <td class="description">Price</td>
+							<td class="description">Total Price</td>
 							<td class="description">Status</td>
 							<td class="description">Buy date</td>
 							<td>Action</td>
@@ -38,17 +41,20 @@
             <% order[:product_order].each do |c| %>
               <tr>
                 <td class="cart_product">
-                  <a href=""><img src="<%= c["image_product"] %>" alt=""width="110" height="110"</a>
+                  <a href=""> <%= image_tag c["image_product"], size: "110x110", alt: "Image" %></a>
                 </td>
                 <td class="cart_description">
                   <h4><a href=""><%= c["name_product"] %></a></h4>
                   <p>Orders ID: <%= order[:order].id %></p>
                 </td>
                 <td class="cart_description">
+                  <p><%= c["size_product"] %></p>
+                </td>
+                <td class="cart_description">
                   <p><%= c["quantity"] %></p>
                 </td>
                  <td class="cart_description">
-                  <p><%= c["size_product"] %></p>
+                  <p><%= c["price_product"] %></p>
                 </td>
                 <td class="cart_description">
                   <p class="cart_total_price">$<%= c["total"] %></p>
@@ -67,13 +73,30 @@
                   <p><%= order[:order].created_at.strftime("%d/%m/%Y") %></p>
                 </td>
                 <% if order[:order].status != 1 %>
-                      <td><button class="submit_delete btn btn-danger"  product_id="<%= c["id"] %>" order_id="<%= order[:order].id %>"  > Cancel Order </button> </td>
+                      <td><button class="submit_delete btn btn-danger"  product_id="<%= c["id"] %>" order_id="<%= order[:order].id %>"  > X </button> </td>
                 <% end %>
               </tr>
+               
               <% end %>
+               <td > 
+                  <div class=""> <span class="font-weight-bold">Total_Order: </span> <span>$<%= @Total_order = order[:product_order].map{|order| order["price_product"].to_f * order["quantity"].to_i}.sum  %></span> </div>
+                    <div class=""> <span class="font-weight-bold">Fee Shipping: </span> <small> + $<%= order[:order].fee %></small> </div>
+                     <div class=""> <span class="font-weight-bold">Service: </span> <%= order[:order].service %> </div>
+                    <div class=""> <span class="font-weight-bold">Voucher: </span> <small> - $<%= order[:order]&.voucher ? order[:order].voucher : 0 %></small> </div>
+                    
+                    <span>------------------------------------ <span>
+                    <% if order[:order]&.voucher  %>
+                        <div class="mt-3"> <span class="font-weight-bold"></span> <span class="btn btn-primary font-weight-bold theme-color">Payment:$<%= @Total_order - order[:order].voucher  + order[:order].fee%></span> </div>
+                      <% else %>
+                        <div class="mt-3"> <span class="font-weight-bold"></span> <span class="btn btn-primary font-weight-bold theme-color">Payment: $<%= @Total_order.to_f + order[:order].fee %></span> </div>
+                    <% end %>
+                </td>
           <% end %>
+      
 					</tbody>
+             
 				</table>
+         <span style="display: none; background-color: #fe800f;" class="btn btn-primary font-weight-bold theme-color total_order_of_month" >  30<span>
           <%= paginate @results[:orders] %>
 
 			</div>
@@ -84,19 +107,28 @@
 </section>
 <script id="list-product-template" type="text/x-handlebars-template">
   {{#if carts_order.length }}
-    {{#each product_of_month}}
+    {{#each carts_order}}
       <tr>
-        <td class="cart_description">
-          <p>Orders ID: {{ id }}</p>
+        <td class="cart_product">
+          <a href=""> <img src={{image_product}} width="110" height="110"> </a>
         </td>
         <td class="cart_description">
-          <p class="cart_total_price">${{total_order}}</p>
+          <p><a href="">{{name_product}}</a></p>
         </td>
-        <td class="cart_description">   
+        <td class="cart_description">
+         <p>{{size_product}}</p>
+        </td>
+        <td class="cart_description">
+         <p>{{quantity}}</p>
+        </td>
+          <td class="cart_description">
+         <p>{{price_product}}</p>
+        </td>
+        <td class="cart_description">
+          <p class="cart_total_price">${{total}}</p>
+        </td>
+        <td class="cart_description">
             <p class="">Confirm</p>
-        </td>
-        <td class="cart_description">
-          <p>{{created_at}}</p>
         </td>
       </tr>
   {{/each}}
@@ -111,7 +143,16 @@
         display:none
     }
   </style>
-      <h2 style=" text-align: center;"> Du lieu khong dc tim thay </h2>
+      <h2 style=" text-align: center;"> You don't have product of this month </h2>
   {{/if}}
 
 </script>
+<style>
+.btn.btn-primary {
+    background: #e81818;
+    border: 0 none;
+    border-radius: 0;
+    font-weight: 700;
+    margin-top: 16px;
+}
+</style>

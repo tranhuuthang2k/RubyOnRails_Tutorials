@@ -1,15 +1,235 @@
-<%# http://www.antleon.com/2015/04/rails-admin-custom-dashboard/ %>
-<%# mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -p mysql %>
-<%# sudo mysql -u root -p
-SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY','')); %>
 <%= javascript_include_tag "//www.google.com/jsapi" %>
-<%=javascript_include_tag('chartkick.min.js') %>
-<h2> About order for the week </h2>
-<%= column_chart  OrderItem.group_by_day_of_week(:created_at,format: "%a").count %>
-<h2> About order status  </h2>
-<%=  pie_chart OrderItem.group(:status).count%>
-<p>  STATUS = { 'pending': 0, 'confirmed': 1, 'cancel': 2 } </p>
-<h2> About statistical user/admin </h2>
-<%= pie_chart User.group(:admin).count %>
-<h2> About Product for  Brand </h2>
-<%=  bar_chart Brand.select('brands.name').joins(:products).group("brands.name").count %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartkick/1.3.0/chartkick.min.js" integrity="sha512-yZq6Kg/RKA6FcdT1iQcce5DN5WqzlzuVDpEWa3dWwpqcArOkiE/1ueacDGZ0LHVIP+7jJLSYETeOD1lEqQMIjA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<form action="/admin">
+    <label for="bday-month">Statistic about product of the month, year</label>
+    <input id="bday-month" type="month" name="month_year" value="<%= @result[:year] %>-<%= @result[:month] %>">
+    <button type="submit"><i class="fa fa-search"></i></button>
+</form>
+
+<div id="root" style="margin-top: 10px">
+  <div class="container pt-5">
+    <div class="row align-items-stretch">
+      <div class="c-dashboardInfo col-lg-3 col-md-6 col-xs-3">
+        <div class="wrap">
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Revenue of <%= @result[:month] %>/<%= @result[:year] %> <svg
+              class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
+            </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count">$<%= @result[:data].present? ? @result[:data] : 0 %></span>
+        </div>
+      </div>
+    <div class="c-dashboardInfo col-lg-3 col-md-6 col-xs-3">
+        <div class="wrap">
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Sold product <%= @result[:month] %>/<%= @result[:year] %> <svg
+              class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
+            </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%= @result[:sold] %></span>
+        </div>
+      </div>
+      <div class="c-dashboardInfo col-lg-3 col-md-6 col-xs-3">
+        <div class="wrap">
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Product in system <svg
+              class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
+            </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%= Product.pluck("id").size%></span>
+        </div>
+      </div>
+      <div class="c-dashboardInfo col-lg-3 col-md-6 col-xs-3">
+        <div class="wrap">
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Availability in system <svg
+              class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
+            </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%= @total_availabilitys %></span>
+        </div>
+      </div>
+      <div class="c-dashboardInfo col-lg-3 col-md-6 col-xs-3">
+        <div class="wrap">
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Best selling <%= @result[:month] %>/<%= @result[:year] %> <svg
+              class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
+            </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"></span>
+            <!-- Button trigger modal -->
+          <div type="button" class="btn" style="border-color: #dadada;" data-toggle="modal" data-target="#exampleModalCenter">
+            <% if @result[:statistic_products][:best_seller].nil? == false && @result[:statistic_products][:best_seller].image.attached?  %>
+                  <%= image_tag main_app.url_for( @result[:statistic_products][:best_seller].image) , alt: "img", id:"best_seller", class: "imageProduct" ,size: "70x70" %>
+              <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="c-dashboardInfo col-lg-3 col-md-6 col-xs-3">
+        <div class="wrap">
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title" >Best Keyword search <%= @result[:month] %>/<%= @result[:year] %> <svg
+              class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
+            </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count" style="text-transform: lowercase; font-size: 20px;"><%=@result[:statistic_products][:best_keyword_search]&.key_word%></span>
+        </div>
+      </div>
+      <div class="c-dashboardInfo col-lg-3 col-md-6 col-xs-3">
+        <div class="wrap">
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Best views <%= @result[:month] %>/<%= @result[:year] %> <svg
+              class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
+            </svg></h4>
+            <% if @result[:statistic_products][:best_product_views].present? %>
+                <div type="button" class="btn" style="border-color: #dadada;">
+                  <a  href="/product-details/<%=  @result[:statistic_products][:best_product_views].title.parameterize%>~<%= @result[:statistic_products][:best_product_views].id%>">
+                     <%= image_tag main_app.url_for( @result[:statistic_products][:best_product_views].image) , alt: "img", id:"best_seller", class: "imageProduct" ,size: "70x70" %>              
+                  </a>
+                </div>
+            <% else %>
+              <span class="hind-font caption-12 c-dashboardInfo__count"></span>
+            <% end %>
+        </div>
+      </div>
+      <div class="c-dashboardInfo col-lg-3 col-md-6 col-xs-3">
+        <div class="wrap">
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Voucher code <%= @result[:month] %>/<%= @result[:year] %> <svg
+              class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
+            </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%= @result[:statistic_products][:vouchers] > 0 ? @result[:statistic_products][:vouchers] : '' %></span>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Detail product</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="product-image-wrapper">
+            <div class="single-products">
+            <% if !@result[:statistic_products][:best_seller].nil? && @result[:statistic_products][:best_seller].image.attached? %>
+               <div class="productinfo text-center">
+                    <input type="hidden" id="<%=  @result[:statistic_products][:best_seller].id %>" class="id" value="">
+                     <a href="/product-details/<%=  @result[:statistic_products][:best_seller].title.parameterize%>~<%= @result[:statistic_products][:best_seller].id%>">
+                     <% if  @result[:statistic_products][:best_seller].image.attached?  %>
+                          <%= image_tag main_app.url_for( @result[:statistic_products][:best_seller].image) , alt: "img",  class: "imageProduct" ,size: "200x200" %>
+                     <% end %>
+                    </a>
+                    <h2 class="price">$<%=  @result[:statistic_products][:best_seller].price  %></h2>
+                    <p class="title"><%=  @result[:statistic_products][:best_seller].title  %></p>
+                    <div>
+                        <i class="fa fa-star" style="color: #fe950f;"></i>
+                        <i class="fa fa-star" style="color: #fe950f;"></i>
+                        <i class="fa fa-star" style="color: #fe950f;"></i>
+                        <i class="fa fa-star" style="color: #fe950f;"></i>
+                        <i class="fa fa-star" style="color: #fe950f;"></i>
+                    </div>
+                    <% if  @result[:statistic_products][:best_seller].sold > 0 %>
+                        <p class="title">Sold: <%=  @result[:statistic_products][:best_seller].sold %> products</p>
+                    <% else %>
+                        <p class="title"> &nbsp;</p>
+                    <% end %>
+                </div>
+            <% end %>
+            </div>
+            <% if  @result[:statistic_products][:best_seller].nil? == false  %>
+               <div class="choose">
+                  <ul class="nav nav-pills nav-justified">
+                      <li><a href="/product-details/<%= @result[:statistic_products][:best_seller].title.parameterize%>~<%= @result[:statistic_products][:best_seller].id%>"><i class="fa fa-plus-square"></i>See more...</a></li>
+                  </ul>
+              </div>     
+            <% end %>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+  <h3> About order for the week </h3>
+    <%= column_chart  OrderItem.unscoped.group_by_day_of_week(:created_at,format: "%a").count %>
+      <h3> About order status  </h3>
+    <%=  pie_chart OrderItem.select('order_items.status').unscoped.group("order_items.status").count%>
+      <p>  STATUS = { 'pending': 0, 'confirmed': 1, 'cancel': 2 } </p>
+      <h3> About statistical user/admin </h3>
+    <%= pie_chart User.group(:admin).count %>
+      <h3> About Product for Brand </h3>
+    <%=  bar_chart Brand.select('brands.name').joins(:products).group("brands.name").count %>
+      <h3> About Order for month </h3>
+    <%= column_chart OrderItem.this_status(Product::STATUS[:confirmed]).unscoped.group_by_month(:created_at, format: "%b %Y").count%>
+<style>
+.c-dashboardInfo {
+  margin-bottom: 15px;
+}
+.c-dashboardInfo .wrap {
+  background: #ffffff;
+  box-shadow: 2px 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: 40px 25px 20px;
+  height: 100%;
+}
+.c-dashboardInfo__title,
+.c-dashboardInfo__subInfo {
+  color: #6c6c6c;
+  font-size: 1.14em;
+}
+.c-dashboardInfo span {
+  display: block;
+}
+.c-dashboardInfo__count {
+  font-weight: 600;
+  font-size: 2.5em;
+  line-height: 64px;
+  color: #323c43;
+}
+.c-dashboardInfo .wrap:after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  content: "";
+}
+
+.c-dashboardInfo:nth-child(1) .wrap:after {
+  background: linear-gradient(82.59deg, #00c48c 0%, #00a173 100%);
+}
+ .c-dashboardInfo:nth-child(2) .wrap:after {
+  background: linear-gradient(81.67deg, #0084f4 0%, #1a4da2 100%);
+}
+.c-dashboardInfo:nth-child(3) .wrap:after {
+  background: linear-gradient(69.83deg, #0084f4 0%, #00c48c 100%);
+}
+.c-dashboardInfo:nth-child(4) .wrap:after {
+  background: linear-gradient(81.67deg, #ff647c 0%, #1f5dc5 100%);
+} 
+.c-dashboardInfo:nth-child(5) .wrap:after {
+  background: linear-gradient(81.67deg, #ff841c 0%, #1f5dc2 100%);
+} 
+.c-dashboardInfo:nth-child(6) .wrap:after {
+  background: linear-gradient(81.67deg, #0084f4 0%, #00a173 100%);
+} 
+.c-dashboardInfo:nth-child(7) .wrap:after {
+  background: linear-gradient(81.67deg, #ff647c 0%, #00c48c 100%);
+} 
+.c-dashboardInfo:nth-child(8) .wrap:after {
+  background: linear-gradient(81.67deg, #1f5dc5 0%, #0084f4 100%);
+} 
+.c-dashboardInfo__title svg {
+  color: #d7d7d7;
+  margin-left: 5px;
+}
+.MuiSvgIcon-root-19 {
+  fill: currentColor;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  font-size: 24px;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  user-select: none;
+  flex-shrink: 0;
+}
+.imageProduct{
+  cursor: pointer;
+}
+</style>

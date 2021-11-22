@@ -1218,7 +1218,6 @@ h2.title {
     overflow: hidden;
     padding-bottom: 60px;
     padding-left: 60px;
-    padding-top: 60px;
     position: relative;
 }
 
@@ -1242,9 +1241,9 @@ h2.title {
 }
 
 .product-information span {
-    display: inline-block;
+    display: block;
     margin-bottom: 8px;
-    margin-top: 18px;
+    text-align: center;
 }
 
 .product-information span span {
@@ -2056,8 +2055,7 @@ textarea {
 }
 
 .pagination-area {
-    margin-bottom: 45px;
-    margin-top: 45px
+ text-align: center;
 }
 
 .pagination-area .pagination li a {
