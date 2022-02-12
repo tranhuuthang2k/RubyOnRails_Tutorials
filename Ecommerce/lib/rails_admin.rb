@@ -36,15 +36,19 @@ module RailsAdmin
             end
 
             def base_statistic_products(product_id = {}, month, year)
-              products = ProductView.by_month_year(month, year)
 
-              product_view = products.present? && products.pluck('product_id').compact.each_with_object(Hash.new(0)) do |c, counts|
+              product_views = ProductView.by_month_year(month, year)
+
+              product_view_ids = product_views.present? && product_views.pluck('product_id').compact.each_with_object(Hash.new(0)) do |c, counts|
+
                 counts[c] += 1
               end.max_by do |_k, v|
                 v
               end [0]
               if product_id != {}
-                products = Product.by_ids([product_id, product_view])
+
+                products = Product.by_ids([product_id, product_view_ids])
+
                 result = products.find_by!(id: product_id)
               else
 
@@ -54,7 +58,8 @@ module RailsAdmin
               {
                 best_seller: result,
                 best_keyword_search: keywords.present? ? keywords.find_by!(count: keywords.pluck('count').max) : nil,
-                best_product_views: products.find_by(id: product_view),
+                best_product_views: products.find_by(id: product_view_ids),
+
                 vouchers: Voucher.by_vouchers(month, year).size
               }
             end
