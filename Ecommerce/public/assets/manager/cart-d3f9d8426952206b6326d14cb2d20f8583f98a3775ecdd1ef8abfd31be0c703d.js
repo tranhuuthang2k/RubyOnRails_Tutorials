@@ -51,7 +51,7 @@ function Cart(options) {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Add to cart successfully",
+          title: "Đã thêm sản phẩm vào giỏ hàng",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -83,7 +83,7 @@ function Cart(options) {
       (total, item) => total + (item.price_product * item.quantity * 100) / 100,
       0
     );
-    return result.toFixed(1)
+    return result;
   };
 
   module.showCarts = function () {
@@ -279,72 +279,55 @@ function Cart(options) {
       ? JSON.parse(localStorage.getItem("carts"))
       : [];
     $(".add-to-cart-detail").click(function () {
-      input = $("#numberInput").val();
-      console.log(input);
-      if (input < 0) {
-        Swal.fire({
-          icon: "warning",
-          title: "Quantity  must be greater than 0",
-        }).then((result) => {
-          $("#numberInput").val(1);
-        });
-      } else {
-        el = $(this).closest(".product-information");
-        id_product = parseFloat(el.find(".id").attr("id"));
-        name_product = el.find(".title").get(0).innerText;
-        quantity_product_input = parseFloat(el.find(".quantity").val());
-        price_product = el.find(".price").get(0).innerText.replace("US $", "");
-        image_product =
-          document.location.origin +
-          el.closest(".product-details").find(".imageProduct").attr("src");
-        size_product = $(".sprd-select__items")
-          .find(".active")
-          .get(0).innerText;
+      el = $(this).closest(".product-information");
+      id_product = parseFloat(el.find(".id").attr("id"));
+      name_product = el.find(".title").get(0).innerText;
+      quantity_product_input = parseFloat(el.find(".quantity").val());
+      price_product = el.find(".price").get(0).innerText.replace("US $", "");
+      image_product =
+        document.location.origin +
+        el.closest(".product-details").find(".imageProduct").attr("src");
+      size_product = $(".sprd-select__items").find(".active").get(0).innerText;
 
-        if (isNaN(quantity_product_input)) {
-          Swal.fire({
-            icon: "warning",
-            title: "Quantity must be number",
-          });
-          parseFloat(el.find(".quantity").val(1));
-          return;
-        }
-        product = shopping_carts.find((e) => e.id === id_product);
-        if (product) {
-          (product.quantity += quantity_product_input),
-            (product.total_price =
-              product.quantity * parseFloat(price_product));
-          setCart(shopping_carts);
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Add to cart successfully..",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-
-          return shopping_carts;
-        }
-        shopping_cart = {
-          id: id_product,
-          name_product,
-          size_product,
-          price_product,
-          image_product,
-          quantity: quantity_product_input,
-          total_price: quantity_product_input * parseFloat(price_product),
-        };
-        shopping_carts.push(shopping_cart);
+      if (isNaN(quantity_product_input)) {
+        Swal.fire("so luong phai la so");
+        parseFloat(el.find(".quantity").val(1));
+        return;
+      }
+      product = shopping_carts.find((e) => e.id === id_product);
+      if (product) {
+        (product.quantity += quantity_product_input),
+          (product.total_price = product.quantity * parseFloat(price_product));
         setCart(shopping_carts);
-        $("#lblCartCount").get(0).innerText = shopping_carts.length;
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Add to cart successfully",
+          title: "Đã thêm sản phẩm vào giỏ hàng",
           showConfirmButton: false,
           timer: 1500,
         });
+
+        return shopping_carts;
       }
+      shopping_cart = {
+        id: id_product,
+        name_product,
+        size_product,
+        price_product,
+        image_product,
+        quantity: quantity_product_input,
+        total_price: quantity_product_input * parseFloat(price_product),
+      };
+      shopping_carts.push(shopping_cart);
+      setCart(shopping_carts);
+      $("#lblCartCount").get(0).innerText = shopping_carts.length;
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Add to cart successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     });
   };
   module.checkout = function () {
@@ -376,7 +359,7 @@ function Cart(options) {
           } else {
             Swal.fire({
               icon: "error",
-              title: "Shopping cart is invalid or Out of stock",
+              title: "shopping cart is invalid or Out of stock",
               text: "We remove your cart, then your order product another again, thank you!",
             }).then(() => {
               window.localStorage.removeItem("carts");

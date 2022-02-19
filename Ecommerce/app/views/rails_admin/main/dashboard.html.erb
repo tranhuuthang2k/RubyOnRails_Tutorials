@@ -23,18 +23,18 @@
             </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%= @result[:sold] %></span>
         </div>
       </div>
+
+      <div class="c-dashboardInfo col-lg-3 col-md-3 col-xs-6">
+        <div class="wrap">
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Total order cancel <%= @result[:month] %>/<%= @result[:year] %>
+            </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%=   @result[:total_order_cancel]%></span>
+        </div>
+      </div>
       <div class="c-dashboardInfo col-lg-3 col-md-6 col-xs-3">
         <div class="wrap">
           <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Product in system <svg
               class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
             </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%= Product.pluck("id").size%></span>
-        </div>
-      </div>
-      <div class="c-dashboardInfo col-lg-3 col-md-6 col-xs-3">
-        <div class="wrap">
-          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Availability in system <svg
-              class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
-            </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%= @total_availabilitys %></span>
         </div>
       </div>
       <div class="c-dashboardInfo col-lg-3 col-md-6 col-xs-3">
@@ -46,16 +46,23 @@
           <div type="button" class="btn" style="border-color: #dadada;" data-toggle="modal" data-target="#exampleModalCenter">
             <% if @result[:statistic_products][:best_seller].nil? == false && @result[:statistic_products][:best_seller].image.attached?  %>
                   <%= image_tag main_app.url_for( @result[:statistic_products][:best_seller].image) , alt: "img", id:"best_seller", class: "imageProduct" ,size: "70x70" %>
-              <% end %>
+            <% else %>
+              <span>NULL </span>
+             <% end %>
           </div>
         </div>
       </div>
       <div class="c-dashboardInfo col-lg-3 col-md-6 col-xs-3">
-        <div class="wrap">
-          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title" >Best Keyword search <%= @result[:month] %>/<%= @result[:year] %> <svg
-              class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
-            </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count" style="text-transform: lowercase; font-size: 20px;"><%=@result[:statistic_products][:best_keyword_search]&.key_word%></span>
-        </div>
+          <div class="wrap">
+            <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Best Keyword search <%= @result[:month] %>/<%= @result[:year] %>
+              <% if  @result[:statistic_products][:best_keyword_search].present? %>
+                    </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%= @result[:statistic_products][:best_keyword_search].key_word%></span>
+              <% else %>
+                </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"></span>
+              <% end %>
+              <!-- Button trigger modal -->
+          </div>
+    
       </div>
       <div class="c-dashboardInfo col-lg-3 col-md-6 col-xs-3">
         <div class="wrap">
@@ -69,19 +76,61 @@
                   </a>
                 </div>
             <% else %>
-              <span class="hind-font caption-12 c-dashboardInfo__count"></span>
+              <span class="hind-font caption-12 c-dashboardInfo__count">NULL</span>
             <% end %>
         </div>
       </div>
       <div class="c-dashboardInfo col-lg-3 col-md-6 col-xs-3">
         <div class="wrap">
-          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Voucher code <%= @result[:month] %>/<%= @result[:year] %> <svg
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title" style="margin-top: 30px">Voucher code <%= @result[:month] %>/<%= @result[:year] %> <svg
               class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
-            </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%= @result[:statistic_products][:vouchers] > 0 ? @result[:statistic_products][:vouchers] : '' %></span>
+            </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%= @result[:statistic_products][:vouchers] > 0 ? @result[:statistic_products][:vouchers] : 0 %></span>
+        </div>
+      </div>
+      <div class="c-dashboardInfo col-lg-3 col-md-6 col-xs-3">
+        <div class="wrap">
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Availability in system <svg
+              class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
+            </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%= @total_availabilitys %></span>
+        </div>
+      </div>
+
+      <div class="c-dashboardInfo col-lg-3 col-md-3 col-xs-6">
+        <div class="wrap">
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Top availability best selling  <svg
+              class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
+            </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%=  Availability.present? ? Availability.find_by(product_sold: Availability.maximum("product_sold")).name : '' %></span>
+        </div>
+      </div>
+
+     <div class="c-dashboardInfo col-lg-3 col-md-3 col-xs-6">
+        <div class="wrap">
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Top availability is ordering  <svg
+              class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
+            </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%=  Availability.present? ? Availability.find_by(is_ordering: Availability.maximum("is_ordering")).name : '' %></span>
+        </div>
+      </div>
+
+      <div class="c-dashboardInfo col-lg-3 col-md-3 col-xs-6">
+        <div class="wrap">
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Total service Shipping in system <svg
+              class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
+            </svg>
+            </h4><span class="hind-font caption-12 c-dashboardInfo__count"><%=  Shipping.present? ? Shipping.pluck("id").size : 0 %></span>
+        </div>
+      </div>
+       <div class="c-dashboardInfo col-lg-3 col-md-3 col-xs-6">
+        <div class="wrap">
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Total service Shipping  <%= @result[:month] %>/<%= @result[:year] %> <svg
+              class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
+            </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%= @result[:top_service_shipping].keys.first  %> 
+            <% if @result[:top_service_shipping].present? %>
+              (<%=@result[:top_service_shipping].values.first%>)
+            <% end %>
+            </span>
         </div>
       </div>
     </div>
-    
   </div>
 
 
@@ -177,7 +226,7 @@
 }
 .c-dashboardInfo__count {
   font-weight: 600;
-  font-size: 2.5em;
+  font-size: 1.5em;
   line-height: 64px;
   color: #323c43;
 }
@@ -214,6 +263,21 @@
 } 
 .c-dashboardInfo:nth-child(8) .wrap:after {
   background: linear-gradient(81.67deg, #1f5dc5 0%, #0084f4 100%);
+} 
+.c-dashboardInfo:nth-child(9) .wrap:after {
+  background: linear-gradient(81.67deg, #1f5dc2 0%, #ff647c 100%);
+} 
+.c-dashboardInfo:nth-child(10) .wrap:after {
+  background: linear-gradient(81.67deg, #1f5dc2 0%, #00a173 100%);
+} 
+.c-dashboardInfo:nth-child(11) .wrap:after {
+  background: linear-gradient(81.67deg, #ff647c 0%, #0084f4 100%);
+} 
+.c-dashboardInfo:nth-child(12) .wrap:after {
+  background: linear-gradient(81.67deg, #0084f4 0%, #ff841c 100%);
+} 
+.c-dashboardInfo:nth-child(13) .wrap:after {
+  background: linear-gradient(81.67deg, #00a173 0%, #00c48c 100%);
 } 
 .c-dashboardInfo__title svg {
   color: #d7d7d7;

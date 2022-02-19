@@ -14,7 +14,7 @@ Things you may want to cover:
 * Heroku
 
 * ...
-# Functions of Ecommerce E-shopper
+# Total 76 Functions of Ecommerce E-shopper
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 1. Login (email, password, facebook)
 2. Register
@@ -23,21 +23,21 @@ Things you may want to cover:
 5. Logout, message chat fb
 6. Page Blogs, detail blogs, blog other....
 7. Product whistlist (love, unlove..)
-8. star Rate, View rate product
-9. review comment products
-10. review images, manage image detail
-11. product orthers of product detail
-12. add to cart
-13. manage carts
+8. Star Rate, View rate product
+9. Review comment products
+10. Review images, manage image detail
+11. Product orthers of product detail
+12. Add to cart
+13. Manage carts
 14. product classification (feature, recommend...)
-15. contacts
+15. Contacts
 16. My orders 
 17. History View products
-18. manage my order
+18. Manage my order
 19. Statistics of products purchased by month
 20. Profile info ( avatar, name, address....)
 21. Change password, change your avatar
-22. Send email notification when order done, create bil
+22. Send email notification when order done & send bill
 23. Roles ( admin, user...)
 24. Brands
 25. Product category
@@ -77,8 +77,10 @@ Things you may want to cover:
     + Revenue of each month, year...
     + Hot selling products
     + Total products in the system
+    + Total order cancel of month, year
     + Total warehouse of the system
-    + Best selling products in month, year
+    + Best selling products of month, year
+    + Total sales orders in of month, year
     + The most searched keywords of the month
     + Products with the most views in the month
     + Total number of voucher codes for the month
@@ -86,6 +88,11 @@ Things you may want to cover:
     + Status of orders
     + Total number of brands in the system
     + Most order month
+    + Top availability best selling
+    + Top availability is ordering 
+    + Total shipping services
+    + The most shipped service
+
 - is updating.........
 ----------------------------------------------------------------------------------
 - Youtude demo : https://youtu.be/YARRuNM518o 
@@ -110,6 +117,12 @@ refresh && update my code heroku
 - bundle exec rake assets:precompile 
 run again heroku app, if code dont update then
 - heroku restart
+-----------------------------------------------------------------------------------
+Error deployment heroku
+- Error PG::DatatypeMismatch: ERROR: argument of WHERE must be type boolean, not type integer
+- Fix: example Product.where(id: ids)
+- Error ActiveRecord::StatementInvalid (PG::GroupingError: ERROR: column "order_items.created_at" must appear in the GROUP BY clause or be used in an aggregate function
+- Fix: https://makandracards.com/bitcrowd/32883-pg-groupingerror-error-column-must-appear-in-the-group-by-clause-or-be-used-in-an-aggregate-function-in-rails-while-trying-group
 -----------------------------------------------------------------------------------
 clear cache
 - rake tmp:cache:clear

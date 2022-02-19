@@ -1,5 +1,6 @@
 class OrderItem < ApplicationRecord
   before_update :update_sold
+  before_save :check_status
   belongs_to :user
   default_scope { order(created_at: :desc) }
   scope :total_order, ->(total_order) { where('total_order > ?', total_order) }
@@ -10,7 +11,7 @@ class OrderItem < ApplicationRecord
   scope :this_month, lambda { |year, month|
     where('extract(year from created_at) = ? and extract(month from created_at) = ?', year, month)
   }
-  STOCK = { 'Outstock': 0, 'Instock': 1 }.freeze # 0 -> pending, 1 -> confirm, 2 -> cancel
+  STOCK = { 'Outstock': 0, 'Instock': 1 }.freeze
 
   rails_admin do
     create do
@@ -52,25 +53,37 @@ class OrderItem < ApplicationRecord
                                 status: status)
   end
 
+  def check_status
+    if status == Product::STATUS[:confirmed]
+      product_orders = JSON.parse(product_order)
+      ids = product_orders.pluck('id')
+      products = Product.where(id: ids)
+      product_orders.each do |product_order|
+        product = products.find(product_order['id'])
+        availability = product.availability
+        update_attribute(:status, '0') if availability.number_product < product_order['quantity'].to_i
+      end
+    end
+  end
+
   def update_sold
     if OrderItem.find(id).status != status
       product_orders = JSON.parse(product_order)
       ids = product_orders.pluck('id')
-      products = Product.where(ids)
+      products = Product.where(id: ids)
       product_orders.each do |product_order|
         product = products.find(product_order['id'])
         availability = product.availability
-        if status == 1
+        if status == Product::STATUS[:confirmed]
           if availability.number_product > availability.product_sold + product_order['quantity'].to_i
-            increment(availability, product_order['quantity'].to_i, OrderItem::STOCK[:Instock]) # instock
+            increment(availability, product_order['quantity'].to_i, OrderItem::STOCK[:Instock])
 
           elsif availability.number_product == availability.product_sold + product_order['quantity'].to_i
-            increment(availability, product_order['quantity'].to_i,  OrderItem::STOCK[:Outstock]) # out
-
+            increment(availability, product_order['quantity'].to_i,  OrderItem::STOCK[:Outstock])
           end
-
-        elsif status == 0
-          if availability.number_product > availability.product_sold - product_order['quantity'].to_i
+        elsif status == Product::STATUS[:pending] || status == Product::STATUS[:cancel]
+          if (availability.product_sold - product_order['quantity'].to_i) > -1 &&
+             availability.number_product > (availability.product_sold - product_order['quantity'].to_i)
             decrement(availability, product_order['quantity'].to_i,  OrderItem::STOCK[:Instock])
 
           elsif availability.number_product == availability.product_sold - product_order['quantity'].to_i

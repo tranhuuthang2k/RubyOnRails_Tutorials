@@ -26,8 +26,13 @@
                     <% else %>
                         <p class="title"> &nbsp;</p>
                     <% end %>
-                    <a href="javascript:void(0)" class="btn btn-default add-to-cart"><i
-                            class="fa fa-shopping-cart"></i>Add to cart</a>
+                    <% if  item.availability&.status.to_i > 0%>
+                        <a href="javascript:void(0)" class="btn btn-default add-to-cart">
+                        <i class="fa fa-shopping-cart"></i>Add to cart</a>
+                      <% else %>
+                        <a href="javascript:void(0)" class="btn btn-danger out-of-stock">
+                         Out of stock</a>
+                    <% end %>
                 </div>
               
             </div>

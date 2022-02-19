@@ -114,6 +114,7 @@ function Category(options) {
       product_id = parseInt($(ele).find(".id").attr("id"));
       check_login = $(ele).find(".login").attr("id");
       check_rate = $(ele).find("#check_rate").val();
+      console.log($(ele).find(".login"));
       if (check_login == 1) {
         if (check_rate == 0) {
           $.ajax({
@@ -143,15 +144,10 @@ function Category(options) {
                   );
                 Swal.fire({
                   icon: "success",
-                  title: "Rate successfully..",
-                }).then(() => {
-                  window.location.reload(true);
+                  title: "rate successfully..",
                 });
               } else {
-                Swal.fire({
-                  icon: "error",
-                  title: data.message,
-                });
+                console.log("error");
               }
             },
             error: function () {},
@@ -253,7 +249,7 @@ function Category(options) {
         dataType: "json",
         success: function (data) {
           if (data.code == 200) {
-            // alert("Delete comment successfully..");
+            alert("xoa thanh cong");
             $(ele).html("");
             module.deleteComment();
           } else {

@@ -16,12 +16,17 @@ class Availability < ApplicationRecord
       end
     end
     edit do
-      include_all_fields
+      field :name
+      field :number_product
+      field :product_sold
+      field :number_instock
+      field :is_ordering
       field :status, :enum do
         enum do
           [['Instock', 1], ['Outstock', 0]]
         end
       end
+      field :products
     end
     list do
       field :id
