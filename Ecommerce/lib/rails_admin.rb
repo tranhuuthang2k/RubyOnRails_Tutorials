@@ -26,12 +26,17 @@ module RailsAdmin
             def load_order_items(month, year)
               order_items = OrderItem.this_status(Product::STATUS[:confirmed])
                                      .by_orders(month, year)
+              total_order_cancel = OrderItem.this_status(Product::STATUS[:cancel])
+                                            .by_orders(month, year)
+              top_service_shipping = OrderItem.by_orders(month, year).unscoped.group('service')
               fee_ship = order_items.pluck('fee').sum
               voucher = order_items.pluck('voucher').sum
 
               {
                 order_items: order_items,
-                fee_ship_voucher: fee_ship - voucher
+                fee_ship_voucher: fee_ship - voucher,
+                total_order_cancel: total_order_cancel,
+                top_service_shipping: top_service_shipping
               }
             end
 
@@ -91,6 +96,8 @@ module RailsAdmin
               @result = {
                 data: order_items(data[:order_items]).pluck('total').map(&:to_f).sum.round(1) + data[:fee_ship_voucher],
                 sold: order_items(data[:order_items]).size,
+                total_order_cancel: order_items(data[:total_order_cancel]).size,
+                top_service_shipping: data[:top_service_shipping].size,
                 year: year,
                 month: month,
                 statistic_products: statistic_products(data[:order_items], params[:month_year])

@@ -21,8 +21,13 @@
                                     <a href="/product-details/<%= item.title.parameterize %>~<%=item.id%>"> <img class="imageProduct" src="<%= url_for(item.image) if item.image.attached? %>" alt="" /></a>
                                     <h2 class="price">$<%= item.price  %></h2>
                                     <p class="title"><%= item.title  %></p>
-                                    <a href="javascript:void(0)" class="btn btn-default add-to-cart"><i
-                                            class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    <% if  item.availability&.status.to_i > 0%>
+                                        <a href="javascript:void(0)" class="btn btn-default add-to-cart">
+                                        <i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    <% else %>
+                                        <a href="javascript:void(0)" class="btn btn-danger out-of-stock">
+                                        Out of stock</a>
+                                    <% end %>
                                 </div>
                             </div>
                         </div>

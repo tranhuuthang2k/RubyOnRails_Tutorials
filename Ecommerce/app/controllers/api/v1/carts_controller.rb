@@ -13,25 +13,30 @@ class Api::V1::CartsController < Api::V1::BaseController
     # render json: error_message('error_message')
   end
 
-  def base_checkout(data, voucher_code, method_shipping, status = {})
+  def base_checkout(data, voucher_code, method_shipping)
     temp_carts = []
     data.select { |_, value| temp_carts << value }
     carts_order = []
-    product_ids = temp_carts.pluck("id").compact
+    product_ids = temp_carts.pluck('id').compact
     total_order = 0
     products = Product.where(id: product_ids).index_by(&:id)
     check_voucher = Voucher.find_by(code: voucher_code)
     check_shipping = Shipping.find_by(id: method_shipping)
-    temp_carts.each do |p|
-      product = products[p[:id].to_i]
-      return result={carts_order: [] } unless product.availability.present?
-      # #update availability
-      availabilities = product.availability
-      availabilities.update_attribute(:is_ordering, availabilities.is_ordering + p[:quantity].to_i)
 
-      if product.availability.status == "0" || product.nil? || product.price != p[:price_product].to_f || product.title != p[:name_product] || p[:image_product] != url_for(product.image)
+    temp_carts.map do |p|
+      product = products[p[:id].to_i]
+
+      # update quantity product is buyer is needing
+      availabilities = product.availability.present? && product.availability.update_attribute(:is_ordering,
+                                                                                              product.availability.is_ordering + p[:quantity].to_i)
+
+      if p['quantity'].to_i > product.availability&.number_product.to_i || product.availability&.status == OrderItem::STOCK[:Outstock]
+        return result = { carts_order: [] }
+      end
+
+      if product.nil? || product.price != p[:price_product].to_f || product.title != p[:name_product] || p[:image_product] != url_for(product.image)
         carts_order = []
-        break
+        return
       end
       carts_order << { id: p[:id],
                        name_product: p[:name_product],
@@ -45,7 +50,7 @@ class Api::V1::CartsController < Api::V1::BaseController
     total_order = carts_order.sum do |cart_order|
       cart_order[:total].to_f
     end - voucher_cost + check_shipping.price
-    results = { total_order: total_order, status: status, voucher_cost: voucher_cost, check_shipping: check_shipping,
+    results = { total_order: total_order, voucher_cost: voucher_cost, check_shipping: check_shipping,
                 carts_order: carts_order }
   end
 
