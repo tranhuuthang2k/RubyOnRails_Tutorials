@@ -41,7 +41,7 @@
             <% order[:product_order].each do |c| %>
               <tr>
                 <td class="cart_product">
-                  <a href=""> <%= image_tag c["image_product"], size: "110x110", alt: "Image" %></a>
+                  <a href="/product-details/<%= c["name_product"] %>~<%=c["id"] %>"> <%= image_tag c["image_product"], size: "110x110", alt: "Image" %></a>
                 </td>
                 <td class="cart_description">
                   <h4><a href=""><%= c["name_product"] %></a></h4>

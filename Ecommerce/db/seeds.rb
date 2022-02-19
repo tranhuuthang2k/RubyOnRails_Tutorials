@@ -53,9 +53,9 @@ Category.create!([
                  ])
 
 Availability.create!([
-                       { status: 'instock', number_instock: 30 },
-                       { status: 'outstock', number_instock: 20 },
-                       { status: 'instock', number_instock: 10 }
+                       { name: "Availability_name1", status: '1', number_product: 30 },
+                       { name: "Availability_name2" ,status: '0', number_product: 20 },
+                       { name: "Availability_name3", status: '1', number_product: 10 }
                      ])
 
 Product.create!([
