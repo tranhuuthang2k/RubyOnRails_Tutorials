@@ -17,14 +17,19 @@ class Api::V1::CartsController < Api::V1::BaseController
     temp_carts = []
     data.select { |_, value| temp_carts << value }
     carts_order = []
-    product_ids = temp_carts.map { |p| p[:id] }.compact
+    product_ids = temp_carts.pluck("id").compact
     total_order = 0
     products = Product.where(id: product_ids).index_by(&:id)
     check_voucher = Voucher.find_by(code: voucher_code)
     check_shipping = Shipping.find_by(id: method_shipping)
     temp_carts.each do |p|
       product = products[p[:id].to_i]
-      if product.nil? || product.price != p[:price_product].to_f || product.title != p[:name_product] || p[:image_product] != url_for(product.image)
+      return result={carts_order: [] } unless product.availability.present?
+      # #update availability
+      availabilities = product.availability
+      availabilities.update_attribute(:is_ordering, availabilities.is_ordering + p[:quantity].to_i)
+
+      if product.availability.status == "0" || product.nil? || product.price != p[:price_product].to_f || product.title != p[:name_product] || p[:image_product] != url_for(product.image)
         carts_order = []
         break
       end
@@ -41,21 +46,21 @@ class Api::V1::CartsController < Api::V1::BaseController
       cart_order[:total].to_f
     end - voucher_cost + check_shipping.price
     results = { total_order: total_order, status: status, voucher_cost: voucher_cost, check_shipping: check_shipping,
-                carts_order: carts_order.to_json }
+                carts_order: carts_order }
   end
 
   def checkout
     data = base_checkout(params[:data], params[:voucher_code], params[:method_shipping])
     if data[:carts_order].size > 0 && data[:check_shipping]
       product_order = @user.order_items.new(user_id: @user.id, status: Product::STATUS[:pending],
-                                            product_order: data[:carts_order],
+                                            product_order: data[:carts_order].to_json,
                                             total_order: data[:total_order],
                                             voucher: data[:voucher_cost],
                                             service: data[:check_shipping].name,
                                             fee: data[:check_shipping].price)
       if product_order.save
-        OrderMailer.send_order(@user, product_order).deliver
         render json: success_message('Successfully', product_order: product_order)
+        OrderMailer.send_order(@user, product_order).deliver
       end
     else
       render json: error_message(t('shopping cart is invalid or does not exist'))

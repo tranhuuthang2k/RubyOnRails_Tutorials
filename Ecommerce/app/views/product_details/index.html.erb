@@ -15,9 +15,6 @@
                         <%= render 'home/brands' %>
                     </div>
                     <!--/brands_products-->
-
-
-
                 </div>
             </div>
 
@@ -109,10 +106,18 @@
                                 <span style="text-align: center; width: 100%"  class="price">US $<%= @results[:product].price %></span>
                                 <label>Quantity:</label>
                                 <input type="number" id="numberInput" class="quantity" value="1" min="1"  onchange=" this.value > <%= @results[:product].availability.number_instock  if  @results[:product].availability.present? %>  &&  myFunction(<%= @results[:product].availability.number_instock if  @results[:product].availability.present? %>) " max=" <%=@results[:product].availability if @results[:product].availability.present? %>" />
-                                <button type="submit" class="btn btn-fefault cart add-to-cart-detail">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    Add to cart
-                                </button>
+                               <% if  @results[:product].availability&.status.to_i > 0%>
+                                  <button type="submit" class="btn btn-fefault cart add-to-cart-detail">
+                                      <i class="fa fa-shopping-cart"></i>
+                                      Add to cart
+                                  </button>
+                                <% else %>
+                                 <button type="submit" class="btn btn-danger">
+                                      <i class="fa fa-shopping-cart"></i>
+                                    Out of stock
+                                  </button>
+                               <% end %>
+                            
                             </span>
                             <div>
                             <span> <b> Choose size </b> </span>
@@ -122,8 +127,9 @@
                               <% end %>
                               </div>
                             </div>
-                            <p><b>Availability:</b> <%= @results[:product].availability.status if @results[:product].availability.present? %></p>
+                            <p><b>Availability:</b> <%= @results[:product].availability.name if @results[:product].availability.present? %></p>
                             <p><b>Number instock:</b>  <%= @results[:product].availability.number_instock if @results[:product].availability.present? %></p>
+                            <p><b>Status:</b>  <%= @results[:product].availability.status == "1" ? "Instock" : "OutStock" if @results[:product].availability.present? %></p>
                             <p><b>Brand:</b> <%= @results[:product].brand ?  @results[:product].brand.name  : ""%></p>
                             <p><b>View: </b> <%= @results[:product].product_views.count %> <i class="fa fa-eye"></i></p>
                             <p><b>Share:</b> <a href="https://www.facebook.com/share.php?u=https://shopmrkatsu.herokuapp.com/product-details/<%= @results[:product].title.parameterize%>~<%=@results[:product].id%>"><i class="fa fa-facebook-square fa-2x facebook" style="font-size: 1.5em;"></i></a></p>
@@ -162,8 +168,8 @@
                                             <a href="/product-details/<%= item.title.parameterize%>~<%=item.id%>"> <img class="imageProduct" src="<%= url_for(item.image) if item.image.attached? %>" alt="" /></a>
                                             <h2>$<%= item.price%></h2>
                                             <p><%= item.title%></p>
-                                             <a href="javascript:void(0)" class="btn btn-default add-to-cart"><i
-                                              class="fa fa-shopping-cart"></i>Add to cart</a>
+                                             <a  href="/product-details/<%= item.title.parameterize%>~<%=item.id%>"  class="btn btn-default"><i
+                                              class="fa fa-shopping-cart"></i> See more</a>
                                         </div>
                                     </div>
                                 </div>

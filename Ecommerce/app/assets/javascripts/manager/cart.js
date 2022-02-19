@@ -359,9 +359,8 @@ function Cart(options) {
           } else {
             Swal.fire({
               icon: "error",
-              title: "shopping cart is invalid",
-              text: "or does not exist",
-              footer: "We remove your cart, then your order again, thank you!",
+              title: "shopping cart is invalid or Out of stock",
+              text: "We remove your cart, then your order product another again, thank you!",
             }).then(() => {
               window.localStorage.removeItem("carts");
               window.location = "/users/carts";

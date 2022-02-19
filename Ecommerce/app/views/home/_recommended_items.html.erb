@@ -43,8 +43,11 @@
                                     <i class="fa fa-star" style="color: #fe950f;"></i>
                                     <i class="fa fa-star" style="color: #fe950f;"></i>
                                  </div>
-                                <% if item.sold > 0 %>
-                                    <p class="title">Sold: <%= item.sold %> products</p>
+
+                    <a href="javascript:void(0)" class="btn btn-default add-to-cart"><i
+                            class="fa fa-shopping-cart"></i>Add to cart</a>
+                                <% if item.availability&.product_sold.to_i > 0 %>
+                                    <p class="title">Sold: <%= item.availability&.product_sold %> products</p>
                                 <% end %>
                                 <a href="javascript:void(0)" class="btn btn-default add-to-cart"><i
                                         class="fa fa-shopping-cart"></i>Add to cart</a>

@@ -10,6 +10,8 @@ class OrderItem < ApplicationRecord
   scope :this_month, lambda { |year, month|
     where('extract(year from created_at) = ? and extract(month from created_at) = ?', year, month)
   }
+  STOCK = { 'Outstock': 0, 'Instock': 1 }.freeze # 0 -> pending, 1 -> confirm, 2 -> cancel
+
   rails_admin do
     create do
       field :title
@@ -18,8 +20,11 @@ class OrderItem < ApplicationRecord
 
     edit do
       include_all_fields # all other default fields will be added after, conveniently
-      field :status do
-        help 'Pending -> 0, confirm -> 1, cancel -> 2'
+      field :status, :enum do
+        enum do
+          [['Pending', 0], ['Confirmed', 1], ['Cancel', 2]]
+        end
+        help 'Pending -> 0, confirmed -> 1, cancel -> 2'
       end
       exclude_fields :created_at # but you still can remove fields
     end
@@ -35,18 +40,43 @@ class OrderItem < ApplicationRecord
 
   private
 
+  def increment(availability, quantily, status)
+    availability.update_columns(product_sold: availability.product_sold + quantily,
+                                number_instock: availability.number_instock - quantily,
+                                status: status)
+  end
+
+  def decrement(availability, quantily, status)
+    availability.update_columns(product_sold: availability.product_sold - quantily,
+                                number_instock: availability.number_instock + quantily,
+                                status: status)
+  end
+
   def update_sold
-    ids = JSON.parse(product_order).collect { |b| b['id'] }
-    if status == 1
-      ids.each do |id|
-        product = Product.find(id)
-        product.update_attribute(:sold, product.sold + 1)
-      end
-    elsif status == 0 || status == 2
-      ids.each do |id|
-        product = Product.find(id) 
-        if product.sold > 0
-          product.update_attribute(:sold, product.sold - 1)
+    if OrderItem.find(id).status != status
+      product_orders = JSON.parse(product_order)
+      ids = product_orders.pluck('id')
+      products = Product.where(ids)
+      product_orders.each do |product_order|
+        product = products.find(product_order['id'])
+        availability = product.availability
+        if status == 1
+          if availability.number_product > availability.product_sold + product_order['quantity'].to_i
+            increment(availability, product_order['quantity'].to_i, OrderItem::STOCK[:Instock]) # instock
+
+          elsif availability.number_product == availability.product_sold + product_order['quantity'].to_i
+            increment(availability, product_order['quantity'].to_i,  OrderItem::STOCK[:Outstock]) # out
+
+          end
+
+        elsif status == 0
+          if availability.number_product > availability.product_sold - product_order['quantity'].to_i
+            decrement(availability, product_order['quantity'].to_i,  OrderItem::STOCK[:Instock])
+
+          elsif availability.number_product == availability.product_sold - product_order['quantity'].to_i
+            increment(availability, product_order['quantity'].to_i, OrderItem::STOCK[:Outstock])
+
+          end
         end
       end
     end
