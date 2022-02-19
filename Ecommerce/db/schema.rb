@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_05_051009) do
-
+ActiveRecord::Schema.define(version: 2022_02_19_045529) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -51,10 +50,16 @@ ActiveRecord::Schema.define(version: 2022_02_05_051009) do
   end
 
   create_table "availabilities", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "number_product"
+    t.string "name"
     t.string "status"
     t.integer "number_instock"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "product_sold", default: 0
+    t.integer "is_ordering", default: 0
+    t.integer "quantily_product"
+
   end
 
   create_table "brands", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
