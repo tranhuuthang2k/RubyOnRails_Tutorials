@@ -143,7 +143,7 @@ function Category(options) {
                   );
                 Swal.fire({
                   icon: "success",
-                  title: "Rate successfully..",
+                  title: "rate successfully..",
                 }).then(() => {
                   window.location.reload(true);
                 });
@@ -253,7 +253,7 @@ function Category(options) {
         dataType: "json",
         success: function (data) {
           if (data.code == 200) {
-            // alert("Delete comment successfully..");
+            alert("xoa thanh cong");
             $(ele).html("");
             module.deleteComment();
           } else {

@@ -10,7 +10,7 @@ class Api::V1::ProductsController < Api::V1::BaseController
     product_of_month.each do |order|
       carts_order += JSON.parse(order.product_order)
     end
-    render json: success_message('Successfully', { carts_order: carts_order })
+    render json: success_message('Successfully', { carts_order: carts_order, fee_ship: product_of_month.pluck("fee").sum - product_of_month.pluck("voucher").sum })
   end
 
   def search

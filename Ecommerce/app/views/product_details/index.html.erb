@@ -39,7 +39,7 @@
                             <div class="item active">
                                 <% @results[:product].photos.take(3).each do |item| %>
                                     <% item.images.each do |img| %>
-                                        <a href="javascript:void(0)"><img src="<%= url_for(img) %>" alt="" class="image"></a>
+                                        <a href="javascript:void(0)"><img src="<%= url_for(img) %>" alt="" class="image" style="width: 25%"></a>
                                     <% end %>
                                 <% end %>
                             </div>

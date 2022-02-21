@@ -61,18 +61,22 @@ class Api::V1::LovesController < Api::V1::BaseController
   end
 
   def rate
-    rate = @user.product_rates.new(rate: params[:rate], product_id: params[:product_id], user_id: @user.id)
-    product_rates = ProductRate.where(product_id: params[:product_id]).to_a
-    sum_rate = product_rates.sum(&:rate)
-    count_product = product_rates.size
-    avg = count_product.zero? ? params[:rate] : sum_rate / count_product
-    if rate.save
-      render json: success_message('Successfully',
-                                   { avg: avg,
-                                     rate: ActiveModelSerializers::SerializableResource.new(rate,
-                                                                                            each_serializer: RateSerializer) })
+    data = []
+    data << @user.order_items.this_status('1').pluck('product_order').map { |x| JSON.parse(x) }
+    if @user.order_items.present? && data.flatten.pluck('id').include?(params[:product_id])
+      rate = @user.product_rates.new(rate: params[:rate], product_id: params[:product_id], user_id: @user.id)
+      product_rates = ProductRate.where(product_id: params[:product_id]).to_a
+      sum_rate = product_rates.sum(&:rate)
+      count_product = product_rates.size
+      avg = count_product.zero? ? params[:rate] : sum_rate / count_product
+      if rate.save
+        render json: success_message('Successfully',
+                                     { avg: avg,
+                                       rate: ActiveModelSerializers::SerializableResource.new(rate,
+                                                                                              each_serializer: RateSerializer) })
+      end
     else
-      render json: error_message(t('rate id not_found'))
+      render json: error_message('You have not purchased this product so cannot rated')
     end
   end
 
