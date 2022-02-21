@@ -61,7 +61,6 @@ function Category(options) {
   };
   module.clickEventComments = function () {
     $(".in-comment").keypress(function (e) {
-      console.log("11111111111");
       if (event.keyCode == 13) {
         ele = $(this).closest("div #reviews");
         comment = $(ele).find(".in-comment").val();
@@ -91,6 +90,7 @@ function Category(options) {
                     template_comment({
                       comment: data.data.comment,
                       name: data.data.name,
+                      avatar: data.data.avatar,
                     })
                   );
                 $(ele).find(".in-comment").val("");
@@ -114,7 +114,6 @@ function Category(options) {
       product_id = parseInt($(ele).find(".id").attr("id"));
       check_login = $(ele).find(".login").attr("id");
       check_rate = $(ele).find("#check_rate").val();
-      console.log($(ele).find(".login"));
       if (check_login == 1) {
         if (check_rate == 0) {
           $.ajax({
@@ -144,10 +143,15 @@ function Category(options) {
                   );
                 Swal.fire({
                   icon: "success",
-                  title: "rate successfully..",
+                  title: "Rate successfully..",
+                }).then(() => {
+                  window.location.reload(true);
                 });
               } else {
-                console.log("error");
+                Swal.fire({
+                  icon: "error",
+                  title: data.message,
+                });
               }
             },
             error: function () {},
@@ -249,7 +253,7 @@ function Category(options) {
         dataType: "json",
         success: function (data) {
           if (data.code == 200) {
-            alert("xoa thanh cong");
+            // alert("Delete comment successfully..");
             $(ele).html("");
             module.deleteComment();
           } else {

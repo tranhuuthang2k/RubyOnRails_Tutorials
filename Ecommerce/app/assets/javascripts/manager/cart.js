@@ -83,7 +83,7 @@ function Cart(options) {
       (total, item) => total + (item.price_product * item.quantity * 100) / 100,
       0
     );
-    return result;
+    return result.toFixed(1)
   };
 
   module.showCarts = function () {

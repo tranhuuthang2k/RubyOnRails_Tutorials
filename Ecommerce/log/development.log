@@ -1,0 +1,704 @@
+Started GET "/" for ::1 at 2022-02-22 17:47:45 +0700
+  
+ActiveRecord::ConnectionNotEstablished (Access denied for user 'root'@'localhost' (using password: YES)):
+  
+activerecord (6.1.4.1) lib/active_record/connection_adapters/mysql2_adapter.rb:45:in `rescue in new_client'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/mysql2_adapter.rb:39:in `new_client'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/mysql2_adapter.rb:23:in `mysql2_connection'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:882:in `public_send'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:882:in `new_connection'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:926:in `checkout_new_connection'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:905:in `try_to_checkout_new_connection'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:866:in `acquire_connection'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:588:in `checkout'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:428:in `connection'
+activerecord (6.1.4.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:1128:in `retrieve_connection'
+activerecord (6.1.4.1) lib/active_record/connection_handling.rb:327:in `retrieve_connection'
+activerecord (6.1.4.1) lib/active_record/connection_handling.rb:283:in `connection'
+activerecord (6.1.4.1) lib/active_record/migration.rb:611:in `connection'
+activerecord (6.1.4.1) lib/active_record/migration.rb:606:in `build_watcher'
+activerecord (6.1.4.1) lib/active_record/migration.rb:588:in `block in call'
+activerecord (6.1.4.1) lib/active_record/migration.rb:587:in `synchronize'
+activerecord (6.1.4.1) lib/active_record/migration.rb:587:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.4.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.4.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.4.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.4.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+rack-mini-profiler (2.3.3) lib/mini_profiler/profiler.rb:393:in `call'
+webpacker (5.4.3) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.7.0) lib/rack/proxy.rb:63:in `call'
+railties (6.1.4.1) lib/rails/engine.rb:539:in `call'
+puma (5.5.2) lib/puma/configuration.rb:249:in `call'
+puma (5.5.2) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.5.2) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.5.2) lib/puma/request.rb:76:in `handle_request'
+puma (5.5.2) lib/puma/server.rb:447:in `process_client'
+puma (5.5.2) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/" for ::1 at 2022-02-22 17:49:04 +0700
+  [1m[35m (4.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[35m (4.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `sliders`[0m
+  ↳ app/views/home/_slider.html.erb:13
+  Rendered home/_slider.html.erb (Duration: 13.2ms | Allocations: 1949)
+  [1m[36mCategory Load (8.3ms)[0m  [1m[34mSELECT `categories`.* FROM `categories` WHERE `categories`.`categories_id` IS NULL LIMIT 4[0m
+  ↳ app/views/home/_category.html.erb:2
+  Rendered home/_category.html.erb (Duration: 25.1ms | Allocations: 3900)
+  [1m[36mBrand Load (9.6ms)[0m  [1m[34mSELECT `brands`.* FROM `brands`[0m
+  ↳ app/views/home/_brands.html.erb:3
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 1[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 2[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 3[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 4[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (3.8ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 5[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 6[0m
+  ↳ app/views/home/_brands.html.erb:4
+  Rendered home/_brands.html.erb (Duration: 3274.8ms | Allocations: 1403030)
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 0 LIMIT 9[0m
+  ↳ app/views/home/_features_items.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (3.6ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 1 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (3.2ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 19 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.9ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 14 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mAvailability Load (4.2ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 3 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 23 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mAvailability Load (0.5ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 2 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 5 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 33 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 2 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  Rendered home/_features_items.html.erb (Duration: 230.3ms | Allocations: 44644)
+  [1m[36mProduct Load (20.5ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 1[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 23 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE Availability Load (1.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 2 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:24
+  [1m[36mActiveStorage::Attachment Load (6.3ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 3 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mActiveStorage::Blob Load (3.5ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 20 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 2 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:24
+  [1m[36mProduct Load (1.2ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 5[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mProduct Load (1.1ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 9[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE ActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 14 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 3 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:24
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 10[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 5 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 33 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 2 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:24
+  Rendered home/_category_tab.html.erb (Duration: 183.4ms | Allocations: 24576)
+  [1m[36mProduct Load (0.8ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 1 LIMIT 3[0m
+  ↳ app/views/home/_recommended_items.html.erb:8
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 3 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_recommended_items.html.erb:15
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 20 LIMIT 1[0m
+  ↳ app/views/home/_recommended_items.html.erb:16
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 2 LIMIT 1[0m
+  ↳ app/views/home/_recommended_items.html.erb:49
+  Rendered home/_recommended_items.html.erb (Duration: 10.2ms | Allocations: 4303)
+  Rendered home/index.html.erb within layouts/application (Duration: 3743.6ms | Allocations: 1484035)
+  Rendered layouts/_header.html.erb (Duration: 5.9ms | Allocations: 1212)
+  Rendered layouts/_footer.html.erb (Duration: 6.6ms | Allocations: 440)
+  Rendered layout layouts/application.html.erb (Duration: 4647.9ms | Allocations: 1685746)
+Completed 200 OK in 4783ms (Views: 4571.8ms | ActiveRecord: 133.2ms | Allocations: 1705845)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--02161c03424e6d4df325a0b4950419df6264206b/product12.jpg" for ::1 at 2022-02-22 17:49:10 +0700
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBFdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b94b2e3b1e8d478482e9a32c2a6563d0034db715/product11.jpg" for ::1 at 2022-02-22 17:49:10 +0700
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBIQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--3af46071fb3fe90516137847174320f98f459e39/product5.jpg" for ::1 at 2022-02-22 17:49:10 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--02161c03424e6d4df325a0b4950419df6264206b", "filename"=>"product12"}
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBFdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b94b2e3b1e8d478482e9a32c2a6563d0034db715", "filename"=>"product11"}
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBIQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--3af46071fb3fe90516137847174320f98f459e39", "filename"=>"product5"}
+  [1m[36mActiveStorage::Blob Load (1.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 14 LIMIT 1[0m
+[36m  Disk Storage (0.9ms) [0m[34mGenerated URL for file at key: 9pmj3ldqseyzxvdulh09ok4jccim (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhPWEJ0YWpOc1pIRnpaWGw2ZUhaa2RXeG9NRGx2YXpScVkyTnBiUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW5CeWIyUjFZM1F4TVM1cWNHY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KM0J5YjJSMVkzUXhNUzVxY0djR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDIyLTAyLTIyVDEwOjU0OjEwLjI2MloiLCJwdXIiOiJibG9iX2tleSJ9fQ==--00fab4ce0e18acdde265b70a0c15a7136708fde9/product11.jpg)[0m
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6fb5ef404e9fdb3a64942e470b90576d6fe2cff7/product2.jpg" for ::1 at 2022-02-22 17:49:10 +0700
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhPWEJ0YWpOc1pIRnpaWGw2ZUhaa2RXeG9NRGx2YXpScVkyTnBiUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW5CeWIyUjFZM1F4TVM1cWNHY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KM0J5YjJSMVkzUXhNUzVxY0djR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDIyLTAyLTIyVDEwOjU0OjEwLjI2MloiLCJwdXIiOiJibG9iX2tleSJ9fQ==--00fab4ce0e18acdde265b70a0c15a7136708fde9/product11.jpg
+Completed 302 Found in 31ms (ActiveRecord: 1.0ms | Allocations: 5013)
+
+
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6fb5ef404e9fdb3a64942e470b90576d6fe2cff7", "filename"=>"product2"}
+  [1m[36mActiveStorage::Blob Load (1.9ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 19 LIMIT 1[0m
+  [1m[36mActiveStorage::Blob Load (2.2ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 23 LIMIT 1[0m
+[36m  Disk Storage (0.7ms) [0m[34mGenerated URL for file at key: z1fvfjur5y8mxe414od2mgfd9r5i (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhlakZtZG1acWRYSTFlVGh0ZUdVME1UUnZaREp0WjJaa09YSTFhUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW5CeWIyUjFZM1F4TWk1cWNHY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KM0J5YjJSMVkzUXhNaTVxY0djR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDIyLTAyLTIyVDEwOjU0OjEwLjMyOFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--a8fb597d016c1a6fe8dd7a444573b835258fa917/product12.jpg)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhlakZtZG1acWRYSTFlVGh0ZUdVME1UUnZaREp0WjJaa09YSTFhUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW5CeWIyUjFZM1F4TWk1cWNHY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KM0J5YjJSMVkzUXhNaTVxY0djR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDIyLTAyLTIyVDEwOjU0OjEwLjMyOFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--a8fb597d016c1a6fe8dd7a444573b835258fa917/product12.jpg
+Completed 302 Found in 103ms (ActiveRecord: 8.9ms | Allocations: 17206)
+
+
+  [1m[36mActiveStorage::Blob Load (4.5ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 20 LIMIT 1[0m
+[36m  Disk Storage (0.9ms) [0m[34mGenerated URL for file at key: vpf1o3fuityey9tispsdkf5u9prh (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhkbkJtTVc4elpuVnBkSGxsZVRsMGFYTndjMlJyWmpWMU9YQnlhQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUTJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW5CeWIyUjFZM1F5TG1wd1p5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25jSEp2WkhWamRESXVhbkJuQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2YW5CbFp3WTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDItMjJUMTA6NTQ6MTAuMzUxWiIsInB1ciI6ImJsb2Jfa2V5In19--39299c2f860e004c0741a45a6edc5970bd393c6f/product2.jpg)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhkbkJtTVc4elpuVnBkSGxsZVRsMGFYTndjMlJyWmpWMU9YQnlhQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUTJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW5CeWIyUjFZM1F5TG1wd1p5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25jSEp2WkhWamRESXVhbkJuQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2YW5CbFp3WTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDItMjJUMTA6NTQ6MTAuMzUxWiIsInB1ciI6ImJsb2Jfa2V5In19--39299c2f860e004c0741a45a6edc5970bd393c6f/product2.jpg
+Completed 302 Found in 72ms (ActiveRecord: 15.1ms | Allocations: 10932)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBKZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f5337ed6da955ecb406c01683887392b2895b807/Screenshot%20from%202021-11-16%2018-27-36.png" for ::1 at 2022-02-22 17:49:10 +0700
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhlakZtZG1acWRYSTFlVGh0ZUdVME1UUnZaREp0WjJaa09YSTFhUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW5CeWIyUjFZM1F4TWk1cWNHY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KM0J5YjJSMVkzUXhNaTVxY0djR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDIyLTAyLTIyVDEwOjU0OjEwLjMyOFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--a8fb597d016c1a6fe8dd7a444573b835258fa917/product12.jpg" for ::1 at 2022-02-22 17:49:10 +0700
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhkbkJtTVc4elpuVnBkSGxsZVRsMGFYTndjMlJyWmpWMU9YQnlhQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUTJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW5CeWIyUjFZM1F5TG1wd1p5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25jSEp2WkhWamRESXVhbkJuQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2YW5CbFp3WTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDItMjJUMTA6NTQ6MTAuMzUxWiIsInB1ciI6ImJsb2Jfa2V5In19--39299c2f860e004c0741a45a6edc5970bd393c6f/product2.jpg" for ::1 at 2022-02-22 17:49:10 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as PNG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBKZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f5337ed6da955ecb406c01683887392b2895b807", "filename"=>"Screenshot from 2021-11-16 18-27-36"}
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 33 LIMIT 1[0m
+[36m  Disk Storage (0.7ms) [0m[34mGenerated URL for file at key: w8zpg1fvopk8l2zeusseaftjl8c0 (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhkemg2Y0djeFpuWnZjR3M0YkRKNlpYVnpjMlZoWm5ScWJEaGpNQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWxOamNtVmxibk5vYjNRZ1puSnZiU0F5TURJeExURXhMVEUySURFNExUSTNMVE0yTG5CdVp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25VMk55WldWdWMyaHZkQ1V5TUdaeWIyMGxNakF5TURJeExURXhMVEUySlRJd01UZ3RNamN0TXpZdWNHNW5CanNHVkRvUlkyOXVkR1Z1ZEY5MGVYQmxTU0lPYVcxaFoyVXZjRzVuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wMi0yMlQxMDo1NDoxMC41NTBaIiwicHVyIjoiYmxvYl9rZXkifX0=--cdb4e819b65ee5f7520d1d910b040834aed163e8/Screenshot%20from%202021-11-16%2018-27-36.png)[0m
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"product12"}
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhkemg2Y0djeFpuWnZjR3M0YkRKNlpYVnpjMlZoWm5ScWJEaGpNQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWxOamNtVmxibk5vYjNRZ1puSnZiU0F5TURJeExURXhMVEUySURFNExUSTNMVE0yTG5CdVp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25VMk55WldWdWMyaHZkQ1V5TUdaeWIyMGxNakF5TURJeExURXhMVEUySlRJd01UZ3RNamN0TXpZdWNHNW5CanNHVkRvUlkyOXVkR1Z1ZEY5MGVYQmxTU0lPYVcxaFoyVXZjRzVuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wMi0yMlQxMDo1NDoxMC41NTBaIiwicHVyIjoiYmxvYl9rZXkifX0=--cdb4e819b65ee5f7520d1d910b040834aed163e8/Screenshot%20from%202021-11-16%2018-27-36.png
+Completed 302 Found in 29ms (ActiveRecord: 0.5ms | Allocations: 5039)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhPWEJ0YWpOc1pIRnpaWGw2ZUhaa2RXeG9NRGx2YXpScVkyTnBiUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW5CeWIyUjFZM1F4TVM1cWNHY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KM0J5YjJSMVkzUXhNUzVxY0djR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDIyLTAyLTIyVDEwOjU0OjEwLjI2MloiLCJwdXIiOiJibG9iX2tleSJ9fQ==--00fab4ce0e18acdde265b70a0c15a7136708fde9/product11.jpg" for ::1 at 2022-02-22 17:49:10 +0700
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"product11"}
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"product2"}
+Completed 200 OK in 12ms (ActiveRecord: 0.0ms | Allocations: 1510)
+
+
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 301)
+
+
+Completed 200 OK in 10ms (ActiveRecord: 0.0ms | Allocations: 1339)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhkemg2Y0djeFpuWnZjR3M0YkRKNlpYVnpjMlZoWm5ScWJEaGpNQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWxOamNtVmxibk5vYjNRZ1puSnZiU0F5TURJeExURXhMVEUySURFNExUSTNMVE0yTG5CdVp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25VMk55WldWdWMyaHZkQ1V5TUdaeWIyMGxNakF5TURJeExURXhMVEUySlRJd01UZ3RNamN0TXpZdWNHNW5CanNHVkRvUlkyOXVkR1Z1ZEY5MGVYQmxTU0lPYVcxaFoyVXZjRzVuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wMi0yMlQxMDo1NDoxMC41NTBaIiwicHVyIjoiYmxvYl9rZXkifX0=--cdb4e819b65ee5f7520d1d910b040834aed163e8/Screenshot%20from%202021-11-16%2018-27-36.png" for ::1 at 2022-02-22 17:49:11 +0700
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Screenshot from 2021-11-16 18-27-36"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 301)
+
+
+[36m  S3 Storage (3.3ms) [0m[34mGenerated URL for file at key: g0ghir5f45twjvf8ek84nurjw42k (https://shop-mrkatsu.s3.eu-central-1.amazonaws.com/g0ghir5f45twjvf8ek84nurjw42k?response-content-disposition=inline%3B%20filename%3D%22product5.jpg%22%3B%20filename%2A%3DUTF-8%27%27product5.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQI6JV5JKRA3BWOFB%2F20220222%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20220222T104911Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=341091616f6ea01d0aea2608ccc11d98f59b0ac56d0b58196634942f9b3cef19)[0m
+Redirected to https://shop-mrkatsu.s3.eu-central-1.amazonaws.com/g0ghir5f45twjvf8ek84nurjw42k?response-content-disposition=inline%3B%20filename%3D%22product5.jpg%22%3B%20filename%2A%3DUTF-8%27%27product5.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQI6JV5JKRA3BWOFB%2F20220222%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20220222T104911Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=341091616f6ea01d0aea2608ccc11d98f59b0ac56d0b58196634942f9b3cef19
+Completed 302 Found in 1734ms (ActiveRecord: 8.9ms | Allocations: 318045)
+
+
+Started GET "/login" for ::1 at 2022-02-22 17:49:19 +0700
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 1.3ms | Allocations: 224)
+  Rendered devise/shared/_links.html.erb (Duration: 2.3ms | Allocations: 736)
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 40)
+  [1m[36mCity Load (7.8ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  ↳ app/views/devise/sessions/new.html.erb:67
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 92.5ms | Allocations: 9213)
+  Rendered layouts/_header.html.erb (Duration: 0.9ms | Allocations: 411)
+  Rendered layouts/_footer.html.erb (Duration: 0.6ms | Allocations: 129)
+  Rendered layout layouts/application.html.erb (Duration: 138.0ms | Allocations: 30535)
+Completed 200 OK in 253ms (Views: 146.6ms | ActiveRecord: 76.7ms | Allocations: 42886)
+
+
+Started POST "/login" for ::1 at 2022-02-22 17:49:25 +0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"testadmin@mvmanor.co.uk", "password"=>"[FILTERED]"}, "commit"=>""}
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'testadmin@mvmanor.co.uk' ORDER BY `users`.`id` ASC LIMIT 1[0m
+Completed 401 Unauthorized in 351ms (ActiveRecord: 3.0ms | Allocations: 2190)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"testadmin@mvmanor.co.uk", "password"=>"[FILTERED]"}, "commit"=>""}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 43)
+  Rendered devise/shared/_links.html.erb (Duration: 0.4ms | Allocations: 225)
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 40)
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  ↳ app/views/devise/sessions/new.html.erb:67
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 16.2ms | Allocations: 2413)
+  Rendered layouts/_header.html.erb (Duration: 0.9ms | Allocations: 340)
+  Rendered layouts/_footer.html.erb (Duration: 0.2ms | Allocations: 122)
+  Rendered layout layouts/application.html.erb (Duration: 90.0ms | Allocations: 23390)
+Completed 200 OK in 415ms (Views: 93.0ms | ActiveRecord: 0.3ms | Allocations: 24108)
+
+
+Started POST "/login" for ::1 at 2022-02-22 17:49:32 +0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"testadmin@mvmanor.co.uk", "password"=>"[FILTERED]"}, "commit"=>""}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'testadmin@mvmanor.co.uk' ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:47:in `generate_token'
+  [1m[36mUser Update (138.0ms)[0m  [1m[33mUPDATE `users` SET `users`.`updated_at` = '2022-02-22 10:49:32.383174', `users`.`api_token_digest` = 'TluxWsqFUKg6XYqBxRJYWg' WHERE `users`.`id` = 1[0m
+  ↳ app/models/user.rb:47:in `generate_token'
+  [1m[36mTRANSACTION (14.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:47:in `generate_token'
+Redirected to http://localhost:3000/admin
+Completed 302 Found in 618ms (ActiveRecord: 154.8ms | Allocations: 11283)
+
+
+Started GET "/admin" for ::1 at 2022-02-22 17:49:32 +0700
+Processing by RailsAdmin::MainController#dashboard as HTML
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ config/initializers/rails_admin.rb:82:in `block (2 levels) in <main>'
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT `order_items`.`fee` FROM `order_items` WHERE (status = 1) AND (extract(month from created_at) = 2) AND (extract(year from created_at) = 2022) ORDER BY `order_items`.`created_at` DESC[0m
+  ↳ lib/rails_admin.rb:32:in `load_order_items'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `order_items`.`voucher` FROM `order_items` WHERE (status = 1) AND (extract(month from created_at) = 2) AND (extract(year from created_at) = 2022) ORDER BY `order_items`.`created_at` DESC[0m
+  ↳ lib/rails_admin.rb:33:in `load_order_items'
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT `order_items`.`product_order` FROM `order_items` WHERE (status = 1) AND (extract(month from created_at) = 2) AND (extract(year from created_at) = 2022) ORDER BY `order_items`.`created_at` DESC[0m
+  ↳ lib/rails_admin.rb:20:in `order_items'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT `order_items`.`product_order` FROM `order_items` WHERE (status = 1) AND (extract(month from created_at) = 2) AND (extract(year from created_at) = 2022) ORDER BY `order_items`.`created_at` DESC[0m
+  ↳ lib/rails_admin.rb:20:in `order_items'
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT `order_items`.`product_order` FROM `order_items` WHERE (status = 2) AND (extract(month from created_at) = 2) AND (extract(year from created_at) = 2022) ORDER BY `order_items`.`created_at` DESC[0m
+  ↳ lib/rails_admin.rb:20:in `order_items'
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `order_items`.`service` AS order_items_service FROM `order_items` GROUP BY `order_items`.`service`[0m
+  ↳ lib/rails_admin.rb:100:in `result_statistic'
+  [1m[36mOrderItem Load (3.9ms)[0m  [1m[34mSELECT `order_items`.* FROM `order_items` WHERE (status = 1) AND (extract(month from created_at) = 2) AND (extract(year from created_at) = 2022) ORDER BY `order_items`.`created_at` DESC[0m
+  ↳ lib/rails_admin.rb:72:in `statistic_products'
+  [1m[36mProductView Load (3.0ms)[0m  [1m[34mSELECT `product_views`.* FROM `product_views` WHERE (extract(month from created_at) = 2) AND (extract(year from created_at) = 2022) ORDER BY product_id DESC[0m
+  ↳ lib/rails_admin.rb:46:in `base_statistic_products'
+  [1m[36mProduct Load (1.6ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`id` IN (4, 5) AND `products`.`id` = 4 LIMIT 1[0m
+  ↳ lib/rails_admin.rb:53:in `base_statistic_products'
+  [1m[36mKeywordSearch Load (1.4ms)[0m  [1m[34mSELECT `keyword_searches`.* FROM `keyword_searches` WHERE (extract(month from created_at) = 2) AND (extract(year from created_at) = 2022) ORDER BY count ASC[0m
+  ↳ lib/rails_admin.rb:61:in `base_statistic_products'
+  [1m[36mKeywordSearch Load (0.6ms)[0m  [1m[34mSELECT `keyword_searches`.* FROM `keyword_searches` WHERE (extract(month from created_at) = 2) AND (extract(year from created_at) = 2022) AND `keyword_searches`.`count` = 3 ORDER BY count ASC LIMIT 1[0m
+  ↳ lib/rails_admin.rb:61:in `base_statistic_products'
+  [1m[36mProduct Load (2.0ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`id` IN (4, 5)[0m
+  ↳ lib/rails_admin.rb:62:in `base_statistic_products'
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`id` IN (4, 5) AND `products`.`id` = 5 LIMIT 1[0m
+  ↳ lib/rails_admin.rb:62:in `base_statistic_products'
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT COUNT(*) FROM `vouchers` WHERE (extract(month from created_at) = 2) AND (extract(year from created_at) = 2022)[0m
+  ↳ lib/rails_admin.rb:63:in `base_statistic_products'
+  [1m[35m (3.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `availabilities`[0m
+  ↳ lib/rails_admin.rb:109:in `block (2 levels) in <class:Dashboard>'
+  Rendering layout /home/mrkatsu/.rvm/gems/ruby-3.0.0/gems/rails_admin-2.2.1/app/views/layouts/rails_admin/application.html.haml
+  Rendering rails_admin/main/dashboard.html.erb within layouts/rails_admin/application
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT `products`.`id` FROM `products`[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:37
+  [1m[36mActiveStorage::Attachment Load (1.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:47
+  [1m[36mActiveStorage::Blob Load (3.4ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 23 LIMIT 1[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:48
+  [1m[36mActiveStorage::Attachment Load (1.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 5 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:75
+  [1m[36mActiveStorage::Blob Load (1.2ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 33 LIMIT 1[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:75
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT MAX(`availabilities`.`product_sold`) FROM `availabilities`[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:102
+  [1m[36mAvailability Load (0.4ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`product_sold` = 11 LIMIT 1[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:102
+  [1m[35m (3.2ms)[0m  [1m[34mSELECT MAX(`availabilities`.`is_ordering`) FROM `availabilities`[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:110
+  [1m[36mAvailability Load (3.9ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`is_ordering` = 1000001301 LIMIT 1[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:110
+  [1m[35m (10.4ms)[0m  [1m[34mSELECT `shippings`.`id` FROM `shippings`[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:119
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, DAYOFWEEK(CONVERT_TZ(`order_items`.`created_at`, '+00:00', 'Europe/Paris')) - 1 AS dayofweek_convert_tz_order_items_created_at_00_00_europe_paris_1 FROM `order_items` WHERE (`order_items`.`created_at` IS NOT NULL) GROUP BY DAYOFWEEK(CONVERT_TZ(`order_items`.`created_at`, '+00:00', 'Europe/Paris')) - 1[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:195
+  [1m[35m (5.6ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `order_items`.`status` AS order_items_status FROM `order_items` GROUP BY `order_items`.`status`[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:197
+  [1m[35m (4.5ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `users`.`admin` AS users_admin FROM `users` GROUP BY `users`.`admin`[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:200
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT COUNT(`brands`.`name`) AS count_brands_name, `brands`.`name` AS brands_name FROM `brands` INNER JOIN `products` ON `products`.`brand_id` = `brands`.`id` GROUP BY `brands`.`name`[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:202
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, CONVERT_TZ(DATE_FORMAT(CONVERT_TZ(`order_items`.`created_at`, '+00:00', 'Europe/Paris'), '%Y-%m-01 00:00:00'), 'Europe/Paris', '+00:00') AS convert_tz_date_format_convert_tz_order_items_created_at_00_00_europe_paris_y_m_01_00_00_00_europe_paris_00_00 FROM `order_items` WHERE (`order_items`.`created_at` IS NOT NULL) GROUP BY CONVERT_TZ(DATE_FORMAT(CONVERT_TZ(`order_items`.`created_at`, '+00:00', 'Europe/Paris'), '%Y-%m-01 00:00:00'), 'Europe/Paris', '+00:00')[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:204
+  Rendered rails_admin/main/dashboard.html.erb within layouts/rails_admin/application (Duration: 195.1ms | Allocations: 20822)
+  Rendered /home/mrkatsu/.rvm/gems/ruby-3.0.0/gems/rails_admin-2.2.1/app/views/layouts/rails_admin/_head.html.haml (Duration: 1834.7ms | Allocations: 333510)
+  Rendered /home/mrkatsu/.rvm/gems/ruby-3.0.0/gems/rails_admin-2.2.1/app/views/layouts/rails_admin/_secondary_navigation.html.haml (Duration: 261.7ms | Allocations: 52426)
+  Rendered /home/mrkatsu/.rvm/gems/ruby-3.0.0/gems/rails_admin-2.2.1/app/views/layouts/rails_admin/_navigation.html.haml (Duration: 269.2ms | Allocations: 58125)
+  Rendered layout /home/mrkatsu/.rvm/gems/ruby-3.0.0/gems/rails_admin-2.2.1/app/views/layouts/rails_admin/application.html.haml (Duration: 2328.1ms | Allocations: 421260)
+Completed 500 Internal Server Error in 2558ms (ActiveRecord: 149.0ms | Allocations: 449296)
+
+
+  
+SyntaxError (/home/mrkatsu/RubyOnRails_Tutorials/Ecommerce/app/controllers/api/v1/loves_controller.rb:66: syntax error, unexpected <<, expecting `end'
+<<<<<<< HEAD
+^~
+/home/mrkatsu/RubyOnRails_Tutorials/Ecommerce/app/controllers/api/v1/loves_controller.rb:69: syntax error, unexpected ===
+=======
+^~~
+/home/mrkatsu/RubyOnRails_Tutorials/Ecommerce/app/controllers/api/v1/loves_controller.rb:72: syntax error, unexpected >>
+>>>>>>> a90d5a9f6979e5d3920b204...
+^~
+/home/mrkatsu/RubyOnRails_Tutorials/Ecommerce/app/controllers/api/v1/loves_controller.rb:79: syntax error, unexpected <<
+<<<<<<< HEAD
+^~
+/home/mrkatsu/RubyOnRails_Tutorials/Ecommerce/app/controllers/api/v1/loves_controller.rb:87: syntax error, unexpected ===, expecting `end'
+=======
+^~~
+/home/mrkatsu/RubyOnRails_Tutorials/Ecommerce/app/controllers/api/v1/loves_controller.rb:95: syntax error, unexpected >>, expecting `end'
+>>>>>>> a90d5a9f6979e5d3920b204...
+^~
+):
+  
+app/controllers/api/v1/loves_controller.rb:66: syntax error, unexpected <<, expecting `end'
+app/controllers/api/v1/loves_controller.rb:69: syntax error, unexpected ===
+app/controllers/api/v1/loves_controller.rb:72: syntax error, unexpected >>
+app/controllers/api/v1/loves_controller.rb:79: syntax error, unexpected <<
+app/controllers/api/v1/loves_controller.rb:87: syntax error, unexpected ===, expecting `end'
+app/controllers/api/v1/loves_controller.rb:95: syntax error, unexpected >>, expecting `end'
+app/controllers/api/v1/loves_controller.rb:66: syntax error, unexpected <<, expecting `end'
+app/controllers/api/v1/loves_controller.rb:69: syntax error, unexpected ===
+app/controllers/api/v1/loves_controller.rb:72: syntax error, unexpected >>
+app/controllers/api/v1/loves_controller.rb:79: syntax error, unexpected <<
+app/controllers/api/v1/loves_controller.rb:87: syntax error, unexpected ===, expecting `end'
+app/controllers/api/v1/loves_controller.rb:95: syntax error, unexpected >>, expecting `end'
+app/controllers/api/v1/loves_controller.rb:66: syntax error, unexpected <<, expecting `end'
+app/controllers/api/v1/loves_controller.rb:69: syntax error, unexpected ===
+app/controllers/api/v1/loves_controller.rb:72: syntax error, unexpected >>
+app/controllers/api/v1/loves_controller.rb:79: syntax error, unexpected <<
+app/controllers/api/v1/loves_controller.rb:87: syntax error, unexpected ===, expecting `end'
+app/controllers/api/v1/loves_controller.rb:95: syntax error, unexpected >>, expecting `end'
+lib/rails_admin.rb:114:in `block (2 levels) in <class:Dashboard>'
+Started GET "/admin" for ::1 at 2022-02-22 17:50:25 +0700
+Processing by RailsAdmin::MainController#dashboard as HTML
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ config/initializers/rails_admin.rb:82:in `block (2 levels) in <main>'
+  [1m[35m (4.9ms)[0m  [1m[34mSELECT `order_items`.`fee` FROM `order_items` WHERE (status = 1) AND (extract(month from created_at) = 2) AND (extract(year from created_at) = 2022) ORDER BY `order_items`.`created_at` DESC[0m
+  ↳ lib/rails_admin.rb:32:in `load_order_items'
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT `order_items`.`voucher` FROM `order_items` WHERE (status = 1) AND (extract(month from created_at) = 2) AND (extract(year from created_at) = 2022) ORDER BY `order_items`.`created_at` DESC[0m
+  ↳ lib/rails_admin.rb:33:in `load_order_items'
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT `order_items`.`product_order` FROM `order_items` WHERE (status = 1) AND (extract(month from created_at) = 2) AND (extract(year from created_at) = 2022) ORDER BY `order_items`.`created_at` DESC[0m
+  ↳ lib/rails_admin.rb:20:in `order_items'
+  [1m[35mCACHE  (0.1ms)[0m  [1m[34mSELECT `order_items`.`product_order` FROM `order_items` WHERE (status = 1) AND (extract(month from created_at) = 2) AND (extract(year from created_at) = 2022) ORDER BY `order_items`.`created_at` DESC[0m
+  ↳ lib/rails_admin.rb:20:in `order_items'
+  [1m[35m (7.4ms)[0m  [1m[34mSELECT `order_items`.`product_order` FROM `order_items` WHERE (status = 2) AND (extract(month from created_at) = 2) AND (extract(year from created_at) = 2022) ORDER BY `order_items`.`created_at` DESC[0m
+  ↳ lib/rails_admin.rb:20:in `order_items'
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `order_items`.`service` AS order_items_service FROM `order_items` GROUP BY `order_items`.`service`[0m
+  ↳ lib/rails_admin.rb:100:in `result_statistic'
+  [1m[36mOrderItem Load (3.5ms)[0m  [1m[34mSELECT `order_items`.* FROM `order_items` WHERE (status = 1) AND (extract(month from created_at) = 2) AND (extract(year from created_at) = 2022) ORDER BY `order_items`.`created_at` DESC[0m
+  ↳ lib/rails_admin.rb:72:in `statistic_products'
+  [1m[36mProductView Load (2.4ms)[0m  [1m[34mSELECT `product_views`.* FROM `product_views` WHERE (extract(month from created_at) = 2) AND (extract(year from created_at) = 2022) ORDER BY product_id DESC[0m
+  ↳ lib/rails_admin.rb:46:in `base_statistic_products'
+  [1m[36mProduct Load (2.5ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`id` IN (4, 5) AND `products`.`id` = 4 LIMIT 1[0m
+  ↳ lib/rails_admin.rb:53:in `base_statistic_products'
+  [1m[36mKeywordSearch Load (1.1ms)[0m  [1m[34mSELECT `keyword_searches`.* FROM `keyword_searches` WHERE (extract(month from created_at) = 2) AND (extract(year from created_at) = 2022) ORDER BY count ASC[0m
+  ↳ lib/rails_admin.rb:61:in `base_statistic_products'
+  [1m[36mKeywordSearch Load (1.0ms)[0m  [1m[34mSELECT `keyword_searches`.* FROM `keyword_searches` WHERE (extract(month from created_at) = 2) AND (extract(year from created_at) = 2022) AND `keyword_searches`.`count` = 3 ORDER BY count ASC LIMIT 1[0m
+  ↳ lib/rails_admin.rb:61:in `base_statistic_products'
+  [1m[36mProduct Load (25.3ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`id` IN (4, 5)[0m
+  ↳ lib/rails_admin.rb:62:in `base_statistic_products'
+  [1m[36mProduct Load (1.3ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`id` IN (4, 5) AND `products`.`id` = 5 LIMIT 1[0m
+  ↳ lib/rails_admin.rb:62:in `base_statistic_products'
+  [1m[35m (4.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `vouchers` WHERE (extract(month from created_at) = 2) AND (extract(year from created_at) = 2022)[0m
+  ↳ lib/rails_admin.rb:63:in `base_statistic_products'
+  [1m[35m (8.8ms)[0m  [1m[34mSELECT COUNT(*) FROM `availabilities`[0m
+  ↳ lib/rails_admin.rb:109:in `block (2 levels) in <class:Dashboard>'
+  Rendering layout /home/mrkatsu/.rvm/gems/ruby-3.0.0/gems/rails_admin-2.2.1/app/views/layouts/rails_admin/application.html.haml
+  Rendering rails_admin/main/dashboard.html.erb within layouts/rails_admin/application
+  [1m[35m (5.7ms)[0m  [1m[34mSELECT `products`.`id` FROM `products`[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:37
+  [1m[36mActiveStorage::Attachment Load (2.9ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:47
+  [1m[36mActiveStorage::Blob Load (7.3ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 23 LIMIT 1[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:48
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 5 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:75
+  [1m[36mActiveStorage::Blob Load (1.5ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 33 LIMIT 1[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:75
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT MAX(`availabilities`.`product_sold`) FROM `availabilities`[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:102
+  [1m[36mAvailability Load (1.4ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`product_sold` = 11 LIMIT 1[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:102
+  [1m[35m (3.7ms)[0m  [1m[34mSELECT MAX(`availabilities`.`is_ordering`) FROM `availabilities`[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:110
+  [1m[36mAvailability Load (1.2ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`is_ordering` = 1000001301 LIMIT 1[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:110
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT `shippings`.`id` FROM `shippings`[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:119
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, DAYOFWEEK(CONVERT_TZ(`order_items`.`created_at`, '+00:00', 'Europe/Paris')) - 1 AS dayofweek_convert_tz_order_items_created_at_00_00_europe_paris_1 FROM `order_items` WHERE (`order_items`.`created_at` IS NOT NULL) GROUP BY DAYOFWEEK(CONVERT_TZ(`order_items`.`created_at`, '+00:00', 'Europe/Paris')) - 1[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:195
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `order_items`.`status` AS order_items_status FROM `order_items` GROUP BY `order_items`.`status`[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:197
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `users`.`admin` AS users_admin FROM `users` GROUP BY `users`.`admin`[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:200
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(`brands`.`name`) AS count_brands_name, `brands`.`name` AS brands_name FROM `brands` INNER JOIN `products` ON `products`.`brand_id` = `brands`.`id` GROUP BY `brands`.`name`[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:202
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, CONVERT_TZ(DATE_FORMAT(CONVERT_TZ(`order_items`.`created_at`, '+00:00', 'Europe/Paris'), '%Y-%m-01 00:00:00'), 'Europe/Paris', '+00:00') AS convert_tz_date_format_convert_tz_order_items_created_at_00_00_europe_paris_y_m_01_00_00_00_europe_paris_00_00 FROM `order_items` WHERE (`order_items`.`created_at` IS NOT NULL) GROUP BY CONVERT_TZ(DATE_FORMAT(CONVERT_TZ(`order_items`.`created_at`, '+00:00', 'Europe/Paris'), '%Y-%m-01 00:00:00'), 'Europe/Paris', '+00:00')[0m
+  ↳ app/views/rails_admin/main/dashboard.html.erb:204
+  Rendered rails_admin/main/dashboard.html.erb within layouts/rails_admin/application (Duration: 307.2ms | Allocations: 35603)
+  Rendered /home/mrkatsu/.rvm/gems/ruby-3.0.0/gems/rails_admin-2.2.1/app/views/layouts/rails_admin/_head.html.haml (Duration: 164.2ms | Allocations: 42625)
+  Rendered /home/mrkatsu/.rvm/gems/ruby-3.0.0/gems/rails_admin-2.2.1/app/views/layouts/rails_admin/_secondary_navigation.html.haml (Duration: 776.7ms | Allocations: 106763)
+  Rendered /home/mrkatsu/.rvm/gems/ruby-3.0.0/gems/rails_admin-2.2.1/app/views/layouts/rails_admin/_navigation.html.haml (Duration: 779.7ms | Allocations: 106946)
+  Rendered /home/mrkatsu/.rvm/gems/ruby-3.0.0/gems/rails_admin-2.2.1/app/views/layouts/rails_admin/_sidebar_navigation.html.haml (Duration: 192.2ms | Allocations: 39829)
+  Rendering /home/mrkatsu/.rvm/gems/ruby-3.0.0/gems/rails_admin-2.2.1/app/views/layouts/rails_admin/pjax.html.haml
+  Rendered /home/mrkatsu/.rvm/gems/ruby-3.0.0/gems/rails_admin-2.2.1/app/views/layouts/rails_admin/pjax.html.haml (Duration: 21.3ms | Allocations: 5279)
+  Rendered layout /home/mrkatsu/.rvm/gems/ruby-3.0.0/gems/rails_admin-2.2.1/app/views/layouts/rails_admin/application.html.haml (Duration: 1493.4ms | Allocations: 231444)
+Completed 200 OK in 1953ms (Views: 1424.8ms | ActiveRecord: 259.7ms | Allocations: 279887)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhkemg2Y0djeFpuWnZjR3M0YkRKNlpYVnpjMlZoWm5ScWJEaGpNQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWxOamNtVmxibk5vYjNRZ1puSnZiU0F5TURJeExURXhMVEUySURFNExUSTNMVE0yTG5CdVp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25VMk55WldWdWMyaHZkQ1V5TUdaeWIyMGxNakF5TURJeExURXhMVEUySlRJd01UZ3RNamN0TXpZdWNHNW5CanNHVkRvUlkyOXVkR1Z1ZEY5MGVYQmxTU0lPYVcxaFoyVXZjRzVuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wMi0yMlQxMDo1NDoxMC41NTBaIiwicHVyIjoiYmxvYl9rZXkifX0=--cdb4e819b65ee5f7520d1d910b040834aed163e8/Screenshot%20from%202021-11-16%2018-27-36.png" for ::1 at 2022-02-22 17:50:30 +0700
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Screenshot from 2021-11-16 18-27-36"}
+Completed 200 OK in 17ms (ActiveRecord: 0.0ms | Allocations: 358)
+
+
+Started GET "/" for ::1 at 2022-02-22 17:50:40 +0700
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[35m (3.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `sliders`[0m
+  ↳ app/views/home/_slider.html.erb:13
+  Rendered home/_slider.html.erb (Duration: 75.9ms | Allocations: 1326)
+  [1m[36mCategory Load (1.5ms)[0m  [1m[34mSELECT `categories`.* FROM `categories` WHERE `categories`.`categories_id` IS NULL LIMIT 4[0m
+  ↳ app/views/home/_category.html.erb:2
+  Rendered home/_category.html.erb (Duration: 21.3ms | Allocations: 2847)
+  [1m[36mBrand Load (1.2ms)[0m  [1m[34mSELECT `brands`.* FROM `brands`[0m
+  ↳ app/views/home/_brands.html.erb:3
+  [1m[35m (3.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 1[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 2[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 3[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 4[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (5.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 5[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 6[0m
+  ↳ app/views/home/_brands.html.erb:4
+  Rendered home/_brands.html.erb (Duration: 119.1ms | Allocations: 7149)
+  [1m[36mProduct Load (4.9ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 0 LIMIT 9[0m
+  ↳ app/views/home/_features_items.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (5.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 1 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (2.7ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 19 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 14 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mAvailability Load (3.8ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 3 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  [1m[36mActiveStorage::Attachment Load (4.8ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (1.8ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 23 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mAvailability Load (1.5ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 2 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  [1m[36mActiveStorage::Attachment Load (4.3ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 5 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.7ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 33 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 2 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  Rendered home/_features_items.html.erb (Duration: 122.5ms | Allocations: 13177)
+  [1m[36mProduct Load (4.6ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 1[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 23 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE Availability Load (0.2ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 2 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:24
+  [1m[36mActiveStorage::Attachment Load (4.9ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 3 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mActiveStorage::Blob Load (4.3ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 20 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 2 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:24
+  [1m[36mProduct Load (0.9ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 5[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mProduct Load (3.3ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 9[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 14 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 3 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:24
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 10[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 5 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 33 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 2 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:24
+  Rendered home/_category_tab.html.erb (Duration: 94.3ms | Allocations: 17613)
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 1 LIMIT 3[0m
+  ↳ app/views/home/_recommended_items.html.erb:8
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 3 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_recommended_items.html.erb:15
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 20 LIMIT 1[0m
+  ↳ app/views/home/_recommended_items.html.erb:16
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 2 LIMIT 1[0m
+  ↳ app/views/home/_recommended_items.html.erb:49
+  Rendered home/_recommended_items.html.erb (Duration: 16.0ms | Allocations: 3785)
+  Rendered home/index.html.erb within layouts/application (Duration: 455.8ms | Allocations: 46302)
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/views/layouts/_header.html.erb:45
+  [1m[36mNotification Load (1.3ms)[0m  [1m[34mSELECT `notifications`.* FROM `notifications` ORDER BY `notifications`.`created_at` DESC LIMIT 5[0m
+  ↳ app/views/layouts/_header.html.erb:46
+  Rendered layouts/_header.html.erb (Duration: 33.4ms | Allocations: 2078)
+  Rendered layouts/_footer.html.erb (Duration: 0.3ms | Allocations: 126)
+  Rendered layout layouts/application.html.erb (Duration: 580.8ms | Allocations: 69162)
+Completed 200 OK in 613ms (Views: 433.7ms | ActiveRecord: 149.7ms | Allocations: 70495)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhlakZtZG1acWRYSTFlVGh0ZUdVME1UUnZaREp0WjJaa09YSTFhUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW5CeWIyUjFZM1F4TWk1cWNHY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KM0J5YjJSMVkzUXhNaTVxY0djR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDIyLTAyLTIyVDEwOjU0OjEwLjMyOFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--a8fb597d016c1a6fe8dd7a444573b835258fa917/product12.jpg" for ::1 at 2022-02-22 17:50:43 +0700
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"product12"}
+Completed 200 OK in 8ms (ActiveRecord: 0.0ms | Allocations: 311)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhPWEJ0YWpOc1pIRnpaWGw2ZUhaa2RXeG9NRGx2YXpScVkyTnBiUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW5CeWIyUjFZM1F4TVM1cWNHY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KM0J5YjJSMVkzUXhNUzVxY0djR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDIyLTAyLTIyVDEwOjU0OjEwLjI2MloiLCJwdXIiOiJibG9iX2tleSJ9fQ==--00fab4ce0e18acdde265b70a0c15a7136708fde9/product11.jpg" for ::1 at 2022-02-22 17:50:43 +0700
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"product11"}
+Completed 200 OK in 8ms (ActiveRecord: 0.0ms | Allocations: 304)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhkemg2Y0djeFpuWnZjR3M0YkRKNlpYVnpjMlZoWm5ScWJEaGpNQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWxOamNtVmxibk5vYjNRZ1puSnZiU0F5TURJeExURXhMVEUySURFNExUSTNMVE0yTG5CdVp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25VMk55WldWdWMyaHZkQ1V5TUdaeWIyMGxNakF5TURJeExURXhMVEUySlRJd01UZ3RNamN0TXpZdWNHNW5CanNHVkRvUlkyOXVkR1Z1ZEY5MGVYQmxTU0lPYVcxaFoyVXZjRzVuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wMi0yMlQxMDo1NDoxMC41NTBaIiwicHVyIjoiYmxvYl9rZXkifX0=--cdb4e819b65ee5f7520d1d910b040834aed163e8/Screenshot%20from%202021-11-16%2018-27-36.png" for ::1 at 2022-02-22 17:50:43 +0700
+Processing by ActiveStorage::DiskController#show as PNG
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhkbkJtTVc4elpuVnBkSGxsZVRsMGFYTndjMlJyWmpWMU9YQnlhQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUTJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW5CeWIyUjFZM1F5TG1wd1p5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25jSEp2WkhWamRESXVhbkJuQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2YW5CbFp3WTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDItMjJUMTA6NTQ6MTAuMzUxWiIsInB1ciI6ImJsb2Jfa2V5In19--39299c2f860e004c0741a45a6edc5970bd393c6f/product2.jpg" for ::1 at 2022-02-22 17:50:43 +0700
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Screenshot from 2021-11-16 18-27-36"}
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"product2"}
+Completed 200 OK in 2ms (ActiveRecord: 0.0ms | Allocations: 304)
+
+
+Completed 200 OK in 11ms (ActiveRecord: 0.0ms | Allocations: 904)
+
+
+Started GET "/users/orders" for ::1 at 2022-02-22 17:50:44 +0700
+Processing by OrdersController#index as HTML
+  [1m[36mUser Load (252.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mOrderItem Load (2.0ms)[0m  [1m[34mSELECT `order_items`.* FROM `order_items` WHERE `order_items`.`user_id` = 1 ORDER BY `order_items`.`created_at` DESC LIMIT 2 OFFSET 0[0m
+  ↳ app/controllers/orders_controller.rb:8:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering orders/index.html.erb within layouts/application
+  Rendered orders/_left.html.erb (Duration: 26.9ms | Allocations: 285)
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `order_items` WHERE `order_items`.`user_id` = 1[0m
+  ↳ app/views/orders/index.html.erb:100
+  Rendered orders/index.html.erb within layouts/application (Duration: 210.7ms | Allocations: 9060)
+  [1m[36mNotification Load (0.9ms)[0m  [1m[34mSELECT `notifications`.* FROM `notifications` ORDER BY `notifications`.`created_at` DESC LIMIT 5[0m
+  ↳ app/views/layouts/_header.html.erb:46
+  Rendered layouts/_header.html.erb (Duration: 5.8ms | Allocations: 1122)
+  Rendered layouts/_footer.html.erb (Duration: 0.4ms | Allocations: 126)
+  Rendered layout layouts/application.html.erb (Duration: 381.4ms | Allocations: 30430)
+Completed 200 OK in 738ms (Views: 398.7ms | ActiveRecord: 256.5ms | Allocations: 34120)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBIQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--845442b43c57f84ea5cf9962e66d5c23c071c768/product5.jpg" for ::1 at 2022-02-22 17:50:47 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBIQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--845442b43c57f84ea5cf9962e66d5c23c071c768", "filename"=>"product5"}
+Filter chain halted as :set_blob rendered or redirected
+Completed 404 Not Found in 34ms (ActiveRecord: 0.0ms | Allocations: 1124)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBKZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0651262daff1d4f5d0e18ddf4c907bb18287c122/Screenshot%20from%202021-11-16%2018-27-36.png" for ::1 at 2022-02-22 17:50:47 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as PNG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBKZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0651262daff1d4f5d0e18ddf4c907bb18287c122", "filename"=>"Screenshot from 2021-11-16 18-27-36"}
+Filter chain halted as :set_blob rendered or redirected
+Completed 404 Not Found in 1ms (ActiveRecord: 0.0ms | Allocations: 634)
+
+
+Started GET "/users/orders" for ::1 at 2022-02-22 17:51:34 +0700
+Processing by OrdersController#index as HTML
+  [1m[36mUser Load (113.9ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mOrderItem Load (5.9ms)[0m  [1m[34mSELECT `order_items`.* FROM `order_items` WHERE `order_items`.`user_id` = 1 ORDER BY `order_items`.`created_at` DESC LIMIT 2 OFFSET 0[0m
+  ↳ app/controllers/orders_controller.rb:8:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering orders/index.html.erb within layouts/application
+  Rendered orders/_left.html.erb (Duration: 0.4ms | Allocations: 134)
+  [1m[35m (7.7ms)[0m  [1m[34mSELECT COUNT(*) FROM `order_items` WHERE `order_items`.`user_id` = 1[0m
+  ↳ app/views/orders/index.html.erb:100
+  Rendered orders/index.html.erb within layouts/application (Duration: 57.1ms | Allocations: 4189)
+  [1m[36mNotification Load (0.7ms)[0m  [1m[34mSELECT `notifications`.* FROM `notifications` ORDER BY `notifications`.`created_at` DESC LIMIT 5[0m
+  ↳ app/views/layouts/_header.html.erb:46
+  Rendered layouts/_header.html.erb (Duration: 13.1ms | Allocations: 1106)
+  Rendered layouts/_footer.html.erb (Duration: 0.2ms | Allocations: 122)
+  Rendered layout layouts/application.html.erb (Duration: 176.5ms | Allocations: 25570)
+Completed 200 OK in 447ms (Views: 168.7ms | ActiveRecord: 128.2ms | Allocations: 28216)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBIQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--845442b43c57f84ea5cf9962e66d5c23c071c768/product5.jpg" for ::1 at 2022-02-22 17:51:38 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBIQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--845442b43c57f84ea5cf9962e66d5c23c071c768", "filename"=>"product5"}
+Filter chain halted as :set_blob rendered or redirected
+Completed 404 Not Found in 7ms (ActiveRecord: 0.0ms | Allocations: 634)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBKZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0651262daff1d4f5d0e18ddf4c907bb18287c122/Screenshot%20from%202021-11-16%2018-27-36.png" for ::1 at 2022-02-22 17:51:39 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as PNG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBKZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0651262daff1d4f5d0e18ddf4c907bb18287c122", "filename"=>"Screenshot from 2021-11-16 18-27-36"}
+Filter chain halted as :set_blob rendered or redirected
+Completed 404 Not Found in 5ms (ActiveRecord: 0.0ms | Allocations: 634)
+
+
+Started GET "/users/orders" for ::1 at 2022-02-22 17:53:20 +0700
+Processing by OrdersController#index as HTML
+  [1m[36mUser Load (43.6ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mOrderItem Load (3.1ms)[0m  [1m[34mSELECT `order_items`.* FROM `order_items` WHERE `order_items`.`user_id` = 1 ORDER BY `order_items`.`created_at` DESC LIMIT 2 OFFSET 0[0m
+  ↳ app/controllers/orders_controller.rb:8:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering orders/index.html.erb within layouts/application
+  Rendered orders/_left.html.erb (Duration: 0.4ms | Allocations: 134)
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT COUNT(*) FROM `order_items` WHERE `order_items`.`user_id` = 1[0m
+  ↳ app/views/orders/index.html.erb:100
+  Rendered orders/index.html.erb within layouts/application (Duration: 56.5ms | Allocations: 6917)
+  [1m[36mNotification Load (1.4ms)[0m  [1m[34mSELECT `notifications`.* FROM `notifications` ORDER BY `notifications`.`created_at` DESC LIMIT 5[0m
+  ↳ app/views/layouts/_header.html.erb:46
+  Rendered layouts/_header.html.erb (Duration: 6.2ms | Allocations: 1106)
+  Rendered layouts/_footer.html.erb (Duration: 0.3ms | Allocations: 122)
+  Rendered layout layouts/application.html.erb (Duration: 157.4ms | Allocations: 28254)
+Completed 200 OK in 225ms (Views: 154.5ms | ActiveRecord: 51.1ms | Allocations: 30892)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBIQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--845442b43c57f84ea5cf9962e66d5c23c071c768/product5.jpg" for ::1 at 2022-02-22 17:53:27 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBIQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--845442b43c57f84ea5cf9962e66d5c23c071c768", "filename"=>"product5"}
+Filter chain halted as :set_blob rendered or redirected
+Completed 404 Not Found in 5ms (ActiveRecord: 0.0ms | Allocations: 634)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBKZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0651262daff1d4f5d0e18ddf4c907bb18287c122/Screenshot%20from%202021-11-16%2018-27-36.png" for ::1 at 2022-02-22 17:53:27 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as PNG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBKZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0651262daff1d4f5d0e18ddf4c907bb18287c122", "filename"=>"Screenshot from 2021-11-16 18-27-36"}
+Filter chain halted as :set_blob rendered or redirected
+Completed 404 Not Found in 1ms (ActiveRecord: 0.0ms | Allocations: 634)
+
+

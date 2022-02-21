@@ -23,17 +23,17 @@ Things you may want to cover:
 5. Logout, message chat fb
 6. Page Blogs, detail blogs, blog other....
 7. Product whistlist (love, unlove..)
-8. star Rate, View rate product
-9. review comment products
-10. review images, manage image detail
-11. product orthers of product detail
-12. add to cart
-13. manage carts
+8. Star Rate, View rate product
+9. Review comment products
+10. Review images, manage image detail
+11. Product orthers of product detail
+12. Add to cart
+13. Manage carts
 14. product classification (feature, recommend...)
-15. contacts
+15. Contacts
 16. My orders 
 17. History View products
-18. manage my order
+18. Manage my order
 19. Statistics of products purchased by month
 20. Profile info ( avatar, name, address....)
 21. Change password, change your avatar

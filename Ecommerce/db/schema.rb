@@ -248,7 +248,7 @@ ActiveRecord::Schema.define(version: 2022_02_19_083859) do
     t.integer "user_id"
     t.integer "categories_id"
     t.integer "sold", default: 0
-    t.index ["title"], name: "index_products_on_title", type: :fulltext
+    t.index ["title"], name: "index_products_on_title"
   end
 
   create_table "shipping_cities", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
