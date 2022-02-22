@@ -46,5 +46,7 @@
             </div>
           <% end %>
       </div>
-      <%= paginate @results[:products] %>
+      <div style="text-align: center">
+        	<%= paginate @results[:products], theme: 'twitter-bootstrap-4' %>
+       </div>
 </section>

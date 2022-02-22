@@ -49,12 +49,10 @@
      
       </div>
 
-            <div class="pagination-area">
-                <% if @results[:products].present? %>
-                        <ul class="pagination">
-                                <li style="line-height: 26px;">	<%=   paginate @results[:products] %></li>
-                        </ul>
-                <% end %>
+            <div class="">
+                 <div style="text-align: center">
+                        <%= paginate @results[:products], theme: 'twitter-bootstrap-4' %>
+                </div>
             </div>
         </div>
     </div>

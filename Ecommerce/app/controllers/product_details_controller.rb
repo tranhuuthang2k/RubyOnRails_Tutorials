@@ -1,6 +1,7 @@
 class ProductDetailsController < ApplicationController
   before_action :store_location
-  def index
+
+    def index
     env_http_forwarded = request.env['HTTP_X_FORWARDED_FOR']
     client_ip = if env_http_forwarded
                   env_http_forwarded.split(',').first
@@ -10,7 +11,7 @@ class ProductDetailsController < ApplicationController
     id = params[:id].match(/\d+$/)[0].to_i
     product_view = ProductView.new(product_id: id, ip_address: client_ip, user_id: current_user ? current_user.id : '')
     p_view = ProductView.find_by(ip_address: client_ip, product_id: id)
-    if current_user && p_view&.ip_address == client_ip && !p_view.user_id
+    if current_user && p_view&.ip_address == client_ip# && !p_view.user_id
       p_view.update_attribute(:user_id, current_user.id)
     end
     product_view.save(validate: false) unless p_view

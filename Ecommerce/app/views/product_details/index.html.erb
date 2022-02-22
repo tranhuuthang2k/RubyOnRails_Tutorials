@@ -1,4 +1,4 @@
-<%=javascript_include_tag('manager/productLove.js') %>
+<%= javascript_include_tag("manager/productLove.js") %>
 <section>
     <div class="container">
         <div class="row">
@@ -6,13 +6,13 @@
                 <div class="left-sidebar">
                     <!--category-->
                     <h2>Category</h2>
-                    <%= render 'home/category' %>
+                    <%= render "home/category" %>
                     <!--/category-->
 
                     <!--brands_products-->
                     <div class="brands_products">
                         <h2>Brands</h2>
-                        <%= render 'home/brands' %>
+                        <%= render "home/brands" %>
                     </div>
                     <!--/brands_products-->
                 </div>
@@ -73,25 +73,25 @@
                             <img src="/assets/product-details/new.jpg" class="newarrival" alt="" />
                             <h2 style="text-align: center" class="title"><%= @results[:product].title %></h2>
                             <div  class="list-rate">
-                              <% if user_signed_in?  %>
-                                <% if ProductRate.where(user_id: current_user.id, product_id: @results[:product].id ).present? %>
+                              <% if user_signed_in? %>
+                                <% if ProductRate.where(user_id: current_user.id, product_id: @results[:product].id).present? %>
                                   <input id= "check_rate" value = "<%= @results[:avg] %>" type="hidden">
                                 <% else %>
                                   <input id= "check_rate" value = "0" type="hidden">
                                 <% end %>
-                              <%  end %> 
+                              <% end %> 
                             </div>
                              <div style="display: flex; justify-content: center;">
-                                <% for i in 1..5 do %>
-                                  <span style="margin-right: 10px" class="fa fa-star <%= "checked" if @results[:avg] >= i  %>" id="star-<%= i %>"></span>
+                                <% for i in 1..5 %>
+                                  <span style="margin-right: 10px" class="fa fa-star <%= "checked" if @results[:avg] >= i %>" id="star-<%= i %>"></span>
                                 <% end %>
                                     <span>(<%= @results[:avg] %>/5)</span>
 
                              </div>
 
                             <span class="product_love" style= "text-align: center"> 
-                             <% if user_signed_in?  %>
-                                    <% if  (current_user.product_favorites.where(product_id: @results[:product].id)).exists? %>
+                             <% if user_signed_in? %>
+                                    <% if (current_user.product_favorites.where(product_id: @results[:product].id)).exists? %>
                                       <i class="fa fa-heart " product-id="<%= @results[:product].id %>" id="heart-red"></i>
                                       <% else %>
                                       <i class="fa fa-heart " product-id="<%= @results[:product].id %>" id="heart"></i>
@@ -105,8 +105,8 @@
                             <span>
                                 <span style="text-align: center; width: 100%"  class="price">US $<%= @results[:product].price %></span>
                                 <label>Quantity:</label>
-                                <input type="number" id="numberInput" class="quantity" value="1" min="1"  onchange=" this.value > <%= @results[:product].availability.number_instock  if  @results[:product].availability.present? %>  &&  myFunction(<%= @results[:product].availability.number_instock if  @results[:product].availability.present? %>) " max=" <%=@results[:product].availability if @results[:product].availability.present? %>" />
-                               <% if  @results[:product].availability&.status.to_i > 0%>
+                                <input type="number" id="numberInput" class="quantity" value="1" min="1"  onchange=" this.value > <%= @results[:product].availability.number_instock if @results[:product].availability.present? %>  &&  myFunction(<%= @results[:product].availability.number_instock if @results[:product].availability.present? %>) " max=" <%= @results[:product].availability if @results[:product].availability.present? %>" />
+                               <% if @results[:product].availability&.status.to_i > 0 %>
                                   <button type="submit" class="btn btn-fefault cart add-to-cart-detail">
                                       <i class="fa fa-shopping-cart"></i>
                                       Add to cart
@@ -122,7 +122,7 @@
                             <div>
                             <span> <b> Choose size </b> </span>
                               <div class="sprd-select__items">
-                              <%  @results[:product].sizes.each_with_index do |item ,index| %>
+                              <% @results[:product].sizes.each_with_index do |item, index| %>
                                   <div class="button <%= index == 0 ? "active" : "" %>"><%= item.name %></div>  
                               <% end %>
                               </div>
@@ -130,9 +130,9 @@
                             <p><b>Availability:</b> <%= @results[:product].availability.name if @results[:product].availability.present? %></p>
                             <p><b>Number instock:</b>  <%= @results[:product].availability.number_instock if @results[:product].availability.present? %></p>
                             <p><b>Status:</b>  <%= @results[:product].availability.status == "1" ? "Instock" : "OutStock" if @results[:product].availability.present? %></p>
-                            <p><b>Brand:</b> <%= @results[:product].brand ?  @results[:product].brand.name  : ""%></p>
+                            <p><b>Brand:</b> <%= @results[:product].brand ? @results[:product].brand.name : "" %></p>
                             <p><b>View: </b> <%= @results[:product].product_views.count %> <i class="fa fa-eye"></i></p>
-                            <p><b>Share:</b> <a href="https://www.facebook.com/share.php?u=https://shopmrkatsu.herokuapp.com/product-details/<%= @results[:product].title.parameterize%>~<%=@results[:product].id%>"><i class="fa fa-facebook-square fa-2x facebook" style="font-size: 1.5em;"></i></a></p>
+                            <p><b>Share:</b> <a href="https://www.facebook.com/share.php?u=https://shopmrkatsu.herokuapp.com/product-details/<%= @results[:product].title.parameterize %>~<%= @results[:product].id %>"><i class="fa fa-facebook-square fa-2x facebook" style="font-size: 1.5em;"></i></a></p>
                         </div>
                         <!--/product-information-->
                     </div>
@@ -145,7 +145,7 @@
                         <ul class="nav nav-tabs">
                             <li class="active" ><a href="#details" data-toggle="tab">Details</a></li>
                             <li><a href="#product_orther" data-toggle="tab">Product Orther</a></li>
-                            <li><a href="#reviews" data-toggle="tab">Reviews (<%= @results[:comments].size %>)</a></li>   
+                            <li><a href="#reviews" data-toggle="tab">Reviews </a></li>   
                         </ul>
                     </div>
                     <div class="tab-content">
@@ -153,7 +153,7 @@
                             <div class="col-sm-12">
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
-                                        <p><%= @results[:product].description if @results[:product].present?%> </p>
+                                        <p><%= @results[:product].description if @results[:product].present? %> </p>
                                     </div>
                                 </div>
                             </div>
@@ -165,10 +165,10 @@
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
                                         <div class="productinfo text-center">
-                                            <a href="/product-details/<%= item.title.parameterize%>~<%=item.id%>"> <img class="imageProduct" src="<%= url_for(item.image) if item.image.attached? %>" alt="" /></a>
-                                            <h2>$<%= item.price%></h2>
-                                            <p><%= item.title%></p>
-                                             <a  href="/product-details/<%= item.title.parameterize%>~<%=item.id%>"  class="btn btn-default"><i
+                                            <a href="/product-details/<%= item.title.parameterize %>~<%= item.id %>"> <img class="imageProduct" src="<%= url_for(item.image) if item.image.attached? %>" alt="" /></a>
+                                            <h2>$<%= item.price %></h2>
+                                            <p><%= item.title %></p>
+                                             <a  href="/product-details/<%= item.title.parameterize %>~<%= item.id %>"  class="btn btn-default"><i
                                               class="fa fa-shopping-cart"></i> See more</a>
                                         </div>
                                     </div>
@@ -184,26 +184,74 @@
                               <li><a href=""><i class="fa fa-clock-o"></i><%= @results[:product].created_at.strftime("%I:%M %p") %></a></li>
                               <li><a href=""><i class="fa fa-calendar-o"></i><%= @results[:product].created_at.strftime("%d/%m/%Y") %></a></li>
                             </ul>
-                            <p><b>Write Your Review</b></p>
-                            <span class="comments" id= "<%= @results[:product].id %>">
-                              <div class="form-outline" style=" margin-right: 8%;">
-                                <input type="text"  class="form-control in-comment" placeholder="please enter your comment" />
-                              </div>
-                            </span>
-                            <% if user_signed_in?  %>
-                              <span class = "login" id = "<%= 1 %>"></span>
-                            <% else %>
-                              <span class = "login" id = "<%= 2 %>"></span>
-                            <% end %>
-                          </div>
-                          <div class="response-area">
+
+
+
+
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                WRITE COMMENT REVIEW
+              </button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Write Your Review</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                                  <span class="comments" id= "<%= @results[:product].id %>">
+                                        <form id="form_comment">
+                                          <span class="comments" id= "<%= @results[:product].id %>">
+                                              <div class="mb-3">
+                                                <input type="text"  class="form-control in-comment" style="
+                                                                          width: 100%;
+                                                                          background: none;
+                                                                          color: black;
+                                                                          outline: medium none;
+                                                                          border: 1px solid;" 
+                                                placeholder="Please enter your comment" />
+                                                <label for="csv" class="form-label">Default file input example</label>
+                                                <input id="csv" name="csv" type="file"  style="
+                                                                          width: 100%;
+                                                                          background: none;
+                                                                          outline: medium none;
+                                                                          margin-left: 0px;
+                                                                        ;" /></td>
+                                              </div>
+                                                                      <input type="submit"  style="
+                                                                        color: white;
+                                                                        background: #FE980F;
+                                                                        border-radius: 10px;
+                                                                        margin-left: 0;"
+                                                                        value="Send review"/> 
+                                            </form>
+                                          </span>
+                                          <% if user_signed_in? %>
+                                            <span class = "login" id = "<%= 1 %>"></span>
+                                          <% else %>
+                                            <span class = "login" id = "<%= 2 %>"></span>
+                                          <% end %>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              </div>
+                       <div class="response-area">
                             <h5 class="view_more">​ㅤ</h5>
                               <ul class="media-list list-comment" >
-                                <%  @results[:comments].each do |comment| %>
-                                  <li class="media delete_comment">
+                                <% @results[:comments].each do |comment| %>
+                                  <li class="media delete_comment"  style="width:100%">
                                     <a class="pull-left" href="#">
                                     <% if comment.user.avatar.attached? %>
-                                      <img class="media-object" src="<%= url_for(comment.user.avatar) %>" width="121" height="57"alt="">
+                                      <img class="media-object" src="<%= url_for(comment.user.avatar) %>" width="50" height="50" style="border-radius: 25%"alt="">
                                     <% else %>
                                       <img class="media-object" src="/assets/home/iframe2.png" alt="">
                                     <% end %>
@@ -211,27 +259,32 @@
                                     <div class="media-body comments">
                                       <ul class="sinlge-post-meta">
                                         <li><i class="fa fa-user"></i><%= comment.user.username %></li>
-                                        <li><i class="fa fa-clock-o"></i><%= comment.created_at.strftime("%I:%M %p")%></li>
+                                        <li><i class="fa fa-clock-o"></i><%= comment.created_at.strftime("%I:%M %p") %></li>
                                         <li><i class="fa fa-calendar"></i><%= comment.created_at.strftime("%d/%m/%Y") %></li>
-                                        <% if user_signed_in? && comment.user_id == current_user.id%>
-                                          <li><a class="delete-comment"> delete </a></i></li>
-                                          <li><a class="edit-comment" id="comment-<%= comment.id %>" > edit </a></i></li>
+                                        <% if user_signed_in? && comment.user_id == current_user.id %>
+                                          <li><a class="delete-comment"><i style="color:white; cursor: pointer" class="fa fa-trash"></i> </a></li>
+                                          <li><a class="edit-comment" id="comment-<%= comment.id %>" > <i style="color:white; cursor: pointer" class="fa fa-edit"></i></a></li>
                                           <input type="text"  class="form-control in-comment-edit" value="<%= comment.content %>" style="display:none" />
                                         <% end %>
                                       </ul>
+                                      <img class="media-object" src="<%= comment.image.present? ? url_for(comment.image) : '' %>" alt="" width="50%" height="auto" >
+
                                     <p class="list-edit-comment"><%= comment.content %></p>
                                     </div>
                                   </li>
                                 <% end %>
                               </ul>
-                              <%= paginate @results[:comments] %>
+                              <div style="text-align: center">
+                                  <%=  paginate @results[:comments], theme: 'twitter-bootstrap-4', style: "text-align:center" %>
+                              </div>
                           </div>
                         </div>
                     </div>
                 </div>
                 <!--/category-tab-->
+<!--Upload Form-->
 
-                <%= render 'home/recommended_items' %>
+                <%= render "home/recommended_items" %>
 
             </div>
         </div>
@@ -318,28 +371,31 @@ $(".image")
 
 
 <script id="list-comment-template" type="text/x-handlebars-template">
-    <li class="media delete_comment">
+    <li class="media delete_comment" style="width:100%">
       <a class="pull-left" href="#">
-      <img class="media-object" src="{{ comment.avatar }}" alt="">
+      <img class="media-object" src="{{ avatar }}" alt="" width="50" height="50" style="border-radius: 25%">
       </a>
       <div class="media-body comments">
         <ul class="sinlge-post-meta">
         <li><i class="fa fa-user"></i>{{ name }}</li>
         <li><i class="fa fa-clock-o"></i>{{ comment.created_at_clock }}</li>
         <li><i class="fa fa-calendar"></i>{{ comment.created_at }}</li>
-        <li><a class="delete-comment"> delete </a></i></li>
-        <li><a class="edit-comment" id= "comment-{{comment.id}}" > edit </a></i></li>
+        <li><a class="delete-comment"><i style="color:white; cursor: pointer; font-size: 14px" class="fa fa-trash"></i></a></li>
+        <li><a class="edit-comment" id= "comment-{{comment.id}}" ><i style="color:white; cursor: pointer; font-size: 14px" class="fa fa-edit"></i></a> </li>
         <input type="text"  class="form-control in-comment-edit" value="{{ comment.content }}" style="display:none"/>
         </ul>
+      <img class="media-object" src="{{ image }}" alt="" width="50%" height="auto" >
       <p class="list-edit-comment">{{ comment.content }}</p>
       </div>
     </li>
+
 </script>
 <script id="list-rate-template" type="text/x-handlebars-template">
     <input id= "check_rate" value="{{ avg }}" type="hidden">
     <p>({{ avg }}/5)</p>
 </script>
-
 <script id="list-edit-comment-template" type="text/x-handlebars-template">
    {{comment.content}}
+</script>
+ <script> 
 </script>

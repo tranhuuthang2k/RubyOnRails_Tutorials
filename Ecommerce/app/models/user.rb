@@ -14,7 +14,6 @@ class User < ApplicationRecord
   has_many :posts
   validates :city, presence: true
   belongs_to :city
-
   validates :username, presence: true, length: { maximum: 20 }
   validates :mobile,  presence: true,
                       numericality: true,

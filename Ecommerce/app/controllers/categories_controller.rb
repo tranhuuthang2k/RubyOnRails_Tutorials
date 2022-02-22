@@ -7,7 +7,7 @@ class CategoriesController < ApplicationController
     products = if product_category_children.present?
                  product_category_children
                else
-                 categories.pluck('id').include?(id) ? categories.find(id).products.page(params[:page]).per(6) : []
+                 categories.pluck('id').include?(id) ? categories.find(id).products.page(params[:page]).per(12) : []
                end
 
     brands = Brand.all

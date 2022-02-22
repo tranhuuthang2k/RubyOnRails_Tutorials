@@ -26,15 +26,20 @@ class Api::V1::LovesController < Api::V1::BaseController
   end
 
   def comment
-    comment = @user.comments.new(content: params[:comment], product_id: params[:product_id], user_id: @user.id)
+    unless params[:content].present? && params[:content].present? && params[:product_id]
+      return       render json: error_message('Please write your content')
+    end
+
+    comment = @user.comments.new(content: params[:content], product_id: params[:product_id], user_id: @user.id)
+    comment.image.attach(params['csv'])
     name = @user.username
     if comment.save
       render json: success_message('Successfully',
                                    { name: name,
+                                     image: comment.image.present? ? url_for(comment.image) : '',
+                                     avatar: @user.avatar.present? ? url_for(@user.avatar) : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS50TvM3otu4AuOjP-R2TZ8ajlCcctHY7hxJQ&usqp=CAU',
                                      comment: ActiveModelSerializers::SerializableResource.new(comment,
                                                                                                each_serializer: CommentSerializer) })
-    else
-      render json: error_message(t('comment id not_found'))
     end
   end
 

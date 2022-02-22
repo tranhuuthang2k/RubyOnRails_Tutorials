@@ -38,7 +38,9 @@
           <% end %>
 					</tbody>
 				</table>
-          <%= paginate @results[:product_favorites] %>
+        <div style="text-align: center">
+          <%= paginate @results[:product_favorites], theme: 'twitter-bootstrap-4'  %>
+        <div>
 			</div>
 		</div>
 	</section> <!--/#cart_items-->

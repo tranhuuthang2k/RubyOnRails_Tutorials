@@ -36,14 +36,8 @@
 				</a>
 			<% end %>
         </main>
-			<div class="pagination-area">
-							<ul class="pagination">
-								<li style="line-height: 26px;">	<%= paginate @results[:posts] %></li>
-							</ul>
-						</div>
-					</div>
-			</div>
-				<div>
+			<div style="text-align: center">
+				<%= paginate @results[:posts], theme: 'twitter-bootstrap-4' %>
 			</div>
         </div>
 </section>
