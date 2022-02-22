@@ -79,7 +79,10 @@ function Product(options) {
               if (data.data.carts_order.length > 0) {
                 $(".total_order_of_month").css("display", "block");
                 $(".total_order_of_month").get(0).innerText =
-                  "TOTAL ORDER OF MONTH " + "$" + total_order_of_month;
+                  "TOTAL ORDER OF MONTH " +
+                  "$" +
+                  parseFloat(data.data.fee_ship + total_order_of_month) +
+                  " (include fee ship & voucher)";
               } else {
                 $(".total_order_of_month").css("display", "none");
               }

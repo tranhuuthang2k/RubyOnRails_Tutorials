@@ -61,7 +61,6 @@ function Category(options) {
   };
   module.clickEventComments = function () {
     $(".in-comment").keypress(function (e) {
-      console.log("11111111111");
       if (event.keyCode == 13) {
         ele = $(this).closest("div #reviews");
         comment = $(ele).find(".in-comment").val();
@@ -91,6 +90,7 @@ function Category(options) {
                     template_comment({
                       comment: data.data.comment,
                       name: data.data.name,
+                      avatar: data.data.avatar,
                     })
                   );
                 $(ele).find(".in-comment").val("");
