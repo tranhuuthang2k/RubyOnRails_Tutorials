@@ -97,8 +97,9 @@
              
 				</table>
          <span style="display: none; background-color: #fe800f;" class="btn btn-primary font-weight-bold theme-color total_order_of_month" >  30<span>
-          <%= paginate @results[:orders] %>
-
+    		 <div style="text-align: center">
+        	<%= paginate @results[:orders], theme: 'twitter-bootstrap-4' %>
+         </div>
 			</div>
 		</div>  
     </div>

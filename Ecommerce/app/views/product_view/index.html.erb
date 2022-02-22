@@ -46,11 +46,9 @@
 				</table>
 
 			</div>
-          <div class="pagination-area">
-              <ul class="pagination">
-                <li style="line-height: 26px;">	<%= paginate @results[:history_products] %></li>
-              </ul>
-          </div>
+        <div style="text-align: center">
+        	<%= paginate @results[:history_products], theme: 'twitter-bootstrap-4' %>
+        </div>
 		</div>
 	</section> <!--/#cart_items-->
       

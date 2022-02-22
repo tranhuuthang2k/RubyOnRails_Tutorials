@@ -465,9 +465,9 @@
     .order-message {
         display: inline-block;
     }
-    .response-area .media img {
+    /* .response-area .media img {
         width: auto;
-    }
+    } */
     .sinlge-post-meta li {
         margin-bottom: 10px;
     }

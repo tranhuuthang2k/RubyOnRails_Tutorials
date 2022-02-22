@@ -94,7 +94,12 @@
                         </div>	                        
                         <% end %>                     
                     <% else %>
-                        <a href="javascript:void(0)" style="color: #333; background-color: #fe980f; border-color: #ccc; text-align: center; margin-left: 40px;" class="btn btn-default <%= user_signed_in? ? "check_out" : ""  %>" onClick="alert('you must login to the checkout')">Check Out</a>
+                        <a href="javascript:void(0)" style="color: #333; background-color: #fe980f; border-color: #ccc; text-align: center; margin-left: 40px;" class="btn btn-default <%= user_signed_in? ? "check_out" : ""  %>"
+                            onClick="Swal.fire({
+                                icon: 'warning',
+                                title: 'You must login to the checkout',
+                            });"
+                        >Check Out</a>
                     <% end %>
                 </div>
             </div>

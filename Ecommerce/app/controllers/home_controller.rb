@@ -11,7 +11,7 @@ class HomeController < ApplicationController
     notifications = Notification.newest.limit(5)
     @results = {
       products: products,
-      features_items: features_items,
+      features_items: features_items.page(params[:page]).per(9),
       recommend_items: recommend_items,
       categories: categories,
       sliders: sliders,

@@ -1,4 +1,4 @@
-# 
+#
 # Install the MYSQL driver
 #   gem install mysql2
 #
@@ -7,7 +7,6 @@
 #
 # And be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
-
 
 development:
   adapter: mysql2
@@ -42,5 +41,5 @@ production:
   database: sample_sqlite3_production
   pool: 5
   username: root
-  password:
+  password: welcome123
   socket: /tmp/mysql.sock

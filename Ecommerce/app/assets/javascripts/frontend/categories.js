@@ -60,49 +60,67 @@ function Category(options) {
     });
   };
   module.clickEventComments = function () {
-    $(".in-comment").keypress(function (e) {
-      console.log("11111111111");
-      if (event.keyCode == 13) {
-        ele = $(this).closest("div #reviews");
-        comment = $(ele).find(".in-comment").val();
-        product_id = $(ele).find(".comments").attr("id");
-        check_login = $(ele).find(".login").attr("id");
-        if (check_login == 1) {
-          $.ajax({
-            url: module.settings.api.comment,
-            headers: {
-              Authorization: "Bearer " + module.settings.api.api_token,
-            },
-            type: "POST",
-            data: {
-              comment: comment,
-              product_id: product_id,
-              token: module.settings.api.api_token,
-            },
-            dataType: "json",
-            success: function (data) {
-              if (data.code == 200) {
-                var template_comment = Handlebars.compile(
-                  module.settings.template.comment.html()
+    $("#form_comment").submit(function (evt) {
+      evt.preventDefault();
+      ele = $(this).closest("div #reviews");
+      comment = $(ele).find(".in-comment").val();
+      product_id = $(ele).find(".comments").attr("id");
+      check_login = $(ele).find(".login").attr("id");
+      var formData = new FormData($(this)[0]);
+      formData.append("token", module.settings.api.api_token);
+      formData.append("product_id", product_id);
+      formData.append("content", comment);
+      button_load = $(ele).find(".buttonload").css("display", "block");
+      btn_send_comment = $(ele).find("#btn_send_comment").hide();
+      if (check_login == 1) {
+        $.ajax({
+          url: "/api/v1/comment",
+          type: "POST",
+          data: formData,
+          async: false,
+          cache: false,
+          contentType: false,
+          enctype: "multipart/form-data",
+          processData: false,
+          success: function (data) {
+            if (data.code == 200) {
+              alert("successfully");
+              $("#exampleModal").modal("hide");
+              $("#close").trigger("click");
+              $(ele).find(".in-comment").val("");
+              $(ele).find(".buttonload").css("display", "none");
+              $(ele).find("#btn_send_comment").show();
+              var template_comment = Handlebars.compile(
+                module.settings.template.comment.html()
+              );
+              $(ele)
+                .find(".list-comment")
+                .append(
+                  template_comment({
+                    comment: data.data.comment,
+                    name: data.data.name,
+                    image: data.data.image,
+                    avatar: data.data.avatar,
+                  })
                 );
-                $(ele)
-                  .find(".list-comment")
-                  .append(
-                    template_comment({
-                      comment: data.data.comment,
-                      name: data.data.name,
-                    })
-                  );
-                $(ele).find(".in-comment").val("");
-              } else {
-                console.log("error");
-              }
-            },
-            error: function () {},
-          });
-        } else {
-          alert("Please to login before Comment!");
-        }
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: data.message,
+              });
+              $(ele).find(".buttonload").css("display", "none");
+              $(ele).find("#btn_send_comment").show();
+            }
+          },
+          error: function () {},
+        });
+      } else {
+        Swal.fire({
+          icon: "warning",
+          title: "Please to login before Comment!",
+        }).then(() => {
+          window.location = "/login";
+        });
       }
     });
   };
@@ -184,7 +202,6 @@ function Category(options) {
 
   module.clickeditComment = function () {
     $(document).on("click", ".edit-comment", function () {
-      console.log("1");
       ele = $(this).closest(".comments");
       $(".in-comment-edit").hide();
       $(".list-edit-comment").show();
@@ -195,7 +212,6 @@ function Category(options) {
 
   module.editComment = function () {
     $(document).on("keypress", ".in-comment-edit", function (e) {
-      console.log("1");
       if (event.keyCode == 13) {
         ele = $(this).closest("div .comments");
         comment = $(ele).find(".in-comment-edit").val();
@@ -240,9 +256,9 @@ function Category(options) {
 
   module.deleteComment = function () {
     $(document).on("click", ".delete-comment", function () {
+      console.log("delete");
       ele = $(this).closest(".delete_comment");
       comment_id = $(ele).find(".edit-comment").attr("id").split("-")[1];
-      console.log(comment_id);
       $.ajax({
         url: module.settings.api.delete_comment,
         headers: {

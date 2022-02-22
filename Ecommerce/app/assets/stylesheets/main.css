@@ -1326,7 +1326,7 @@ h2.title {
     display: block;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
-    padding-right: 15px;
+    padding-left: 15px;
 }
 
 #reviews ul li a i {
