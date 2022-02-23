@@ -1,4 +1,4 @@
-﻿/*************************
+/*************************
 *******Typography******
 **************************/
 
@@ -1043,9 +1043,9 @@ h2.title {
     margin-right: 0;
 }
 
-/* .recommended_items {
+.recommended_items {
     overflow: hidden;
-} */
+}
 
 #recommended-item-carousel .carousel-inner .item {
     padding-left: 0;

@@ -234,11 +234,12 @@
                                                                         value="Send review"/> 
                                             </form>
                                           </span>
-                                          <% if user_signed_in? %>
+                                          <div class="loader">
+                               <% if user_signed_in? %>
                                             <span class = "login" id = "<%= 1 %>"></span>
-                                          <% else %>
+                                 <% else %>
                                             <span class = "login" id = "<%= 2 %>"></span>
-                                          <% end %>
+                                 <% end %>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">Close</button>
@@ -248,14 +249,14 @@
               </div>
 
               </div>
-                       <div class="response-area">
+                    <div class="response-area">
                             <h5 class="view_more">​ㅤ</h5>
                               <ul class="media-list list-comment" >
                                 <% @results[:comments].each do |comment| %>
                                   <li class="media delete_comment"  style="width:100%">
-                                    <a class="pull-left" href="#">
+                                  <a class="pull-left" href="#" style="display:flex; justify-content: center">
                                     <% if comment.user.avatar.attached? %>
-                                      <img class="media-object" src="<%= url_for(comment.user.avatar) %>" width="50" height="50" style="border-radius: 25%"alt="">
+                                      <img class="media-object-avatar" src="<%= url_for(comment.user.avatar) %>" width="50" height="50" style="border-radius: 25%"alt="">
                                     <% else %>
                                       <img class="media-object" src="/assets/home/iframe2.png" alt="">
                                     <% end %>
@@ -285,12 +286,8 @@
                         </div>
                     </div>
                 </div>
-                <!--/category-tab-->
-<!--Upload Form-->
-
-                <%= render "home/recommended_items" %>
-
             </div>
+               <%= render "home/recommended_items" %>
         </div>
     </div>
 </section>
@@ -347,6 +344,17 @@
           border: 2px solid #00b2a5;
       }
 
+@media (max-width: 480px) {
+      .sinlge-post-meta{
+        display:flex;
+        justify-content:center;
+        width: 100%;
+        flex-wrap: wrap;
+      }
+}
+     
+
+
 </style>
 
 <script type="text/javascript">
@@ -376,8 +384,8 @@ $(".image")
 
 <script id="list-comment-template" type="text/x-handlebars-template">
     <li class="media delete_comment" style="width:100%">
-      <a class="pull-left" href="#">
-      <img class="media-object" src="{{ avatar }}" alt="" width="50" height="50" style="border-radius: 25%">
+      <a class="pull-left" href="#" style="display:flex; justify-content: center">
+      <img class="media-object-avatar" src="{{ avatar }}" alt="" width="50" height="50" style="border-radius: 25%">
       </a>
       <div class="media-body comments">
         <ul class="sinlge-post-meta">
@@ -401,5 +409,8 @@ $(".image")
 <script id="list-edit-comment-template" type="text/x-handlebars-template">
    {{comment.content}}
 </script>
- <script> 
-</script>
+<script type="text/javascript">
+    function spinner() {
+        document.getElementsByClassName("loader")[0].style.display = "block";
+    }
+</script>    
