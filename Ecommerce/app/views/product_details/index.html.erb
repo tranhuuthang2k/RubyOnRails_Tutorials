@@ -222,7 +222,13 @@
                                                                           margin-left: 0px;
                                                                         ;" /></td>
                                               </div>
-                                                                      <input type="submit"  style="
+
+
+                                            <div>
+                                            <div class="buttonload" style="display:none"><i class="fa fa-spinner fa-spin"></i> is sending,please wait... </div>
+                                            </div>
+                                                                      <input type="submit" id="btn_send_comment"  style="
+
                                                                         color: white;
                                                                         background: #FE980F;
                                                                         border-radius: 10px;
@@ -230,6 +236,11 @@
                                                                         value="Send review"/> 
                                             </form>
                                           </span>
+
+                                          <div class="loader">
+  <div class="loading">
+  </div>
+
                                           <% if user_signed_in? %>
                                             <span class = "login" id = "<%= 1 %>"></span>
                                           <% else %>
@@ -245,13 +256,15 @@
 
               </div>
                        <div class="response-area">
-                            <h5 class="view_more">​ㅤ</h5>
+                            <h5 class="view_more">​</h5>
                               <ul class="media-list list-comment" >
                                 <% @results[:comments].each do |comment| %>
                                   <li class="media delete_comment"  style="width:100%">
-                                    <a class="pull-left" href="#">
+
+                                  <a class="pull-left" href="#" style="display:flex; justify-content: center">
                                     <% if comment.user.avatar.attached? %>
-                                      <img class="media-object" src="<%= url_for(comment.user.avatar) %>" width="50" height="50" style="border-radius: 25%"alt="">
+                                      <img class="media-object-avatar" src="<%= url_for(comment.user.avatar) %>" width="50" height="50" style="border-radius: 25%"alt="">
+
                                     <% else %>
                                       <img class="media-object" src="/assets/home/iframe2.png" alt="">
                                     <% end %>
@@ -267,7 +280,7 @@
                                           <input type="text"  class="form-control in-comment-edit" value="<%= comment.content %>" style="display:none" />
                                         <% end %>
                                       </ul>
-                                      <img class="media-object" src="<%= comment.image.present? ? url_for(comment.image) : '' %>" alt="" width="50%" height="auto" >
+                                      <img class="media-object" src="<%= comment.image.present? ? url_for(comment.image) : "" %>" alt="" width="50%" height="auto" >
 
                                     <p class="list-edit-comment"><%= comment.content %></p>
                                     </div>
@@ -275,7 +288,7 @@
                                 <% end %>
                               </ul>
                               <div style="text-align: center">
-                                  <%=  paginate @results[:comments], theme: 'twitter-bootstrap-4', style: "text-align:center" %>
+                                  <%= paginate @results[:comments], theme: "twitter-bootstrap-4", style: "text-align:center" %>
                               </div>
                           </div>
                         </div>
@@ -343,6 +356,17 @@
           border: 2px solid #00b2a5;
       }
 
+@media (max-width: 480px) {
+      .sinlge-post-meta{
+        display:flex;
+        justify-content:center;
+        width: 100%;
+        flex-wrap: wrap;
+      }
+}
+     
+
+
 </style>
 
 <script type="text/javascript">
@@ -372,7 +396,9 @@ $(".image")
 
 <script id="list-comment-template" type="text/x-handlebars-template">
     <li class="media delete_comment" style="width:100%">
-      <a class="pull-left" href="#">
+
+      <a class="pull-left" href="#" style="display:flex; justify-content: center">
+
       <img class="media-object" src="{{ avatar }}" alt="" width="50" height="50" style="border-radius: 25%">
       </a>
       <div class="media-body comments">
@@ -397,5 +423,10 @@ $(".image")
 <script id="list-edit-comment-template" type="text/x-handlebars-template">
    {{comment.content}}
 </script>
- <script> 
-</script>
+
+<script type="text/javascript">
+    function spinner() {
+        document.getElementsByClassName("loader")[0].style.display = "block";
+    }
+</script>    
+

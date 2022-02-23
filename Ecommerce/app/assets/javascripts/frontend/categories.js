@@ -70,6 +70,9 @@ function Category(options) {
       formData.append("token", module.settings.api.api_token);
       formData.append("product_id", product_id);
       formData.append("content", comment);
+      button_load = $(ele).find(".buttonload").css("display", "block");
+      btn_send_comment = $(ele).find("#btn_send_comment").hide();
+
       if (check_login == 1) {
         $.ajax({
           url: "/api/v1/comment",
@@ -82,9 +85,13 @@ function Category(options) {
           processData: false,
           success: function (data) {
             if (data.code == 200) {
+
+              alert("successfully");
               $("#exampleModal").modal("hide");
               $("#close").trigger("click");
               $(ele).find(".in-comment").val("");
+              $(ele).find(".buttonload").css("display", "none");
+              $(ele).find("#btn_send_comment").show();
 
               var template_comment = Handlebars.compile(
                 module.settings.template.comment.html()
@@ -104,6 +111,10 @@ function Category(options) {
                 icon: "error",
                 title: data.message,
               });
+
+              $(ele).find(".buttonload").css("display", "none");
+              $(ele).find("#btn_send_comment").show();
+
             }
           },
           error: function () {},
