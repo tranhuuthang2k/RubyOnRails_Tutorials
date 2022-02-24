@@ -272,8 +272,8 @@
                                           <input type="text"  class="form-control in-comment-edit" value="<%= comment.content %>" style="display:none" />
                                         <% end %>
                                       </ul>
-                                      <img class="media-object" src="<%= comment.image.present? ? url_for(comment.image) : '' %>" alt="" width="50%" height="auto" >
-
+                                     
+                                    <a href="<%= comment.image.present? ? url_for(comment.image) : '' %>" data-lightbox="example-2" > <img class="media-object" data-lightbox="image-1" data-title="My caption" src="<%= comment.image.present? ? url_for(comment.image) : '' %>" alt="" width="50%" height="auto" ></a>
                                     <p class="list-edit-comment"><%= comment.content %></p>
                                     </div>
                                   </li>
@@ -395,8 +395,8 @@ $(".image")
         <li><a class="delete-comment"><i style="color:white; cursor: pointer; font-size: 14px" class="fa fa-trash"></i></a></li>
         <li><a class="edit-comment" id= "comment-{{comment.id}}" ><i style="color:white; cursor: pointer; font-size: 14px" class="fa fa-edit"></i></a> </li>
         <input type="text"  class="form-control in-comment-edit" value="{{ comment.content }}" style="display:none"/>
-        </ul>
-      <img class="media-object" src="{{ image }}" alt="" width="50%" height="auto" >
+        </ul>    
+      <a href="{{ image }}" data-lightbox="example-2" > <img class="media-object" data-lightbox="image-1" data-title="My caption" src="{{ image }}" alt="" width="50%" height="auto" ></a>
       <p class="list-edit-comment">{{ comment.content }}</p>
       </div>
     </li>
