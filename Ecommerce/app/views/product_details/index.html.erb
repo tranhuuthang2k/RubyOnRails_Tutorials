@@ -153,7 +153,7 @@
                             <div class="col-sm-12">
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
-                                        <p><%= @results[:product].description if @results[:product].present? %> </p>
+                                        <p style="word-wrap: break-word;"> <%=  @results[:product].content  if @results[:product].content.present? %></p>
                                     </div>
                                 </div>
                             </div>
@@ -184,10 +184,6 @@
                               <li><a href=""><i class="fa fa-clock-o"></i><%= @results[:product].created_at.strftime("%I:%M %p") %></a></li>
                               <li><a href=""><i class="fa fa-calendar-o"></i><%= @results[:product].created_at.strftime("%d/%m/%Y") %></a></li>
                             </ul>
-
-
-
-
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 WRITE COMMENT REVIEW
               </button>
@@ -286,7 +282,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+              </div>
                <%= render "home/recommended_items" %>
         </div>
     </div>

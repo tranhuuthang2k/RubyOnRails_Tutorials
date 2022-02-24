@@ -4,11 +4,12 @@ class Product < ApplicationRecord
   STATUS = { 'pending': 0, 'confirmed': 1, 'cancel': 2 }.freeze # 0 -> pending, 1 -> confirm, 2 -> cancel
   scope :show_products, ->(val) { where.not(show_home: val.to_s).limit(val === 0 ? 9 : 3) }
   scope :by_ids, ->(ids) { where(id: ids) }
+  has_rich_text :content
 
   has_one_attached :image
   validates :title, presence: true
   validates :price, numericality: true
-  validates :description, presence: true
+  validates :content, presence: true
   validates :sizes, presence: true
   has_many :product_categories
   has_many :categories, through: :product_categories
@@ -53,7 +54,9 @@ class Product < ApplicationRecord
       field :price
       field :discount
       field :sizes
-      field :description
+      # field :description
+      field :content
+
       field :availability
       field :categories
       field :image
@@ -82,7 +85,7 @@ class Product < ApplicationRecord
     edit do
       include_all_fields # all other default fields will be added after, conveniently
 
-      exclude_fields :created_at, :product_sizes, :product_favorites, :comments, :product_rates # but you still can remove fields
+      exclude_fields :created_at, :product_sizes, :product_favorites, :comments, :product_rates, :description # but you still can remove fields
     end
 
     configure :created_at do
