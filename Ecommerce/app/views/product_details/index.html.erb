@@ -103,7 +103,12 @@
                             </span>   
                          
                             <span>
-                                <span style="text-align: center; width: 100%"  class="price">US $<%= @results[:product].price %></span>
+                                <span style="text-align: center; width: 100%"  class="price">USD $<%= @results[:product].price %>
+                                  <% if  @results[:product].price_old.present? %>
+                                       <del class="price_old" >$<%= @results[:product].price_old  %></del>
+                                  <% end %>
+                                 </span>
+
                                 <label>Quantity:</label>
                                 <input type="number" id="numberInput" class="quantity" value="1" min="1"  onchange=" this.value > <%= @results[:product].availability.number_instock if @results[:product].availability.present? %>  &&  myFunction(<%= @results[:product].availability.number_instock if @results[:product].availability.present? %>) " max=" <%= @results[:product].availability if @results[:product].availability.present? %>" />
                                <% if @results[:product].availability&.status.to_i > 0 %>

@@ -110,13 +110,15 @@ Things you may want to cover:
 - step 2:  sudo mysql -u root -p
 - step 3:  SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
 ------------------------------------------------------------------------------------
-custom rails admin 
+Custom rails admin 
 - http://www.antleon.com/2015/04/rails-admin-custom-dashboard/
 ------------------------------------------------------------------------------------
-refresh && update my code heroku
-- bundle exec rake assets:precompile 
-run again heroku app, if code dont update then
-- heroku restart
+Refresh && update my code heroku
+- step 1: bundle exec rake assets:precompile 
++ run again heroku app, if code dont update then
+- step 2: heroku restart
++ Migrate db in heroku 
+- heroku rake db:migrate
 -----------------------------------------------------------------------------------
 Error deployment heroku
 - Error PG::DatatypeMismatch: ERROR: argument of WHERE must be type boolean, not type integer
@@ -124,5 +126,5 @@ Error deployment heroku
 - Error ActiveRecord::StatementInvalid (PG::GroupingError: ERROR: column "order_items.created_at" must appear in the GROUP BY clause or be used in an aggregate function
 - Fix: https://makandracards.com/bitcrowd/32883-pg-groupingerror-error-column-must-appear-in-the-group-by-clause-or-be-used-in-an-aggregate-function-in-rails-while-trying-group
 -----------------------------------------------------------------------------------
-clear cache
+Clear cache
 - rake tmp:cache:clear

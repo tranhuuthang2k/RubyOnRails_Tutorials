@@ -57,7 +57,7 @@
     </div>
   <% elsif flash %>
     <% flash.each do |message_type, message| %>
-      <div  style="align-items: center; text-align: center; background: #ded8d8;" class="alert alert-<%= message_type %>"><span><%= message %></span></div>
+      <div  style="align-items: center;text-align: center;background: #e8a62d59;color: red;" class="alert alert-<%= message_type %>"><span><%= message %></span></div>
     <% end %> 
   <% end %>
   <%= yield %>
@@ -144,7 +144,6 @@
 <style>
 .alert{
   position: absolute;
-  top: 0;
   width: 100%;
   z-index: 999;
 }

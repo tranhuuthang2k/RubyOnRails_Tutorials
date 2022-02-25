@@ -52,7 +52,7 @@ class Product < ApplicationRecord
     create do
       field :title
       field :price
-      field :discount
+      field :price_old
       field :sizes
       # field :description
       field :content
