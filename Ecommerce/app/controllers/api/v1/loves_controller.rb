@@ -1,7 +1,9 @@
 class Api::V1::LovesController < Api::V1::BaseController
   skip_before_action :require_jwt
-  before_action :load_user, only: %i[index unlove comment rate]
-
+  before_action :load_user,
+                only: %i[index unlove comment reply_comment rate edit_comment_children edit_comment delete_comment
+                         delete_comment_children]
+  before_action :load_comment, only: %i[edit_comment_children edit_comment]
   def index
     product_favorite = @user.product_favorites.new(user_id: @user.id, product_id: params[:product_id])
     if product_favorite.save
@@ -34,6 +36,8 @@ class Api::V1::LovesController < Api::V1::BaseController
     comment.image.attach(params['csv'])
     name = @user.username
     if comment.save
+
+      comment.update_attribute(:main_id, comment.id)
       render json: success_message('Successfully',
                                    { name: name,
                                      image: comment.image.present? ? url_for(comment.image) : '',
@@ -43,25 +47,70 @@ class Api::V1::LovesController < Api::V1::BaseController
     end
   end
 
-  def edit_comment
-    comment = Comment.find_by(id: params[:comment_id])
-    comment.content = params[:comment]
-    if comment.save
+  def reply_comment
+    return render json: error_message('Write your comment...') unless params[:content].present?
+
+    comment = Comment.find(params[:id_comment])
+    product_id = comment.product_id
+    parrent_comment_id = comment.id
+    reply_comment = @user.comments.new(content: params[:content], reply_comment_id: parrent_comment_id,
+                                       product_id: product_id, user_id: @user.id)
+
+    if reply_comment.save
+
       render json: success_message('Successfully',
-                                   { comment: ActiveModelSerializers::SerializableResource.new(comment,
+                                   { name: @user.username,
+                                     avatar: @user.avatar.present? ? url_for(@user.avatar) : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS50TvM3otu4AuOjP-R2TZ8ajlCcctHY7hxJQ&usqp=CAU',
+                                     comment: ActiveModelSerializers::SerializableResource.new(reply_comment,
                                                                                                each_serializer: CommentSerializer) })
+
     else
-      render json: error_message(t('comment id not_found'))
+      render json: error_message(('product id not_found'))
     end
   end
 
-  def delete_comment
-    comment = Comment.find_by(id: params[:comment_id])
+  def edit_comment
+    @comment.content = params[:comment]
+    if @comment.save
+      render json: success_message('Successfully',
+                                   {
+                                     name: @user.username,
+                                     avatar: @user.avatar.present? ? url_for(@user.avatar) : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS50TvM3otu4AuOjP-R2TZ8ajlCcctHY7hxJQ&usqp=CAU',
+                                     comment: ActiveModelSerializers::SerializableResource.new(@comment,
+                                                                                               each_serializer: CommentSerializer)
+                                   })
+    else
+      render json: error_message(('comment id not_found'))
+    end
+  end
+
+  def edit_comment_children
+    edit_comment
+  end
+
+  def delete_comment_children
+    comment = Comment.find(params[:comment_id])
+    return render json: error_message('comment not exists') if comment.user_id != @user.id
+
     if comment
       comment.delete
       render json: success_message('Successfully')
     else
-      render json: error_message(t('comment id not_found'))
+      render json: error_message('comment id not_found')
+    end
+  end
+
+  def delete_comment
+    comment = Comment.find(params[:comment_id])
+    return render json: error_message('comment not exists') if comment.user_id != @user.id
+
+    comment_children = Comment.where(reply_comment_id: params[:comment_id])
+    if comment
+      comment.delete
+      comment_children.destroy_all
+      render json: success_message('Successfully')
+    else
+      render json: error_message('comment id not_found')
     end
   end
 
@@ -91,6 +140,18 @@ class Api::V1::LovesController < Api::V1::BaseController
     token = params[:token]
     hmac_secret = 'rubyk01'
     decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
+
     @user = User.find_by(api_token_digest: decoded_token.first['data'])
+  end
+
+  def load_comment
+    return render json: error_message('Please write your content') unless params[:comment].present?
+
+    @comment = Comment.find_by(id: params[:comment_id])
+    if @comment.user_id != @user.id
+      render json: error_message('you are not the author of this comment')
+    else
+      @comment
+    end
   end
 end

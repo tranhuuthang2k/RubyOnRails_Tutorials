@@ -24,7 +24,7 @@ Things you may want to cover:
 6. Page Blogs, detail blogs, blog other....
 7. Product whistlist (love, unlove..)
 8. Star Rate, View rate product
-9. Review comment products
+9. Review comment,reply comment of product
 10. Review images, manage image detail
 11. Product orthers of product detail
 12. Add to cart

@@ -310,12 +310,6 @@ function Category(options) {
         .parent()
         .find(".full-tbl")
         .css("display", "block");
-      $("html, body").animate(
-        {
-          scrollTop: $(this).parent().find(".full-tbl").offset().top,
-        },
-        1000
-      );
     });
   };
   module.sendReplyComment = function () {
@@ -334,7 +328,8 @@ function Category(options) {
       el = $(this).closest(".delete_comment");
       id_comment = el.attr("id");
 
-      content = $(this).parent().parent().find("#fieldReplyComment").val();
+      content = $(this).parent().parent().find("#fieldEmail").val();
+
       $.ajax({
         url: module.settings.api.reply_comment,
         headers: {
@@ -349,10 +344,8 @@ function Category(options) {
         dataType: "json",
         success: function (data) {
           if (data.code == 200) {
-            Swal.fire({
-              icon: "success",
-              title: "successfully...",
-            });
+            // $("#fieldEmail").hide(null);
+            //  $(".list-comment").html("");
             var template_comment_childen = Handlebars.compile(
               module.settings.template.list_children_comment.html()
             );
@@ -363,14 +356,9 @@ function Category(options) {
             list_children_comment
               .parent()
               .find(".full-tbl")
-              .find("#fieldReplyComment")
+              .find("#fieldEmail")
               .val(null);
-            comments = $("html, body").animate(
-              {
-                scrollTop: list_children_comment.offset().top,
-              },
-              1000
-            );
+
             $(list_children_comment).append(
               template_comment_childen({
                 comment_children: data.data.comment,
@@ -378,11 +366,6 @@ function Category(options) {
                 name: data.data.name,
               })
             );
-          } else {
-            Swal.fire({
-              icon: "error",
-              title: data.message,
-            });
           }
         },
       });
