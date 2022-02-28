@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_19_083859) do
+ActiveRecord::Schema.define(version: 2022_02_25_113621) do
 
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -240,7 +240,7 @@ ActiveRecord::Schema.define(version: 2022_02_19_083859) do
     t.string "title"
     t.float "price"
     t.text "description"
-    t.float "discount"
+    t.float "price_old"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "show_home"
@@ -248,7 +248,7 @@ ActiveRecord::Schema.define(version: 2022_02_19_083859) do
     t.integer "user_id"
     t.integer "categories_id"
     t.integer "sold", default: 0
-    t.index ["title"], name: "index_products_on_title", type: :fulltext
+    t.index ["title"], name: "index_products_on_title"
   end
 
   create_table "shipping_cities", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

@@ -6,6 +6,7 @@ function Category(options) {
       comment: $("#list-comment-template"),
       rate: $("#list-rate-template"),
       edit_comment: $("#list-edit-comment-template"),
+      list_replyComment:$('#list-replyComment-template')
     },
     api: {
       category: "/api/v1/category",
@@ -63,6 +64,7 @@ function Category(options) {
     $("#form_comment").submit(function (evt) {
       evt.preventDefault();
       ele = $(this).closest("div #reviews");
+    
       comment = $(ele).find(".in-comment").val();
       product_id = $(ele).find(".comments").attr("id");
       check_login = $(ele).find(".login").attr("id");
@@ -70,6 +72,11 @@ function Category(options) {
       formData.append("token", module.settings.api.api_token);
       formData.append("product_id", product_id);
       formData.append("content", comment);
+  
+      button_load = $(ele).find(".buttonload").css("display", "block");
+      btn_send_comment = $(ele).find("#btn_send_comment").hide();
+
+    
       if (check_login == 1) {
         $.ajax({
           url: "/api/v1/comment",
@@ -82,13 +89,19 @@ function Category(options) {
           processData: false,
           success: function (data) {
             if (data.code == 200) {
+              alert("successfully");
               $("#exampleModal").modal("hide");
               $("#close").trigger("click");
               $(ele).find(".in-comment").val("");
+              $(ele).find(".buttonload").css("display", "none");
+              $(ele).find("#btn_send_comment").show();
 
+              
               var template_comment = Handlebars.compile(
                 module.settings.template.comment.html()
               );
+
+
               $(ele)
                 .find(".list-comment")
                 .append(
@@ -104,6 +117,10 @@ function Category(options) {
                 icon: "error",
                 title: data.message,
               });
+
+              $(ele).find(".buttonload").css("display", "none");
+              $(ele).find("#btn_send_comment").show();
+
             }
           },
           error: function () {},
@@ -118,6 +135,26 @@ function Category(options) {
       }
     });
   };
+
+  module.replyComment = function () {    
+    var template_replyComment = Handlebars.compile(
+      module.settings.template.list_replyComment.html()
+    );
+    $(".form-comment").hide()
+    $(".text-reply").one('click',function() {
+      $(".text-reply-comment").show()
+     $(this).parent().parent().append(template_replyComment);
+     
+      $(this).parent().parent().find('.form-comment').find('.input-comment').keypress(function(event){ 
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+      if(keycode == '13')
+      { 
+             console.log(event.target.value);      
+      }
+     });
+    })
+  }
+
 
   module.clickRateProduct = function () {
     $(".fa-star").click(function () {
@@ -274,6 +311,7 @@ function Category(options) {
       });
     });
   };
+
   module.init = function () {
     module.clickshowcategory();
     module.clickCategory();
@@ -283,6 +321,8 @@ function Category(options) {
     module.editComment();
     module.clickeditComment();
     module.deleteComment();
+    module.replyComment();
+
   };
 }
 $(document).ready(function () {
