@@ -258,7 +258,6 @@
     .well {
         display: inline-block;
     }
-
 }
 
 
@@ -436,7 +435,7 @@
     }
     #reviews p,
     .blog-post-area .single-blog-post p {
-        text-align: center;
+        text-align: justify;
     }
     #reviews form span input {
         width: 100%;
@@ -469,14 +468,6 @@
     /* .response-area .media img {
         width: auto;
     } */
-<<<<<<< HEAD:Ecommerce/public/assets/responsive-1eca173b6b2b0c1c300af7e017b9e4436507a6c41e3ecb0dc7d008f149d331c6.css
-=======
-    .media-object{
-        width: 100%;
-
-    }
-
->>>>>>> 95c476cde61070d387e7fa22e1669e905678f059:Ecommerce/public/assets/responsive-7aa1951d9b679cf827a7a7be5b3730826280d69b70dc112ef1a2955754be4bc9.css
     .sinlge-post-meta li {
         margin-bottom: 10px;
     }

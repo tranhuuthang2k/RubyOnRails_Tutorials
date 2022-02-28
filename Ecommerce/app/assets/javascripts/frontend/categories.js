@@ -67,6 +67,7 @@ function Category(options) {
     $("#form_comment").submit(function (evt) {
       evt.preventDefault();
       ele = $(this).closest("div #reviews");
+    
       comment = $(ele).find(".in-comment").val();
       product_id = $(ele).find(".comments").attr("id");
       check_login = $(ele).find(".login").attr("id");
@@ -74,8 +75,11 @@ function Category(options) {
       formData.append("token", module.settings.api.api_token);
       formData.append("product_id", product_id);
       formData.append("content", comment);
+  
       button_load = $(ele).find(".buttonload").css("display", "block");
       btn_send_comment = $(ele).find("#btn_send_comment").hide();
+
+    
       if (check_login == 1) {
         $.ajax({
           url: "/api/v1/comment",
@@ -94,9 +98,13 @@ function Category(options) {
               $(ele).find(".in-comment").val("");
               $(ele).find(".buttonload").css("display", "none");
               $(ele).find("#btn_send_comment").show();
+
+              
               var template_comment = Handlebars.compile(
                 module.settings.template.comment.html()
               );
+
+
               $(ele)
                 .find(".list-comment")
                 .append(
@@ -112,8 +120,10 @@ function Category(options) {
                 icon: "error",
                 title: data.message,
               });
+
               $(ele).find(".buttonload").css("display", "none");
               $(ele).find("#btn_send_comment").show();
+
             }
           },
           error: function () {},
@@ -128,6 +138,26 @@ function Category(options) {
       }
     });
   };
+
+  module.replyComment = function () {    
+    var template_replyComment = Handlebars.compile(
+      module.settings.template.list_replyComment.html()
+    );
+    $(".form-comment").hide()
+    $(".text-reply").one('click',function() {
+      $(".text-reply-comment").show()
+     $(this).parent().parent().append(template_replyComment);
+     
+      $(this).parent().parent().find('.form-comment').find('.input-comment').keypress(function(event){ 
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+      if(keycode == '13')
+      { 
+             console.log(event.target.value);      
+      }
+     });
+    })
+  }
+
 
   module.clickRateProduct = function () {
     $(".fa-star").click(function () {
@@ -465,12 +495,195 @@ function Category(options) {
               icon: "error",
               title: data.message,
             });
+
           }
         },
         error: function () {},
       });
     });
   };
+
+  module.clickReplyComment = function () {
+    $(document).on("click", ".reply_comment", function () {
+      ele = $(this).closest("div #reviews");
+      check_login = $(ele).find(".login").attr("id");
+      if (check_login != 1) {
+        Swal.fire({
+          icon: "warning",
+          title: "Please to login before Comment!",
+        }).then(() => {
+          window.location = "/login";
+        });
+        return;
+      }
+      el = $(this).parent().parent();
+      id = el.attr("id");
+      show_input_comment = $(this)
+        .parent()
+        .find(".full-tbl")
+        .css("display", "block");
+      $("html, body").animate(
+        {
+          scrollTop: $(this).parent().find(".full-tbl").offset().top,
+        },
+        1000
+      );
+    });
+  };
+  module.sendReplyComment = function () {
+    $(document).on("click", "#send_reply_comment", function () {
+      ele = $(this).closest("div #reviews");
+      check_login = $(ele).find(".login").attr("id");
+      if (check_login != 1) {
+        Swal.fire({
+          icon: "warning",
+          title: "Please to login before Comment!",
+        }).then(() => {
+          window.location = "/login";
+        });
+        return;
+      }
+      el = $(this).closest(".delete_comment");
+      id_comment = el.attr("id");
+
+      content = $(this).parent().parent().find("#fieldReplyComment").val();
+      $.ajax({
+        url: module.settings.api.reply_comment,
+        headers: {
+          Authorization: "Bearer " + module.settings.api.token,
+        },
+        type: "POST",
+        data: {
+          id_comment: id_comment,
+          content: content,
+          token: module.settings.api.api_token,
+        },
+        dataType: "json",
+        success: function (data) {
+          if (data.code == 200) {
+            Swal.fire({
+              icon: "success",
+              title: "successfully...",
+            });
+            var template_comment_childen = Handlebars.compile(
+              module.settings.template.list_children_comment.html()
+            );
+
+            list_children_comment = el
+              .find(".comments")
+              .find(".list_comment_chidren");
+            list_children_comment
+              .parent()
+              .find(".full-tbl")
+              .find("#fieldReplyComment")
+              .val(null);
+            comments = $("html, body").animate(
+              {
+                scrollTop: list_children_comment.offset().top,
+              },
+              1000
+            );
+            $(list_children_comment).append(
+              template_comment_childen({
+                comment_children: data.data.comment,
+                avatar: data.data.avatar,
+                name: data.data.name,
+              })
+            );
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: data.message,
+            });
+          }
+        },
+      });
+    });
+  };
+
+  module.clickeditCommentChildren = function () {
+    $(document).on("click", ".edit", function () {
+      $(this).find(".comment-children-edit").css("display", "block");
+      $(this).find(".list-edit-comment-children").css("display", "none");
+    });
+  };
+
+  module.editCommentChildren = function () {
+    $(document).on("keypress", ".comment-children-edit", function (e) {
+      if (event.keyCode == 13) {
+        ele = $(this);
+        comment_id = ele.attr("id");
+        comment = ele.val();
+        $.ajax({
+          url: module.settings.api.edit_comment_children,
+          headers: {
+            Authorization: "Bearer " + module.settings.api.api_token,
+          },
+          type: "POST",
+          data: {
+            comment: comment,
+            comment_id: comment_id,
+            token: module.settings.api.api_token,
+          },
+          dataType: "json",
+          success: function (data) {
+            if (data.code == 200) {
+              var template_comment_childen = Handlebars.compile(
+                module.settings.template.list_children_comment.html()
+              );
+              comment_children_item = ele
+                .parent()
+                .parents(".comment_children_item");
+              $(comment_children_item).html(
+                template_comment_childen({
+                  comment_children: data.data.comment,
+                  avatar: data.data.avatar,
+                  name: data.data.name,
+                })
+              );
+            } else {
+              Swal.fire({
+                icon: "warning",
+                title: data.message,
+              });
+            }
+          },
+          error: function () {},
+        });
+      }
+    });
+  };
+
+  module.deleteCommentChildren = function () {
+    $(document).on("click", ".delete_comment_children", function () {
+      ele = $(this);
+      comment_id = $(this).attr("id");
+      $.ajax({
+        url: module.settings.api.delete_comment_children,
+        headers: {
+          Authorization: "Bearer " + module.settings.api.api_token,
+        },
+        type: "delete",
+        data: { comment_id: comment_id, token: module.settings.api.api_token },
+        dataType: "json",
+        success: function (data) {
+          if (data.code == 200) {
+            comment_children_item = $(ele).parents(".comment_children_item");
+
+            $(comment_children_item).html("");
+            // module.deleteComment();
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: data.message,
+            });
+          }
+        },
+        error: function () {},
+      });
+    });
+  };
+
   module.init = function () {
     module.clickshowcategory();
     module.clickCategory();
@@ -485,6 +698,7 @@ function Category(options) {
     module.deleteCommentChildren();
     module.clickeditCommentChildren();
     module.editCommentChildren();
+
   };
 }
 $(document).ready(function () {
