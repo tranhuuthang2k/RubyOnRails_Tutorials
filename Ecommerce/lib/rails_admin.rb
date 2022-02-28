@@ -42,14 +42,13 @@ module RailsAdmin
 
             def base_statistic_products(product_id = {}, month, year)
               product_views = ProductView.by_month_year(month, year)
-
               product_view_ids = product_views.present? && product_views.pluck('product_id').compact.each_with_object(Hash.new(0)) do |c, counts|
                 counts[c] += 1
-              end.max_by do |_k, v|
-                v
-              end [0]
+              end
+             max_product_id_view =  product_view_ids.present? ? product_view_ids.max_by { |_k, v| v }[0] : product_view_ids
+
               if product_id != {}
-                products = Product.by_ids([product_id, product_view_ids])
+                products = Product.by_ids([product_id, max_product_id_view])
                 result = products.find_by!(id: product_id)
               else
 
