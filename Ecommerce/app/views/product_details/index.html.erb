@@ -262,7 +262,8 @@
                             <h5 class="view_more">​</h5>
                               <ul class="media-list list-comment" >
                                 <% @results[:comments].each do |comment| %>
-                                  <li class="media delete_comment"  style="width:100%">
+                                          
+                                  <li class="media delete_comment" id="<%= comment.id %>"  style="width:100%">
 
                                   <a class="pull-left" href="#" style="display:flex; justify-content: center">
                                     <% if comment.user.avatar.attached? %>
@@ -275,32 +276,45 @@
                                     <div class="media-body comments">
                                       <ul class="sinlge-post-meta">
                                         <li><i class="fa fa-user"></i><%= comment.user.username %></li>
-                                        <li><i class="fa fa-clock-o"></i><%= comment.created_at.strftime("%I:%M %p") %></li>
+                                        <li><i class="fa fa-clock-o"></i><%= comment.created_at.strftime("%I:%M %p") %></li>    
                                         <li><i class="fa fa-calendar"></i><%= comment.created_at.strftime("%d/%m/%Y") %></li>
                                         <% if user_signed_in? && comment.user_id == current_user.id %>
                                           <li><a class="delete-comment"><i style="color:white; cursor: pointer" class="fa fa-trash"></i> </a></li>
                                           <li><a class="edit-comment" id="comment-<%= comment.id %>" > <i style="color:white; cursor: pointer" class="fa fa-edit"></i></a></li>
                                           <input type="text"  class="form-control in-comment-edit" value="<%= comment.content %>" style="display:none" />
                                         <% end %>
-                                      </ul>                                     
-                                    <a href="<%= comment.image.present? ? url_for(comment.image) : "" %>" data-lightbox="example-2" > <img class="media-object" data-lightbox="image-1" data-title="My caption" src="<%= comment.image.present? ? url_for(comment.image) : "" %>" alt="" width="50%" height="auto" ></a>
+                                      </ul>
+                                     
+                                    <a href="<%= comment.image.present? ? url_for(comment.image) : '' %>" data-lightbox="example-2" > <img class="media-object" data-lightbox="image-1" data-title="My caption" src="<%= comment.image.present? ? url_for(comment.image) : '' %>" alt="" width="50%" height="auto" ></a>
+                                      <p class="list-edit-comment"><%= comment.content %></p>
 
-                                    <p class="list-edit-comment"><%= comment.content %></p>
-                                    <!-- <div class="container-reply-comment">
-                                     <div class="reply-comment">
-                                         <a style="cursor:pointer" class="text-reply">Reply</a>
-                                     </div>
-                                       <div class="text-reply-comment" >
-                                       <img src="https://jes.edu.vn/wp-content/uploads/2017/10/h%C3%ACnh-%E1%BA%A3nh.jpg" alt="error" width="50" height="50"/>
-                                       <p class="content-reply">Hello</p>
+                                    <p class="reply_comment"> Reply Question <p>
+                              
+                                    <div class="list_comment_chidren" >                                
+                                        <% @results[:comment_children].where(reply_comment_id: comment.id).sort_by(&:created_at).each do |item| %>
+                                          <div class="comment_children_item comment_children" >
+                                            <img src="<%= item.user.avatar.attached? ? url_for(item.user.avatar) : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS50TvM3otu4AuOjP-R2TZ8ajlCcctHY7hxJQ&usqp=CAU" %>" id="image_children_comment" width="50" height="50" alt="" />
+                                            <span> <i class="fa fa-user" id="icon_name"></i> <span><%= item.user.username%></span> <span>
+                                            <span><i class="fa fa-calendar" style="color: #fe980f;cursor: pointer;font-size: 16px;margin-left: 10px;margin-right: 10px;"></i><%= item.created_at.strftime("%d/%m/%Y") %></span>
+                            
+                                            <% if user_signed_in? && item.user_id == current_user.id %>
+                                              <span>  <i style="color: #fe980f;cursor: pointer;font-size: 16px;margin-left: 10px;margin-right: 10px;" class="fa fa-trash delete_comment_children"  id="<%= item.id %>"></i><span>
+                                              <span class="edit">  <i style="color: #fe980f;cursor: pointer;font-size: 16px;" class="fa fa-edit"></i><span>
+                                            <% end %>
+
+                                            <p class="list-edit-comment-children" id="content_comment"  style="display:block"> <%= item.content%>  </p>
+                                            <input type="text" id="<%= item.id %>"  class="form-control comment-children-edit" value="<%= item.content %>" style="display:none" />
+                                          </div>
+
+                                        <% end %>
                                     </div>
-                                      <div class="form-comment" style="margin-top:12px">
-                                      <img src="https://jes.edu.vn/wp-content/uploads/2017/10/h%C3%ACnh-%E1%BA%A3nh.jpg" alt="error" width="50" height="50"/>
-                                         <input type="input" class="input-comment" placeholder="Tra loi" >
+                                    
+                                      <div class="full-tbl" style="display:none">
+                                            <input id="fieldReplyComment" type="text" placeholder="Write a comment..." required="">
+                                            <span class="inp-grp-sub"><button type="submit" id="send_reply_comment">Send</button></span>
                                       </div>
 
-                                  
-                                    </div> -->
+
                                     </div>
                                   </li>
                                 <% end %>
@@ -319,14 +333,18 @@
     </div>
 </section>
 <style>
-  .text-reply-comment{
-    display: flex;
-   align-items:center;
-  
+
+  #fieldReplyComment{
+    width: 100%;
+    height: 50px
   }
-  .content-reply
-  {
-  margin-left:12px
+  .comment_children{
+    display:flex;
+    margin-bottom: 10px
+  }
+  .list-edit-comment-children{
+    padding-left: 10px
+
   }
 
     .product-information {
@@ -348,7 +366,11 @@
         padding-left: 10px;
         cursor: pointer;
     }
-
+    #icon_name{
+        color: #fe980f;
+        margin-right: 10px;
+        margin-top: 3px;
+    }
     #heart.red {
         color: red;
     }
@@ -379,6 +401,22 @@
       }
       .button.active {
           border: 2px solid #00b2a5;
+      }
+      #image_children_comment{
+        margin-right: 10px
+      }
+      #content_comment{
+        margin-top: 4px;
+      }
+      .reply_comment{
+        background: #fe980f;
+        width: 100%;
+        height: auto;
+        text-align: center;
+        border-radius: 0%;
+        color: white;
+        font-weight: 700;
+        cursor: pointer;
       }
 
 @media (max-width: 480px) {
@@ -423,8 +461,9 @@ $(".image")
 </script>
 
 
-<script id="list-comment-template" type="text/x-handlebars-template" src="/app/assets/javascripts/frontend/categories.js">
-    <li class="media delete_comment" style="width:100%">
+
+<script id="list-comment-template" type="text/x-handlebars-template">
+    <li class="media delete_comment" id="{{ comment.id }}" style="width:100%">
       <a class="pull-left" href="#" style="display:flex; justify-content: center">
       <img class="media-object-avatar" src="{{ avatar }}" alt="" width="50" height="50" style="border-radius: 25%">
       </a>
@@ -439,20 +478,19 @@ $(".image")
         </ul>    
       <a href="{{ image }}" data-lightbox="example-2" > <img class="media-object" data-lightbox="image-1" data-title="My caption" src="{{ image }}" alt="" width="50%" height="auto" ></a>
       <p class="list-edit-comment">{{ comment.content }}</p>
-        <!-- <div class="container-reply-comment">
-                                     <div class="reply-comment">
-                                         <a style="cursor:pointer" class="text-reply">Reply</a>
-                                     </div>
-                                       <div class="text-reply-comment" >
-                                       <img src="https://jes.edu.vn/wp-content/uploads/2017/10/h%C3%ACnh-%E1%BA%A3nh.jpg" alt="error" width="50" height="50"/>
-                                       <p class="content-reply">Hello</p>
-                                    </div>
-                                      <div class="form-comment" style="margin-top:12px">
-                                      <img src="https://jes.edu.vn/wp-content/uploads/2017/10/h%C3%ACnh-%E1%BA%A3nh.jpg" alt="error" width="50" height="50"/>
-                                         <input type="input" class="input-comment" placeholder="Tra loi" >
-                                      </div>
 
-        </div>          -->
+     <p class="reply_comment"> Reply Question <p>
+     
+      <div class="list_comment_chidren" >                                
+        <div class="comment_children_item comment_children" >
+          <img src="sss"  width="50px" alt="" />
+          <p class="list-edit-comment-children">  </p>
+        </div>
+      </div>
+    <div class="full-tbl" style="display:none">
+        <input id="fieldReplyComment" type="text" placeholder="Write a comment..." required="">
+        <span class="inp-grp-sub"><button type="submit" id="send_reply_comment">Send</button></span>
+    </div>
       </div>
     </li>
     
@@ -480,12 +518,7 @@ $(".image")
     
 
 </script>
-<script id="list-replyComment-template" type="text/x-handlebars-template" >
-      <div class="form-comment" style="margin-top:12px">
-                                      <img src="https://jes.edu.vn/wp-content/uploads/2017/10/h%C3%ACnh-%E1%BA%A3nh.jpg" alt="error" width="50" height="50"/>
-                                         <input type="input" class="input-comment" placeholder="Tra loi" >         
-                                      </div>
-</script>
+
 
 
 <script id="list-rate-template" type="text/x-handlebars-template">
@@ -500,5 +533,19 @@ $(".image")
     function spinner() {
         document.getElementsByClassName("loader")[0].style.display = "block";
     }
-</script>    
+
+</script>   
+
+<script id="list-comment-children-template" type="text/x-handlebars-template">
+  <div class="comment_children_item comment_children">
+      <img src="{{ avatar }}"  width="50" height="50" alt="" id="image_children_comment" />
+      <span> <i class="fa fa-user" id="icon_name"></i> <span>{{name}}</span> <span>
+      <span><i class="fa fa-calendar" style="color: #fe980f;cursor: pointer;font-size: 16px;margin-left: 10px;margin-right: 10px;"></i>{{ comment_children.created_at }}</span>
+      <span>  <i style="color: #fe980f;cursor: pointer;font-size: 16px;margin-left: 10px;margin-right: 10px;" class="fa fa-trash delete_comment_children"  id="{{ comment_children.id }}"></i><span>
+      <span class="edit">  <i style="color: #fe980f;cursor: pointer;font-size: 16px;" class="fa fa-edit"></i><span>
+      <p class="list-edit-comment-children" id="content_comment"  style="display:block">{{ comment_children.content }} </p>
+      <input type="text" id="{{comment_children.id}}"  class="form-control comment-children-edit" value="{{ comment_children.content }}" style="display:none" />
+  </div>
+</script>
+
 

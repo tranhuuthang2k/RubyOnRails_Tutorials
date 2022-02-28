@@ -434,7 +434,7 @@
   }
   #reviews p,
   .blog-post-area .single-blog-post p {
-    text-align: center;
+    /* text-align: center; */
   }
   #reviews form span input {
     width: 100%;
@@ -465,6 +465,7 @@
     display: inline-block;
   }
   /* .response-area .media img {
+>>>>>>> 30e9837e5282c226dd82339d9365dd17087d79a8
         width: auto;
     } */
 

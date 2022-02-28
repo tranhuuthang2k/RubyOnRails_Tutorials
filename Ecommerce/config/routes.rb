@@ -52,7 +52,11 @@ Rails.application.routes.draw do
 
       delete '/unlove', to: 'loves#unlove'
       post 'edit-comment', to: 'loves#edit_comment'
+      post 'edit-comment-children', to: 'loves#edit_comment_children'
+      delete 'delete-comment-children', to: 'loves#delete_comment_children'
+
       delete '/delete-comment', to: 'loves#delete_comment'
+      post 'reply-comment', to: 'loves#reply_comment'
       post '/product', to: 'products#products_of_month'
       post '/search', to: 'products#search'
       post '/voucher', to: 'products#voucher'

@@ -1,7 +1,7 @@
 class ProductDetailsController < ApplicationController
   before_action :store_location
 
-    def index
+  def index
     env_http_forwarded = request.env['HTTP_X_FORWARDED_FOR']
     client_ip = if env_http_forwarded
                   env_http_forwarded.split(',').first
@@ -11,7 +11,7 @@ class ProductDetailsController < ApplicationController
     id = params[:id].match(/\d+$/)[0].to_i
     product_view = ProductView.new(product_id: id, ip_address: client_ip, user_id: current_user ? current_user.id : '')
     p_view = ProductView.find_by(ip_address: client_ip, product_id: id)
-    if current_user && p_view&.ip_address == client_ip# && !p_view.user_id
+    if current_user && p_view&.ip_address == client_ip # && !p_view.user_id
       p_view.update_attribute(:user_id, current_user.id)
     end
     product_view.save(validate: false) unless p_view
@@ -20,7 +20,10 @@ class ProductDetailsController < ApplicationController
     admin = User.find(product.user_id)
     categories = Category.show_category.limit(4)
     products = Product.where(categories_id: product.categories_id).limit(4)
-    comments = Comment.includes(:user).where(product_id: id).page(params[:page]).per(2)
+    comment_user = Comment.includes(:user)
+    reply_comment_id = comment_user.pluck('reply_comment_id').compact
+    comments = comment_user.where(product_id: id).where(main_id: comment_user.pluck('id')).page(params[:page]).per(2)
+    comment_children = comment_user.where(reply_comment_id: reply_comment_id)
     product_rates = ProductRate.where(product_id: id)
     sum_rate = product_rates.sum(&:rate)
     count_product = product_rates.size
@@ -37,8 +40,8 @@ class ProductDetailsController < ApplicationController
       recommend_items: recommend_items,
       comments: comments,
       brands: brands,
-      notifications: notifications
-
+      notifications: notifications,
+      comment_children: comment_children
     }
   end
 end
