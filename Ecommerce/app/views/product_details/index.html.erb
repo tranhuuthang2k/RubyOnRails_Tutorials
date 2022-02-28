@@ -262,9 +262,7 @@
                             <h5 class="view_more">​</h5>
                               <ul class="media-list list-comment" >
                                 <% @results[:comments].each do |comment| %>
-                                          
                                   <li class="media delete_comment" id="<%= comment.id %>"  style="width:100%">
-
                                   <a class="pull-left" href="#" style="display:flex; justify-content: center">
                                     <% if comment.user.avatar.attached? %>
                                       <img class="media-object-avatar" src="<%= url_for(comment.user.avatar) %>" width="50" height="50" style="border-radius: 25%"alt="">
@@ -313,8 +311,6 @@
                                             <input id="fieldReplyComment" type="text" placeholder="Write a comment..." required="">
                                             <span class="inp-grp-sub"><button type="submit" id="send_reply_comment">Send</button></span>
                                       </div>
-
-
                                     </div>
                                   </li>
                                 <% end %>
@@ -333,7 +329,6 @@
     </div>
 </section>
 <style>
-
   #fieldReplyComment{
     width: 100%;
     height: 50px
@@ -344,7 +339,6 @@
   }
   .list-edit-comment-children{
     padding-left: 10px
-
   }
 
     .product-information {
@@ -411,7 +405,7 @@
       .reply_comment{
         background: #fe980f;
         width: 100%;
-        height: auto;
+        height: auto%;
         text-align: center;
         border-radius: 0%;
         color: white;
@@ -478,7 +472,6 @@ $(".image")
         </ul>    
       <a href="{{ image }}" data-lightbox="example-2" > <img class="media-object" data-lightbox="image-1" data-title="My caption" src="{{ image }}" alt="" width="50%" height="auto" ></a>
       <p class="list-edit-comment">{{ comment.content }}</p>
-
      <p class="reply_comment"> Reply Question <p>
      
       <div class="list_comment_chidren" >                                
@@ -518,9 +511,6 @@ $(".image")
     
 
 </script>
-
-
-
 <script id="list-rate-template" type="text/x-handlebars-template">
     <input id= "check_rate" value="{{ avg }}" type="hidden">
     <p>({{ avg }}/5)</p>
@@ -533,7 +523,6 @@ $(".image")
     function spinner() {
         document.getElementsByClassName("loader")[0].style.display = "block";
     }
-
 </script>   
 
 <script id="list-comment-children-template" type="text/x-handlebars-template">
@@ -547,5 +536,3 @@ $(".image")
       <input type="text" id="{{comment_children.id}}"  class="form-control comment-children-edit" value="{{ comment_children.content }}" style="display:none" />
   </div>
 </script>
-
-

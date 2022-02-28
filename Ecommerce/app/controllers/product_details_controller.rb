@@ -22,7 +22,7 @@ class ProductDetailsController < ApplicationController
     products = Product.where(categories_id: product.categories_id).limit(4)
     comment_user = Comment.includes(:user)
     reply_comment_id = comment_user.pluck('reply_comment_id').compact
-    comments = comment_user.where(product_id: id).where(main_id: comment_user.pluck('id')).page(params[:page]).per(2)
+    comments = comment_user.where(product_id: id).where(main_id: comment_user.pluck('id')).page(params[:page]).per(6)
     comment_children = comment_user.where(reply_comment_id: reply_comment_id)
     product_rates = ProductRate.where(product_id: id)
     sum_rate = product_rates.sum(&:rate)
