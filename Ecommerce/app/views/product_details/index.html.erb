@@ -284,6 +284,7 @@
                                           <div class="comment_children_item comment_children" >
                                             <img src="<%= item.user.avatar.attached? ? url_for(item.user.avatar) : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS50TvM3otu4AuOjP-R2TZ8ajlCcctHY7hxJQ&usqp=CAU" %>" id="image_children_comment" width="50" height="50" alt="" />
                                             <span> <i class="fa fa-user" id="icon_name"></i> <span><%= item.user.username%></span> <span>
+                                            <span> <i class="fa fa-clock-o" style="color: #fe980f;cursor: pointer;font-size: 16px;margin-left: 10px;margin-right: 5px;"></i> <span><%= item.created_at.strftime("%I:%M %p")%></span> <span>
                                             <span><i class="fa fa-calendar" style="color: #fe980f;cursor: pointer;font-size: 16px;margin-left: 10px;margin-right: 10px;"></i><%= item.created_at.strftime("%d/%m/%Y") %></span>
                             
                                             <% if user_signed_in? && item.user_id == current_user.id %>
@@ -492,6 +493,7 @@ $(".image")
   <div class="comment_children_item comment_children">
       <img src="{{ avatar }}"  width="50" height="50" alt="" id="image_children_comment" />
       <span> <i class="fa fa-user" id="icon_name"></i> <span>{{name}}</span> <span>
+      <span> <i class="fa fa-clock-o" style="color: #fe980f;cursor: pointer;font-size: 16px;margin-left: 10px;margin-right: 5px;"></i> <span>{{ comment_children.created_at_clock }}</span> <span>
       <span><i class="fa fa-calendar" style="color: #fe980f;cursor: pointer;font-size: 16px;margin-left: 10px;margin-right: 10px;"></i>{{ comment_children.created_at }}</span>
       <span>  <i style="color: #fe980f;cursor: pointer;font-size: 16px;margin-left: 10px;margin-right: 10px;" class="fa fa-trash delete_comment_children"  id="{{ comment_children.id }}"></i><span>
       <span class="edit">  <i style="color: #fe980f;cursor: pointer;font-size: 16px;" class="fa fa-edit"></i><span>
