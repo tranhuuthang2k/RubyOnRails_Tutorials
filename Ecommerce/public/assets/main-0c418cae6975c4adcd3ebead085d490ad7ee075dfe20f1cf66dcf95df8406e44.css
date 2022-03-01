@@ -1,4 +1,4 @@
-﻿/*************************
+/*************************
 *******Typography******
 **************************/
 
@@ -1368,6 +1368,7 @@ h2.title {
     margin-bottom: 25px;
     outline: medium none;
     padding-left: 10px;
+    padding-top: 15px;
     resize: none;
     width: 100%;
     border: 1px solid;

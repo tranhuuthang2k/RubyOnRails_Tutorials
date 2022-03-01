@@ -1,4 +1,4 @@
-﻿/*************************
+/*************************
 *******Typography******
 **************************/
 
@@ -1366,12 +1366,13 @@ h2.title {
 #reviews textarea {
     border: medium none;
     margin-bottom: 25px;
+    margin-top: 15px;
     outline: medium none;
     padding-left: 10px;
+    padding-top: 15px;
     resize: none;
     width: 100%;
     border: 1px solid;
-    border-radius: 10px;
 }
 
 #reviews button {

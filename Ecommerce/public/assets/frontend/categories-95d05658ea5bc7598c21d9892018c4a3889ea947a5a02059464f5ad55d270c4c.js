@@ -92,7 +92,6 @@ function Category(options) {
           success: function (data) {
             if (data.code == 200) {
               alert("successfully");
-
               $("#exampleModal").modal("hide");
               $("#close").trigger("click");
               $(ele).find(".in-comment").val("");
@@ -597,7 +596,6 @@ function Category(options) {
               icon: "error",
               title: data.message,
             });
-            btn_send.css("background", "#FE980F");
           }
         },
       });
@@ -608,13 +606,12 @@ function Category(options) {
     $(document).on("click", ".edit", function () {
       $(this).find(".comment-children-edit").css("display", "block");
       $(this).find(".list-edit-comment-children").css("display", "none");
-      $(this).find(".comment-children-edit").css("height", "1px");
-      $(this)
-        .find(".comment-children-edit")
-        .css(
-          "height",
-          `${$(this).find(".comment-children-edit")[0].scrollHeight}px`
-        );
+      $(this).find(".comment-children-edit").css("height","1px");
+      $(this).find(".comment-children-edit").css("height",`${$(this).find(".comment-children-edit")[0].scrollHeight}px`);
+  //   $(this)[0].oninput = function () {
+  //     $(this).find(".comment-children-edit").css("height","5px");
+  //     $(this).find(".comment-children-edit").css("height",`${$(this).find(".comment-children-edit")[0].scrollHeight}px`);
+  //  };
     });
   };
 
