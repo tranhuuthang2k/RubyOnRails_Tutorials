@@ -143,6 +143,7 @@ function Category(options) {
     $(".text-reply").one("click", function () {
       $(".text-reply-comment").show();
       $(this).parent().parent().append(template_replyComment);
+
       $(this)
         .parent()
         .parent()
@@ -231,6 +232,7 @@ function Category(options) {
       }
     );
   };
+
   module.clickeditComment = function () {
     $(document).on("click", ".edit-comment", function () {
       ele = $(this).closest(".comments");
@@ -238,11 +240,9 @@ function Category(options) {
       $(".list-edit-comment").show();
       $(ele).find(".in-comment-edit").show();
       $(ele).find(".list-edit-comment").hide();
-      $(ele).find(".in-comment-edit").css("height","1px");
-      $(ele).find(".in-comment-edit").css("height",`${$(this).find(".in-comment-edit").scrollHeight}px`);
-      console.log( $(ele).find(".in-comment-edit").css("height",`${$(ele).find(".in-comment-edit")[0].scrollHeight}px`));
     });
   };
+
   module.editComment = function () {
     $(document).on("keypress", ".in-comment-edit", function (e) {
       if (event.keyCode == 13) {
@@ -380,7 +380,7 @@ function Category(options) {
           if (data.code == 200) {
             Swal.fire({
               icon: "success",
-              title: "Successfully...",
+              title: "successfully...",
             });
             var template_comment_childen = Handlebars.compile(
               module.settings.template.list_children_comment.html()
@@ -608,8 +608,11 @@ function Category(options) {
       $(this).find(".list-edit-comment-children").css("display", "none");
       $(this).find(".comment-children-edit").css("height","1px");
       $(this).find(".comment-children-edit").css("height",`${$(this).find(".comment-children-edit")[0].scrollHeight}px`);
+  //   $(this)[0].oninput = function () {
+  //     $(this).find(".comment-children-edit").css("height","5px");
+  //     $(this).find(".comment-children-edit").css("height",`${$(this).find(".comment-children-edit")[0].scrollHeight}px`);
+  //  };
     });
-
   };
 
   module.editCommentChildren = function () {
