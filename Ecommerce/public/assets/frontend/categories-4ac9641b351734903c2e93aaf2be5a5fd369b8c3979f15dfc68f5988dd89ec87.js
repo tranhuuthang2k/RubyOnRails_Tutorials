@@ -380,7 +380,7 @@ function Category(options) {
           if (data.code == 200) {
             Swal.fire({
               icon: "success",
-              title: "Successfully...",
+              title: "successfully...",
             });
             var template_comment_childen = Handlebars.compile(
               module.settings.template.list_children_comment.html()
