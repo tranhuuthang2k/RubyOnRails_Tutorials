@@ -144,6 +144,7 @@ function Category(options) {
     $(".text-reply").one("click", function () {
       $(".text-reply-comment").show();
       $(this).parent().parent().append(template_replyComment);
+
       $(this)
         .parent()
         .parent()
@@ -232,6 +233,7 @@ function Category(options) {
       }
     );
   };
+
   module.clickeditComment = function () {
     $(document).on("click", ".edit-comment", function () {
       ele = $(this).closest(".comments");
@@ -239,10 +241,9 @@ function Category(options) {
       $(".list-edit-comment").show();
       $(ele).find(".in-comment-edit").show();
       $(ele).find(".list-edit-comment").hide();
-      $(ele).find(".in-comment-edit").css("height","1px");
-      $(ele).find(".in-comment-edit").css("height",`${$(ele).find(".in-comment-edit")[0].scrollHeight}px`);
     });
   };
+
   module.editComment = function () {
     $(document).on("keypress", ".in-comment-edit", function (e) {
       if (event.keyCode == 13) {
@@ -362,6 +363,7 @@ function Category(options) {
       }
       el = $(this).closest(".delete_comment");
       id_comment = el.attr("id");
+
       content = $(this).parent().parent().find("#fieldReplyComment").val();
       $.ajax({
         url: module.settings.api.reply_comment,
@@ -606,10 +608,14 @@ function Category(options) {
     $(document).on("click", ".edit", function () {
       $(this).find(".comment-children-edit").css("display", "block");
       $(this).find(".list-edit-comment-children").css("display", "none");
-      $(this).find(".comment-children-edit").css("height","1px");
-      $(this).find(".comment-children-edit").css("height",`${$(this).find(".comment-children-edit")[0].scrollHeight}px`);
+      $(this).find(".comment-children-edit").css("height", "1px");
+      $(this)
+        .find(".comment-children-edit")
+        .css(
+          "height",
+          `${$(this).find(".comment-children-edit")[0].scrollHeight}px`
+        );
     });
-
   };
 
   module.editCommentChildren = function () {
