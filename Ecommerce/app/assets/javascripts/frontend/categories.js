@@ -606,8 +606,18 @@ function Category(options) {
     $(document).on("click", ".edit", function () {
       $(this).find(".comment-children-edit").css("display", "block");
       $(this).find(".list-edit-comment-children").css("display", "none");
+
       $(this).find(".comment-children-edit").css("height","1px");
       $(this).find(".comment-children-edit").css("height",`${$(this).find(".comment-children-edit")[0].scrollHeight}px`);
+
+      $(this).find(".comment-children-edit").css("height", "1px");
+      $(this)
+        .find(".comment-children-edit")
+        .css(
+          "height",
+          `${$(this).find(".comment-children-edit")[0].scrollHeight}px`
+        );
+
     });
 
   };

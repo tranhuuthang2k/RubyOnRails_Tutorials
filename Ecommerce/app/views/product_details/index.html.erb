@@ -497,6 +497,7 @@ $(".image")
       <div class="list_comment_chidren" >                                
         <div class="comment_children_item comment_children" >
           <!-- <img src=""  width="50px" alt="" /> -->
+
           <p class="list-edit-comment-children">  </p>
         </div>
       </div>
@@ -534,6 +535,7 @@ $(".image")
 
       <p class="list-edit-comment-children" id="content_comment"  style="line-break:anywhere">{{ comment_children.content }} </p>
       <!-- <input type="text" id="{{comment_children.id}}"  class="form-control comment-children-edit" value="{{ comment_children.content }}" style="display:none" /> -->
+
       <!-- <textarea type="text" id="{{comment_children.id}}" class="form-control comment-children-edit"  style=" display:none; color:black">{{ comment_children.content }}</textarea> -->
       <textarea type="text"  id="{{comment_children.id}}" placeholder="Please write a content"  class="form-control comment-children-edit" value="{{ comment_children.content }}" style="overflow: hidden;
         min-height:50px;
@@ -546,6 +548,7 @@ $(".image")
     oninput="auto_grow(this)">{{ comment_children.content }}</textarea>
     </div>
 
+  </div>
 </script>
 
 
