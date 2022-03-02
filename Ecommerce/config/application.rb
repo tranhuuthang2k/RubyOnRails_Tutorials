@@ -14,6 +14,7 @@ module FinalProject
     config.autoload_paths << config.root.join("lib/concerns")
     config.autoload_paths << config.root.join("app/services")
     config.autoload_paths << config.root.join("app/serializers")
+    config.active_job.queue_adapter = :sidekiq
     # config.time_zone = 'Europe/Paris'
     config.time_zone = "Asia/Ho_Chi_Minh"
     # Configuration for the application, engines, and railties goes here.

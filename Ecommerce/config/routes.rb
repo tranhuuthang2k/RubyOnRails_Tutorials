@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
   root 'home#index'
   get 'product_details/index'
+  if defined?(Sidekiq) && defined?(Sidekiq::Web)
+    mount Sidekiq::Web => '/sidekiq'
+  end
+  
   if Rails.env.development?
     scope format: true, constraints: { format: /jpg|png|gif|PNG/ } do
       get '/*anything', to: proc { [404, {}, ['']] }, constraints: lambda { |request| !request.path_parameters[:anything].start_with?('rails/') }

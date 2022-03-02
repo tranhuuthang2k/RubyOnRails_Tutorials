@@ -64,8 +64,9 @@ class Api::V1::CartsController < Api::V1::BaseController
                                             service: data[:check_shipping].name,
                                             fee: data[:check_shipping].price)
       if product_order.save
+        SendEmailJob.set(wait: 1.minutes).perform_later(@user, product_order)
         render json: success_message('Successfully', product_order: product_order)
-        OrderMailer.send_order(@user, product_order).deliver
+        # OrderMailer.send_order(@user, product_order).deliver
       end
     else
       render json: error_message(t('shopping cart is invalid or does not exist'))
