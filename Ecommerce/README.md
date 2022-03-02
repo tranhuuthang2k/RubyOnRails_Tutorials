@@ -119,6 +119,16 @@ Refresh && update my code heroku
 - step 2: heroku restart
 + Migrate db in heroku 
 - heroku rake db:migrate
+----------------------------------------------------------------------------------
+Sidekiq config heroku 
++ Document:  https://www.bigbinary.com/learn-rubyonrails-book/sidekiq-in-heroku 
++ Youtube: https://www.youtube.com/watch?v=5wwhmgGZJbI
+----------------------------------------------------------------------------------
+Connect sidekid
++ Step 1: https://www.shopmrkatsu.tk/sidekiq
++ Step 2:
+  + Username: sidekiq
+  + Password: sidekiq
 -----------------------------------------------------------------------------------
 Error deployment heroku
 - Error PG::DatatypeMismatch: ERROR: argument of WHERE must be type boolean, not type integer

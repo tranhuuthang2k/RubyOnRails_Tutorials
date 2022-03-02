@@ -86,4 +86,5 @@ gem 'groupdate'
 gem "aws-sdk-s3", require: false
 gem 'uglifier', '>= 1.0.3', require: 'uglifier'
 gem 'bootstrap4-kaminari-views'
-
+gem "sidekiq"
+gem 'sidekiq-cron'
