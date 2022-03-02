@@ -230,7 +230,6 @@
                                             <div class="buttonload" style="display:none"><i class="fa fa-spinner fa-spin"></i> is sending,please wait... </div>
                                             </div>
                                                                       <input type="submit" id="btn_send_comment"  style="
-
                                                                         color: white;
                                                                         background: #FE980F;
                                                                         border-radius: 10px;
@@ -268,6 +267,7 @@
 
                                     <% else %>
                                       <img class="media-object" src="/assets/home/iframe2.png" alt="">
+
                                     <% end %>
                                     </a>
                                     <div class="media-body comments">
@@ -278,12 +278,19 @@
                                         <% if user_signed_in? && comment.user_id == current_user.id %>
                                           <li><a class="delete-comment"><i style="color:white; cursor: pointer" class="fa fa-trash"></i> </a></li>
                                           <li><a class="edit-comment" id="comment-<%= comment.id %>" > <i style="color:white; cursor: pointer" class="fa fa-edit"></i></a></li>
-                                          <input type="text"  class="form-control in-comment-edit" value="<%= comment.content %>" style="display:none" />
+                                          <!-- <input type="text"  class="form-control in-comment-edit" value="<%= comment.content %>" style="display:none" /> -->
+                                          <textarea type="text"  placeholder="Please write a content"  class="form-control in-comment-edit" value="<%= comment.content %>" style="
+                                            min-height:50px;
+                                            max-height: 200px;
+                                            height:50px;
+                                            display:none;
+                                            color:black"  
+                                        oninput="auto_grow(this)"><%= comment.content %></textarea>
                                         <% end %>
                                       </ul>
                                      
                                     <a href="<%= comment.image.present? ? url_for(comment.image) : '' %>" data-lightbox="example-2" > <img class="media-object" data-lightbox="image-1" data-title="My caption" src="<%= comment.image.present? ? url_for(comment.image) : '' %>" alt="" width="50%" height="auto" ></a>
-                                      <p class="list-edit-comment" ><%= comment.content %></p>
+                                      <p class="list-edit-comment" style="line-break: anywhere;" ><%= comment.content %></p>
 
                                     <p class="reply_comment"> Reply Question <p>
                               
@@ -301,15 +308,16 @@
                                             <% end %>
                                             <p class="list-edit-comment-children" id="content_comment"  style="line-break:anywhere"> <%= item.content%> </p>
                                             <!-- <input type="text" id="<%= item.id %>"  class="form-control comment-children-edit" value="<%= item.content %>" style="display:none" /> -->
-                                            <textarea type="text"  id="<%= item.id %>" placeholder="Please write a content"  class="form-control comment-children-edit" value="<%= item.content %>" style="overflow: hidden;
-                                                min-height:50px;
-                                                max-height: 200px;
-                                                height:50px;
-                                                display:none;
-                                                color:black
-                                            "  
-                                            
-                                            oninput="auto_grow(this)"><%= item.content %></textarea>
+                                            <textarea type="text"  id="<%= item.id %>" placeholder="Please write a content"  class="form-control comment-children-edit" value="<%= item.content %>" style="
+                                       
+                                              min-height:50px;
+                                              max-height: 200px;
+                                              height:50px;
+                                              display:none;
+                                              color:black
+                                          "  
+                                          
+                                          oninput="auto_grow(this)"><%= item.content %></textarea>
                                           </div>
                                         <% end %>
                                     </div>
@@ -439,8 +447,6 @@ function auto_grow(element) {
     element.style.height = "1px";
     element.style.height = (element.scrollHeight)+"px";
 }
-
-
     $('.button').on('click', function() {
         $(this).addClass('active').siblings().removeClass('active');
     });
@@ -463,9 +469,6 @@ $(".image")
   <i class="fa fa-heart " product-id="{{productLove.product_id}}" id="heart-red"></i>
 {{/if}}
 </script>
-
-
-
 <script id="list-comment-template" type="text/x-handlebars-template">
     <li class="media delete_comment" id="{{ comment.id }}" style="width:100%">
       <a class="pull-left" href="#" style="display:flex; justify-content: center">
@@ -478,15 +481,23 @@ $(".image")
         <li><i class="fa fa-calendar"></i>{{ comment.created_at }}</li>
         <li><a class="delete-comment"><i style="color:white; cursor: pointer; font-size: 14px" class="fa fa-trash"></i></a></li>
         <li><a class="edit-comment" id= "comment-{{comment.id}}" ><i style="color:white; cursor: pointer; font-size: 14px" class="fa fa-edit"></i></a> </li>
-        <input type="text"  class="form-control in-comment-edit" value="{{ comment.content }}" style="display:none"/>
+        <!-- <input type="text"  class="form-control in-comment-edit" value="{{ comment.content }}" style="display:none"/> -->
+        <textarea  placeholder="Please write a content"  class="form-control in-comment-edit" value="{{ comment.content }}" style="overflow: hidden;
+          min-height:50px;
+          max-height: 200px;
+          height:50px;
+          display:none;
+          color:black
+      "  
+      oninput="auto_grow(this)">{{ comment.content }}</textarea>
         </ul>    
       <a href="{{ image }}" data-lightbox="example-2" > <img class="media-object" data-lightbox="image-1" data-title="My caption" src="{{ image }}" alt="" width="50%" height="auto" ></a>
-      <p class="list-edit-comment">{{ comment.content }}</p>
+      <p class="list-edit-comment" style="line-break: anywhere;">{{ comment.content }}</p>
      <p class="reply_comment"> Reply Question <p>
-     
       <div class="list_comment_chidren" >                                
         <div class="comment_children_item comment_children" >
-          <img src=""  width="50px" alt="" />
+          <!-- <img src=""  width="50px" alt="" /> -->
+
           <p class="list-edit-comment-children">  </p>
         </div>
       </div>
@@ -524,7 +535,20 @@ $(".image")
 
       <p class="list-edit-comment-children" id="content_comment"  style="line-break:anywhere">{{ comment_children.content }} </p>
       <!-- <input type="text" id="{{comment_children.id}}"  class="form-control comment-children-edit" value="{{ comment_children.content }}" style="display:none" /> -->
-      <textarea type="text" id="{{comment_children.id}}" class="form-control comment-children-edit"  style=" display:none; color:black "  
-        oninput="auto_grow(this)">{{ comment_children.content }}</textarea>
+
+      <!-- <textarea type="text" id="{{comment_children.id}}" class="form-control comment-children-edit"  style=" display:none; color:black">{{ comment_children.content }}</textarea> -->
+      <textarea type="text"  id="{{comment_children.id}}" placeholder="Please write a content"  class="form-control comment-children-edit" value="{{ comment_children.content }}" style="overflow: hidden;
+        min-height:50px;
+        max-height: 200px;
+        height:50px;
+        display:none;
+        color:black
+    "  
+    
+    oninput="auto_grow(this)">{{ comment_children.content }}</textarea>
+    </div>
+
   </div>
 </script>
+
+
