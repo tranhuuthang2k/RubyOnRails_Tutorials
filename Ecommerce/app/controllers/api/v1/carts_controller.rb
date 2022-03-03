@@ -3,12 +3,12 @@ class Api::V1::CartsController < Api::V1::BaseController
   before_action :load_user, only: %i[index checkout payment_momo]
 
   def success
-    secretKey = 'K951B6PE1waDMi640xX08PD3vg6EkVlz'
-    rawSignature = 'http://localhost:3000/api/v1/checkout_success?partnerCode=MOMO&orderId=595f5241-2c47-47d9-af2f-a6b586a2aa29&requestId=2159428c-037d-4c92-8d9e-d4c77b369418&amount=60000&orderInfo=pay+with+MoMo&orderType=momo_wallet&transId=2644569745&resultCode=0&message=Giao+d%E1%BB%8Bch+th%C3%A0nh+c%C3%B4ng.&payType=qr&responseTime=1645076866338&extraData=&signature=92b4c1e15e093ea457955d7533347cc64ea28f8a0c0f9e11dcf89b9051177d9e'
-    signature = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), secretKey, rawSignature)
-    if params[:resultCode] == '0'
+    secretKey = "K951B6PE1waDMi640xX08PD3vg6EkVlz"
+    rawSignature = "http://localhost:3000/api/v1/checkout_success?partnerCode=MOMO&orderId=595f5241-2c47-47d9-af2f-a6b586a2aa29&requestId=2159428c-037d-4c92-8d9e-d4c77b369418&amount=60000&orderInfo=pay+with+MoMo&orderType=momo_wallet&transId=2644569745&resultCode=0&message=Giao+d%E1%BB%8Bch+th%C3%A0nh+c%C3%B4ng.&payType=qr&responseTime=1645076866338&extraData=&signature=92b4c1e15e093ea457955d7533347cc64ea28f8a0c0f9e11dcf89b9051177d9e"
+    signature = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new("sha256"), secretKey, rawSignature)
+    if params[:resultCode] == "0"
       # session[:current_user_id]
-      render json: success_message('Successfully')
+      render json: success_message("Successfully")
     end
     # render json: error_message('error_message')
   end
@@ -17,7 +17,7 @@ class Api::V1::CartsController < Api::V1::BaseController
     temp_carts = []
     data.select { |_, value| temp_carts << value }
     carts_order = []
-    product_ids = temp_carts.pluck('id').compact
+    product_ids = temp_carts.pluck("id").compact
     total_order = 0
     products = Product.where(id: product_ids).index_by(&:id)
     check_voucher = Voucher.find_by(code: voucher_code)
@@ -29,8 +29,7 @@ class Api::V1::CartsController < Api::V1::BaseController
       # update quantity product is buyer is needing
       availabilities = product.availability.present? && product.availability.update_attribute(:is_ordering,
                                                                                               product.availability.is_ordering + p[:quantity].to_i)
-
-      if p['quantity'].to_i > product.availability&.number_product.to_i || product.availability&.status == OrderItem::STOCK[:Outstock]
+      if product.availability&.status == OrderItem::STOCK[:Outstock] || product.availability&.number_instock.to_i < p["quantity"].to_i
         return result = { carts_order: [] }
       end
 
@@ -65,11 +64,11 @@ class Api::V1::CartsController < Api::V1::BaseController
                                             fee: data[:check_shipping].price)
       if product_order.save
         SendEmailJob.set(wait: 1.minutes).perform_later(@user, product_order)
-        render json: success_message('Successfully', product_order: product_order)
+        render json: success_message("Successfully", product_order: product_order)
         # OrderMailer.send_order(@user, product_order).deliver
       end
     else
-      render json: error_message(t('shopping cart is invalid or does not exist'))
+      render json: error_message(t("shopping cart is invalid or does not exist"))
     end
   end
 
@@ -80,7 +79,7 @@ class Api::V1::CartsController < Api::V1::BaseController
     temp_carts = []
     data.select { |_, value| temp_carts << value }
     carts_order = []
-    product_ids = temp_carts.pluck('id').compact
+    product_ids = temp_carts.pluck("id").compact
     total_order = 0
     products = Product.where(id: product_ids).index_by(&:id)
     check_voucher = Voucher.find_by(code: voucher_code)
@@ -105,46 +104,46 @@ class Api::V1::CartsController < Api::V1::BaseController
     total_order = carts_order.sum do |cart_order|
       cart_order[:total].to_f
     end - voucher_cost + check_shipping.price
-    endpoint = 'https://test-payment.momo.vn/v2/gateway/api/create'
-    partnerCode = 'MOMO'
-    accessKey = 'F8BBA842ECF85'
-    secretKey = 'K951B6PE1waDMi640xX08PD3vg6EkVlz'
-    orderInfo = 'pay with MoMo'
+    endpoint = "https://test-payment.momo.vn/v2/gateway/api/create"
+    partnerCode = "MOMO"
+    accessKey = "F8BBA842ECF85"
+    secretKey = "K951B6PE1waDMi640xX08PD3vg6EkVlz"
+    orderInfo = "pay with MoMo"
     redirectUrl = users_carts_path
     ipnUrl = users_carts_path
     amount = (total_order * 22.790 * 1000).to_i.to_s
     orderId = SecureRandom.uuid
     requestId = SecureRandom.uuid
-    requestType = 'captureWallet'
-    extraData = '' # pass empty value or Encode base64 JsonString
+    requestType = "captureWallet"
+    extraData = "" # pass empty value or Encode base64 JsonString
 
     # before sign HMAC SHA256 with format: accessKey=$accessKey&amount=$amount&extraData=$extraData&ipnUrl=$ipnUrl&orderId=$orderId&orderInfo=$orderInfo&partnerCode=$partnerCode&redirectUrl=$redirectUrl&requestId=$requestId&requestType=$requestType
-    rawSignature = 'accessKey=' + accessKey + '&amount=' + amount + '&extraData=' + extraData + '&ipnUrl=' + ipnUrl + '&orderId=' + orderId + '&orderInfo=' + orderInfo + '&partnerCode=' + partnerCode + '&redirectUrl=' + redirectUrl + '&requestId=' + requestId + '&requestType=' + requestType
+    rawSignature = "accessKey=" + accessKey + "&amount=" + amount + "&extraData=" + extraData + "&ipnUrl=" + ipnUrl + "&orderId=" + orderId + "&orderInfo=" + orderInfo + "&partnerCode=" + partnerCode + "&redirectUrl=" + redirectUrl + "&requestId=" + requestId + "&requestType=" + requestType
     # puts raw signature
-    puts '--------------------RAW SIGNATURE----------------'
+    puts "--------------------RAW SIGNATURE----------------"
     puts rawSignature
     # signature
-    signature = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), secretKey, rawSignature)
-    puts '--------------------SIGNATURE----------------'
+    signature = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new("sha256"), secretKey, rawSignature)
+    puts "--------------------SIGNATURE----------------"
     puts signature
 
     # json object send to MoMo endpoint
     jsonRequestToMomo = {
       partnerCode: partnerCode,
-      partnerName: 'Test',
-      storeId: 'MomoTestStore',
+      partnerName: "Test",
+      storeId: "MomoTestStore",
       requestId: requestId,
       amount: amount,
       orderId: orderId,
       orderInfo: orderInfo,
       redirectUrl: redirectUrl,
       ipnUrl: ipnUrl,
-      lang: 'vi',
+      lang: "vi",
       extraData: extraData,
       requestType: requestType,
-      signature: signature
+      signature: signature,
     }
-    puts '--------------------JSON REQUEST----------------'
+    puts "--------------------JSON REQUEST----------------"
     puts JSON.pretty_generate(jsonRequestToMomo)
     # Create the HTTP objects
     uri = URI.parse(endpoint)
@@ -152,24 +151,24 @@ class Api::V1::CartsController < Api::V1::BaseController
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     request = Net::HTTP::Post.new(uri.path)
-    request.add_field('Content-Type', 'application/json')
+    request.add_field("Content-Type", "application/json")
     request.body = jsonRequestToMomo.to_json
 
     # Send the request and get the response
-    puts 'SENDING....'
+    puts "SENDING...."
     response = http.request(request)
     result = JSON.parse(response.body)
-    puts '--------------------RESPONSE----------------'
+    puts "--------------------RESPONSE----------------"
     puts JSON.pretty_generate(result)
-    render json: success_message('Successfully', url: result['payUrl'])
+    render json: success_message("Successfully", url: result["payUrl"])
   end
 
   private
 
   def load_user
     token = params[:token]
-    hmac_secret = 'rubyk01'
-    decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
-    @user = User.find_by(api_token_digest: decoded_token.first['data'])
+    hmac_secret = "rubyk01"
+    decoded_token = JWT.decode token, hmac_secret, true, { algorithm: "HS256" }
+    @user = User.find_by(api_token_digest: decoded_token.first["data"])
   end
 end
