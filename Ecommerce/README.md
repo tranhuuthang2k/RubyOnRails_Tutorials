@@ -125,7 +125,7 @@ Sidekiq config heroku
 + Youtube: https://www.youtube.com/watch?v=5wwhmgGZJbI
 ----------------------------------------------------------------------------------
 Connect sidekid
-+ Step 1: https://www.shopmrkatsu.tk/sidekiq
++ Step 1: http://shopmrkatsu.tk/sidekiq
 + Step 2:
   + Username: sidekiq
   + Password: sidekiq

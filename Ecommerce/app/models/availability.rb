@@ -3,7 +3,15 @@ class Availability < ApplicationRecord
   validates :name, presence: true, length: { maximum: 1000 }
   validates :number_product, presence: true
   validates :status, presence: true
+
   after_create do
+    update_number_instock
+  end
+  # after_save do
+  #   update_number_instock if number_instock != number_product
+  # end
+
+  def update_number_instock
     Availability.find(id).update_attribute(:number_instock, number_product)
   end
   rails_admin do
@@ -11,7 +19,7 @@ class Availability < ApplicationRecord
       exclude_fields :product_sold
       field :status, :enum do
         enum do
-          [["Instock", 1], ["Outstock", 0]]
+          [['Instock', 1], ['Outstock', 0]]
         end
       end
     end
@@ -23,7 +31,7 @@ class Availability < ApplicationRecord
       field :is_ordering
       field :status, :enum do
         enum do
-          [["Instock", 1], ["Outstock", 0]]
+          [['Instock', 1], ['Outstock', 0]]
         end
       end
       field :products
@@ -37,7 +45,7 @@ class Availability < ApplicationRecord
       field :is_ordering
       field :status, :enum do
         enum do
-          [["Instock", 1], ["Outstock", 0]]
+          [['Instock', 1], ['Outstock', 0]]
         end
       end
       field :created_at
