@@ -7,7 +7,7 @@ class Product < ApplicationRecord
   has_rich_text :content
 
   has_one_attached :image
-  validates :title, presence: true
+  validates :title, presence: true, length: { maximum: 40 }
   validates :price, numericality: true
   validates :content, presence: true
   validates :sizes, presence: true
