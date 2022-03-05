@@ -73,7 +73,8 @@ Things you may want to cover:
 55. Manage city
 56. Product Sold
 57. Export Invoice
-58. Dashboard 
+59. Hot Product
+60. Dashboard 
     + Revenue of each month, year...
     + Hot selling products
     + Total products in the system

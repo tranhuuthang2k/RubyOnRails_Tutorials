@@ -1,0 +1,69 @@
+<div class="main">
+  <div class="slider">
+    <% @results[:availabilities].each do |availability| %>
+      <% availability.products.order(created_at: :desc).each do |item| %>
+      <% if item.availability&.product_sold > 0  && item.image.attached? %>
+         <div style="display: flex"> 
+            <a href="/product-details/<%= item.title.parameterize%>~<%=item.id%>"><img src="<%=  url_for(item.image)  %>"  width="100" alt="" /></a>
+            <a href="/product-details/<%= item.title.parameterize%>~<%=item.id%>" style="color: black ">
+                <div class="list-item">
+                    <p class="title"><%= item.title  %> </p>
+                    <h2 class="price">$<%= item.price  %></h2>
+                    <p class="title">Sold: <%= item.availability&.product_sold %> products</p>
+                </div>
+            </a>
+        </div>
+      <% end %>
+
+      <% end %>
+
+    <% end %>
+
+  </div>
+</div>
+<style>
+
+
+
+.slick-vertical .slick-slide {
+  border-top: 1px solid #EEE;
+  border-bottom: 1px solid #EEE;
+}
+.list-item{
+    padding-left: 5px;
+    text-align: center;
+}
+.list-item h5{
+font-size: 16px;
+    font-weight: 700;
+}
+.slick-vertical .slick-slide {
+  border-top: 1px solid #EEE;
+  border-bottom: 1px solid #EEE;
+}
+
+.slick-vertical .slick-current {
+  border-top-color: #000;
+  border-bottom-color: #000;
+}
+
+.slick-track {
+    margin-top: 85px;
+}
+
+</style>
+<script>
+ $('.slider').slick({
+    dots: false,
+    infinite: true,
+    slidesToShow: 2,
+    centerMode: true,
+    arrows: false,
+    vertical: true,
+    autoplay:true,
+    autoplaySpeed:1500,
+    verticalSwiping: true,
+    
+ });
+
+</script>

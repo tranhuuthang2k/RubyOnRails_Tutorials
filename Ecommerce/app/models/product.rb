@@ -4,6 +4,7 @@ class Product < ApplicationRecord
   STATUS = { 'pending': 0, 'confirmed': 1, 'cancel': 2 }.freeze # 0 -> pending, 1 -> confirm, 2 -> cancel
   scope :show_products, ->(val) { where.not(show_home: val.to_s).limit(val === 0 ? 9 : 3) }
   scope :by_ids, ->(ids) { where(id: ids) }
+
   has_rich_text :content
 
   has_one_attached :image

@@ -3,6 +3,7 @@ class Availability < ApplicationRecord
   validates :name, presence: true, length: { maximum: 1000 }
   validates :number_product, presence: true
   validates :status, presence: true
+  scope :by_product_sold, ->(product_sold) { where('product_sold > ?', product_sold) }
 
   after_create do
     update_number_instock
