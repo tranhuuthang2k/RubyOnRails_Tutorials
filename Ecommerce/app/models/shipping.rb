@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Shipping < ApplicationRecord
   has_many :shipping_cities, dependent: :destroy
   has_many :cities, through: :shipping_cities

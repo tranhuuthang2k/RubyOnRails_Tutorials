@@ -1,5 +1,7 @@
-require "rails_admin/config/actions"
-require "rails_admin/config/actions/base"
+# frozen_string_literal: true
+
+require 'rails_admin/config/actions'
+require 'rails_admin/config/actions/base'
 module RailsAdmin
   module Config
     module Actions

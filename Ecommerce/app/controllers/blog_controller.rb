@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BlogController < ApplicationController
   before_action :load_layout, only: %i[index blog_detail]
 

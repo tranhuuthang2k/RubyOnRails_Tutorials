@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreatetableproductRates < ActiveRecord::Migration[6.1]
   def change
     create_table :product_rates do |t|
@@ -7,6 +9,6 @@ class CreatetableproductRates < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
-    add_index :product_rates, [:user_id, :product_id]
+    add_index :product_rates, %i[user_id product_id]
   end
 end

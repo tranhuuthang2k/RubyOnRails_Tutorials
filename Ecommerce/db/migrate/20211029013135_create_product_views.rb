@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateProductViews < ActiveRecord::Migration[6.1]
   def change
     create_table :product_views do |t|

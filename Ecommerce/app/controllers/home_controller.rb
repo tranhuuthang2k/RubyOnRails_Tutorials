@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 class HomeController < ApplicationController
   before_action :build_jwt_token, only: %i[index]
 
   def index
-    # products = Product.limit(4)
     features_items =  Product.show_products Product::SHOW_HOME[:recomand]
     recommend_items = Product.show_products Product::SHOW_HOME[:feature]
     categories = Category.show_category.limit(4)
@@ -12,7 +13,6 @@ class HomeController < ApplicationController
     availabilities = Availability.by_product_sold(0).order(product_sold: :desc).limit(5).shuffle
 
     @results = {
-      # products: products,
       features_items: features_items.page(params[:page]).per(9),
       recommend_items: recommend_items,
       categories: categories,

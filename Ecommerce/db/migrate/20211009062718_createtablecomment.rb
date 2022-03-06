@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Createtablecomment < ActiveRecord::Migration[6.1]
   def change
     create_table :comments do |t|
@@ -7,6 +9,6 @@ class Createtablecomment < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
-    add_index :comments, [:user_id, :product_id]
+    add_index :comments, %i[user_id product_id]
   end
 end

@@ -24,14 +24,22 @@
         </div>
     </div>
 </section>
-<!--/#cart_items-->
 
+<!--/#cart_items-->
+<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+                    <%= render 'home/history_view_product' %>
+				</div>
+			</div>
+		</div>
+</section>
 <section id="do_action">
     <div class="container">
         <div class="heading">
-            <h3>What would you like to do next?</h3>
-            <p>Choose if you have a discount code or reward points you want to use or would like to estimate your
-                delivery cost.</p>
+            <h3>Paymment</h3>
+            <p>During the checkout process, if you wait too long, please login again, and order again.</p>
         </div>
         <div class="row">
             <div class="col-sm-6">
@@ -107,7 +115,6 @@
     </div>
 </section>
 <!--/#do_action-->
-
 <script id="list-cart-template" type="text/x-handlebars-template">
     {{#if carts.length }}
     {{#each carts}} 

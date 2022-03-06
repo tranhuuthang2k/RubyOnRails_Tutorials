@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Post < ApplicationRecord
   scope :newest, -> { order(created_at: :desc) }
   has_rich_text :body

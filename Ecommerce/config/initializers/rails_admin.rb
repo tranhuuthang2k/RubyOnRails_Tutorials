@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require Rails.root.join('lib', 'rails_admin', 'show_order_item.rb')
 RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::ShowOrderItem)
 RailsAdmin.config do |config|
@@ -69,8 +71,6 @@ RailsAdmin.config do |config|
       configure :api_token_digest do
         hide
       end
-
-
     end
     navigation_label 'Manage User'
   end

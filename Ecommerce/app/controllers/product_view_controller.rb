@@ -1,12 +1,12 @@
+# frozen_string_literal: true
+
 class ProductViewController < ApplicationController
   def index
-    id = current_user.id
-    history_products = ProductView.includes(:product).where(user_id: id).page(params[:page]).newest.per(2)
-    notifications = Notification.newest.limit(5)
+    data = helpers.product_history_view
 
     @results = {
-      notifications: notifications,
-      history_products: history_products
+      notifications: data[:notifications],
+      history_products: data[:history_products]
     }
   end
 end

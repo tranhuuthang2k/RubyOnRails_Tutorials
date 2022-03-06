@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProductView < ApplicationRecord
   scope :newest, -> { order(created_at: :desc) }
   scope :by_month_year, lambda { |month, year|

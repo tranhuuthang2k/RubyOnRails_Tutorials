@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProductDetailsController < ApplicationController
   before_action :store_location
 
@@ -9,12 +11,13 @@ class ProductDetailsController < ApplicationController
                   request.remote_ip
                 end
     id = params[:id].match(/\d+$/)[0].to_i
-    product_view = ProductView.new(product_id: id, ip_address: client_ip, user_id: current_user ? current_user.id : '')
+    product_view = ProductView.new(product_id: id, ip_address: client_ip, user_id: current_user ? current_user.id : '') # when user don't login or was logged before ago
     p_view = ProductView.find_by(ip_address: client_ip, product_id: id)
-    if current_user && p_view&.ip_address == client_ip # && !p_view.user_id
+    if current_user && p_view&.ip_address == client_ip #&& p_view.user_id.blank? # when user login
       p_view.update_attribute(:user_id, current_user.id)
     end
-    product_view.save(validate: false) unless p_view
+    product_view.save(validate: false) unless p_view 
+    p_view.touch(:updated_at) if p_view&.user_id == current_user&.id # update updated_at viewing history
     recommend_items = Product.show_products Product::SHOW_HOME[:feature]
     product = Product.find(id)
     admin = User.find(product.user_id)

@@ -1,157 +1,163 @@
-class Api::V1::LovesController < Api::V1::BaseController
-  skip_before_action :require_jwt
-  before_action :load_user,
-                only: %i[index unlove comment reply_comment rate edit_comment_children edit_comment delete_comment
-                         delete_comment_children]
-  before_action :load_comment, only: %i[edit_comment_children edit_comment]
-  def index
-    product_favorite = @user.product_favorites.new(user_id: @user.id, product_id: params[:product_id])
-    if product_favorite.save
-      render json: success_message('Successfully',
-                                   { product_favorite: ActiveModelSerializers::SerializableResource.new(product_favorite,
-                                                                                                        each_serializer: LoveSerializer) })
-    else
-      render json: error_message(t('product id not_found'))
-    end
-  end
+# frozen_string_literal: true
 
-  def unlove
-    product_favorite = @user.product_favorites.find_by(product_id: params[:product_id])
-    if product_favorite
-      product_favorite.delete
-      render json: success_message('Successfully',
-                                   { product_favorite: ActiveModelSerializers::SerializableResource.new(product_favorite,
-                                                                                                        each_serializer: LoveSerializer) })
-    else
-      render json: error_message(t('product id not_found'))
-    end
-  end
-
-  def comment
-    unless params[:content].present? && params[:content].present? && params[:product_id]
-      return       render json: error_message('Please write your content')
-    end
-
-    comment = @user.comments.new(content: params[:content], product_id: params[:product_id], user_id: @user.id)
-    comment.image.attach(params['csv'])
-    name = @user.username
-    if comment.save
-
-      comment.update_attribute(:main_id, comment.id)
-      render json: success_message('Successfully',
-                                   { name: name,
-                                     image: comment.image.present? ? url_for(comment.image) : '',
-                                     avatar: @user.avatar.present? ? url_for(@user.avatar) : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS50TvM3otu4AuOjP-R2TZ8ajlCcctHY7hxJQ&usqp=CAU',
-                                     comment: ActiveModelSerializers::SerializableResource.new(comment,
-                                                                                               each_serializer: CommentSerializer) })
-    end
-  end
-
-  def reply_comment
-    return render json: error_message('Write your comment...') unless params[:content].present?
-
-    comment = Comment.find(params[:id_comment])
-    product_id = comment.product_id
-    parrent_comment_id = comment.id
-    reply_comment = @user.comments.new(content: params[:content], reply_comment_id: parrent_comment_id,
-                                       product_id: product_id, user_id: @user.id)
-
-    if reply_comment.save
-
-      render json: success_message('Successfully',
-                                   { name: @user.username,
-                                     avatar: @user.avatar.present? ? url_for(@user.avatar) : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS50TvM3otu4AuOjP-R2TZ8ajlCcctHY7hxJQ&usqp=CAU',
-                                     comment: ActiveModelSerializers::SerializableResource.new(reply_comment,
-                                                                                               each_serializer: CommentSerializer) })
-
-    else
-      render json: error_message(('product id not_found'))
-    end
-  end
-
-  def edit_comment
-    @comment.content = params[:comment]
-    if @comment.save
-      render json: success_message('Successfully',
-                                   {
-                                     name: @user.username,
-                                     avatar: @user.avatar.present? ? url_for(@user.avatar) : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS50TvM3otu4AuOjP-R2TZ8ajlCcctHY7hxJQ&usqp=CAU',
-                                     comment: ActiveModelSerializers::SerializableResource.new(@comment,
-                                                                                               each_serializer: CommentSerializer)
-                                   })
-    else
-      render json: error_message(('comment id not_found'))
-    end
-  end
-
-  def edit_comment_children
-    edit_comment
-  end
-
-  def delete_comment_children
-    comment = Comment.find(params[:comment_id])
-    return render json: error_message('comment not exists') if comment.user_id != @user.id
-
-    if comment
-      comment.delete
-      render json: success_message('Successfully')
-    else
-      render json: error_message('comment id not_found')
-    end
-  end
-
-  def delete_comment
-    comment = Comment.find(params[:comment_id])
-    return render json: error_message('comment not exists') if comment.user_id != @user.id
-
-    comment_children = Comment.where(reply_comment_id: params[:comment_id])
-    if comment
-      comment.delete
-      comment_children.destroy_all
-      render json: success_message('Successfully')
-    else
-      render json: error_message('comment id not_found')
-    end
-  end
-
-  def rate
-    data = []
-    data << @user.order_items.this_status('1').pluck('product_order').map { |x| JSON.parse(x) }
-    if @user.order_items.present? && data.flatten.pluck('id').include?(params[:product_id])
-      rate = @user.product_rates.new(rate: params[:rate], product_id: params[:product_id], user_id: @user.id)
-      product_rates = ProductRate.where(product_id: params[:product_id]).to_a
-      sum_rate = product_rates.sum(&:rate)
-      count_product = product_rates.size
-      avg = count_product.zero? ? params[:rate] : sum_rate / count_product
-      if rate.save
-        render json: success_message('Successfully',
-                                     { avg: avg,
-                                       rate: ActiveModelSerializers::SerializableResource.new(rate,
-                                                                                              each_serializer: RateSerializer) })
+module Api
+  module V1
+    class LovesController < Api::V1::BaseController
+      skip_before_action :require_jwt
+      before_action :load_user,
+                    only: %i[index unlove comment reply_comment rate edit_comment_children edit_comment delete_comment
+                             delete_comment_children]
+      before_action :load_comment, only: %i[edit_comment_children edit_comment]
+      def index
+        product_favorite = @user.product_favorites.new(user_id: @user.id, product_id: params[:product_id])
+        if product_favorite.save
+          render json: success_message('Successfully',
+                                       { product_favorite: ActiveModelSerializers::SerializableResource.new(product_favorite,
+                                                                                                            each_serializer: LoveSerializer) })
+        else
+          render json: error_message(t('product id not_found'))
+        end
       end
-    else
-      render json: error_message('You have not purchased this product so cannot rated')
-    end
-  end
 
-  private
+      def unlove
+        product_favorite = @user.product_favorites.find_by(product_id: params[:product_id])
+        if product_favorite
+          product_favorite.delete
+          render json: success_message('Successfully',
+                                       { product_favorite: ActiveModelSerializers::SerializableResource.new(product_favorite,
+                                                                                                            each_serializer: LoveSerializer) })
+        else
+          render json: error_message(t('product id not_found'))
+        end
+      end
 
-  def load_user
-    token = params[:token]
-    hmac_secret = 'rubyk01'
-    decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
+      def comment
+        unless params[:content].present? && params[:content].present? && params[:product_id]
+          return       render json: error_message('Please write your content')
+        end
 
-    @user = User.find_by(api_token_digest: decoded_token.first['data'])
-  end
+        comment = @user.comments.new(content: params[:content], product_id: params[:product_id], user_id: @user.id)
+        comment.image.attach(params['csv'])
+        name = @user.username
+        if comment.save
 
-  def load_comment
-    return render json: error_message('Please write your content') unless params[:comment].present?
+          comment.update_attribute(:main_id, comment.id)
+          render json: success_message('Successfully',
+                                       { name: name,
+                                         image: comment.image.present? ? url_for(comment.image) : '',
+                                         avatar: @user.avatar.present? ? url_for(@user.avatar) : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS50TvM3otu4AuOjP-R2TZ8ajlCcctHY7hxJQ&usqp=CAU',
+                                         comment: ActiveModelSerializers::SerializableResource.new(comment,
+                                                                                                   each_serializer: CommentSerializer) })
+        end
+      end
 
-    @comment = Comment.find_by(id: params[:comment_id])
-    if @comment.user_id != @user.id
-      render json: error_message('you are not the author of this comment')
-    else
-      @comment
+      def reply_comment
+        return render json: error_message('Write your comment...') unless params[:content].present?
+
+        comment = Comment.find(params[:id_comment])
+        product_id = comment.product_id
+        parrent_comment_id = comment.id
+        reply_comment = @user.comments.new(content: params[:content], reply_comment_id: parrent_comment_id,
+                                           product_id: product_id, user_id: @user.id)
+
+        if reply_comment.save
+
+          render json: success_message('Successfully',
+                                       { name: @user.username,
+                                         avatar: @user.avatar.present? ? url_for(@user.avatar) : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS50TvM3otu4AuOjP-R2TZ8ajlCcctHY7hxJQ&usqp=CAU',
+                                         comment: ActiveModelSerializers::SerializableResource.new(reply_comment,
+                                                                                                   each_serializer: CommentSerializer) })
+
+        else
+          render json: error_message(('product id not_found'))
+        end
+      end
+
+      def edit_comment
+        @comment.content = params[:comment]
+        if @comment.save
+          render json: success_message('Successfully',
+                                       {
+                                         name: @user.username,
+                                         avatar: @user.avatar.present? ? url_for(@user.avatar) : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS50TvM3otu4AuOjP-R2TZ8ajlCcctHY7hxJQ&usqp=CAU',
+                                         comment: ActiveModelSerializers::SerializableResource.new(@comment,
+                                                                                                   each_serializer: CommentSerializer)
+                                       })
+        else
+          render json: error_message(('comment id not_found'))
+        end
+      end
+
+      def edit_comment_children
+        edit_comment
+      end
+
+      def delete_comment_children
+        comment = Comment.find(params[:comment_id])
+        return render json: error_message('comment not exists') if comment.user_id != @user.id
+
+        if comment
+          comment.delete
+          render json: success_message('Successfully')
+        else
+          render json: error_message('comment id not_found')
+        end
+      end
+
+      def delete_comment
+        comment = Comment.find(params[:comment_id])
+        return render json: error_message('comment not exists') if comment.user_id != @user.id
+
+        comment_children = Comment.where(reply_comment_id: params[:comment_id])
+        if comment
+          comment.delete
+          comment_children.destroy_all
+          render json: success_message('Successfully')
+        else
+          render json: error_message('comment id not_found')
+        end
+      end
+
+      def rate
+        data = []
+        data << @user.order_items.this_status('1').pluck('product_order').map { |x| JSON.parse(x) }
+        if @user.order_items.present? && data.flatten.pluck('id').include?(params[:product_id])
+          rate = @user.product_rates.new(rate: params[:rate], product_id: params[:product_id], user_id: @user.id)
+          product_rates = ProductRate.where(product_id: params[:product_id]).to_a
+          sum_rate = product_rates.sum(&:rate)
+          count_product = product_rates.size
+          avg = count_product.zero? ? params[:rate] : sum_rate / count_product
+          if rate.save
+            render json: success_message('Successfully',
+                                         { avg: avg,
+                                           rate: ActiveModelSerializers::SerializableResource.new(rate,
+                                                                                                  each_serializer: RateSerializer) })
+          end
+        else
+          render json: error_message('You have not purchased this product so cannot rated')
+        end
+      end
+
+      private
+
+      def load_user
+        token = params[:token]
+        hmac_secret = 'rubyk01'
+        decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
+
+        @user = User.find_by(api_token_digest: decoded_token.first['data'])
+      end
+
+      def load_comment
+        return render json: error_message('Please write your content') unless params[:comment].present?
+
+        @comment = Comment.find_by(id: params[:comment_id])
+        if @comment.user_id != @user.id
+          render json: error_message('you are not the author of this comment')
+        else
+          @comment
+        end
+      end
     end
   end
 end

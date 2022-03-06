@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Sidekiq is the de-facto standard choice for running Background tasks
 # You should use it to perform API requests & long running tasks.
 if defined?(Sidekiq) && ENV['REDIS_URL'].present?

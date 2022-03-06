@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SearchSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
   attributes :id, :product_order

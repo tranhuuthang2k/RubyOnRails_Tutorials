@@ -1,0 +1,53 @@
+<% if @results[:history_products].present? && current_user.present? %>
+  <div class="features_items">
+    <!--features_items-->
+    <h2 class="title text-center">Viewed products</h2>
+    <%  @results[:history_products].each do |item| %>
+    <% if item&.product %>
+        <div class="col-sm-3">
+            <div class="product-image-wrapper">
+                <div class="single-products">
+                    <div class="productinfo text-center">
+                        <input type="hidden" id="<%= item.product.id %>" class="id" value="">
+                        <a href="/product-details/<%= item.product.title.parameterize%>~<%=item.product.id%>">
+                        <% if item.product.image.attached?  %>
+                            <%= image_tag url_for(item.product.image) , alt: "img",  class: "imageProduct" ,size: "100x100" %>
+                        <% end %>
+                        </a>
+                        <h2 class="price">$<%= item.product.price  %></h2>
+                        <p class="title"><%= item.product.title  %></p>
+                        <div>
+                            <i class="fa fa-star" style="color: #fe950f;"></i>
+                            <i class="fa fa-star" style="color: #fe950f;"></i>
+                            <i class="fa fa-star" style="color: #fe950f;"></i>
+                            <i class="fa fa-star" style="color: #fe950f;"></i>
+                            <i class="fa fa-star" style="color: #fe950f;"></i>
+                        </div>
+                        <% if item.product.availability&.product_sold.to_i > 0 %>
+                            <p class="title">Sold: <%= item.product.availability&.product_sold %> products</p>
+                        <% else %>
+                            <p class="title"> &nbsp;</p>
+                        <% end %>
+                        <% if  item.product.availability&.status.to_i > 0%>
+                            <a href="javascript:void(0)" class="btn btn-default add-to-cart">
+                            <i class="fa fa-shopping-cart"></i>Add to cart</a>
+                        <% else %>
+                            <a href="javascript:void(0)" class="btn btn-danger out-of-stock">
+                            Out of stock</a>
+                        <% end %>
+                    </div>
+                
+                </div>
+                <div class="choose">
+                    <ul class="nav nav-pills nav-justified">
+                        <li><a href="/product-details/<%= item.product.title.parameterize%>~<%=item.product.id%>"><i class="fa fa-plus-square"></i>See more...</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    <% end %>
+    <% end %>
+</div>
+<!--features_items-->
+<% end %>

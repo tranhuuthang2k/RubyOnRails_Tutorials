@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateProducts < ActiveRecord::Migration[6.1]
   def change
     create_table :products do |t|
@@ -10,6 +12,6 @@ class CreateProducts < ActiveRecord::Migration[6.1]
       t.timestamps
     end
     add_index :products, [:title]
-    #, type: :fulltext 
+    # , type: :fulltext
   end
 end

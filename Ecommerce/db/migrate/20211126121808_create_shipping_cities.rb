@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateShippingCities < ActiveRecord::Migration[6.1]
   def change
     create_table :shipping_cities do |t|

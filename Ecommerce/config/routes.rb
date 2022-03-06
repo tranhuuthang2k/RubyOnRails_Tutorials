@@ -1,15 +1,16 @@
+# frozen_string_literal: true
 
 Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
   root 'home#index'
   get 'product_details/index'
-  if defined?(Sidekiq) && defined?(Sidekiq::Web)
-    mount Sidekiq::Web => '/sidekiq'
-  end
-  
+  mount Sidekiq::Web => '/sidekiq' if defined?(Sidekiq) && defined?(Sidekiq::Web)
+
   if Rails.env.development?
     scope format: true, constraints: { format: /jpg|png|gif|PNG/ } do
-      get '/*anything', to: proc { [404, {}, ['']] }, constraints: lambda { |request| !request.path_parameters[:anything].start_with?('rails/') }
+      get '/*anything', to: proc { [404, {}, ['']] }, constraints: lambda { |request|
+                                                                     !request.path_parameters[:anything].start_with?('rails/')
+                                                                   }
     end
   end
   devise_for :users,
@@ -29,8 +30,6 @@ Rails.application.routes.draw do
     get 'users/carts', to: 'carts#index'
     get 'users/checkout_vnpay', to: 'checkouts#index'
     get 'users/checkout_vnpay/pay', to: 'checkouts#create'
-
-
   end
   get 'product-details/:id', to: 'product_details#index'
   get 'category/:id', to: 'categories#categories'

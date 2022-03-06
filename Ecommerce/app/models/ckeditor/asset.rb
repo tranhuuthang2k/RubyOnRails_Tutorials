@@ -1,7 +1,11 @@
-class Ckeditor::Asset < ActiveRecord::Base
-  include Ckeditor::Orm::ActiveRecord::AssetBase
+# frozen_string_literal: true
 
-  delegate :url, :current_path, :content_type, to: :data
+module Ckeditor
+  class Asset < ActiveRecord::Base
+    include Ckeditor::Orm::ActiveRecord::AssetBase
 
-  validates :data, presence: true
+    delegate :url, :current_path, :content_type, to: :data
+
+    validates :data, presence: true
+  end
 end

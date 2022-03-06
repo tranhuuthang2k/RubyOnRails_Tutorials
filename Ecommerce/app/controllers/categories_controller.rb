@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CategoriesController < ApplicationController
   def categories
     id = params[:id].match(/\d+$/)[0].to_i

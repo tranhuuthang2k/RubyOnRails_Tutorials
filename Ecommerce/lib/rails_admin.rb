@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RailsAdmin
   module Config
     module Actions
@@ -45,7 +47,13 @@ module RailsAdmin
               product_view_ids = product_views.present? && product_views.pluck('product_id').compact.each_with_object(Hash.new(0)) do |c, counts|
                 counts[c] += 1
               end
-             max_product_id_view =  product_view_ids.present? ? product_view_ids.max_by { |_k, v| v }[0] : product_view_ids
+              max_product_id_view = if product_view_ids.present?
+                                      product_view_ids.max_by do |_k, v|
+                                        v
+                                      end [0]
+                                    else
+                                      product_view_ids
+                                    end
 
               if product_id != {}
                 products = Product.by_ids([product_id, max_product_id_view])

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Availability < ApplicationRecord
-  has_many :products
+  has_one :product
   validates :name, presence: true, length: { maximum: 1000 }
   validates :number_product, presence: true
   validates :status, presence: true
@@ -35,7 +37,7 @@ class Availability < ApplicationRecord
           [['Instock', 1], ['Outstock', 0]]
         end
       end
-      field :products
+      field :product
     end
     list do
       field :id

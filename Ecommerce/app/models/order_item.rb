@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OrderItem < ApplicationRecord
   before_update :update_sold
   before_save :check_status

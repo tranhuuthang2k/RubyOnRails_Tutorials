@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ContactController < ApplicationController
   def index
     notifications = Notification.newest.limit(5)
@@ -11,10 +13,9 @@ class ContactController < ApplicationController
                            message: params[:message])
     if @contact.save
       flash[:success] = 'Your Email sended success..'
-      redirect_to contact_path
     else
       flash[:danger] = 'Error send mail'
-      redirect_to contact_path
     end
+    redirect_to contact_path
   end
 end

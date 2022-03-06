@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class Category < ApplicationRecord
   has_many :product_categories
   has_many :products, through: :product_categories
-  scope :show_category, ->{ where categories_id: nil }
+  scope :show_category, -> { where categories_id: nil }
 
-  validates :name, presence: true, length: {maximum:20}
+  validates :name, presence: true, length: { maximum: 20 }
   rails_admin do
     create do
       field :name

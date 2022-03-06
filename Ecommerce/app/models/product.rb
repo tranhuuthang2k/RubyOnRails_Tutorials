@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Product < ApplicationRecord
   # https://stackoverflow.com/questions/12165405/is-there-a-way-to-pass-html-css-options-to-rails-admin-inputs/12428986
-  SHOW_HOME = { feature: 1, recomand: 0 }
+  SHOW_HOME = { feature: 1, recomand: 0 }.freeze
   STATUS = { 'pending': 0, 'confirmed': 1, 'cancel': 2 }.freeze # 0 -> pending, 1 -> confirm, 2 -> cancel
   scope :show_products, ->(val) { where.not(show_home: val.to_s).limit(val === 0 ? 9 : 3) }
   scope :by_ids, ->(ids) { where(id: ids) }

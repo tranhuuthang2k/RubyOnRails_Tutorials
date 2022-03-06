@@ -1,6 +1,7 @@
-class CreateBlog < ActiveRecord::Migration[5.2]
+# frozen_string_literal: true
 
-  LIMIT = 16777215
+class CreateBlog < ActiveRecord::Migration[5.2]
+  LIMIT = 16_777_215
 
   def change
     create_table :comfy_blog_posts do |t|
@@ -15,10 +16,9 @@ class CreateBlog < ActiveRecord::Migration[5.2]
       t.datetime  :published_at,  null: false
       t.timestamps
 
-      t.index [:site_id, :is_published]
-      t.index [:year, :month, :slug]
+      t.index %i[site_id is_published]
+      t.index %i[year month slug]
       t.index [:created_at]
     end
-
   end
 end

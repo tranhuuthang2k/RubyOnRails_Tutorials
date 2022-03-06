@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Notification < ApplicationRecord
   scope :newest, -> { order(created_at: :desc) }
   has_rich_text :content

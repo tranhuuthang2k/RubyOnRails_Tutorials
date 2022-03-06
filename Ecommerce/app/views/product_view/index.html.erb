@@ -25,13 +25,12 @@
 					<tbody>
           <% @results[:history_products].each do |p| %>
               <tr>
+              <% if p.product.present? && p.product.image.attached? %>
                 <td>
                    <p><%=p.product_id%></p>
                 </td>
                 <td class="cart_product">
-                <% if p.product.image.attached? %>
-                  <a href="/product-details/<%= p.product.title.parameterize%>~<%=p.product_id%>"><img src="<%= url_for(p.product.image) %>" alt=""width="110" height="110"</a>
-                <% end %>
+                    <a href="/product-details/<%= p.product.title.parameterize%>~<%=p.product_id%>"><img src="<%= url_for(p.product.image) %>" alt=""width="110" height="110"</a>
                 </td>
                 <td class="cart_title">
                   <h4><a href="/product-details/<%= p.product.title.parameterize%>~<%=p.product_id%>"><%= p.product.title %></a></h4>
@@ -40,6 +39,7 @@
                    <span><%= p.product.price %></span>
                 </td>
                 <td><%= p.created_at.strftime("%d/%m/%Y") %></td>
+              <% end %>
               </tr>
           <% end %>
 					</tbody>

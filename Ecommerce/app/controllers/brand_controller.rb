@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BrandController < ApplicationController
   def brands
     id = params[:id].match(/\d+$/)[0].to_i

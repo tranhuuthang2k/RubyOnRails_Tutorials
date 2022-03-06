@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProductSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
   attributes :title, :price, :id, :image, :image_url1

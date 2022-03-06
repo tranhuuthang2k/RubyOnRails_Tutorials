@@ -1,19 +1,17 @@
 <div class="main">
   <div class="slider">
-    <% @results[:availabilities].each do |availability| %>
-      <% availability.products.order(created_at: :desc).each do |item| %>
-      <% if item.availability&.product_sold > 0  && item.image.attached? %>
+    <% @results[:availabilities].each do |item| %>
+      <% if item.product_sold > 0  && item.product.image.attached? %>
          <div style="display: flex"> 
-            <a href="/product-details/<%= item.title.parameterize%>~<%=item.id%>"><img src="<%=  url_for(item.image)  %>"  width="100" alt="" /></a>
-            <a href="/product-details/<%= item.title.parameterize%>~<%=item.id%>" style="color: black ">
+            <a href="/product-details/<%= item.product.title.parameterize%>~<%=item.product.id%>"><img src="<%=  url_for(item.product.image)  %>"  width="100" alt="" /></a>
+            <a href="/product-details/<%= item.product.title.parameterize%>~<%=item.product.id%>" style="color: black ">
                 <div class="list-item">
-                    <p class="title"><%= item.title  %> </p>
-                    <h2 class="price">$<%= item.price  %></h2>
-                    <p class="title">Sold: <%= item.availability&.product_sold %> products</p>
+                    <p class="title"><%= item.product.title  %> </p>
+                    <h2 class="price">$<%= item.product.price  %></h2>
+                    <p class="title">Sold: <%= item.product_sold %> products</p>
                 </div>
             </a>
         </div>
-      <% end %>
 
       <% end %>
 
@@ -48,22 +46,21 @@ font-size: 16px;
 }
 
 .slick-track {
-    margin-top: 85px;
+    margin-top: 14.5px;
 }
 
 </style>
 <script>
  $('.slider').slick({
-    dots: false,
     infinite: true,
-    slidesToShow: 2,
-    centerMode: true,
-    arrows: false,
     vertical: true,
-    autoplay:true,
-    autoplaySpeed:1500,
     verticalSwiping: true,
-    
+    slidesToShow:3, 
+    slidesToScroll: 3,
+    dots: false,
+    prevArrow: false,
+    nextArrow: false,
+    autoplay:true,
  });
 
 </script>
