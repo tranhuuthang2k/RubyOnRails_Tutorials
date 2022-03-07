@@ -3,19 +3,10 @@
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="left-sidebar">
-                        <!--category-->
-						<h2>Category</h2>
-                          <%= render 'home/category' %>
-                        <!--/category-->
-
-                        <!--brands_products-->
 						<div class="brands_products">
-						<h2>Brands</h2>
-						  <%= render 'home/brands' %>
+						<h2>Category</h2>
+						  <%= render 'home/category_blog' %>
 						</div>
-						<!--/brands_products-->
-
-                     
 					</div>
 				</div>
 				<div class="col-sm-9">
@@ -95,7 +86,7 @@
 					<div class="row">
 						<div class="multiple-items" >
 							<% @results[:post_other].each do |item| %>
-								<a  href="/blog/<%= item.title.parameterize%>~<%=item.id %>" class= "col-sm-3">
+								<a  href="/blog_detail/<%= item.title.parameterize%>~<%=item.id %>" class= "col-sm-3">
 										<img style="width: 100%" src="<%= url_for(item.image) if item.image.attached? %>" alt="Image">
 										<h5 class="title_post"> <%= item.title %> </h5>
 								</a>

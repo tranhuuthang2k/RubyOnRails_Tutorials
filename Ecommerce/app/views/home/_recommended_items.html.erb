@@ -6,7 +6,7 @@
         <div class="carousel-inner">
             <div class="item active">
                 <% @results[:recommend_items].each do |item| %>
-                <div class="col-sm-4">
+                <div class="col-sm-4 col-xs-6">
                     <div class="product-image-wrapper">
                         <div class="single-products">
                             <div class="productinfo text-center">
@@ -28,7 +28,7 @@
             </div>
             <div class="item">
                 <% @results[:recommend_items].each do |item| %>
-                <div class="col-sm-4">
+                <div class="col-sm-4 col-xs-6">
                     <div class="product-image-wrapper">
                         <div class="single-products">
                             <div class="productinfo text-center">
@@ -43,9 +43,6 @@
                                     <i class="fa fa-star" style="color: #fe950f;"></i>
                                     <i class="fa fa-star" style="color: #fe950f;"></i>
                                  </div>
-
-                    <a href="javascript:void(0)" class="btn btn-default add-to-cart"><i
-                            class="fa fa-shopping-cart"></i>Add to cart</a>
                                 <% if item.availability&.product_sold.to_i > 0 %>
                                     <p class="title">Sold: <%= item.availability&.product_sold %> products</p>
                                 <% end %>

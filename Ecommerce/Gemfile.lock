@@ -166,6 +166,7 @@ GEM
     fugit (1.5.2)
       et-orbi (~> 1.1, >= 1.1.8)
       raabro (~> 1.4)
+    geocoder (1.7.3)
     globalid (0.5.2)
       activesupport (>= 5.0)
     groupdate (5.2.2)
@@ -452,6 +453,7 @@ DEPENDENCIES
   ckeditor
   devise
   faker!
+  geocoder
   groupdate
   handlebars_assets
   image_processing (~> 1.2)

@@ -1,17 +1,10 @@
 <section>
 		<div class="container">
 			<div class="row">
-                <div class="col-sm-3">
-					<div class="left-sidebar">
-						<div class="brands_products">
-						<h2>Category</h2>
-						  <%= render 'home/category_blog' %>
-						</div>
-					</div>
-				</div>
-                <div class= col-sm-9>
-                    <h2 class="title text-center">List post</h2>
-                    <% @results[:posts].each do |item| %>
+           <div class= "col-sm-1 "></div>
+                <div class= "col-sm-11 " >
+                    <h2 class="title text-center">Category: <%= @results[:list_post].first&.category_post.name %></h2>
+                    <% @results[:list_post].each do |item| %>
                         <a href="/blog_detail/<%= item.title.parameterize%>~<%=item.id %>" style="color: black">
                             <article>
                                 <img src="<%= url_for(item.image) if item.image.attached? %>" alt="Image" class="list_post">
@@ -28,7 +21,7 @@
                         </a>
                     <% end %>
 			<div style="text-align: center">
-				<%= paginate @results[:posts], theme: 'twitter-bootstrap-4' %>
+				<%= paginate @results[:list_post], theme: 'twitter-bootstrap-4' %>
 			</div>
         </div>
 </section>

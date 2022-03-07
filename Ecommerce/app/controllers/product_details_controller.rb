@@ -5,19 +5,20 @@ class ProductDetailsController < ApplicationController
 
   def index
     env_http_forwarded = request.env['HTTP_X_FORWARDED_FOR']
+
     client_ip = if env_http_forwarded
                   env_http_forwarded.split(',').first
                 else
                   request.remote_ip
                 end
     id = params[:id].match(/\d+$/)[0].to_i
-    product_view = ProductView.new(product_id: id, ip_address: client_ip, user_id: current_user ? current_user.id : '') # when user don't login or was logged before ago
+    product_view = ProductView.new(product_id: id, ip_address: client_ip, city: request.location.city, user_id: current_user ? current_user.id : '') # when user don't login or was logged before ago
     p_view = ProductView.find_by(ip_address: client_ip, product_id: id)
-    if current_user && p_view&.ip_address == client_ip #&& p_view.user_id.blank? # when user login
+    if current_user && p_view&.ip_address == client_ip # && p_view.user_id.blank? # when user login
       p_view.update_attribute(:user_id, current_user.id)
     end
-    product_view.save(validate: false) unless p_view 
-    p_view.touch(:updated_at) if p_view&.user_id == current_user&.id # update updated_at viewing history
+    product_view.save(validate: false) unless p_view
+    p_view&.touch(:updated_at) if p_view&.user_id == current_user&.id # update updated_at viewing history
     recommend_items = Product.show_products Product::SHOW_HOME[:feature]
     product = Product.find(id)
     admin = User.find(product.user_id)

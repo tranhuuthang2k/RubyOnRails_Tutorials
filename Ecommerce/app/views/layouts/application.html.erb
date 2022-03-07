@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Home | E-Shopper</title>
+  <title>Home | Mr.Katsu</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
@@ -45,12 +45,6 @@
 
 <body>
   <!-- LOADER -->
-
-  <div id="loader" style="display: flex;justify-content: center;align-items: center;">
-    <div class="position-center-center">
-      <div class="ldr"></div>
-    </div>
-  </div>
   <%= render 'layouts/header' %>
   <% if notice%>
     <div id="notice_wraper">
@@ -61,20 +55,21 @@
       <div  style="align-items: center;text-align: center;background: #e8a62d59;color: red;" class="alert alert-<%= message_type %>"><span><%= message %></span></div>
     <% end %> 
   <% end %>
+  
   <%= yield %>
+  <div id="loader" style="display: flex;justify-content: center;align-items: center;">
+    <div class="position-center-center">
+      <div class="ldr"></div>
+    </div>
+  </div>
   <%= render 'layouts/footer' %>
 </body>
 </html>
 <script>
   $("#loader").fadeOut("slow");
-  $(document).ready(function () {
-    setTimeout(function () {
       $('#notice_wraper').fadeOut("slow", function () {
         $(this).remove();
       });
-    }, 2000);
-  });
-  
 </script>
 <!-- Messenger Plugin chat Code -->
     <div id="fb-root"></div>
@@ -138,121 +133,3 @@
   {{/if}}
 </script>
 <!-- Messenger Plugin chat Code -->
-
-<style>
-.alert{
-  position: absolute;
-  width: 100%;
-  z-index: 999;
-}
-#loader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: rgba(255, 255, 255, 1);
-  z-index: 100000000;
-  opacity: 1;
-  overflow: hidden;
-  text-align: center;
-  display: flex;
-
-}
-
-#loader {
-  background-color: #fff;
-}
-
-.home-slider #loader {
-  z-index: 9999;
-  background: #fff;
-}
-
-div.ldr {
-  width: 8vmax;
-  height: 8vmax;
-  border-right: 4px solid #2d3a4b;
-  border-radius: 100%;
-  -webkit-animation: spinRight 800ms linear infinite;
-  animation: spinRight 800ms linear infinite;
-}
-
-div.ldr:before,
-div.ldr:after {
-  content: '';
-  width: 6vmax;
-  height: 6vmax;
-  display: block;
-  position: absolute;
-  top: calc(50% - 3vmax);
-  left: calc(50% - 3vmax);
-  border-left: 3px solid #2d3a4b;
-  border-radius: 100%;
-  -webkit-animation: spinLeft 800ms linear infinite;
-  animation: spinLeft 800ms linear infinite;
-}
-
-div.ldr:after {
-  width: 4vmax;
-  height: 4vmax;
-  top: calc(50% - 2vmax);
-  left: calc(50% - 2vmax);
-  border: 0;
-  border-right: 2px solid #2d3a4b;
-  -webkit-animation: none;
-  animation: none;
-}
-
-@-webkit-keyframes spinLeft {
-  from {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-
-  to {
-    -webkit-transform: rotate(720deg);
-    transform: rotate(720deg);
-  }
-}
-
-@keyframes spinLeft {
-  from {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-
-  to {
-    -webkit-transform: rotate(720deg);
-    transform: rotate(720deg);
-  }
-}
-
-@-webkit-keyframes spinRight {
-  from {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-
-  to {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-}
-
-@keyframes spinRight {
-  from {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-
-  to {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-}
-
-.hom-slie {
-  position: absolute !important;
-}
-</style>

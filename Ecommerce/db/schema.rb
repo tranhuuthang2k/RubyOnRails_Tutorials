@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_220_225_143_900) do
+ActiveRecord::Schema.define(version: 20_220_307_072_943) do
   create_table 'action_text_rich_texts', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
     t.string 'name', null: false
     t.text 'body', size: :long
@@ -238,6 +238,7 @@ ActiveRecord::Schema.define(version: 20_220_225_143_900) do
     t.integer 'user_id'
     t.integer 'post_id'
     t.string 'ip_post'
+    t.string 'city'
   end
 
   create_table 'products', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
@@ -253,7 +254,7 @@ ActiveRecord::Schema.define(version: 20_220_225_143_900) do
     t.integer 'user_id'
     t.integer 'categories_id'
     t.integer 'sold', default: 0
-    t.index ['title'], name: 'index_products_on_title'
+    t.index ['title'], name: 'index_products_on_title', type: :fulltext
   end
 
   create_table 'shipping_cities', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
