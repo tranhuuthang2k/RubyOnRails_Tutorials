@@ -1,18 +1,20 @@
-Rails.application.routes.draw do
-  root to: "products#index"
+# frozen_string_literal: true
 
-  scope "/:locale" do
-    get '/login',to:'sessions#new'
-    post '/login',to:'sessions#create'
+Rails.application.routes.draw do
+  root to: 'products#index'
+
+  scope '/:locale' do
+    get '/login', to: 'sessions#new'
+    post '/login', to: 'sessions#create'
     get '/logout', to: 'sessions#destroy'
-    resources :users do 
+    resources :users do
       # collection do
       #   get :signin
       #   get :register
       # end
-    end 
+    end
     # get '/login', to:'users#login'
-    get '/register', to:'users#new'
+    get '/register', to: 'users#new'
 
     resources :microposts
     resources :account_activations, only: :edit
@@ -20,8 +22,8 @@ Rails.application.routes.draw do
     resources :products
     resources :order_items
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-    resources :password_resets, only:[:new, :edit, :update, :create]
-   
+    resources :password_resets, only: %i[new edit update create]
+
     namespace :api, defaults: { format: :json } do
       namespace :v1 do
         resources :users, only: %i[index] do
@@ -29,10 +31,10 @@ Rails.application.routes.draw do
             get :friends
           end
         end
-        post "/login", to: "sessions#create"
-        post "/love", to: "microposts#love"
-        post "/comment", to: "microposts#comment"
+        post '/login', to: 'sessions#create'
+        post '/love', to: 'microposts#love'
+        post '/comment', to: 'microposts#comment'
       end
     end
-  end  
+  end
 end

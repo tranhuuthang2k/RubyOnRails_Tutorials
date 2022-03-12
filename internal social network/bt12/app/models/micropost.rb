@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Micropost < ApplicationRecord
-    belongs_to :user
-    validates  :content, presence: true
-    self.per_page = 5
+  belongs_to :user
+  validates  :content, presence: true
+  self.per_page = 5
 end

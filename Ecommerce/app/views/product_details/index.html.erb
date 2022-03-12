@@ -288,14 +288,13 @@
                                         oninput="auto_grow(this)"><%= comment.content %></textarea>
                                         <% end %>
                                       </ul>
-                                     
+                                    <p class="list-edit-comment" style="line-break: anywhere;" ><%= comment.content %></p>
                                     <a href="<%= comment.image.present? ? url_for(comment.image) : '' %>" data-lightbox="example-2" > <img class="media-object" data-lightbox="image-1" data-title="My caption" src="<%= comment.image.present? ? url_for(comment.image) : '' %>" alt="" width="50%" height="auto" ></a>
-                                      <p class="list-edit-comment" style="line-break: anywhere;" ><%= comment.content %></p>
-
+                                     </br>
                                     <p class="reply_comment"> Reply Question <p>
                               
                                     <div class="list_comment_chidren" >                                
-                                        <% @results[:comment_children].where(reply_comment_id: comment.id).sort_by(&:created_at).each do |item| %>
+                                        <% comment.comment_childrens.sort_by(&:created_at).each do |item| %>
                                           <div class="comment_children_item comment_children" >
                                             <img src="<%= item.user.avatar.attached? ? url_for(item.user.avatar) : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS50TvM3otu4AuOjP-R2TZ8ajlCcctHY7hxJQ&usqp=CAU" %>" id="image_children_comment" width="50" height="50" alt="" />
                                             <span> <i class="fa fa-user" id="icon_name"></i> <span><%= item.user.username%></span> <span>
@@ -491,8 +490,9 @@ $(".image")
       "  
       oninput="auto_grow(this)">{{ comment.content }}</textarea>
         </ul>    
-      <a href="{{ image }}" data-lightbox="example-2" > <img class="media-object" data-lightbox="image-1" data-title="My caption" src="{{ image }}" alt="" width="50%" height="auto" ></a>
       <p class="list-edit-comment" style="line-break: anywhere;">{{ comment.content }}</p>
+      <a href="{{ image }}" data-lightbox="example-2" > <img class="media-object" data-lightbox="image-1" data-title="My caption" src="{{ image }}" alt="" width="50%" height="auto" ></a>
+      </br>
      <p class="reply_comment"> Reply Question <p>
       <div class="list_comment_chidren" >                                
         <div class="comment_children_item comment_children" >

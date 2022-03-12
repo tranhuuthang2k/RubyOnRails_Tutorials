@@ -2,6 +2,10 @@
 <html>
 <head>
   <title>Home | Mr.Katsu</title>
+  <meta id="metaDescription" name="description" content="Trần Hữu Thắng, shop mr.katsu, buy everything your need">
+  <meta property="og:description" content="Trần Hữu Thắng, shop mr.katsu, shopmrkatsu.tk, shopmrkatsu" />
+  <meta property="og:type" content="website" /> 
+    <meta property="og:url" content="http://shopmrkatsu.tk/" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
@@ -55,35 +59,40 @@
       <div  style="align-items: center;text-align: center;background: #e8a62d59;color: red;" class="alert alert-<%= message_type %>"><span><%= message %></span></div>
     <% end %> 
   <% end %>
-  
-  <%= yield %>
   <div id="loader" style="display: flex;justify-content: center;align-items: center;">
     <div class="position-center-center">
       <div class="ldr"></div>
     </div>
   </div>
+  <div class="show_body" style="display:none">
+    <script>
+      $("#loader").fadeOut("slow");
+      $(".show_body").css("display","block")
+    </script>
+     <%= yield %>
+     <script>
+      setTimeout(function() {
+        $('#notice_wraper').fadeOut("slow", function () {
+          $(this).remove();
+        });
+      }, 2000);
+      </script>
+     <script>
+    </script>
+  </div>
   <%= render 'layouts/footer' %>
 </body>
 </html>
-<script>
-  $("#loader").fadeOut("slow");
-      $('#notice_wraper').fadeOut("slow", function () {
-        $(this).remove();
-      });
-</script>
 <!-- Messenger Plugin chat Code -->
     <div id="fb-root"></div>
-
     <!-- Your Plugin chat code -->
     <div id="fb-customer-chat" class="fb-customerchat">
     </div>
-
     <script>
       var chatbox = document.getElementById('fb-customer-chat');
       chatbox.setAttribute("page_id", "2741635706062292");
       chatbox.setAttribute("attribution", "biz_inbox");
     </script>
-
     <!-- Your SDK code -->
     <script>
       window.fbAsyncInit = function() {

@@ -21,7 +21,7 @@ class Product < ApplicationRecord
   has_many :sizes, through: :product_sizes
 
   has_many :photos
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :product_favorites
   has_many :product_rates
   has_many :product_views, dependent: :destroy

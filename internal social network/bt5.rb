@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # class Box
 #   def initialize width, height
 #       @width = width
@@ -49,16 +51,16 @@ class Animal
   protected
 
   def number_foots
-    puts "have 2 foots"
+    puts 'have 2 foots'
   end
 
   private
 
   def private_instance
-    puts " private_instance is private method!!!!"
+    puts ' private_instance is private method!!!!'
   end
 
-  animal = Animal.new "black", "2"
+  animal = Animal.new 'black', '2'
   # p animal.color
   # p animal.public_instance
 end
@@ -96,11 +98,11 @@ class Banner
   private
 
   def empty_line
-    "| #{" " * (@message.size)} |"
+    "| #{' ' * @message.size} |"
   end
 
   def horizontal_rule
-    "+-#{"-" * (@message.size)}-+"
+    "+-#{'-' * @message.size}-+"
   end
 
   def message_line
@@ -108,8 +110,8 @@ class Banner
   end
 end
 
-banner = Banner.new("To boldly ho where no one has gone before.", 70)
+banner = Banner.new('To boldly ho where no one has gone before.', 70)
 puts banner
 
-banner = Banner.new("")
+banner = Banner.new('')
 puts banner

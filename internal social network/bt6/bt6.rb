@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # require "json"
 # fileJson = File.read("bt_file_ student.txt")
 # infoStudents = JSON.parse(fileJson)
@@ -10,37 +12,37 @@
 # end
 module Device
   def switch_on
-    puts "on"
+    puts 'on'
   end
 
   def switch_off
-    puts "off"
+    puts 'off'
   end
 end
 
 module Volume
   def volume_up
-    puts "in"
+    puts 'in'
   end
 
   def volume_down
-    puts "out"
+    puts 'out'
   end
 end
 
 module Pluggable
   def plug_in
-    puts "in"
+    puts 'in'
   end
 
   def plug_out
-    puts "out"
+    puts 'out'
   end
 end
 
 class CellPhone
   def ring
-    puts "ringing"
+    puts 'ringing'
   end
 
   include Device
@@ -66,12 +68,12 @@ def check_ip?(str)
   !!(str =~ /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/)
 end
 
-p check_ip?("192.168.0.1")
-p check_ip?("255.255.255.255")
-p check_ip?("0.0.0.0")
-p check_ip?("255.255.255.zyz")
-p check_ip?("2555.255.255.255")
-p check_ip?("255.255.255")
+p check_ip?('192.168.0.1')
+p check_ip?('255.255.255.255')
+p check_ip?('0.0.0.0')
+p check_ip?('255.255.255.zyz')
+p check_ip?('2555.255.255.255')
+p check_ip?('255.255.255')
 
 def number_after_word?(str)
   !!(str =~ /(?<=\w) (\d+)/)

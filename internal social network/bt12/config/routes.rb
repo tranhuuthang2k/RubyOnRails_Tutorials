@@ -1,25 +1,26 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  root to: "users#index"
-  get '/login',to:'sessions#new'
-  post '/login',to:'sessions#create'
+  root to: 'users#index'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
 
-  resources :users do 
-    
+  resources :users do
     # collection do
     #   get :signin
     #   get :register
     # end
-  end 
+  end
   # get '/login', to:'users#login'
-  get '/register', to:'users#new'
+  get '/register', to: 'users#new'
 
-  # resources :static_pages do 
+  # resources :static_pages do
   #   collection do
   #     get :home
   #     get :help
   #   end
-  # end 
+  # end
   # get '/home', to: 'static_pages#home'
   # get '/help', to: 'static_pages#help'
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ResponseTemplate
   def self.template(code, message, content = {}, messages = [])
     response = { code: code, message: message, data: content }

@@ -5,7 +5,10 @@
 					<div class="left-sidebar">
 						<div class="brands_products">
 						<h2>Category</h2>
-						  <%= render 'home/category_blog' %>
+						<%= render 'home/category_blog' %>
+                        </br>
+                        <h2>Post Best View</h2>
+						<%= render 'home/best_view_blog' %>
 						</div>
 					</div>
 				</div>
@@ -32,3 +35,55 @@
 			</div>
         </div>
 </section>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <!--         <h4 class="modal-title">Modal Header</h4> -->
+      </div>
+      <div class="modal-body text-center">
+        <h1>📝NỘI DUNG HỌC CỦA KHÓA SUPER PPT THI E-ELEARNING CẤP QUẬN, HUYỆN, THÀNH PHỐ, QUỐC GIA VỚI LỘ TRÌNH 150 TIẾNG TẤT CẢ CÁC THỂ LOẠI PHẦN MỀM GIÁO DỤC, ỨNG DỤNG CHO GV 4.0</h1>
+        <a class="pre-order-btn" href="https://www.facebook.com/groups/1011713702919105/posts/1031047020985773" >XEM CHI TIẾT TẠI ĐÂY </a>
+      </div>
+      <div class="modal-footer">
+        <!--         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+      </div>
+    </div>
+
+  </div>
+</div>
+<style>
+.modal-body h1 {
+	 font-weight: 900;
+	 font-size: 1.3em;
+	 text-transform: uppercase;
+   line-height: 4.3rem;
+}
+ .modal-body a.pre-order-btn {
+	 color: #000;
+	 background-color: gold;
+	 border-radius: 1em;
+	 padding: 1em;
+	 display: block;
+	 margin: 2em auto;
+	 width: 50%;
+	 font-size: 1.25em;
+	 font-weight: 6600;
+}
+ .modal-body a.pre-order-btn:hover {
+	 background-color: #000;
+	 text-decoration: none;
+	 color: gold;
+}
+
+</style>
+<script>
+$(document).ready(function () {
+    if (!sessionStorage.getItem('isModalOpen')) {
+        $("#myModal").modal();
+        sessionStorage.setItem('isModalOpen', true);
+    }
+});
+</script>

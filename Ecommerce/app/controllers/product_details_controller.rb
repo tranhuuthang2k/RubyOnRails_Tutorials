@@ -25,9 +25,7 @@ class ProductDetailsController < ApplicationController
     categories = Category.show_category.limit(4)
     products = Product.where(categories_id: product.categories_id).limit(4)
     comment_user = Comment.includes(:user)
-    reply_comment_id = comment_user.pluck('reply_comment_id').compact
-    comments = comment_user.where(product_id: id).where(main_id: comment_user.pluck('id')).page(params[:page]).per(6)
-    comment_children = comment_user.where(reply_comment_id: reply_comment_id)
+    comments = comment_user.where(product_id: id).where(main_id: comment_user.pluck('main_id').compact).page(params[:page]).per(6)
     product_rates = ProductRate.where(product_id: id)
     sum_rate = product_rates.sum(&:rate)
     count_product = product_rates.size
@@ -44,8 +42,7 @@ class ProductDetailsController < ApplicationController
       recommend_items: recommend_items,
       comments: comments,
       brands: brands,
-      notifications: notifications,
-      comment_children: comment_children
+      notifications: notifications
     }
   end
 end

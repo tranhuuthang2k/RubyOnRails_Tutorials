@@ -11,10 +11,14 @@ Things you may want to cover:
 
 * Amazon active storage 
 
+* PostgreSQL
+
+* Redis
+
 * Heroku
 
 * ...
-# Total 76 Functions of Ecommerce E-shopper
+# Total 78 Functions of Ecommerce Shop Mr.Katsu
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 1. Login (email, password, facebook)
 2. Register
@@ -53,7 +57,7 @@ Things you may want to cover:
 35. Manage Banner
 36. Manage Availability
 37. Manage Contacts
-38. Checkout
+38. Checkout, payment online, cash on delivery
 39. Manage products view
 40. Manage product rate star
 41. Export excel, scv,json..
@@ -73,7 +77,8 @@ Things you may want to cover:
 55. Manage city
 56. Product Sold
 57. Export Invoice
-59. Hot Product
+58. Most Hot Product sold
+59. Most viewed blog
 60. Dashboard 
     + Revenue of each month, year...
     + Hot selling products
@@ -136,6 +141,7 @@ Error deployment heroku
 - Fix: example Product.where(id: ids)
 - Error ActiveRecord::StatementInvalid (PG::GroupingError: ERROR: column "order_items.created_at" must appear in the GROUP BY clause or be used in an aggregate function
 - Fix: https://makandracards.com/bitcrowd/32883-pg-groupingerror-error-column-must-appear-in-the-group-by-clause-or-be-used-in-an-aggregate-function-in-rails-while-trying-group
+- Fix: https://stackoverflow.com/questions/20942477/groupingerror-error-column-must-appear-in-the-group-by-clause-or-be-used-in-an
 -----------------------------------------------------------------------------------
 Clear cache
 - rake tmp:cache:clear

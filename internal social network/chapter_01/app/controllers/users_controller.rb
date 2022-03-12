@@ -1,16 +1,16 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit destroy update_user ]
+  before_action :set_user, only: %i[show edit destroy update_user]
 
   # GET /users or /users.json
   def index
-  
     @email = params[:email]
-    @users =  @email.present? ? User.where(emails: @email) : User.all
+    @users = @email.present? ? User.where(emails: @email) : User.all
   end
 
   # GET /users/1 or /users/1.json
-  def show
-  end
+  def show; end
 
   # GET /users/new
   def new
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: "User was successfully created." }
+        format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   def update_user
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: "User was successfully updated." }
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,6 +65,6 @@ class UsersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def user_params
-    params.require(:user).permit(:name, :emails, :phone, :age, :date_of_birth, :gender,:year,:school)
+    params.require(:user).permit(:name, :emails, :phone, :age, :date_of_birth, :gender, :year, :school)
   end
 end

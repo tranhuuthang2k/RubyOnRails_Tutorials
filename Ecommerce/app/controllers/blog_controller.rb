@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class BlogController < ApplicationController
-  before_action :load_layout, only: %i[index blog_detail blog_category]
+  before_action :load_layout, only: %i[index blog_detail]
 
   def index; end
 
@@ -17,14 +17,15 @@ class BlogController < ApplicationController
     p_view = ProductView.find_by(ip_post: client_ip, post_id: id)
     post_view.save(validate: false) unless p_view
     post = Post.find(id)
-    post_other = Post.where.not(id: id).where(category_post_id: post.category_post_id).order('RANDOM()').limit(10)
-    # post_other = Post.where.not(id: id).where(category_post_id: post.category_post_id).sample(10)
+    # post_other = Post.where.not(id: id).where(category_post_id: post.category_post_id).order('RANDOM()').limit(10)
+    post_other = Post.where.not(id: id).where(category_post_id: post.category_post_id).sample(10)
 
     @results = {
       post: post,
       post_other: post_other,
       notifications: @results[:notifications],
-      categoies_post: @results[:categoies_post]
+      categoies_post: @results[:categoies_post],
+      best_view_post: @results[:best_view_post]
     }
   end
 
@@ -34,8 +35,7 @@ class BlogController < ApplicationController
 
     @results = {
       list_post: list_post,
-      notifications: @results[:notifications],
-      posts: @results[:posts]
+      notifications: load_notification
     }
   end
 
@@ -44,11 +44,17 @@ class BlogController < ApplicationController
   def load_layout
     posts = Post.newest.page(params[:page]).per(3)
     categoies_post = CategoryPost.all
-    notifications = Notification.newest.limit(5)
+    best_view_post = ProductView.select(:post_id).where.not(post_id: nil).order('post_id ASC').group(:post_id).limit(5)
+
     @results = {
       categoies_post: categoies_post,
       posts: posts,
-      notifications: notifications
+      notifications: load_notification,
+      best_view_post: best_view_post
     }
+  end
+
+  def load_notification
+    @notifications = Notification.newest.limit(5)
   end
 end

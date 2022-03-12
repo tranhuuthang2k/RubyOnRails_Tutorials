@@ -1,18 +1,20 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  root to: "static_pages#home"
-  resources :users do 
+  root to: 'static_pages#home'
+  resources :users do
     collection do
       get :signin
       get :register
     end
-  end 
+  end
 
-  resources :static_pages do 
+  resources :static_pages do
     collection do
       get :home
       get :help
     end
-  end 
+  end
   get '/home', to: 'static_pages#home'
   get '/help', to: 'static_pages#help'
 

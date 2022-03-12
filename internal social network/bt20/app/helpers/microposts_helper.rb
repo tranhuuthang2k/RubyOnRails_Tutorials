@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module MicropostsHelper
-    def author_of_micropost? userId
-      user = User.find_by(id: userId )
-      @user  = user
-    end
+  def author_of_micropost?(userId)
+    user = User.find_by(id: userId)
+    @user  = user
+  end
 end

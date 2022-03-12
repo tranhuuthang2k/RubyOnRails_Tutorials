@@ -1,33 +1,35 @@
-Rails.application.routes.draw do
-  root to: "users#index"
+# frozen_string_literal: true
 
-  scope "/:locale" do
-    get '/login',to:'sessions#new'
-    post '/login',to:'sessions#create'
+Rails.application.routes.draw do
+  root to: 'users#index'
+
+  scope '/:locale' do
+    get '/login', to: 'sessions#new'
+    post '/login', to: 'sessions#create'
     get '/logout', to: 'sessions#destroy'
-    resources :users do 
+    resources :users do
       # collection do
       #   get :signin
       #   get :register
       # end
-    end 
+    end
     # get '/login', to:'users#login'
-    get '/register', to:'users#new'
-  
-    # resources :static_pages do 
+    get '/register', to: 'users#new'
+
+    # resources :static_pages do
     #   collection do
     #     get :home
     #     get :help
     #   end
-    # end 
+    # end
     # get '/home', to: 'static_pages#home'
     # get '/help', to: 'static_pages#help'
-  
+
     # get 'static_pages/home'
     # get 'static_pages/help'
     resources :microposts
     resources :account_activations, only: :edit
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  end  
-  resources :password_resets, only:[:new, :edit, :update, :create]
+  end
+  resources :password_resets, only: %i[new edit update create]
 end

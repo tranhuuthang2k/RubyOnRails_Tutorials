@@ -26,11 +26,13 @@ module RailsAdmin
             end
 
             def load_order_items(month, year)
-              order_items = OrderItem.this_status(Product::STATUS[:confirmed])
-                                     .by_orders(month, year)
-              total_order_cancel = OrderItem.this_status(Product::STATUS[:cancel])
-                                            .by_orders(month, year)
-              top_service_shipping = OrderItem.by_orders(month, year).unscoped.group('service')
+              data_order_item = OrderItem.all
+              order_items = data_order_item.this_status(Product::STATUS[:confirmed])
+                                           .by_orders(month, year)
+              total_order_cancel = data_order_item.this_status(Product::STATUS[:cancel])
+                                                  .by_orders(month, year)
+              top_service_shipping = data_order_item.unscoped.this_status(Product::STATUS[:confirmed])
+                                                    .by_orders(month, year).group('service')
               fee_ship = order_items.pluck('fee').sum
               voucher = order_items.pluck('voucher').sum
 

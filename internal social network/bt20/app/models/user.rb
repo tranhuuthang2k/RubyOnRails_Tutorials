@@ -1,111 +1,119 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
-    attr_accessor :remember_token, :activation_token,:rspw_token,:api_token,:skip_validation
+  attr_accessor :remember_token, :activation_token, :rspw_token, :api_token, :skip_validation
 
-    has_many :microposts,dependent: :destroy
-    has_many :comments
-    has_many :active_relationships, class_name: Relationship.name, foreign_key: :follower_id, dependent: :destroy
-    has_many :passive_relationships, class_name: Relationship.name, foreign_key: :followed_id, dependent: :destroy
-    has_many :following, through: :active_relationships, source: :followed
-    has_many :followers, through: :passive_relationships, source: :follower
+  has_many :microposts, dependent: :destroy
+  has_many :comments
+  has_many :active_relationships, class_name: Relationship.name, foreign_key: :follower_id, dependent: :destroy
+  has_many :passive_relationships, class_name: Relationship.name, foreign_key: :followed_id, dependent: :destroy
+  has_many :following, through: :active_relationships, source: :followed
+  has_many :followers, through: :passive_relationships, source: :follower
 
-    has_many :notifications, class_name: Notification.name, foreign_key: :receiver_id, dependent: :destroy
-    has_many :send_notifications, class_name: Notification.name, foreign_key: :sender_id, dependent: :destroy
+  has_many :notifications, class_name: Notification.name, foreign_key: :receiver_id, dependent: :destroy
+  has_many :send_notifications, class_name: Notification.name, foreign_key: :sender_id, dependent: :destroy
 
+  before_save :downcase_email
+  before_create :create_activation_digest
+  has_secure_password
+  validates :name, presence: true, length: { minimum: 2 }
+  validates :date_of_birth, format: { with: %r{\d{2}/\d{2}/\d{4}}, message: 'date of birth must be format dd/mm/yy' },
+                            unless: :skip_validation
+  validates :age, numericality: true, numericality: { message: 'must be number' }, unless: :skip_validation
+  validates :gender, presence: true, unless: :skip_validation
+  validates :email, presence: true, uniqueness: true, length: { maximum: 50, minimum: 2 },
+                    format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :phone, numericality: true, length: { maximum: 12, minimum: 9 }, numericality: { message: 'phone be number' },
+                    unless: :skip_validation
+  PASSWORD_FORMAT = /\A(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[[:^alnum:]])/x.freeze
+  validates :password,
+            format: { with: PASSWORD_FORMAT, length: { minimum: 8 }, message: 'must contain at least one lowercase, one number, one special letter, length 8 character' }, unless: :skip_validation
 
-    before_save :downcase_email
-    before_create :create_activation_digest
-    has_secure_password
-    validates :name, presence: true,length: { minimum: 2 }
-    validates :date_of_birth, format: { with: /\d{2}\/\d{2}\/\d{4}/,message: "date of birth must be format dd/mm/yy" },unless: :skip_validation
-    validates :age, numericality: true, numericality:{message:"must be number"},unless: :skip_validation
-    validates :gender, presence: true,unless: :skip_validation
-    validates :email, presence: true,uniqueness: true,length: { maximum: 50,minimum: 2 },format: { with: URI::MailTo::EMAIL_REGEXP }
-    validates :phone, numericality: true, length: { maximum: 12,minimum: 9 }, numericality:{message:"phone be number"},unless: :skip_validation
-    PASSWORD_FORMAT = /\A(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[[:^alnum:]])/x
-    validates :password, format: {with: PASSWORD_FORMAT, length: {minimum: 8 }, message: "must contain at least one lowercase, one number, one special letter, length 8 character"},unless: :skip_validation
+  def downcase_email
+    email.downcase!
+  end
 
-    def downcase_email
-        self.email.downcase!
+  self.per_page = 5
+
+  def self.digest(string)
+    cost = if ActiveModel::SecurePassword.min_cost
+             BCrypt::Engine::MIN_COST
+           else
+             BCrypt::Engine.cost
+           end
+    BCrypt::Password.create string, cost: cost
+  end
+
+  def authenticated?(attribute, token)
+    digest = send "#{attribute}_digest"
+    return false if digest.nil?
+
+    BCrypt::Password.new(digest).is_password? token
+  end
+
+  def generate_token
+    self.api_token = User.new_token
+    update_attribute(:api_token_digest, api_token)
+  end
+
+  class << self
+    def new_token
+      SecureRandom.urlsafe_base64
     end
-    
-   
-    self.per_page = 5
+  end
 
-    def User.digest string
-        cost = if ActiveModel::SecurePassword.min_cost
-        BCrypt::Engine::MIN_COST
-        else
-            BCrypt::Engine.cost
-        end
-            BCrypt::Password.create string, cost: cost
-    end
+  def forget
+    update_attribute :remember_digest, nil
+  end
 
-    def authenticated? attribute, token
-        digest = send "#{attribute}_digest"
-        return false if digest.nil?
-        BCrypt::Password.new(digest).is_password? token
-     end
+  def remember
+    self.remember_token = User.new_token # create random token
+    update_attribute :remember_digest, User.digest(remember_token) # bcryt token & save db
+  end
 
-     def generate_token
-        self.api_token = User.new_token
-        self.update_attribute(:api_token_digest, api_token)
-    end
+  def create_activation_digest
+    self.activation_token = User.new_token
+    self.activation_digest = User.digest(activation_token) # update activation_digest to db
+  end
 
+  def create_token_digest_rspw
+    self.rspw_token = User.new_token
+    update_columns reset_digest: User.digest(rspw_token), reset_sent_at: Time.zone.now
+  end
 
-    class << self
-        def new_token
-            SecureRandom.urlsafe_base64
-        end
-    end
+  def send_password_reset_email
+    UserMailer.password_reset(self).deliver_now
+  end
 
+  def password_reset_expired?
+    reset_sent_at < 2.minutes.ago
+  end
 
-    def forget
-        update_attribute :remember_digest, nil
-    end
-    
-    def remember
-        self.remember_token = User.new_token  #create random token
-        update_attribute :remember_digest, User.digest(remember_token) #bcryt token & save db
-    end
-    
-    def create_activation_digest
-        self.activation_token = User.new_token
-        self.activation_digest = User.digest(activation_token)  #update activation_digest to db
-    end 
-    
-    def create_token_digest_rspw
-        self.rspw_token = User.new_token
-        update_columns reset_digest: User.digest(rspw_token), reset_sent_at: Time.zone.now
-    end
-    
-    def send_password_reset_email
-        UserMailer.password_reset(self).deliver_now
-    end
-    
-    def password_reset_expired?
-        reset_sent_at < 2.minutes.ago
-    end
+  # Follows a user.
+  def follow(other_user)
+    following << other_user
+  end
 
-    def follow other_user #Follows a user.
-        following << other_user
-    end
-    def unfollow other_user #Unfollows a user.
-        following.delete other_user
-    end
-    def following? other_user #Returns if the current user is following the other_user or not
-        following.include? other_user
-    end
-    def self.create_from_omniauth(auth)
-        user = User.find_by(uid: auth['uid'])
-        if user.nil?
-            User.where(uid: auth['uid']).first_or_create(skip_validation: true) do |u|
-                u.name = auth['info']['name']
-                u.email = auth['info']['email']
-                u.password = SecureRandom.hex(16)
-            end
-        else
-           user = user
-        end
+  # Unfollows a user.
+  def unfollow(other_user)
+    following.delete other_user
+  end
 
+  # Returns if the current user is following the other_user or not
+  def following?(other_user)
+    following.include? other_user
+  end
+
+  def self.create_from_omniauth(auth)
+    user = User.find_by(uid: auth['uid'])
+    if user.nil?
+      User.where(uid: auth['uid']).first_or_create(skip_validation: true) do |u|
+        u.name = auth['info']['name']
+        u.email = auth['info']['email']
+        u.password = SecureRandom.hex(16)
+      end
+    else
+      user = user
     end
+  end
 end

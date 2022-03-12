@@ -1,0 +1,25 @@
+<div class="main">
+  <div class="slider">
+    <% @results[:best_view_post].each do |item| %>
+    <% if item.post.present? %>
+        <div style="display: flex"> 
+            <a href="/blog_detail/<%= item.post.title.parameterize%>~<%=item.post.id%>"><img src="<%=  url_for(item.post.image)  %>"  width="125" alt="" /></a>
+            <a href="/blog_detail/<%= item.post.title.parameterize%>~<%=item.post.id%>" style="color: black ">
+                <div class="list-item">
+                    <p class="title" style="font-weight: 700"><%= item.post.title  %> </p>
+                    <p class="views">Views: <%= item.post.product_views.count   %></p>
+                </div>
+            </a>
+        </div>
+      <% end %>
+    <% end %> 
+  </div>
+</div>
+<style>
+.title, .views {
+    margin-left: 10px;
+    height: 32px;
+    overflow: hidden;
+}
+
+</style>

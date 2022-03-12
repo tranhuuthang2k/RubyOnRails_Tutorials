@@ -108,10 +108,11 @@ module Api
         comment = Comment.find(params[:comment_id])
         return render json: error_message('comment not exists') if comment.user_id != @user.id
 
-        comment_children = Comment.where(reply_comment_id: params[:comment_id])
-        if comment
+        comment.image.purge if comment.image.attached?
+
+        if comment.present?
           comment.delete
-          comment_children.destroy_all
+          comment.comment_childrens.delete_all
           render json: success_message('Successfully')
         else
           render json: error_message('comment id not_found')
@@ -120,7 +121,9 @@ module Api
 
       def rate
         data = []
-        data << @user.order_items.this_status('1').pluck('product_order').map { |x| JSON.parse(x) }
+        data << @user.order_items.this_status(OrderItem::STOCK[:Instock]).pluck('product_order').map do |x|
+          JSON.parse(x)
+        end
         if @user.order_items.present? && data.flatten.pluck('id').include?(params[:product_id])
           rate = @user.product_rates.new(rate: params[:rate], product_id: params[:product_id], user_id: @user.id)
           product_rates = ProductRate.where(product_id: params[:product_id]).to_a
