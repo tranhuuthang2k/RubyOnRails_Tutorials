@@ -27,6 +27,7 @@ function Product(options) {
           data: { token: module.settings.api.api_token, search },
           dataType: "json",
           success: function (data) {
+            console.log(data)
             if (data.code == 200) {
               $(".padding-right").html("");
               $("#cart_items").html("");
@@ -37,18 +38,17 @@ function Product(options) {
               $(".padding-right").append(
                 template_search({
                   products: data.data.products,
-                  keyword: search,
                 })
               );
               $("#cart_items").append(
                 template_search({
                   products: data.data.products,
-                  keyword: search,
                 })
               );
               $("html, body").animate(
                 {
-                  scrollTop: $(".features_items").offset().top,
+                  scrollTop:
+                  $(".features_items").offset().top,
                 },
                 1000
               );
@@ -88,10 +88,8 @@ function Product(options) {
                 $(".total_order_of_month").css("display", "block");
                 $(".total_order_of_month").get(0).innerText =
                   "Total monney order (include fee ship & voucher ) of month is " +
-                  "$" +
-                  parseFloat(
-                    total_order_of_month + parseFloat(data.data.fee_ship)
-                  );
+                  "$" + parseFloat(total_order_of_month + parseFloat(data.data.fee_ship))
+
               } else {
                 $(".total_order_of_month").css("display", "none");
               }

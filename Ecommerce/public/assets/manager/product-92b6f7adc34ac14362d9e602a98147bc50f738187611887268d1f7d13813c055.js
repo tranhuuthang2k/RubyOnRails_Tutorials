@@ -37,13 +37,11 @@ function Product(options) {
               $(".padding-right").append(
                 template_search({
                   products: data.data.products,
-                  keyword: search,
                 })
               );
               $("#cart_items").append(
                 template_search({
                   products: data.data.products,
-                  keyword: search,
                 })
               );
               $("html, body").animate(

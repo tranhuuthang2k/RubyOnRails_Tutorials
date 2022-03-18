@@ -1,7 +1,7 @@
 <% if @results[:history_products].present? && current_user.present? %>
-  <div class="features_items">
+  <div class="features_items" >
     <!--features_items-->
-    <h2 class="title text-center">Viewed products</h2>
+    <h2 class="title text-center" style="margin-top: 15px;">Viewed products</h2>
     <%  @results[:history_products].each do |item| %>
         <% if item&.product %>
             <div class="col-sm-3 col-xs-6">

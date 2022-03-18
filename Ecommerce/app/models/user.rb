@@ -21,7 +21,7 @@ class User < ApplicationRecord
                       numericality: true,
                       length: { minimum: 10, maximum: 15 },
                       unless: -> { from_omniauth? }
-  PASSWORD_FORMAT = /\A(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[[:^alnum:]])/x.freeze
+  PASSWORD_FORMAT = /\A(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[[:^alnum:]])/x
   validates :password, format: { with: PASSWORD_FORMAT }, unless: -> { from_omniauth? }, if: -> { password.present? }
 
   def self.from_omniauth(auth)

@@ -5,7 +5,7 @@
   <meta id="metaDescription" name="description" content="Trần Hữu Thắng, shop mr.katsu, buy everything your need">
   <meta property="og:description" content="Trần Hữu Thắng, shop mr.katsu, shopmrkatsu.tk, shopmrkatsu" />
   <meta property="og:type" content="website" /> 
-    <meta property="og:url" content="http://shopmrkatsu.tk/" />
+  <meta property="og:url" content="http://shopmrkatsu.tk/" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
@@ -39,12 +39,8 @@
   <script src="https://cdn.jsdelivr.net/gh/igorlino/elevatezoom-plus@1.2.3/src/jquery.ez-plus.js"></script>
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
   <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
   <%=javascript_include_tag('lightbox.min.js') %>
   <%=stylesheet_link_tag('lightbox.min.css') %>
-
-
-
 </head>
 
 <body>
@@ -111,11 +107,11 @@
       }(document, 'script', 'facebook-jssdk'));
     </script>
 <script id="list-search-template" type="text/x-handlebars-template">
-    <div class="features_items">
-    <h2 class="title text-center"> Product search</h2>
+  <div class="features_items">
+    <h2 class="title text-center"> Result search for {{keyword}}</h2>
     {{#if products.length }}
       {{#each products}}
-      <div class="col-sm-4">
+      <div class="col-sm-4 col-xs-6">
         <div class="product-image-wrapper">
             <div class="single-products">
                 <div class="productinfo text-center">
