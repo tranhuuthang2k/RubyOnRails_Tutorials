@@ -114,7 +114,7 @@ module RailsAdmin
             end
             result_statistic
 
-            # product sold of this month
+            # product sold of this month,year
             @total_availabilitys = Availability.all.size
             # You can specify flash messages
             flash.now[:success] = 'Welcome to dashboard'
