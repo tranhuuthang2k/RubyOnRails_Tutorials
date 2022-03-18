@@ -96,7 +96,7 @@ module RailsAdmin
               end
             end
 
-            # You can access submitted params (just submit your form to the dashboard).
+            # You can access submitted params (just submit your form to the dashboard)
             def result_statistic
               year = params[:month_year] ? params['month_year'].split('-')[0] : Time.zone.now.year
               month = params[:month_year] ? params['month_year'].split('-')[1] : Time.zone.now.month
