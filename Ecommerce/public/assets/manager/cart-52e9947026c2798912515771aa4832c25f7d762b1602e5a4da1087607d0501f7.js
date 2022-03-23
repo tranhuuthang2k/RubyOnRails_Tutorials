@@ -39,22 +39,9 @@ function Cart(options) {
         .find(".price")
         .get(0)
         .innerText.replace("$", "");
-      image_product_url =
+      image_product =
         document.location.origin +
         infoProduct.find(".imageProduct").attr("src");
-      let image_product;
-      if (
-        infoProduct.find(".imageProduct").attr("src").split("?")[1] ===
-        "locale=vi"
-      ) {
-        image_product =
-          document.location.origin +
-          infoProduct.find(".imageProduct").attr("src").split("?")[0] +
-          "?locale=en";
-      } else {
-        image_product = image_product_url;
-      }
-
       product = shopping_carts.find((e) => e.id === id_product);
       if (product) {
         product.quantity++;
@@ -85,7 +72,7 @@ function Cart(options) {
       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: "Add to cart successfully...!",
+        title: "Add to cart successfully...",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -407,11 +394,7 @@ function Cart(options) {
         success: function (data) {
           if (data.code == 200) {
             localStorage.clear();
-            Swal.fire(
-              check_i18n() ? "Order Success!" : "Đặt hàng thành công",
-              "Order Success",
-              check_i18n() ? "Success" : "Thành công"
-            ).then(() => {
+            Swal.fire("Order Success!", "Order Success", "success").then(() => {
               window.location = check_i18n()
                 ? "/en/users/orders"
                 : "/vi/users/orders";
@@ -421,7 +404,7 @@ function Cart(options) {
               icon: "error",
               title: check_i18n()
                 ? "Shopping cart is invalid or Out of stock"
-                : "Giỏ hàng không hợp lệ hoặc hết hàng",
+                : "Giỏ hàng không hợp lệ hoặc Hết hàng",
               text: check_i18n()
                 ? "We remove your cart, then your order product another again, thank you!"
                 : "Chúng tôi gỡ bỏ giỏ hàng của bạn, sau đó bạn đặt sản phẩm khác một lần nữa, cảm ơn bạn!",
@@ -433,24 +416,7 @@ function Cart(options) {
             });
           }
         },
-        error: function () {
-          Swal.fire({
-            icon: "error",
-            title: check_i18n()
-              ? "An error occurred, please login again"
-              : "Có lỗi xảy ra, vui lòng đăng nhập lại",
-          }).then(() => {
-            document.cookie.split(";").forEach(function (c) {
-              document.cookie = c
-                .replace(/^ +/, "")
-                .replace(
-                  /=.*/,
-                  "=;expires=" + new Date().toUTCString() + ";path=/"
-                );
-              window.location = check_i18n() ? "/en/logout" : "/vi/logout";
-            });
-          });
-        },
+        error: function () {},
       });
     });
   };

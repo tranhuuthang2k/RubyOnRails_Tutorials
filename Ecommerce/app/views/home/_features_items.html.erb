@@ -1,13 +1,13 @@
 <div class="features_items">
     <!--features_items-->
-    <h2 class="title text-center">Features Items</h2>
+    <h2 class="title text-center"><%= t'product.featured' %></h2>
     <% @results[:features_items].each do |item| %>
     <div class="col-sm-4 col-xs-6">
         <div class="product-image-wrapper">
             <div class="single-products">
                 <div class="productinfo text-center">
                     <input type="hidden" id="<%= item.id %>" class="id" value="">
-                     <a href="/product-details/<%= item.title.parameterize%>~<%=item.id%>">
+                     <a href="/<%=I18n.locale %>/product-details/<%= item.title.parameterize%>~<%=item.id%>">
                      <% if item.image.attached?  %>
                           <%= image_tag url_for(item.image) , alt: "img",  class: "imageProduct" ,size: "100x100" %>
                      <% end %>
@@ -22,23 +22,23 @@
                         <i class="fa fa-star" style="color: #fe950f;"></i>
                     </div>
                     <% if item.availability&.product_sold.to_i > 0 %>
-                        <p class="title">Sold: <%= item.availability&.product_sold %> products</p>
+                        <p class="title"><%= t 'product.sold' %>: <%= item.availability&.product_sold %> <%= t 'product.product' %></p>
                     <% else %>
                         <p class="title"> &nbsp;</p>
                     <% end %>
                     <% if  item.availability&.status.to_i > 0%>
                         <a href="javascript:void(0)" class="btn btn-default add-to-cart">
-                        <i class="fa fa-shopping-cart"></i>Add to cart</a>
+                        <i class="fa fa-shopping-cart"></i><%= t 'product.add_to_cart' %></a>
                       <% else %>
                         <a href="javascript:void(0)" class="btn btn-danger out-of-stock">
-                         Out of stock</a>
+                        <%= t 'product.out_of_stock' %></a>
                     <% end %>
                 </div>
               
             </div>
             <div class="choose">
                 <ul class="nav nav-pills nav-justified">
-                    <li><a href="/product-details/<%= item.title.parameterize%>~<%=item.id%>"><i class="fa fa-plus-square"></i>See more...</a></li>
+                    <li><a href="/<%=I18n.locale %>/product-details/<%= item.title.parameterize%>~<%=item.id%>"><i class="fa fa-plus-square"></i> <%= t 'product.see_more' %></a></a></li>
                 </ul>
             </div>
         </div>

@@ -89,7 +89,7 @@
 					<div class="row">
 						<div class="multiple-items" >
 							<% @results[:post_other].each do |item| %>
-								<a  href="/blog_detail/<%= item.title.parameterize%>~<%=item.id %>" class= "col-sm-3">
+								<a  href="/<%=I18n.locale %>/blog_detail/<%= item.title.parameterize%>~<%=item.id %>" class= "col-sm-3">
 										<img style="width: 100%" src="<%= url_for(item.image) if item.image.attached? %>" alt="Image">
 										<h5 class="title_post"> <%= item.title %> </h5>
 								</a>

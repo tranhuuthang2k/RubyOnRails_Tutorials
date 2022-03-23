@@ -316,7 +316,6 @@ function Category(options) {
   module.deleteComment = function () {
     $(document).on("click", ".delete-comment", function () {
       ele = $(this).closest(".delete_comment");
-      ele.css("display","none")
       comment_id = $(ele).find(".edit-comment").attr("id").split("-")[1];
       $.ajax({
         url: module.settings.api.delete_comment,
@@ -485,7 +484,6 @@ function Category(options) {
   module.deleteCommentChildren = function () {
     $(document).on("click", ".delete_comment_children", function () {
       ele = $(this);
-      ele.css("display","none")
       comment_id = $(this).attr("id");
       $.ajax({
         url: module.settings.api.delete_comment_children,

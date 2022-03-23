@@ -14,11 +14,11 @@
 				<table class="table table-condensed">
 					<thead>
 						<tr class="cart_menu">
-                            <td class="id">ID</td>
-							<td class="image">Image</td>
-							<td class="description">Name</td>
-                            <td class="description">Price</td>
-                            <td class="date">Day<td>
+              <td class="id">ID</td>
+							<td class="image"><%= t "product.image"%></td>
+							<td class="description"><%= t "product.name"%></td>
+              <td class="description"><%= t "product.price"%></td>
+              <td class="date"><%= t "product.date" %><td>
 							<td></td>
 						</tr>
 					</thead>
@@ -30,13 +30,13 @@
                    <p><%=p.product_id%></p>
                 </td>
                 <td class="cart_product">
-                    <a href="/product-details/<%= p.product.title.parameterize%>~<%=p.product_id%>"><img src="<%= url_for(p.product.image) %>" alt=""width="110" height="110"</a>
+                    <a href="/<%=I18n.locale %>/product-details/<%= p.product.title.parameterize%>~<%=p.product_id%>"><img src="<%= url_for(p.product.image) %>" alt=""width="110" height="110"</a>
                 </td>
                 <td class="cart_title">
-                  <h4><a href="/product-details/<%= p.product.title.parameterize%>~<%=p.product_id%>"><%= p.product.title %></a></h4>
+                  <h4><a href="/<%=I18n.locale %>/product-details/<%= p.product.title.parameterize%>~<%=p.product_id%>"><%= p.product.title %></a></h4>
                 </td>
                 <td class="cart_price">
-                   <span><%= p.product.price %></span>
+                   <span style="font-size: 15px"><%= p.product.price %></span>
                 </td>
                 <td><%= p.created_at.strftime("%d/%m/%Y") %></td>
               <% end %>

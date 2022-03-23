@@ -39,22 +39,9 @@ function Cart(options) {
         .find(".price")
         .get(0)
         .innerText.replace("$", "");
-      image_product_url =
+      image_product =
         document.location.origin +
         infoProduct.find(".imageProduct").attr("src");
-      let image_product;
-      if (
-        infoProduct.find(".imageProduct").attr("src").split("?")[1] ===
-        "locale=vi"
-      ) {
-        image_product =
-          document.location.origin +
-          infoProduct.find(".imageProduct").attr("src").split("?")[0] +
-          "?locale=en";
-      } else {
-        image_product = image_product_url;
-      }
-
       product = shopping_carts.find((e) => e.id === id_product);
       if (product) {
         product.quantity++;
@@ -85,7 +72,7 @@ function Cart(options) {
       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: "Add to cart successfully...!",
+        title: "Add to cart successfully...",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -410,7 +397,7 @@ function Cart(options) {
             Swal.fire(
               check_i18n() ? "Order Success!" : "Đặt hàng thành công",
               "Order Success",
-              check_i18n() ? "Success" : "Thành công"
+              "success"
             ).then(() => {
               window.location = check_i18n()
                 ? "/en/users/orders"
@@ -448,6 +435,7 @@ function Cart(options) {
                   "=;expires=" + new Date().toUTCString() + ";path=/"
                 );
               window.location = check_i18n() ? "/en/logout" : "/vi/logout";
+              window.localStorage.removeItem("carts");
             });
           });
         },
