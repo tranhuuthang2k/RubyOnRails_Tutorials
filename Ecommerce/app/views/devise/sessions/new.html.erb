@@ -5,7 +5,7 @@
     <%= render "devise/shared/error_messages", resource: resource %>
         <div class="col-sm-4 col-sm-offset-1">
             <div class="login-form"><!--login form-->
-                <h2>Login to your account</h2>
+                <h2><%= t("login_to_your_account") %></h2>
                 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
                       <div class="field">
                         <%= f.label :email %><br />
@@ -23,7 +23,7 @@
                       <% end %>
 
                       <div class="actions">
-                           <button type="submit" name="commit" class="btn btn-default" >Login</button>
+                           <button type="submit" name="commit" class="btn btn-default" ><%= t("login_btn")%></button>
                       </div>
                 <% end %>
                 <%= render "devise/shared/links" %>
@@ -34,7 +34,7 @@
         </div>
           <div class="col-sm-4">
               <div class="signup-form"><!--sign up form-->
-              <h2>New User Signup!</h2>
+            <h2><%= t("new_user_signup") %></h2>
               <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
                   <%= render "devise/shared/error_messages", resource: resource %>
                   <div class="field">
@@ -69,7 +69,7 @@
                       </select>
                     </div>
                   <div class="actions">
-                    <%= f.button "Sign up", class: "btn btn-default" %>
+                    <%= f.button t("sigin_btn"), class: "btn btn-default" %>
                   </div>
                 <% end %>
                 

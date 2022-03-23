@@ -7,6 +7,8 @@ class SessionsController < ApplicationController
   end
 
   def new; end
+
   def index; end
+
   def cart_items; end
 end

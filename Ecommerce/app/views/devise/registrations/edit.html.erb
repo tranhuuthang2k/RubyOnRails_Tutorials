@@ -12,17 +12,17 @@
       <div class="col-md-5 border-right">
           <div class="p-3 py-5">
               <div class="d-flex justify-content-between align-items-center mb-3">
-                  <h4 class="text-right">Profile Settings</h4>
+                  <h4 class="text-center"><%= t "profiles.information_personal" %></h4>
               </div>
               <div class="row mt-3">
                   <%= render "devise/shared/error_messages", resource: resource %>  
                   <div class="col-md-12">
-                      <%= f.label :name %>
-                      <%= f.text_field :username, class: 'form-control' %>
+                      <%= f.label t("profiles.name") %>
+                      <%= f.text_field :username, class: 'form-control', placeholder: t("profiles.place_holder_name") %>
                     </div>
                     <div class="col-md-12">
-                      <%= f.label :email %>
-                      <%= f.text_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+                      <%= f.label t("profiles.email") %>
+                      <%= f.text_field :email, autofocus: true, autocomplete: "email", class: 'form-control',placeholder: t("profiles.place_holder_email") %>
                     </div>
 
                     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -30,31 +30,31 @@
                     <% end %>
 
                     <div class="col-md-12">
-                      <%= f.label :mobile %>
-                      <%= f.text_field :mobile, class: 'form-control' %>
+                      <%= f.label  t("profiles.mobile") %>
+                      <%= f.text_field :mobile, class: 'form-control',placeholder: t("profiles.place_holder_mobile")  %>
                     </div>
 
                     <div class="col-md-12">
-                      <%= f.label :address %>
-                      <%= f.text_field :address, class: 'form-control' %>
+                      <%= f.label t("profiles.address")  %>
+                      <%= f.text_field :address, class: 'form-control', placeholder: t("profiles.place_holder_address") %>
                     </div>
 
                     <div class="col-md-12">
-                      <label class="control-label"  for="gender"><%= t("users.index.gender")%></label>
+                      <label class="control-label"  for="gender"><%= t("profiles.gender")%></label>
                       </br>
                       <% if current_user.gender == "male" %>
                         <input type="radio" id="male" name="user[gender]" value="male" checked >
-                        <label for="male">Male</label><br>
+                        <label for="male"><%= t("profiles.male")%></label><br>
                         <input type="radio" id="female" name="user[gender]" value="female">
-                        <label for="female">Female</label><br> 
+                        <label for="female"><%= t("profiles.female")%></label><br> 
                       <% else %>
                         <input type="radio" id="male" name="user[gender]" value="male">
-                        <label for="male">Male</label><br>
+                        <label for="male"><%= t("profiles.male")%></label><br>
                         <input type="radio" id="female" name="user[gender]" value="female" checked >
-                        <label for="female">Female</label><br>
+                        <label for="female"><%= t("profiles.female")%></label><br>
                       <% end %>                  
                     </div>
-                    <span>Select city </span>
+                    <span style="font-size: 14px"><%= t("profiles.select_city")%></span>
                     <div class="custom-select" style="width:200px;">
                       <select  name="user[city_id]">
                       <% unless current_user.city.blank?  %>
@@ -66,7 +66,7 @@
                         <% end %>
                       </select>
                     </div>
-                    <%= f.submit "Save changes", class: "btn btn-primary" %>
+                    <%= f.submit t("profiles.update"), class: "btn btn-primary" %>
               </div>
           </div>
       </div>

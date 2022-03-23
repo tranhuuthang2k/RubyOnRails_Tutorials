@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  mount ActionCable.server => '/cable'
+  # mount ActionCable.server => '/cable'
   root 'home#index'
-  get 'product_details/index'
+
   mount Sidekiq::Web => '/sidekiq' if defined?(Sidekiq) && defined?(Sidekiq::Web)
 
   if Rails.env.development?
@@ -22,28 +22,31 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  devise_scope :user do
-    get 'users', to: 'devise/sessions#new'
-    get 'login', to: 'devise/sessions#new'
-    get 'register', to: 'devise/registrations#new'
-    get 'logout', to: 'devise/sessions#destroy'
-    get 'users/carts', to: 'carts#index'
-    get 'users/checkout_vnpay', to: 'checkouts#index'
-    get 'users/checkout_vnpay/pay', to: 'checkouts#create'
+  scope '/:locale' do
+    devise_scope :user do
+      get 'users', to: 'devise/sessions#new'
+      get 'login', to: 'devise/sessions#new'
+      get 'register', to: 'devise/registrations#new'
+      get 'logout', to: 'devise/sessions#destroy'
+      get 'users/carts', to: 'carts#index'
+      get 'users/checkout_vnpay', to: 'checkouts#index'
+      get 'users/checkout_vnpay/pay', to: 'checkouts#create'
+    end
+    get 'product_details/index'
+    get 'product-details/:id', to: 'product_details#index'
+    get 'category/:id', to: 'categories#categories'
+    get 'contact', to: 'contact#index'
+    post 'contact', to: 'contact#create'
+    get 'brand/:id', to: 'brand#brands'
+    get 'blog', to: 'blog#index'
+    get 'blog_detail/:id', to: 'blog#blog_detail'
+    get 'blog_category/:id', to: 'blog#blog_category'
+    get 'users/orders', to: 'orders#index'
+    get 'users/loves', to: 'loves#index'
+    get 'users/history_product', to: 'product_view#index'
+    get 'notification/:id', to: 'notification#index'
+    get 'admin/system', to: 'notification#index'
   end
-  get 'product-details/:id', to: 'product_details#index'
-  get 'category/:id', to: 'categories#categories'
-  get 'contact', to: 'contact#index'
-  post 'contact', to: 'contact#create'
-  get 'brand/:id', to: 'brand#brands'
-  get 'blog', to: 'blog#index'
-  get 'blog_detail/:id', to: 'blog#blog_detail'
-  get 'blog_category/:id', to: 'blog#blog_category'
-  get 'users/orders', to: 'orders#index'
-  get 'users/loves', to: 'loves#index'
-  get 'users/history_product', to: 'product_view#index'
-  get 'notification/:id', to: 'notification#index'
-  get 'admin/system', to: 'notification#index'
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       get '/category', to: 'categories#index'

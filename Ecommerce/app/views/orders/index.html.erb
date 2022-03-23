@@ -9,7 +9,7 @@
     </div>
     
     <div class="col-sm-9 padding-right">
-    <label for="start">Search Month:</label>
+    <label for="start"><%= t("orders_info.search_month")%>:</label>
     <input type="month" id="start" name="start" min="2018-03" value="2021-10">
     <button id="submit" style="color: #fff;
     background-color: #fe980f;" class="btn"> <span> <i class="fa fa-search"></i></span></button>
@@ -21,19 +21,19 @@
       <table class="table table-condensed">
 					<thead>
 						<tr class="cart_menu">
-							<td class="image">Image</td>
-							<td class="description ">Name</td>
-              <td class="description">Size</td>
-              <td class="description quantity">Quantity</td>
-              <td class="description">Price</td>
-							<td class="description">Total Price</td>
-							<td class="description">Status</td>
-							<td class="description">Buy date</td>
-							<td>Action</td>
+							<td class="image"><%= t "product.image"%></td>
+							<td class="description "><%= t "product.name"%></td>
+              <td class="description"><%= t "product.size"%></td>
+              <td class="description quantity"><%= t "product.quantity"%></td>
+              <td class="description"><%= t "product.price"%></td>
+							<td class="description"><%= t "product.total_price"%></td>
+							<td class="description"><%= t "product.status" %></td>
+							<td class="description"><%= t "product.buy_date" %></td>
+							<td><%= t "product.action" %></td>
 						</tr>
 					</thead>
           <% else %>
-           <h2 style="text-align: center"> You have not ordered products yet <h2>
+           <h2 style="text-align: center"> <%= t "messages.have_not_order" %> <h2>
       <% end %>
 			
 					<tbody class="tbody">
@@ -41,7 +41,7 @@
             <% order[:product_order].each do |c| %>
               <tr>
                 <td class="cart_product">
-                  <a href="/product-details/<%= c["name_product"] %>~<%=c["id"] %>"> <%= image_tag c["image_product"], size: "110x110", alt: "Image" %></a>
+                  <a href="/<%=I18n.locale %>/product-details/<%= c["name_product"] %>~<%=c["id"] %>"> <%= image_tag c["image_product"], size: "110x110", alt: "Image" %></a>
                 </td>
                 <td class="cart_description">
                   <h4><a href=""><%= c["name_product"] %></a></h4>
@@ -62,11 +62,11 @@
                 <td class="cart_description">
                   <% case order[:order].status %>
                   <% when 0 %>
-                    <p class="">Pending</p>
+                    <p class=""><%= t("status.pending") %></p>
                     <% when 1 %>
-                    <p class="">Confirm</p>
+                    <p class=""><%= t("status.confirmed") %></p>
                     <% when 2 %>
-                    <p class="">Cancel</p>
+                    <p class=""><%= t("status.cancel") %><</p>
                   <% end %>
                 </td>
                 <td class="cart_description">
@@ -79,16 +79,16 @@
                
               <% end %>
                <td > 
-                  <div class=""> <span class="font-weight-bold">Total_Order: </span> <span>$<%= @Total_order = order[:product_order].map{|order| order["price_product"].to_f * order["quantity"].to_i}.sum  %></span> </div>
-                    <div class=""> <span class="font-weight-bold">Fee Shipping: </span> <small> + $<%= order[:order].fee %></small> </div>
-                     <div class=""> <span class="font-weight-bold">Service: </span> <%= order[:order].service %> </div>
-                    <div class=""> <span class="font-weight-bold">Voucher: </span> <small> - $<%= order[:order]&.voucher ? order[:order].voucher : 0 %></small> </div>
+                  <div class=""> <span  style="font-size:15px" class="font-weight-bold"><%= t("orders_info.total_order") %>: </span> <span style="font-size:15px">$<%= @Total_order = order[:product_order].map{|order| order["price_product"].to_f * order["quantity"].to_i}.sum  %></span> </div>
+                    <div class=""> <span  style="font-size:15px" class="font-weight-bold"><%= t("orders_info.fee_shipping") %>: </span> <span style="font-size:15px"> + $<%= order[:order].fee %></span> </div>
+                     <div class=""> <span  style="font-size:15px" class="font-weight-bold"><%= t("orders_info.service") %>: </span style="font-size:15px"> <%= order[:order].service %> </div>
+                    <div class=""> <span  style="font-size:15px" class="font-weight-bold"><%= t("orders_info.voucher") %>: </span> <span style="font-size:15px"> - $<%= order[:order]&.voucher ? order[:order].voucher : 0 %></span> </div>
                     
                     <span>------------------------------------ <span>
                     <% if order[:order]&.voucher  %>
-                        <div class="mt-3"> <span class="font-weight-bold"></span> <span class="btn btn-primary font-weight-bold theme-color">Payment:$<%= @Total_order - order[:order].voucher  + order[:order].fee%></span> </div>
+                        <div class="mt-3"> <span class="font-weight-bold"></span> <span class="btn btn-primary font-weight-bold theme-color"><%= t("orders_info.payment")%>: $<%= @Total_order - order[:order].voucher  + order[:order].fee%></span> </div>
                       <% else %>
-                        <div class="mt-3"> <span class="font-weight-bold"></span> <span class="btn btn-primary font-weight-bold theme-color">Payment: $<%= @Total_order.to_f + order[:order].fee %></span> </div>
+                        <div class="mt-3"> <span class="font-weight-bold"></span> <span class="btn btn-primary font-weight-bold theme-color"><%= t("orders_info.payment")%>: $<%= @Total_order.to_f + order[:order].fee %></span> </div>
                     <% end %>
                 </td>
           <% end %>
@@ -144,7 +144,7 @@
         display:none
     }
   </style>
-      <h2 style=" text-align: center;"> You don't have product of this month </h2>
+      <h2 style=" text-align: center;"><%= t("messages.dont_have_product_this_month") %>  </h2>
   {{/if}}
 
 </script>

@@ -79,7 +79,7 @@ function Product(options) {
               if (data.data.carts_order.length > 0) {
                 $(".total_order_of_month").css("display", "block");
                 $(".total_order_of_month").get(0).innerText =
-                  "Total monney order (include fee ship & voucher ) of month is " +
+                  "Total monney order (include fee ship & voucher) of month is " +
                   "$" + parseFloat(total_order_of_month + parseFloat(data.data.fee_ship))
 
               } else {

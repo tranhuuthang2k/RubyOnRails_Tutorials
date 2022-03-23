@@ -5,7 +5,7 @@
                 <div class= "col-sm-11 " >
                     <h2 class="title text-center">Category: <%= @results[:list_post].first&.category_post.name %></h2>
                     <% @results[:list_post].each do |item| %>
-                        <a href="/blog_detail/<%= item.title.parameterize%>~<%=item.id %>" style="color: black">
+                        <a href="/<%=I18n.locale %>/blog_detail/<%= item.title.parameterize%>~<%=item.id %>" style="color: black">
                             <article>
                                 <img src="<%= url_for(item.image) if item.image.attached? %>" alt="Image" class="list_post">
                                 <div class="text">
@@ -15,7 +15,7 @@
                                     <i class="fa fa-user"></i> <%= item.user.username %>
                                     </p>
                                     <p><%= item.content %></p>
-                                    <a  class="btn btn-primary" href="/blog_detail/<%= item.title.parameterize%>~<%=item.id %>">Read More</a>
+                                    <a  class="btn btn-primary" href="/<%=I18n.locale %>/blog_detail/<%= item.title.parameterize%>~<%=item.id %>">Read More</a>
                                 </div>
                             </article>
                         </a>
