@@ -1,6 +1,6 @@
 <div class="recommended_items">
     <!--recommended_items-->
-    <h2 class="title text-center">Recommended items</h2>
+    <h2 class="title text-center"><%= t 'product.recommend' %></h2>
 
     <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
@@ -11,7 +11,7 @@
                         <div class="single-products">
                             <div class="productinfo text-center">
                                 <input type="hidden" id="<%= item.id %>" class="id" value="">
-                                 <a href="/product-details/<%= item.title.parameterize%>~<%=item.id%>"> 
+                                 <a href="/<%=I18n.locale %>/product-details/<%= item.title.parameterize%>~<%=item.id%>"> 
                                   <% if item.image.attached?  %>
                                        <%= image_tag url_for(item.image) , alt: "img",  class: "imageProduct" %>
                                   <% end %>
@@ -19,7 +19,7 @@
                                 <p class="title"><%= item.title  %></p>
                                 <h2 class="price">$<%= item.price %></h2>
                                 <a href="javascript:void(0)" class="btn btn-default add-to-cart"><i
-                                        class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        class="fa fa-shopping-cart"></i><%= t "product.add_to_cart" %></a>
                             </div>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                         <div class="single-products">
                             <div class="productinfo text-center">
                                 <input type="hidden" id="<%= item.id %>" class="id" value="">
-                           <a href="/product-details/<%= item.title.parameterize%>~<%=item.id%>"> <img class="imageProduct" src="<%= url_for(item.image) if item.image.attached? %>" alt="" /></a>
+                           <a href="/<%=I18n.locale %>/product-details/<%= item.title.parameterize%>~<%=item.id%>"> <img class="imageProduct" src="<%= url_for(item.image) if item.image.attached? %>" alt="" /></a>
                                 <p class="title"><%= item.title  %></p>
                                 <h2 class="price">$<%= item.price %></h2>
                                   <div>
@@ -44,14 +44,14 @@
                                     <i class="fa fa-star" style="color: #fe950f;"></i>
                                  </div>
                                 <% if item.availability&.product_sold.to_i > 0 %>
-                                    <p class="title">Sold: <%= item.availability&.product_sold %> products</p>
+                                     <p class="title"><%= t 'product.sold' %>: <%= item.availability&.product_sold %> <%= t 'product.product' %></p>
                                 <% end %>
                                 <% if  item.availability&.status.to_i > 0%>
                                     <a href="javascript:void(0)" class="btn btn-default add-to-cart">
-                                    <i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    <i class="fa fa-shopping-cart"></i><%= t 'add_to_cart.add_to_cart' %></a>
                                 <% else %>
                                     <a href="javascript:void(0)" class="btn btn-danger out-of-stock">
-                                    Out of stock</a>
+                                    <%= t 'product.out_of_stock' %></a>
                                 <% end %>
                    
                             </div>

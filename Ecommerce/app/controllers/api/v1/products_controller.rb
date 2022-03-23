@@ -37,7 +37,7 @@ module Api
         if check_voucher&.expire&.future?
           render json: success_message('Successfully', { cost: check_voucher.cost })
         else
-          render json: error_message(t('Voucher is invalid or expired'))
+          render json: error_message('Voucher is invalid or expired')
         end
       end
 

@@ -15,25 +15,32 @@
 					<thead>
 						<tr class="cart_menu">
             	<td class="id">ID</td>
-							<td class="image">Image</td>
-							<td class="description">Products</td>
-              <td class="date">Day<td>
+							<td class="image"><%= t "product.image"%></td>
+							<td class="description"><%= t "product.name"%></td>
+              <td class="description"><%= t "product.price"%></td>
+              <td class="date"><%= t "product.date" %><td>
 							<td></td>
 						</tr>
 					</thead>
 					<tbody>
-          <% @results[:product_favorites].each do |loves| %>
+          <% @results[:product_favorites].each do |love| %>
               <tr>
-                <td><p><%=loves.product_id%></p></td>
+                <td><p><%=love.product_id%></p></td>
                 <td class="cart_product">
-                <% if loves.product.image.attached? %>
-                  <a href="/product-details/<%= loves.product.title.parameterize%>~<%=loves.product_id%>"><img src="<%= url_for(loves.product.image) %>" alt=""width="110" height="110"</a>
+                <% if love.product&.image&.attached? %>
+                  <a href="/<%=I18n.locale %>/product-details/<%= love.product.title.parameterize%>~<%=love.product_id%>"><img src="<%= url_for(love.product.image) %>" alt=""width="110" height="110"></a>
                 <% end %>
                 </td>
-                <td class="cart_title">
-                  <h4><a href="/product-details/<%= loves.product.title.parameterize%>~<%=loves.product_id%>"><%= loves.product.title %></a></h4>
-                </td>
-                <td><%= loves.created_at.strftime("%d/%m/%Y") %></td>
+                <% if love.product   %>
+                  <td class="cart_title">
+                    <h4>  <a  style="color: black; font-size: 15px"  href="/<%=I18n.locale %>/product-details/<%= love.product%>~<%=love.product_id%>"><%=   love.product.title %></h4>
+                  </td>
+                  <td class="cart_title">
+                    <h4>  <a   style="color: black; font-size: 15px" href="/<%=I18n.locale %>/product-details/<%= love.product%>~<%=love.product_id%>"><%=  love.product.price %></h4>
+                  </td>
+                <% end %>
+
+                <td><%= love.created_at.strftime("%d/%m/%Y") %></td>
               </tr>
           <% end %>
 					</tbody>

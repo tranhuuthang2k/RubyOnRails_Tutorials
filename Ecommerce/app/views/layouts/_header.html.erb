@@ -30,36 +30,36 @@
 				<div class="row">
 					<div class="col-md-4 clearfix" style=" display: flex; justify-content: center;">
 						<div class="logo pull-left">
-							<a href="/"><img src="/assets/home/logo.png" width="150" alt="" /></a>
+							<a href="/?locale=<%= I18n.locale %>"><img src="/assets/home/logo.png" width="150" alt="" /></a>
 						</div>
 					</div>
 					<div class="col-md-8 clearfix" id="menu-list" >
 						<div class="shop-menu clearfix pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href="/profile"><i class="fa fa-user"></i> Account</a></li>
+								<li><a href="/profile"><i class="fa fa-user"></i> <%= t 'menu.account' %></a></li>
 						 <li class="notifications" style="padding-right: 10px;" onclick="myFunction()" > 
-							<a href="javascript:void(0);" > <i class="fa fa-bell" style="font-size:15px"></i> Notifications 
+							<a href="javascript:void(0);" > <i class="fa fa-bell" style="font-size:15px"></i> <%= t 'menu.notification' %> 
 								<div class="icon-badge"></div> 
 							</a>
 							<ul id="list-notifications" style="display: none">
 								<% if current_user %>
 								<% @results[:notifications].each do |item| %>
-									<li class="item-notification">🔔 <a href="/notification/<%= item.title.parameterize%>~<%=item.id%>"><%= item.title %></a></li>
+									<li class="item-notification">🔔 <a href="/<%=I18n.locale %>/notification/<%= item.title.parameterize%>~<%=item.id%>"><%= item.title %></a></li>
 									<% end %>
 								<% end %>
 							</ul>
 						</li>
-								<li><a href="<%= users_carts_path %>"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-								<li style="cursor: pointer;"><a onclick="location.href='<%= users_carts_path %>'">Cart <i class="fa fa-shopping-cart"></i> <span class='badge badge-warning' id='lblCartCount'>  </span></a></li>
+								<li><a href="<%= users_carts_path %>"><i class="fa fa-crosshairs"></i> <%= t 'menu.checkout' %></a></li>
+								<li style="cursor: pointer;"><a onclick="location.href='<%= users_carts_path %>'"><%= t 'menu.cart' %> <i class="fa fa-shopping-cart"></i> <span class='badge badge-warning' id='lblCartCount'>  </span></a></li>
 								<% if user_signed_in? %>
 								<% if current_user.admin? %>
-								    <li><a href="/admin"><i class="fa fa-lock"></i> <%= current_user.username %></a></li>
+								    <li><a href="/admin?locale=en"><i class="fa fa-lock"></i> <%= current_user.username %></a></li>
 								<% else %>
 									<li><a href="<%= edit_user_registration_path %>"><i class="fa fa-lock"></i> <%= current_user.username %></a></li>
                   				<% end %>
-									<li><a href="<%= destroy_user_session_path %>"><i class="fa fa-lock"></i> Logout</a></li>
+									<li><a href="/<%=I18n.locale %>/logout"><i class="fa fa-lock"></i> <%= t 'action.logout' %></a></li>
 								<% else %>
-								  <li><a href="<%= new_user_session_path %>"><i class="fa fa-lock"></i> Login</a></li>
+								  <li><a href="<%= new_user_session_path %>"><i class="fa fa-lock"></i> <%= t 'action.login' %></a></li>
 								<% end %>
 							</ul>
 						</div>
@@ -82,31 +82,36 @@
 						</div>
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="<%= root_path %>" class="active">Home</a></li>
-								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
+								<li><a href="<%= root_path %>" class="active"><%= t 'menu.home' %></a></li>
+								<li class="dropdown"><a href="#"><%= t 'menu.shop' %><i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-										<li><a href="/profile">Profile</a></li> 
-										<li><a href="<%= users_carts_path %>">Checkout</a></li> 
-										<li><a href="<%= users_carts_path %>">Cart</a></li> 
-										<li><a href="<%= login_path %>">Login</a></li> 
-										<li><a href="<%= contact_path %>">Contact</a></li>
+										<li><a href="/profile"><%t 'menu.profile' %></a></li> 
+										<li><a href="<%= users_carts_path %>"><%= t 'menu.checkout' %></a></li> 
+										<li><a href="<%= users_carts_path %>"><%= t 'menu.cart' %></a></li> 
+										<li><a href="<%= login_path %>"><%= t 'action.login' %></a></li> 
+										<li><a href="<%= contact_path %>"><%= t 'menu.contact' %></a></li>
                                     </ul>
                                 </li> 
-								<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
+								<li class="dropdown"><a href="#"><%= t 'blog' %><i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="<%= blog_path %>">Blog List</a></li>
+                                        <li><a href="<%= blog_path %>"><%= t 'blog_list' %></a></li>
                                     </ul>
                                 </li> 
-								<li><a href="<%= contact_path %>">Contact</a></li>
+								<li><a href="<%= contact_path %>"><%= t 'menu.contact' %></a></li>
 								<% if user_signed_in? %>
-								<li><a href="<%= users_orders_path %>">My Orders</a></li>
+								<li><a href="<%= users_orders_path %>"><%= t "menu.my_orders" %></a></li>
 								<% end %>
 							</ul>
 						</div>
 					</div>
+					
+			<span style="font-size: 15px"><%= t("languages")%> </span>
+			<%= link_to "English 🇬🇧", locale:"en" %>
+			<%= link_to "Vietnamese 🇻🇳", locale:"vi" %>
+
           <div class="col-sm-3">
             <div class="search_box pull-right">
-              <input class ="in-search"type="text" style="color: #000; font-weight: 700;" placeholder="Search product"/>
+              <input class ="in-search"type="text" style="color: #000; font-weight: 700;" placeholder="<%= t "product.search" %>"/>
             </div>
           </div>
 				</div>

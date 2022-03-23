@@ -117,7 +117,7 @@ module RailsAdmin
             # product sold of this month,year
             @total_availabilitys = Availability.all.size
             # You can specify flash messages
-            flash.now[:success] = 'Welcome to dashboard'
+            flash.now[:success] = t 'welcome_to_dashboard'
 
             # After you're done processing everything, render the new dashboard
             render @action.template_name, status: 200

@@ -2,7 +2,7 @@
     <div class="bg">
         <div class="row">    		
             <div class="col-sm-12">    			   			
-                <h2 class="title text-center">Contact <strong>Us</strong></h2>    			    				    				
+                <h2 class="title text-center"><%= t "contacts.contact"%></h2>    			    				    				
                 <div id="gmap" class="contact-map">
                 </div>
             </div>			 		
@@ -10,23 +10,23 @@
         <div class="row">  	
             <div class="col-sm-8">
                 <div class="contact-form">
-                    <h2 class="title text-center">Get In Touch</h2>
+                    <h2 class="title text-center"><%= t "contacts.write_info"%></h2>
                     <div class="status alert alert-success" style="display: none"></div>
                       <%= form_with(url: contact_path , remote: true) do |f| %>
                             <div class="form-group col-md-6">
-                                <input type="text" name="name" class="form-control" required="required" placeholder="Name">
+                                <input type="text" name="name" class="form-control" required="required" placeholder="<%= t "contacts.name"%>">
                             </div>
                             <div class="form-group col-md-6">
-                                <input type="email" name="email" class="form-control" required="required" placeholder="Email">
+                                <input type="email" name="email" class="form-control" required="required" placeholder="<%= t "contacts.email"%>">
                             </div>
                             <div class="form-group col-md-12">
-                                <input type="text" name="subject" class="form-control" required="required" placeholder="Subject">
+                                <input type="text" name="subject" class="form-control" required="required" placeholder="<%= t "contacts.subject"%>">
                             </div>
                             <div class="form-group col-md-12">
-                                <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Your Message Here"></textarea>
+                                <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="<%= t "contacts.message"%>"></textarea>
                             </div>                        
                             <div class="form-group col-md-12">
-                                <%= f.submit "Contact Now", class: 'btn btn-primary btn-sm' %>
+                                <%= f.submit t("contacts.contact_now") , class: 'btn btn-primary btn-sm' %>
                             </div>
                      <% end %>
                 </div>
@@ -35,19 +35,19 @@
 
             <div class="col-sm-4">
                 <div class="contact-info">
-                    <h2 class="title text-center">Contact Info</h2>
+                    <h2 class="title text-center"><%= t "contacts.information" %></h2>
                     <address>
                         <p>Mr.Katsu Inc.</p>
-                        <p>270 Truong Chinh, Thanh Khe, Da Nang</p>
-                        <p>Country VietNam</p>
-                        <p>Mobile: +84 37296 4842</p>
-                        <p>Email: tranhuuthangcoi@gmail.com</p>
+                        <p><%= t "contacts.address" %>: 270 Truong Chinh, Thanh Khe, Da Nang</p>
+                        <p><%= t "contacts.country" %>: VietNam</p>
+                        <p><%= t "contacts.mobile" %>: +84 37296 4842</p>
+                        <p><%= t "contacts.email" %>: tranhuuthangcoi@gmail.com</p>
                     </address>
                     <div class="social-networks">
-                        <h2 class="title text-center">Social Networking</h2>
+                        <h2 class="title text-center"><%= t "contacts.social_networking" %></h2>
                         <ul>
                             <li>
-                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="https://www.facebook.com/thangneymar44/"><i class="fa fa-facebook"></i></a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-twitter"></i></a>

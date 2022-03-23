@@ -28,7 +28,7 @@
                     <div class="single-products">
                         <div class="productinfo text-center">
                             <input type="hidden" id="<%= item.id %>" class="id" value="">
-                            <a href="/product-details/<%= item.title.parameterize%>~<%=item.id%>"> <img class="imageProduct" src="<%= url_for(item.image) if item.image.attached? %>" alt="" /></a>
+                            <a href="/<%=I18n.locale %>/product-details/<%= item.title.parameterize%>~<%=item.id%>"> <img class="imageProduct" src="<%= url_for(item.image) if item.image.attached? %>" alt="" /></a>
                             <h2 class="price">$<%= item.price  %></h2>
                             <p class="title"><%= item.title  %></p>
                             <a href="javascript:void(0)" class="btn btn-default add-to-cart"><i
@@ -39,7 +39,7 @@
                     <div class="choose">
                         <ul class="nav nav-pills nav-justified">
                             <li><a href="javascript:void(0)"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                            <li><a href="/product-details/<%= item.title.parameterize%>~<%=item.id%>"><i class="fa fa-plus-square"></i>See more...</a></li>
+                            <li><a href="/<%=I18n.locale %>/product-details/<%= item.title.parameterize%>~<%=item.id%>"><i class="fa fa-plus-square"></i>See more...</a></li>
                         </ul>
                     </div>
                 </div>

@@ -46,6 +46,7 @@
 <body>
   <!-- LOADER -->
   <%= render 'layouts/header' %>
+
   <% if notice%>
     <div id="notice_wraper">
       <p class="notice"><%= notice %></p>
@@ -116,7 +117,7 @@
             <div class="single-products">
                 <div class="productinfo text-center">
                     <input type="hidden" id="{{id}}" class="id" value="{{id}}">
-                    <a href="/product-details/{{title}}~{{id}}"> <img class="imageProduct" src="{{image_url1}}" alt="" /></a>
+                    <a href="/<%=I18n.locale %>/product-details/{{title}}~{{id}}"> <img class="imageProduct" src="{{image_url1}}" alt="" /></a>
                     <h2 class="price">${{price}}</h2>
                     <p class="title">{{title}}</p>
                 </div>
@@ -124,7 +125,7 @@
             <div class="choose">
                 <ul class="nav nav-pills nav-justified">
                     <li><a href="javascript:void(0)"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                    <li><a href="/product-details/{{title}}~{{id}}"><i class="fa fa-plus-square"></i>See more...</a></li>
+                    <li><a href="/<%=I18n.locale %>/product-details/{{title}}~{{id}}"><i class="fa fa-plus-square"></i>See more...</a></li>
                 </ul>
             </div>
         </div>

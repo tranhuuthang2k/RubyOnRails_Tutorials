@@ -4,18 +4,18 @@
                 <div class="col-sm-3">
 					<div class="left-sidebar">
 						<div class="brands_products">
-						<h2>Category</h2>
+						<h2><%= t("blogs.category")%></h2>
 						<%= render 'home/category_blog' %>
-                        </br>
-                        <h2>Post Best View</h2>
+             </br>
+             <h2><%= t("blogs.post_best_view")%></h2>
 						<%= render 'home/best_view_blog' %>
 						</div>
 					</div>
 				</div>
                 <div class= col-sm-9>
-                    <h2 class="title text-center">List post</h2>
+                    <h2 class="title text-center"><%= t("blogs.list_post") %></h2>
                     <% @results[:posts].each do |item| %>
-                        <a href="/blog_detail/<%= item.title.parameterize%>~<%=item.id %>" style="color: black">
+                        <a href="/<%=I18n.locale %>/blog_detail/<%= item.title.parameterize%>~<%=item.id %>" style="color: black">
                             <article>
                                 <img src="<%= url_for(item.image) if item.image.attached? %>" alt="Image" class="list_post">
                                 <div class="text">
@@ -25,7 +25,7 @@
                                     <i class="fa fa-user"></i> <%= item.user.username %>
                                     </p>
                                     <p><%= item.content %></p>
-                                    <a  class="btn btn-primary" href="/blog_detail/<%= item.title.parameterize%>~<%=item.id %>">Read More</a>
+                                    <a  class="btn btn-primary" href="/<%=I18n.locale %>/blog_detail/<%= item.title.parameterize%>~<%=item.id %>"><%= t("blogs.read_more") %></a>
                                 </div>
                             </article>
                         </a>

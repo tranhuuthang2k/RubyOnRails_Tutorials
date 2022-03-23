@@ -5,18 +5,18 @@
 				<div class="col-sm-3">
 					<div class="left-sidebar">
                         <!--category-->
-						<h2>Category</h2>
+						<h2><%= t 'slide_bar.category' %></h2>
                           <%= render 'home/category' %>
                         <!--/category-->
 
                         <!--brands_products-->
 						<div class="brands_products">
-							<h2>Brands</h2>
+							<h2><%= t 'slide_bar.brand' %></h2>
 							<%= render 'home/brands' %>
 						</div>
-						<h2 style="margin-top: 40px">Hot Products</h2>
+						<h2 style="margin-top: 40px"><%= t 'slide_bar.hot_product' %></h2>
 						  <%= render 'home/product_hot' %>
-						<h2 style="margin-top: 40px">Super Sales</h2>
+						<h2 style="margin-top: 40px"><%= t 'slide_bar.super_sale' %></h2>
 				  	  <%= render 'home/sales' %>
 					</div>
 				</div>
