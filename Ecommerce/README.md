@@ -135,6 +135,9 @@ Connect sidekid
 + Step 2:
   + Username: sidekiq
   + Password: sidekiq
+----------------------------------------------------------------------------------
+Settings I18n
++ https://lokalise.com/blog/rails-i18n/
 -----------------------------------------------------------------------------------
 Error deployment heroku
 - Error PG::DatatypeMismatch: ERROR: argument of WHERE must be type boolean, not type integer

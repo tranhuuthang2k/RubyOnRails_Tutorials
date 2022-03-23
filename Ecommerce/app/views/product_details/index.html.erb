@@ -5,13 +5,13 @@
             <div class="col-sm-3">
                 <div class="left-sidebar">
                     <!--category-->
-                    <h2>Category</h2>
+                    <h2><%= t 'slide_bar.category' %></h2>
                     <%= render "home/category" %>
                     <!--/category-->
 
                     <!--brands_products-->
                     <div class="brands_products">
-                        <h2>Brands</h2>
+                      <h2><%= t 'slide_bar.brand' %></h2>
                         <%= render "home/brands" %>
                     </div>
                     <!--/brands_products-->
@@ -109,35 +109,34 @@
                                   <% end %>
                                  </span>
 
-                                <label>Quantity:</label>
+                                <label style="font-size:15px"><%= t 'product.quantity' %>:</label>
                                 <input type="number" id="numberInput" class="quantity" value="1" min="1"  onchange=" this.value > <%= @results[:product].availability.number_instock if @results[:product].availability.present? %>  &&  myFunction(<%= @results[:product].availability.number_instock if @results[:product].availability.present? %>) " max=" <%= @results[:product].availability if @results[:product].availability.present? %>" />
                                <% if @results[:product].availability&.status.to_i > 0 %>
                                   <button type="submit" class="btn btn-fefault cart add-to-cart-detail">
                                       <i class="fa fa-shopping-cart"></i>
-                                      Add to cart
+                                      <%= t 'product.add_to_cart' %>:
                                   </button>
                                 <% else %>
                                  <button type="submit" class="btn btn-danger">
                                       <i class="fa fa-shopping-cart"></i>
-                                    Out of stock
-                                  </button>
+                                       <%= t 'product.out_of_stock' %>:
+                                 </button>
                                <% end %>
-                            
                             </span>
                             <div>
-                            <span> <b> Choose size </b> </span>
+                            <span style="font-size:15px"> <b> <%= t'product.choose_size' %> </b> </span>
                               <div class="sprd-select__items">
                               <% @results[:product].sizes.each_with_index do |item, index| %>
                                   <div class="button <%= index == 0 ? "active" : "" %>"><%= item.name %></div>  
                               <% end %>
                               </div>
                             </div>
-                            <p><b>Availability:</b> <%= @results[:product].availability.name if @results[:product].availability.present? %></p>
-                            <p><b>Number instock:</b>  <%= @results[:product].availability.number_instock if @results[:product].availability.present? %></p>
-                            <p><b>Status:</b>  <%= @results[:product].availability.status == "1" ? "Instock" : "OutStock" if @results[:product].availability.present? %></p>
-                            <p><b>Brand:</b> <%= @results[:product].brand ? @results[:product].brand.name : "" %></p>
-                            <p><b>View: </b> <%= @results[:product].product_views.count %> <i class="fa fa-eye"></i></p>
-                            <p><b>Share:</b> <a href="https://www.facebook.com/share.php?u=https://shopmrkatsu.herokuapp.com/product-details/<%= @results[:product].title.parameterize %>~<%= @results[:product].id %>"><i class="fa fa-facebook-square fa-2x facebook" style="font-size: 1.5em;"></i></a></p>
+                            <p><b><%= t 'product.availability' %>:</b> <%= @results[:product].availability.name if @results[:product].availability.present? %></p>
+                            <p><b><%= t 'product.number_instock'%>:</b>  <%= @results[:product].availability.number_instock if @results[:product].availability.present? %></p>
+                            <p><b><%= t 'product.status' %>:</b>  <%= @results[:product].availability.status == "1" ? "Instock" : "OutStock" if @results[:product].availability.present? %></p>
+                            <p><b><%= t 'product.brand' %>:</b> <%= @results[:product].brand ? @results[:product].brand.name : "" %></p>
+                            <p><b><%= t 'product.view' %>: </b> <%= @results[:product].product_views.count %> <i class="fa fa-eye"></i></p>
+                            <p><b><%= t 'product.share' %>:</b> <a href="https://www.facebook.com/share.php?u=https://shopmrkatsu.herokuapp.com/product-details/<%= @results[:product].title.parameterize %>~<%= @results[:product].id %>"><i class="fa fa-facebook-square fa-2x facebook" style="font-size: 1.5em;"></i></a></p>
                         </div>
                         <!--/product-information-->
                     </div>
@@ -148,9 +147,9 @@
                     <!--category-tab-->
                     <div class="col-sm-12">
                         <ul class="nav nav-tabs">
-                            <li class="active" ><a href="#details" data-toggle="tab">Details</a></li>
-                            <li><a href="#product_orther" data-toggle="tab">Product Orther</a></li>
-                            <li><a href="#reviews" data-toggle="tab">Reviews </a></li>   
+                            <li class="active" ><a href="#details" data-toggle="tab"><%= t "product.detail" %></a></li>
+                            <li><a href="#product_orther" data-toggle="tab"><%= t "product.other" %></a></li>
+                            <li><a href="#reviews" data-toggle="tab"><%= t "product.review" %> </a></li>   
                         </ul>
                     </div>
                     <div class="tab-content">
@@ -170,11 +169,11 @@
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
                                         <div class="productinfo text-center">
-                                            <a href="/product-details/<%= item.title.parameterize %>~<%= item.id %>"> <img class="imageProduct" src="<%= url_for(item.image) if item.image.attached? %>" alt="" /></a>
+                                            <a href="/<%=I18n.locale %>/product-details/<%= item.title.parameterize %>~<%= item.id %>"> <img class="imageProduct" src="<%= url_for(item.image) if item.image.attached? %>" alt="" /></a>
                                             <h2>$<%= item.price %></h2>
                                             <p><%= item.title %></p>
-                                             <a  href="/product-details/<%= item.title.parameterize %>~<%= item.id %>"  class="btn btn-default"><i
-                                              class="fa fa-shopping-cart"></i> See more</a>
+                                             <a  href="/<%=I18n.locale %>/product-details/<%= item.title.parameterize %>~<%= item.id %>"  class="btn btn-default"><i
+                                              class="fa fa-shopping-cart"></i> <%= t "product.see_more" %></a>
                                         </div>
                                     </div>
                                 </div>
@@ -191,7 +190,7 @@
 
 
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                WRITE COMMENT REVIEW
+                <%= t 'comments.write' %>
               </button>
 
               <!-- Modal -->
@@ -199,7 +198,7 @@
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Write Your Review</h5>
+                      <h5 class="modal-title" id="exampleModalLabel"> <%= t 'comments.write' %></h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -216,7 +215,7 @@
                                                                           outline: medium none;
                                                                           border: 1px solid;" 
                                                 placeholder="Please enter your comment" />
-                                                <label for="csv" class="form-label">Default file input example</label>
+                                                <label for="csv" class="form-label"><%= t "comments.upload_image"%> </label>
                                                 <input id="csv" name="csv" type="file"  style="
                                                                           width: 100%;
                                                                           background: none;
@@ -247,7 +246,7 @@
 
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal"><%= t "comments.close" %></button>
                     </div>
                   </div>
                 </div>
@@ -291,7 +290,7 @@
                                     <p class="list-edit-comment" style="line-break: anywhere;" ><%= comment.content %></p>
                                     <a href="<%= comment.image.present? ? url_for(comment.image) : '' %>" data-lightbox="example-2" > <img class="media-object" data-lightbox="image-1" data-title="My caption" src="<%= comment.image.present? ? url_for(comment.image) : '' %>" alt="" width="50%" height="auto" ></a>
                                      </br>
-                                    <p class="reply_comment"> Reply Question <p>
+                                    <p class="reply_comment"> <%= t 'comments.reply' %> <p>
                               
                                     <div class="list_comment_chidren" >                                
                                         <% comment.comment_childrens.sort_by(&:created_at).each do |item| %>
@@ -323,7 +322,7 @@
                                     
                                       <div class="full-tbl" style="display:block">
                                          <textarea  id="fieldReplyComment" placeholder="Write a comment..." style="padding-top: 15px"  ></textarea>
-                                         <span class="inp-grp-sub"><button type="submit" id="send_reply_comment">Send</button></span>
+                                         <span class="inp-grp-sub"><button type="submit" id="send_reply_comment"><%= t 'comments.send' %></button></span>
                                       </div>
                                     </div>
                                   </li>
@@ -395,6 +394,7 @@
         flex-wrap: wrap;
         width: 100%;
         margin-bottom: .5rem;
+        justify-content: center;
       }
       .button {
         background-color: #fff;
@@ -493,7 +493,7 @@ $(".image")
       <p class="list-edit-comment" style="line-break: anywhere;">{{ comment.content }}</p>
       <a href="{{ image }}" data-lightbox="example-2" > <img class="media-object" data-lightbox="image-1" data-title="My caption" src="{{ image }}" alt="" width="50%" height="auto" ></a>
       </br>
-     <p class="reply_comment"> Reply Question <p>
+     <p class="reply_comment"> <%= t 'comments.reply' %> <p>
       <div class="list_comment_chidren" >                                
         <div class="comment_children_item comment_children" >
           <!-- <img src=""  width="50px" alt="" /> -->

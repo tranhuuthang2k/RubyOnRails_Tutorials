@@ -1,7 +1,7 @@
 <%= javascript_include_tag "//www.google.com/jsapi" %>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartkick/1.3.0/chartkick.min.js" integrity="sha512-yZq6Kg/RKA6FcdT1iQcce5DN5WqzlzuVDpEWa3dWwpqcArOkiE/1ueacDGZ0LHVIP+7jJLSYETeOD1lEqQMIjA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <form action="/admin">
-    <label for="bday-month">Statistic about product of the month, year</label>
+    <label for="bday-month"><%= t "admin.statistic_product.month_year" %></label>
     <input id="bday-month" type="month" name="month_year" value="<%= @result[:year] %>-<%= @result[:month] %>">
     <button type="submit"><i class="fa fa-search"></i></button>
 </form>
@@ -11,14 +11,14 @@
     <div class="row align-items-stretch">
       <div class="c-dashboardInfo col-lg-3 col-md-6 col-xs-3">
         <div class="wrap">
-          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Revenue of <%= @result[:month] %>/<%= @result[:year] %> <svg
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"><%= t "admin.statistic_product.revenue"%> <%= @result[:month] %>/<%= @result[:year] %> <svg
               class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
             </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count">$<%= @result[:data].present? ? @result[:data] : 0 %></span>
         </div>
       </div>
     <div class="c-dashboardInfo col-lg-3 col-md-6 col-xs-3">
         <div class="wrap">
-          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Sold product <%= @result[:month] %>/<%= @result[:year] %> <svg
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"><%= t "admin.statistic_product.sold_product"%> <%= @result[:month] %>/<%= @result[:year] %> <svg
               class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
             </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%= @result[:sold] %></span>
         </div>
@@ -26,20 +26,20 @@
 
       <div class="c-dashboardInfo col-lg-3 col-md-3 col-xs-6">
         <div class="wrap">
-          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Total order cancel <%= @result[:month] %>/<%= @result[:year] %>
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"><%= t "admin.statistic_product.total_order_cancel"%> <%= @result[:month] %>/<%= @result[:year] %>
             </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%=   @result[:total_order_cancel]%></span>
         </div>
       </div>
       <div class="c-dashboardInfo col-lg-3 col-md-6 col-xs-3">
         <div class="wrap">
-          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Product in system <svg
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"><%= t "admin.statistic_product.total_product_system"%> <svg
               class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
             </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%= Product.pluck("id").size%></span>
         </div>
       </div>
       <div class="c-dashboardInfo col-lg-3 col-md-6 col-xs-3">
         <div class="wrap">
-          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Best selling <%= @result[:month] %>/<%= @result[:year] %> <svg
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"><%= t "admin.statistic_product.best_selling"%> <%= @result[:month] %>/<%= @result[:year] %> <svg
               class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
             </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"></span>
             <!-- Button trigger modal -->
@@ -54,7 +54,7 @@
       </div>
       <div class="c-dashboardInfo col-lg-3 col-md-6 col-xs-3">
           <div class="wrap">
-            <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Best Keyword search <%= @result[:month] %>/<%= @result[:year] %>
+            <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"><%= t "admin.statistic_product.best_Keyword_search"%> <%= @result[:month] %>/<%= @result[:year] %>
               <% if  @result[:statistic_products][:best_keyword_search].present? %>
                     </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%= @result[:statistic_products][:best_keyword_search].key_word%></span>
               <% else %>
@@ -66,12 +66,12 @@
       </div>
       <div class="c-dashboardInfo col-lg-3 col-md-6 col-xs-3">
         <div class="wrap">
-          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Best views <%= @result[:month] %>/<%= @result[:year] %> <svg
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"><%= t "admin.statistic_product.best_view"%> <%= @result[:month] %>/<%= @result[:year] %> <svg
               class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
             </svg></h4>
             <% if @result[:statistic_products][:best_product_views].present? %>
                 <div type="button" class="btn" style="border-color: #dadada;">
-                  <a  href="/product-details/<%=  @result[:statistic_products][:best_product_views].title.parameterize%>~<%= @result[:statistic_products][:best_product_views].id%>">
+                  <a  href="/<%=I18n.locale %>/product-details/<%=  @result[:statistic_products][:best_product_views].title.parameterize%>~<%= @result[:statistic_products][:best_product_views].id%>">
                      <%= image_tag main_app.url_for( @result[:statistic_products][:best_product_views].image) , alt: "img", id:"best_seller", class: "imageProduct" ,size: "70x70" %>              
                   </a>
                 </div>
@@ -82,14 +82,14 @@
       </div>
       <div class="c-dashboardInfo col-lg-3 col-md-6 col-xs-3">
         <div class="wrap">
-          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title" style="margin-top: 30px">Voucher code <%= @result[:month] %>/<%= @result[:year] %> <svg
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title" style="margin-top: 30px"><%= t "admin.statistic_product.voucher"%><%= @result[:month] %>/<%= @result[:year] %> <svg
               class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
             </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%= @result[:statistic_products][:vouchers] > 0 ? @result[:statistic_products][:vouchers] : 0 %></span>
         </div>
       </div>
       <div class="c-dashboardInfo col-lg-3 col-md-6 col-xs-3">
         <div class="wrap">
-          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Availability in system <svg
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"><%= t "admin.statistic_product.total_availability"%> <svg
               class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
             </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%= @total_availabilitys %></span>
         </div>
@@ -97,7 +97,7 @@
 
       <div class="c-dashboardInfo col-lg-3 col-md-3 col-xs-6">
         <div class="wrap">
-          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Top availability best selling  <svg
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"><%= t "admin.statistic_product.top_availability_best_selling"%> <svg
               class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
             </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%=  Availability.present? ? Availability.find_by(product_sold: Availability.maximum("product_sold")).name : '' %></span>
         </div>
@@ -105,7 +105,7 @@
 
      <div class="c-dashboardInfo col-lg-3 col-md-3 col-xs-6">
         <div class="wrap">
-          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Top availability is ordering  <svg
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"><%= t "admin.statistic_product.top_availability_is_ordering"%> <svg
               class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
             </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%=  Availability.present? ? Availability.find_by(is_ordering: Availability.maximum("is_ordering")).name : '' %></span>
         </div>
@@ -113,7 +113,7 @@
 
       <div class="c-dashboardInfo col-lg-3 col-md-3 col-xs-6">
         <div class="wrap">
-          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Total service Shipping in system <svg
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"><%= t "admin.statistic_product.total_service_shipping"%> <svg
               class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
             </svg>
             </h4><span class="hind-font caption-12 c-dashboardInfo__count"><%=  Shipping.present? ? Shipping.pluck("id").size : 0 %></span>
@@ -121,7 +121,7 @@
       </div>
        <div class="c-dashboardInfo col-lg-3 col-md-3 col-xs-6">
         <div class="wrap">
-          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Total service Shipping  <%= @result[:month] %>/<%= @result[:year] %> <svg
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"><%= t "admin.statistic_product.top_service_shipping"%>   <%= @result[:month] %>/<%= @result[:year] %> <svg
               class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
             </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%= @result[:top_service_shipping].keys.first  %> 
             <% if @result[:top_service_shipping].present? %>
@@ -151,7 +151,7 @@
             <% if !@result[:statistic_products][:best_seller].nil? && @result[:statistic_products][:best_seller].image.attached? %>
                <div class="productinfo text-center">
                     <input type="hidden" id="<%=  @result[:statistic_products][:best_seller].id %>" class="id" value="">
-                     <a href="/product-details/<%=  @result[:statistic_products][:best_seller].title.parameterize%>~<%= @result[:statistic_products][:best_seller].id%>">
+                     <a href="/<%=I18n.locale %>/product-details/<%=  @result[:statistic_products][:best_seller].title.parameterize%>~<%= @result[:statistic_products][:best_seller].id%>">
                      <% if  @result[:statistic_products][:best_seller].image.attached?  %>
                           <%= image_tag main_app.url_for( @result[:statistic_products][:best_seller].image) , alt: "img",  class: "imageProduct" ,size: "200x200" %>
                      <% end %>
@@ -166,7 +166,7 @@
                         <i class="fa fa-star" style="color: #fe950f;"></i>
                     </div>
                     <% if  @result[:statistic_products][:best_seller].sold > 0 %>
-                        <p class="title">Sold: <%=  @result[:statistic_products][:best_seller].sold %> products</p>
+                        <p class="title"> <%= t "admin.statistic_product.sold_product"%>: <%=  @result[:statistic_products][:best_seller].sold %></p>
                     <% else %>
                         <p class="title"> &nbsp;</p>
                     <% end %>
@@ -176,7 +176,7 @@
             <% if  @result[:statistic_products][:best_seller].nil? == false  %>
                <div class="choose">
                   <ul class="nav nav-pills nav-justified">
-                      <li><a href="/product-details/<%= @result[:statistic_products][:best_seller].title.parameterize%>~<%= @result[:statistic_products][:best_seller].id%>"><i class="fa fa-plus-square"></i>See more...</a></li>
+                      <li><a href="/<%=I18n.locale %>/product-details/<%= @result[:statistic_products][:best_seller].title.parameterize%>~<%= @result[:statistic_products][:best_seller].id%>"><i class="fa fa-plus-square"></i><%= t "admin.statistic_product.detail_product"%> </a></li>
                   </ul>
               </div>     
             <% end %>
@@ -184,23 +184,23 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= t "statistic_product.close"%> </button>
       </div>
     </div>
   </div>
 
 
 </div>
-  <h3> About order for the week </h3>
+  <h3><%= t "admin.statistic_product.about_order_for_the_week"%>  </h3>
     <%= column_chart  OrderItem.unscoped.group_by_day_of_week(:created_at,format: "%a").count %>
-      <h3> About order status  </h3>
+      <h3> <%= t "admin.statistic_product.about_order_status"%> </h3>
     <%=  pie_chart OrderItem.select('order_items.status').unscoped.group("order_items.status").count%>
       <p>  STATUS = { 'pending': 0, 'confirmed': 1, 'cancel': 2 } </p>
-      <h3> About statistical user/admin </h3>
+      <h3> <%= t "admin.statistic_product.about_statistical_admin_user"%>  </h3>
     <%= pie_chart User.group(:admin).count %>
-      <h3> About Product for Brand </h3>
+      <h3> <%= t "admin.statistic_product.about_product_for_brand"%> </h3>
     <%=  bar_chart Brand.select('brands.name').joins(:products).group("brands.name").count %>
-      <h3> About Order for month </h3>
+      <h3>  <%= t "admin.statistic_product.about_order_for_month"%>  </h3>
     <%= column_chart OrderItem.this_status(Product::STATUS[:confirmed]).unscoped.group_by_month(:created_at, format: "%b %Y").count%>
 <style>
 .c-dashboardInfo {

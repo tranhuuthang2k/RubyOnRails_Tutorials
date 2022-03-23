@@ -2,20 +2,20 @@
     <div class="container">
         <div class="breadcrumbs">
             <ol class="breadcrumb">
-                <li><a href="<%= root_path %>">Home</a></li>
-                <li class="active">Shopping Cart</li>
+                <li><a href="<%= root_path %>"><%= t("menu.home") %></a></li>
+                <li class="active"><%= t("menu.cart") %></li>
             </ol>
         </div>
         <div class="table-responsive cart_info">
             <table class="table table-condensed">
                 <thead>
                     <tr class="cart_menu">
-                        <td class="image">Image</td>
-                        <td class="description"></td>
-                        <td class="size">Size</td>
-                        <td class="price">Price</td>
-                        <td class="quantity">Quantity</td>
-                        <td class="total">Total</td>
+                        <td class="image"><%= t("product.image") %></td>
+                        <td class="description"><%= t("product.description") %></td>
+                        <td class="size"><%= t("product.size") %></td>
+                        <td class="price"><%= t("product.price") %></td>
+                        <td class="quantity"><%= t("product.quantity") %></td>
+                        <td class="total"><%= t("product.total_price") %></td>
                         <td></td>
                     </tr>
                 </thead>
@@ -38,15 +38,15 @@
 <section id="do_action">
     <div class="container">
         <div class="heading">
-            <h3>Paymment</h3>
-            <p>During the checkout process, if you wait too long, please login again, and order again.</p>
+            <h3><%= t("product.note") %></h3>
+            <p><%= t("product.message_note") %></p>
         </div>
         <div class="row">
             <div class="col-sm-6">
                 <div class="chose_area">
                     <ul class="user_option">
                         <li>
-                            <label>Use Gift Voucher</label>
+                            <label><%= t("product.git_voucher") %></label>
                         </li>
                     </ul>
                     <ul class="user_info">
@@ -55,13 +55,13 @@
                             <input style="border: 1px solid#797977;" type="text" class="voucher_code" >
                         </li>
                     </ul>
-                    <a class="btn btn-default voucher" href="javascript:void(0)">Get Voucher</a>
+                    <a class="btn btn-default voucher" href="javascript:void(0)"><%= t("product.get_voucher") %></a>
                 </div>
             </div>
            
             <div class="col-sm-6">
                 <div class="total_area" >
-                <span>Service Shipping </span>
+                <span style="font-size:15px"><%= t("product.service_shipping") %> </span>
                  <select class="form-select" aria-label="Default select example">
                  <% if @results[:shippings].size %>
                     <% @results[:shippings].each_with_index do |item,index| %>
@@ -71,13 +71,13 @@
                        
                 </select>
                     <ul>
-                        <li>Cart Sub Total <span class="Cart_Sub_Total">$0</span></li>
-                        <li class="shipping-cost">Shipping Cost <span class="price_shipping">$0</span></li>
-                        <li>Total <span class="totalOrder">$0</span></li>
+                        <li><%= t("product.cart_sub_total") %><span class="Cart_Sub_Total">$0</span></li>
+                        <li class="shipping-cost"><%= t("product.shipping_cost") %> <span class="price_shipping">$0</span></li>
+                        <li><%= t("product.total_payment") %>  <span class="totalOrder">$0</span></li>
                     </ul>         
                     <% if user_signed_in? %>
                         <% if current_user.address.blank? || current_user.city.blank? %>
-                            <a class="btn btn-warning" style="margin-left: 40px" href="<%= edit_user_registration_path %>">Please add your address while checkout</a>
+                            <a class="btn btn-warning" style="margin-left: 40px" href="<%= edit_user_registration_path %>"><%=t("messages.address_not_exitst") %></a>
                         <% else %>
                          <div class="bg-light py-6 service-5">
                             <div class="container">
@@ -86,28 +86,30 @@
                                     <div class="col-md-6 wrap-service5-box" style="width: 100%; overflow: hidden"  >
                                         <div class="card card-shadow border-0 mb-4">
                                             <div class="card-body d-flex">
-                                                <div class="mr-4 mb-2 text-success-gradiant" style="font-size: 20px">Billing Information</div>
+                                                <div class="mr-4 mb-2 text-success-gradiant" style="font-size: 20px"><%= t("product.billing_information") %></div>
                                                 <div class="">
-                                                    <h6 class="font-weight-medium"><a href="/profile" class="linking">Address: <%= current_user.address %> </br>Phone : <%= current_user.mobile %></a></h6>
-                                                    <p class="mt-3">City:  <h5 class="city" style="color: red;   font-size: 16px; "><%=current_user.city.name %></h5>.</p>
+                                                    <h6 class="font-weight-medium"><a href="/profile" class="linking"><%= t("profiles.address") %>: <%= current_user.address %> </br><%= t("profiles.mobile") %>: <%= current_user.mobile %></a></h6>
+                                                    <p class="mt-3"><%= t("city") %>:  <h5 class="city" style="color: red;   font-size: 16px; "><%=current_user.city.name %></h5>.</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <a class="btn btn-default check_out" href="javascript:void(0)"  id="btnFetch" style="display: none">Check Out</a>
+                            <a class="btn btn-default check_out" href="javascript:void(0)"  id="btnFetch" style="display: none"><%= t("product.checkout") %></a>
                             <a class="btn btn-default checkout_with_momo" href="javascript:void(0)" style="margin-top: 19px; margin-left: 20px; background: #FE980F; color: white">Payment with MOMO (testing)</a>
 
                         </div>	                        
                         <% end %>                     
                     <% else %>
-                        <a href="javascript:void(0)" style="color: #333; background-color: #fe980f; border-color: #ccc; text-align: center; margin-left: 40px;" class="btn btn-default <%= user_signed_in? ? "check_out" : ""  %>"
+                        <a href="javascript:void(0)" style="color: #333; <%= user_signed_in? ? "background-color: #fe980f;" : "background-color:#e8e5e5;" %>  border-color: #ccc; text-align: center; margin-left: 40px;" class="btn btn-default <%= user_signed_in? ? "check_out" : ""  %>"
                             onClick="Swal.fire({
                                 icon: 'warning',
-                                title: 'You must login to the checkout',
+                                title: '<%= t'messages.you_must_login_to_the_checkout' %>',
+                            }).then(()=>{
+                                window.location = '/login?locale=<%= I18n.locale %>'
                             });"
-                        >Check Out</a>
+                        ><%= t("product.checkout") %></a>
                     <% end %>
                 </div>
             </div>
@@ -120,7 +122,7 @@
     {{#each carts}} 
         <tr class="list-cart" id={{id}}>
             <td class="cart_product" style="width: 70px;">
-                <a href="/product-details/{{ name_product}}~{{id}}"><img style="width:100px; height:100px" src="{{image_product}}"></a>
+                <a href="/<%=I18n.locale %>/product-details/{{ name_product}}~{{id}}"><img style="width:100px; height:100px" src="{{image_product}}"></a>
             </td>
             <td class="cart_name">
                 <h4><a href="">{{name_product}}</a></h4>
@@ -152,7 +154,7 @@
         display:none
     }
     </style>
-    <h2 style=" text-align: center;"> Shopping cart is empty </h2>
+    <h2 style=" text-align: center; padding-top: 15px;"> <%= t ("messages.shopping_cart_empty") %></h2>
 {{/if}}
 
 </script>

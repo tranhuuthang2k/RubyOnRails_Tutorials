@@ -1,7 +1,7 @@
 <div class="brands-name">
     <ul class="nav nav-pills nav-stacked">
         <% @results[:brands].each do |item| %>
-            <li><a href="/brand/<%= item.name.parameterize %>~<%=item.id%>"> <span class="pull-right">(<%= Product.where(brand_id: item.id).count() %>)</span><%= item.name %></a></li>
+            <li><a href="/<%= I18n.locale %>/brand/<%= item.name.parameterize %>~<%=item.id%>"> <span class="pull-right">(<%= Product.where(brand_id: item.id).count() %>)</span><%= item.name %></a></li>
         <% end %>
     </ul>
 </div>

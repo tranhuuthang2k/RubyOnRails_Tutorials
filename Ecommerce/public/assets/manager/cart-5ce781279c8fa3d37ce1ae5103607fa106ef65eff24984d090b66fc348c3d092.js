@@ -395,9 +395,7 @@ function Cart(options) {
           if (data.code == 200) {
             localStorage.clear();
             Swal.fire("Order Success!", "Order Success", "success").then(() => {
-              window.location = check_i18n()
-                ? "/en/users/orders"
-                : "/vi/users/orders";
+              window.location = check_i18n() ? "/en/users/orders" : "/vi/users/orders";
             });
           } else {
             Swal.fire({
@@ -454,8 +452,8 @@ function Cart(options) {
             } else {
               Swal.fire({
                 icon: "error",
-                title: check_i18n() ? "Voucher is invalid" : "Mã không hợp lệ",
-                text: check_i18n() ? "or expired" : "Hoặc hết hạn",
+                title: "Voucher is invalid",
+                text: "or expired",
               });
             }
           },
