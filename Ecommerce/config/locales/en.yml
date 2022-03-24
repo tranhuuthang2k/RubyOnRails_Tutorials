@@ -39,7 +39,6 @@ en:
         breadcrumb: "Purchase orders"
         title: "Purchase orders"
         menu: "Show"
-
     statistic_product:
       month_year: "Statistic about product of the month, year"
       revenue: "Revenue"
@@ -189,6 +188,7 @@ en:
     list_post: "List Post"
     read_more: "Read More"
 
+
   notification_swal:
     notification_success: "successfully"
   city: "City"
@@ -202,7 +202,6 @@ en:
   login_to_your_account: "Login to your account"
   new_user_signup: "New User Signup!"
   login_btn: "Login"
-
   sigin_btn: "Sigin"
   select_city: "Select city:"
   example_password: "Example Password:"
@@ -233,3 +232,4 @@ en:
   Copyright: "Copyright"
   Designed: "Designed by"
   not_purchased: "You have not purchased this product so cannot rated"
+

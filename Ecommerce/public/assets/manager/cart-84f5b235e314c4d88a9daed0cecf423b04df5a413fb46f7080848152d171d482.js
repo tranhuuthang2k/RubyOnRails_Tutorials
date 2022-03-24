@@ -328,26 +328,19 @@ function Cart(options) {
         image_product_url =
           document.location.origin +
           el.closest(".product-details").find(".imageProduct").attr("src");
-        let image_product;
-        if (
-          el
-            .closest(".product-details")
-            .find(".imageProduct")
-            .attr("src")
-            .split("?")[1] === "locale=vi"
-        ) {
-          image_product =
-            document.location.origin +
-            el
-              .closest(".product-details")
-              .find(".imageProduct")
-              .attr("src")
-              .split("?")[0] +
-            "?locale=en";
-        } else {
-          image_product = image_product_url;
-        }
-
+          let image_product;
+          if (
+            el.closest(".product-details").find(".imageProduct").attr("src").split("?")[1] ===
+            "locale=vi"
+          ) {
+            image_product =
+              document.location.origin +
+              el.closest(".product-details").find(".imageProduct").attr("src").split("?")[0] +
+              "?locale=en";
+          } else {
+            image_product = image_product_url;
+          }
+    
         size_product = $(".sprd-select__items")
           .find(".active")
           .get(0).innerText;
@@ -427,13 +420,11 @@ function Cart(options) {
         success: function (data) {
           if (data.code == 200) {
             localStorage.clear();
-
             Swal.fire(
               check_i18n() ? "Order Success!" : "Đặt hàng thành công",
-              check_i18n() ? "Order Success!" : "Thành công",
-              "success"
+              "Order Success",
+              check_i18n() ? "success" : "Thành công"
             ).then(() => {
-
               window.location = check_i18n()
                 ? "/en/users/orders"
                 : "/vi/users/orders";
@@ -443,9 +434,7 @@ function Cart(options) {
               icon: "error",
               title: check_i18n()
                 ? "Shopping cart is invalid or Out of stock"
-
                 : "Giỏ hàng không hợp lệ hoặc hết hàng",
-
               text: check_i18n()
                 ? "We remove your cart, then your order product another again, thank you!"
                 : "Chúng tôi gỡ bỏ giỏ hàng của bạn, sau đó bạn đặt sản phẩm khác một lần nữa, cảm ơn bạn!",

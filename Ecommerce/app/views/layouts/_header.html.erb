@@ -24,17 +24,17 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-	<!--/header_top-->
 
-	<div class="header-middle">
-		<!--header-middle-->
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4 clearfix" style=" display: flex; justify-content: center;">
-					<div class="logo pull-left">
-						<a href="/"><img src="/assets/home/logo.png" width="150" alt="" /></a>
+		</div><!--/header_top-->
+		
+		<div class="header-middle"><!--header-middle-->
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 clearfix" style=" display: flex; justify-content: center;">
+						<div class="logo pull-left">
+							<a href="/?locale=<%= I18n.locale %>"><img src="/assets/home/logo.png" width="150" alt="" /></a>
+						</div>
+
 					</div>
 
 					<div class="col-md-8 clearfix" id="menu-list" >
@@ -108,31 +108,6 @@
 								<% end %>
 						</ul>
 					</div>
-				</div>
-
-
-
-
-				<div class="col-sm-3" style="display: flex;
-						flex-direction: column;
-						justify-content: center;
-						align-items: center;">
-					<span style="font-size: 15px">
-						<%= t("languages")%>
-					</span>
-					<%= link_to "English 🇬🇧" , locale:"en" %>
-								<%= link_to "Vietnamese 🇻🇳" , locale:"vi" %> 
-					<!-- <div class="custom-select" style="width:200px;">
-						<select id="Choice_i18n">
-						  <option value="0">Select city:</option>
-						<option value="1">English</option>
-						 <option value="2">Vietnamese</option>
-						</select>
-					</div> -->
-					<div class="search_box pull-right">
-						<input class="in-search" type="text" style="color: #000; font-weight: 700;" placeholder="<%= t "product.search" %>"/>
-					</div>
-
 					
 			<span style="font-size: 15px"><%= t("languages")%> </span>
 			<%= link_to "English 🇬🇧", locale:"en" %>
