@@ -82,7 +82,7 @@ en:
     account: "Account"
     notification: "Notifications"
     product_favorites: "Favorite products"
-    product_view_history: "product_view_history"
+    product_view_history: "product view history"
   action: 
     login: "Login"
     logout: "Logout"

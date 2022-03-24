@@ -433,7 +433,6 @@ function Cart(options) {
               check_i18n() ? "Order Success!" : "Thành công",
               "success"
             ).then(() => {
-
               window.location = check_i18n()
                 ? "/en/users/orders"
                 : "/vi/users/orders";
