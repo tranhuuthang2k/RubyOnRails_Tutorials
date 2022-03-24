@@ -1,81 +1,99 @@
-<section id="form"><!--form-->
-<div class="container">
+<section id="form">
+  <!--form-->
+  <div class="container">
     <div class="row">
-        <div class="col-sm-4 col-sm-offset-1">
-            <div class="login-form"><!--login form-->
-                <h2> <%= t("login_to_your_account") %></h2>
-                <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-                      <div class="field">
-                        <%= f.label :email %><br />
-                        <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder:"Enter email" %>
-                      </div>
-                      <div class="field">
-                        <%= f.label :password %><br />
-                        <%= f.password_field :password, autocomplete: "current-password",placeholder:"Enter password"%>
-                      </div>
-                   
-                      <% if devise_mapping.rememberable? %>
-                        <span>
-                          <input class="checkbox" type="checkbox" value="1" name="user[remember_me]" id="user_remember_me">
-                            Keep me signed in
-                        </span>
-                      <% end %>
+      <div class="col-sm-4 col-sm-offset-1">
+        <div class="login-form">
+          <!--login form-->
+          <h2>
+            <%= t("login_to_your_account") %>
+          </h2>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="field">
+              <%= f.label :email %><br />
+                <%= f.email_field :email, autofocus: true, autocomplete: "email" ,placeholder:"Enter email" %>
+            </div>
+            <div class="field">
+              <%= f.label :password %><br />
+                <%= f.password_field :password, autocomplete: "current-password" ,placeholder:"Enter password"%>
+            </div>
 
-                      <div class="actions">
-                           <button type="submit" name="commit" class="btn btn-default" ><%= t("login_btn")%></button>
-                      </div>
-                <% end %>
-                <%= render "devise/shared/links" %>
-            </div><!--/login form-->
-        </div>
-        <div class="col-sm-1">
-            <h2 class="or">OR</h2>
-        </div>
-        <div class="col-sm-4">
-            <div class="signup-form"><!--sign up form-->
-            <h2><%= t("new_user_signup") %></h2>
-            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-                <%= render "devise/shared/error_messages", resource: resource %>
-
-                <div class="field">
-                  <%= f.text_field :username, autofocus: true, autocomplete: "name", placeholder: "Name" %>
-                </div>
-                
-                <div class="field">
-                  <%= f.text_field :mobile, autofocus: true, autocomplete: "mobile", placeholder: "Mobile" %>
-                </div>
-
-                <div class="field">
-                  <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
-                </div>
-              
-                <div class="field">
-                  <% if @minimum_password_length %>
-                  <em>(<%= @minimum_password_length %> characters minimum,include special characters, numbers and uppercase letters)</em>
-                  <% end %><br />
-                  <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password" %>
-                </div>
-              
-                <div class="field" >
-                  <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm Password" %>
-                </div>
-                <span>Select city: </span>
-                   <div class="custom-select" style="width:200px;">
-                      <select  name="user[city_id]">
-                        <% City.all.each do |item| %>
-                            <option value="<%= item.id %>"> <%= item.name %></option>
-                        <% end %>
-                      </select>
-                    </div>
-              
-                <div class="actions">
-                  <%= f.button t("sigin_btn"), class: "btn btn-default" %>
-                </div>
+            <% if devise_mapping.rememberable? %>
+              <span>
+                <input class="checkbox" type="checkbox" value="1" name="user[remember_me]" id="user_remember_me">
+                Keep me signed in
+              </span>
               <% end %>
-              
-             <!-- <%= button_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, {class: 'btn btn-primary'}%>-->
-              </div><!--/sign up form-->
+
+                <div class="actions">
+                  <button type="submit" name="commit" class="btn btn-default">
+                    <%= t("login_btn")%>
+                  </button>
+                </div>
+                <% end %>
+                  <%= render "devise/shared/links" %>
         </div>
+        <!--/login form-->
+      </div>
+      <div class="col-sm-1">
+        <h2 class="or">OR</h2>
+      </div>
+      <div class="col-sm-4">
+        <div class="signup-form">
+          <!--sign up form-->
+          <h2>
+            <%= t("new_user_signup") %>
+          </h2>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= render "devise/shared/error_messages" , resource: resource %>
+
+              <div class="field">
+                <%= f.text_field :username, autofocus: true, autocomplete: "name" , placeholder: "Name" %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :mobile, autofocus: true, autocomplete: "mobile" , placeholder: "Mobile" %>
+              </div>
+
+              <div class="field">
+                <%= f.email_field :email, autofocus: true, autocomplete: "email" , placeholder: "Email" %>
+              </div>
+
+              <div class="field">
+                <% if @minimum_password_length %>
+                  <em>(<%= @minimum_password_length %> characters minimum,include special characters, numbers and
+                      uppercase letters)</em>
+                  <% end %><br />
+                    <%= f.password_field :password, autocomplete: "new-password" , placeholder: "Password" %>
+              </div>
+
+              <div class="field">
+                <%= f.password_field :password_confirmation, autocomplete: "new-password" ,
+                  placeholder: "Confirm Password" %>
+              </div>
+              <span>
+                <%= t 'select_city' %>
+              </span>
+              <div class="custom-select" style="width:200px;">
+                <select name="user[city_id]">
+                  <% City.all.each do |item| %>
+                    <option value="<%= item.id %>">
+                      <%= item.name %>
+                    </option>
+                    <% end %>
+                </select>
+              </div>
+
+              <div class="actions">
+                <%= f.button t("sigin_btn"), class: "btn btn-default" %>
+              </div>
+              <% end %>
+
+                <!-- <%= button_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, {class: 'btn btn-primary'}%>-->
+        </div>
+        <!--/sign up form-->
+      </div>
     </div>
-</div>
-</section><!--/form-->
+  </div>
+</section>
+<!--/form-->
