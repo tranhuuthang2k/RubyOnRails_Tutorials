@@ -427,6 +427,7 @@ function Cart(options) {
         success: function (data) {
           if (data.code == 200) {
             localStorage.clear();
+
             Swal.fire(
               check_i18n() ? "Order Success!" : "Đặt hàng thành công",
               check_i18n() ? "Order Success!" : "Thành công",
@@ -441,7 +442,9 @@ function Cart(options) {
               icon: "error",
               title: check_i18n()
                 ? "Shopping cart is invalid or Out of stock"
+
                 : "Giỏ hàng không hợp lệ hoặc hết hàng",
+
               text: check_i18n()
                 ? "We remove your cart, then your order product another again, thank you!"
                 : "Chúng tôi gỡ bỏ giỏ hàng của bạn, sau đó bạn đặt sản phẩm khác một lần nữa, cảm ơn bạn!",

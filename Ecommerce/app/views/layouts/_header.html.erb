@@ -1,28 +1,30 @@
-<header id="header"><!--header-->
-  	<div class="header_top"><!--header_top-->
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="contactinfo">
-							<ul class="nav nav-pills">
-								<li><a href="#"><i class="fa fa-phone"></i> +84 7296 4842</a></li>
-								<li><a href="#"><i class="fa fa-envelope"></i> tranhuuthangcoi@gmail.com</a></li>
-							</ul>
-						</div>
+<header id="header">
+	<!--header-->
+	<div class="header_top">
+		<!--header_top-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="contactinfo">
+						<ul class="nav nav-pills">
+							<li><a href="#"><i class="fa fa-phone"></i> +84 7296 4842</a></li>
+							<li><a href="#"><i class="fa fa-envelope"></i> tranhuuthangcoi@gmail.com</a></li>
+						</ul>
 					</div>
-					<div class="col-sm-6">
-						<div class="social-icons pull-right">
-							<ul class="nav navbar-nav">
-								<li><a href="https://www.facebook.com/thangneymar44"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-								<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-							</ul>
-						</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="social-icons pull-right">
+						<ul class="nav navbar-nav">
+							<li><a href="https://www.facebook.com/thangneymar44"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+							<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+						</ul>
 					</div>
 				</div>
 			</div>
+
 		</div><!--/header_top-->
 		
 		<div class="header-middle"><!--header-middle-->
@@ -32,7 +34,9 @@
 						<div class="logo pull-left">
 							<a href="/?locale=<%= I18n.locale %>"><img src="/assets/home/logo.png" width="150" alt="" /></a>
 						</div>
+
 					</div>
+
 					<div class="col-md-8 clearfix" id="menu-list" >
 						<div class="shop-menu clearfix pull-right">
 							<ul class="nav navbar-nav">
@@ -100,64 +104,71 @@
 								<li><a href="<%= contact_path %>"><%= t 'menu.contact' %></a></li>
 								<% if user_signed_in? %>
 								<li><a href="<%= users_orders_path %>"><%= t "menu.my_orders" %></a></li>
+
 								<% end %>
-							</ul>
-						</div>
+						</ul>
 					</div>
 					
+		
+
+          <div class="col-sm-3">
 			<span style="font-size: 15px"><%= t("languages")%> </span>
 			<%= link_to "English 🇬🇧", locale:"en" %>
 			<%= link_to "Vietnamese 🇻🇳", locale:"vi" %>
-
-          <div class="col-sm-3">
             <div class="search_box pull-right">
               <input class ="in-search"type="text" style="color: #000; font-weight: 700;" placeholder="<%= t "product.search" %>"/>
             </div>
           </div>
+
 				</div>
 			</div>
-		</div><!--/header-bottom-->
-</header><!--/header-->
+		</div>
+	</div>
+	<!--/header-bottom-->
+</header>
+<!--/header-->
 <style>
-#list-notifications{
-    height: auto;
-    width: 300px;
-    position: absolute;
-	-moz-box-shadow:    3px 3px 5px 6px #ccc;
-  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
-    box-shadow: 2px 2px 4px 2px #ccc;
-	padding-left: 1px;
-}
-#list-notifications >li{
-	width: 100%;
-	border: 1px solid #ebebeb
-}
+	#list-notifications {
+		height: auto;
+		width: 300px;
+		position: absolute;
+		-moz-box-shadow: 3px 3px 5px 6px #ccc;
+		-webkit-box-shadow: 3px 3px 5px 6px #ccc;
+		box-shadow: 2px 2px 4px 2px #ccc;
+		padding-left: 1px;
+	}
+
+	#list-notifications>li {
+		width: 100%;
+		border: 1px solid #ebebeb
+	}
 </style>
 <script>
-// $(".in-search").on('keypress',function(e) {
-//     if(e.which == 13) {
-// 		key_word = $('.in-search').val();
-//         location.href = "/search?query=" + key_word
-//     }
-// });
+	// $(".in-search").on('keypress',function(e) {
+	//     if(e.which == 13) {
+	// 		key_word = $('.in-search').val();
+	//         location.href = "/search?query=" + key_word
+	//     }
+	// });
 
-function myFunction() {
-  var x = document.getElementById("list-notifications");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
+	function myFunction() {
+		var x = document.getElementById("list-notifications");
+		if (x.style.display === "none") {
+			x.style.display = "block";
+		} else {
+			x.style.display = "none";
+		}
+	}
 
 </script>
 <style>
-#menu-list{
-	margin-top:65px
-}
-@media (max-width: 480px) {
-	#menu-list{
-		margin-top: 0px;
+	#menu-list {
+		margin-top: 65px
 	}
-}
+
+	@media (max-width: 480px) {
+		#menu-list {
+			margin-top: 0px;
+		}
+	}
 </style>

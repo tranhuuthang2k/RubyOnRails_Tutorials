@@ -137,7 +137,8 @@ module Api
                                                                                                   each_serializer: RateSerializer) })
           end
         else
-          render json: error_message('You have not purchased this product so cannot rated')
+          render json: error_message('Not')
+          # render :json => { :success => false, :message=> I18n.t('not_purchased') }, :status => 401
         end
       end
 
