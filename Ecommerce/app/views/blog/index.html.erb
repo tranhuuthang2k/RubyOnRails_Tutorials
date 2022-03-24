@@ -25,7 +25,9 @@
                                     <i class="fa fa-user"></i> <%= item.user.username %>
                                     </p>
                                     <p><%= item.content %></p>
-                                    <a  class="btn btn-primary" href="/<%=I18n.locale %>/<%=I18n.locale %>/blog_detail/<%= item.title.parameterize%>~<%=item.id %>"><%= t("blogs.read_more") %></a>
+
+                                    <a  class="btn btn-primary" href="/<%=I18n.locale %>/blog_detail/<%= item.title.parameterize%>~<%=item.id %>"><%= t("blogs.read_more") %></a>
+
                                 </div>
                             </article>
                         </a>

@@ -481,6 +481,7 @@ DEPENDENCIES
   rails_12factor
   rails_admin (~> 2.0)
   redis (~> 3.0)
+  rubocop
   rubocop-rails
   sass-rails (>= 6)
   selenium-webdriver
