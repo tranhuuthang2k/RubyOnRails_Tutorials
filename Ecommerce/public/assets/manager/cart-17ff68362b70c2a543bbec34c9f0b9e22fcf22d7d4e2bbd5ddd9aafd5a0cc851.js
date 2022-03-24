@@ -39,22 +39,9 @@ function Cart(options) {
         .find(".price")
         .get(0)
         .innerText.replace("$", "");
-      image_product_url =
+      image_product =
         document.location.origin +
         infoProduct.find(".imageProduct").attr("src");
-      let image_product;
-      if (
-        infoProduct.find(".imageProduct").attr("src").split("?")[1] ===
-        "locale=vi"
-      ) {
-        image_product =
-          document.location.origin +
-          infoProduct.find(".imageProduct").attr("src").split("?")[0] +
-          "?locale=en";
-      } else {
-        image_product = image_product_url;
-      }
-
       product = shopping_carts.find((e) => e.id === id_product);
       if (product) {
         product.quantity++;
@@ -85,7 +72,7 @@ function Cart(options) {
       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: "Add to cart successfully...!",
+        title: "Add to cart successfully...",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -325,29 +312,9 @@ function Cart(options) {
           .get(0)
           .innerText.replace("USD $", "")
           .split(" ")[0];
-        image_product_url =
+        image_product =
           document.location.origin +
           el.closest(".product-details").find(".imageProduct").attr("src");
-        let image_product;
-        if (
-          el
-            .closest(".product-details")
-            .find(".imageProduct")
-            .attr("src")
-            .split("?")[1] === "locale=vi"
-        ) {
-          image_product =
-            document.location.origin +
-            el
-              .closest(".product-details")
-              .find(".imageProduct")
-              .attr("src")
-              .split("?")[0] +
-            "?locale=en";
-        } else {
-          image_product = image_product_url;
-        }
-
         size_product = $(".sprd-select__items")
           .find(".active")
           .get(0).innerText;
@@ -429,7 +396,7 @@ function Cart(options) {
             localStorage.clear();
             Swal.fire(
               check_i18n() ? "Order Success!" : "Đặt hàng thành công",
-              check_i18n() ? "Order Success!" : "Thành công",
+              "Order Success",
               "success"
             ).then(() => {
               window.location = check_i18n()
@@ -468,6 +435,7 @@ function Cart(options) {
                   "=;expires=" + new Date().toUTCString() + ";path=/"
                 );
               window.location = check_i18n() ? "/en/logout" : "/vi/logout";
+              window.localStorage.removeItem("carts");
             });
           });
         },

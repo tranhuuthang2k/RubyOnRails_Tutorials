@@ -325,29 +325,9 @@ function Cart(options) {
           .get(0)
           .innerText.replace("USD $", "")
           .split(" ")[0];
-        image_product_url =
+        image_product =
           document.location.origin +
           el.closest(".product-details").find(".imageProduct").attr("src");
-        let image_product;
-        if (
-          el
-            .closest(".product-details")
-            .find(".imageProduct")
-            .attr("src")
-            .split("?")[1] === "locale=vi"
-        ) {
-          image_product =
-            document.location.origin +
-            el
-              .closest(".product-details")
-              .find(".imageProduct")
-              .attr("src")
-              .split("?")[0] +
-            "?locale=en";
-        } else {
-          image_product = image_product_url;
-        }
-
         size_product = $(".sprd-select__items")
           .find(".active")
           .get(0).innerText;
@@ -429,8 +409,8 @@ function Cart(options) {
             localStorage.clear();
             Swal.fire(
               check_i18n() ? "Order Success!" : "Đặt hàng thành công",
-              check_i18n() ? "Order Success!" : "Thành công",
-              "success"
+              "Order Success",
+              check_i18n() ? "Success" : "Thành công"
             ).then(() => {
               window.location = check_i18n()
                 ? "/en/users/orders"

@@ -429,7 +429,7 @@ function Cart(options) {
             localStorage.clear();
             Swal.fire(
               check_i18n() ? "Order Success!" : "Đặt hàng thành công",
-              check_i18n() ? "Order Success!" : "Thành công",
+              "Order Success",
               "success"
             ).then(() => {
               window.location = check_i18n()

@@ -15,7 +15,7 @@ development:
   database: shop
   pool: 5
   username: root
-  password: welcome123
+  password:  Phat@123
   socket: /var/run/mysqld/mysqld.sock
   variables:
     sql_mode: TRADITIONAL
@@ -29,7 +29,7 @@ test:
   database: sample_sqlite3_test
   pool: 5
   username: root
-  password: welcome123
+  password: Phat@123
   socket: /tmp/mysql.sock
   variables:
     sql_mode: TRADITIONAL
@@ -41,5 +41,5 @@ production:
   database: sample_sqlite3_production
   pool: 5
   username: root
-  password: welcome123
+  password:  Phat@123
   socket: /tmp/mysql.sock

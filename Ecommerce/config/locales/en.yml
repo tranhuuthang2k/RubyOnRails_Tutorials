@@ -34,6 +34,10 @@ en:
     actions:
       ShowOrderItem:
         title: 'title'
+      show_order_item:
+        breadcrumb: "Purchase orders"
+        title: "Purchase orders"
+        menu: "Show"
     statistic_product:
       month_year: "Statistic about product of the month, year"
       revenue: "Revenue"
@@ -73,7 +77,7 @@ en:
     account: "Account"
     notification: "Notifications"
     product_favorites: "Favorite products"
-    product_view_history: "product_view_history"
+    product_view_history: "product view history"
   action: 
     login: "Login"
     logout: "Logout"

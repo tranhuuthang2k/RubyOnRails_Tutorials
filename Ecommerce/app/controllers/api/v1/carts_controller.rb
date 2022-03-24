@@ -33,6 +33,7 @@ module Api
           # update quantity product is buyer is needing
           availabilities = product.availability.present? && product.availability.update_attribute(:is_ordering,
                                                                                                   product.availability.is_ordering + p[:quantity].to_i)
+
           if product.availability&.status == OrderItem::STOCK[:Outstock] || product.availability&.number_instock.to_i < p['quantity'].to_i
             return result = { carts_order: [] }
           end
@@ -41,6 +42,7 @@ module Api
             carts_order = []
             return
           end
+
           carts_order << { id: p[:id],
                            name_product: p[:name_product],
                            price_product: p[:price_product],
@@ -67,12 +69,12 @@ module Api
                                                 service: data[:check_shipping].name,
                                                 fee: data[:check_shipping].price)
           if product_order.save
-            SendEmailJob.set(wait: 1.minutes).perform_later(@user, product_order)
+            # SendEmailJob.set(wait: 1.minutes).perform_later(@user, product_order)
             render json: success_message('Successfully', product_order: product_order)
             # OrderMailer.send_order(@user, product_order).deliver
           end
         else
-          render json: error_message(t('shopping cart is invalid or does not exist'))
+          render json: error_message('shopping cart is invalid or does not exist')
         end
       end
 
