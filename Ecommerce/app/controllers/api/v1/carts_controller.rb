@@ -69,7 +69,7 @@ module Api
                                                 service: data[:check_shipping].name,
                                                 fee: data[:check_shipping].price)
           if product_order.save
-            SendEmailJob.set(wait: 1.minutes).perform_later(@user, product_order)
+            # SendEmailJob.set(wait: 1.minutes).perform_later(@user, product_order)
             render json: success_message('Successfully', product_order: product_order)
             # OrderMailer.send_order(@user, product_order).deliver
           end

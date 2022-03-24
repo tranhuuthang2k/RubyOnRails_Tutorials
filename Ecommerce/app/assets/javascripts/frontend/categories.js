@@ -213,12 +213,31 @@ function Category(options) {
                       avg: data.data.avg,
                     })
                   );
-                Swal.fire({
-                  icon: "success",
-                  title: "Rate successfully..",
-                }).then(() => {
-                  window.location.reload(true);
-                });
+                // Swal.fire({
+                //   icon: "success",
+                //   title: "Rate successfully..",
+                // }).then(() => {
+                //   window.location.reload(true);
+                // });
+                var pathname = window.location.pathname;
+                var foundString = pathname.substr(pathname.indexOf("/en"), (2, 3));
+                if (foundString === "/en") {
+                  Swal.fire({
+                    icon: "success",
+                    title: "Rate successfully...",
+                  }).then(() => {
+                    window.location = "/login?locale=en";
+                  });
+                } else {
+                  Swal.fire({
+                    icon: "success",
+                    title: "Đánh giá thành công.",
+                  }).then(() => {
+                    window.location = "/login?locale=vi";
+                  });
+                }
+
+
               } else {
                 Swal.fire({
                   icon: "error",
@@ -229,16 +248,55 @@ function Category(options) {
             error: function () {},
           });
         } else {
-          Swal.fire({
-            icon: "warning",
-            title: "You have already rated this product",
-          });
+          // Swal.fire({
+          //   icon: "warning",
+          //   title: "You have already rated this product",
+          // });
+
+          var pathname = window.location.pathname;
+          var foundString = pathname.substr(pathname.indexOf("/en"), (2, 3));
+          if (foundString === "/en") {
+            Swal.fire({
+              icon: "warning",
+              title: "You have already rated this product...",
+            }).then(() => {
+              // window.location = "/login?locale=en";
+              console.log("Success");
+            });
+          } else {
+            Swal.fire({
+              icon: "warning",
+              title: "Bạn đã đánh giá sản phẩm này.",
+            }).then(() => {
+              // window.location = "/login?locale=vi";
+              console.log("thanh cong");
+            });
+          }
         }
       } else {
-        Swal.fire({
-          icon: "warning",
-          title: "You must be logged in to rate!",
-        });
+        // Swal.fire({
+        //   icon: "warning",
+        //   title: "You must be logged in to rate!",
+        // });
+        var pathname = window.location.pathname;
+        var foundString = pathname.substr(pathname.indexOf("/en"), (2, 3));
+        if (foundString === "/en") {
+          Swal.fire({
+            icon: "warning",
+            title: "You must be logged in to rate!",
+          }).then(() => {
+            // window.location = "/login?locale=en";
+            console.log("Success");
+          });
+        } else {
+          Swal.fire({
+            icon: "warning",
+            title: "bạn phải đăng nhập mới đánh giá được sản phẩm này",
+          }).then(() => {
+            // window.location = "/login?locale=vi";
+            console.log("thanh cong");
+          });
+        }
       }
     });
   };
@@ -391,7 +449,7 @@ function Category(options) {
           if (data.code == 200) {
             Swal.fire({
               icon: "success",
-              title: "Successfully...",
+              title: "Successfully",
             });
             var template_comment_childen = Handlebars.compile(
               module.settings.template.list_children_comment.html()
@@ -563,10 +621,27 @@ function Category(options) {
           if (data.code == 200) {
             btn_send.css("background", "#FE980F");
 
-            Swal.fire({
-              icon: "success",
-              title: "Successfully...",
-            });
+            // Swal.fire({
+            //   icon: "success",
+            //   title: 'Successfully',
+            // });
+            var pathname = window.location.pathname;
+    var foundString = pathname.substr(pathname.indexOf("/en"), (2, 3));
+    if (foundString === "/en") {
+      Swal.fire({
+        icon: "success",
+        title: "Successfully...",
+      }).then(() => {
+        // window.location = "/login?locale=en";
+      });
+    } else {
+      Swal.fire({
+        icon: "success",
+        title: "Bình luận thành công",
+      }).then(() => {
+        // window.location = "/login?locale=vi";
+      });
+    }
             var template_comment_childen = Handlebars.compile(
               module.settings.template.list_children_comment.html()
             );

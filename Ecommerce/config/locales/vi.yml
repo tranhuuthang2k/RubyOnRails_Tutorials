@@ -52,13 +52,16 @@ vi:
       best_selling: "Sản phẩm bán chạy"
       best_Keyword_search: "Từ khóa được tìm kiếm nhiều nhất"
       best_view: "Sản phẩm xem nhiều nhất" 
+
       voucher: "Tổng số mã giảm giá"
       total_availability: "Tổng số kho"
       top_availability_best_selling: "Kho bán chạy nhất"
       top_availability_is_ordering: "Kho đặt hàng nhiều nhất"
       total_service_shipping: "Tổng số các dịch vụ vận chuyển"
+
       top_service_shipping : "Dịch vụ vận chuyển nhiều nhất"
       about_order_for_the_week : "Thống kê tuần đặt hàng"
+
       about_order_status: "Trạng thái của đơn hàng"
       about_statistical_admin_user: "Tổng số quản trị viên và người dùng"
       about_product_for_brand: "Tổng số thương hiệu của sản phẩm"
@@ -83,6 +86,7 @@ vi:
     notification: "Thông báo"
     product_favorites: "Sản phẩm yêu thích"
     product_view_history: "Lịch sử xem sản phẩm"
+
   action: 
     login: "Đăng nhập"
     logout: "Đăng xuất"
@@ -137,6 +141,7 @@ vi:
   blog: "Bài đăng"
   blog_list: "Danh Sách bài đăng"
   contacts:
+
      contact: "Liên hệ"
      write_info: "Viết liên hệ"
      information: "Thông tin liên hệ" 
@@ -186,6 +191,9 @@ vi:
     post_best_view: "Xem nhiều nhất"
     list_post: "Danh sách bài viết"
     read_more: "Xem chi tiết"
+  notification_swal:
+    notification_success: "Thành công"
+
   city: "Thành phố"
   forgot_password: "Quên mật khẩu"
   send_email_your_password: "Gửi email mật khẩu của bạn"
@@ -198,4 +206,33 @@ vi:
   new_user_signup: "Đăng ký"
   login_btn: "Đăng nhập"
   sigin_btn: "Đăng ký"
-  
+  select_city: "Chọn thành phố :"
+  example_password: "Mật khẩu ví dụ:"
+  sign_up: "Đăng kí"
+  keep_me_signed_in: "Lưu mật khẩu"
+  service: "Dịch vụ"
+  quock_shop: "Cưa hàng quock"
+  policies: "Chính sách"
+  about_mrkatsu: "Về MR.KATSU"
+  Online_Help: "Giúp đỡ trực truyến"
+  Contact_Us: "Liên lạc chúng tôi"
+  Order_Status: "Trạng thái đơn hàng"
+  Change_Location: "Thay đổi vị trí"
+  Mens: "Nam"
+  Womans: "Nữ"
+  Gift_Cards: "Thẻ quà"
+  Shoes: "Giày"
+  Terms_of_Use: "Mẫu sử dụng"
+  Privecy_Policy: "Chính sách bảo mật"
+  Refund_Policy: "Chính sách hoàn trả"
+  Billing_System: "Hệ thống hóa đơn"
+  Ticket_System: "hệ thống vé"
+  Company_Information: "Thông tin công ty"
+  Careers: "Nghề nghiệp"
+  Store_Location: "Vị trí cửa hàng"
+  Affillate_Program: "Chương trình liên kết"
+  Copyright: "Lưu bản sao"
+  Designed: "Được thiết kế bởi"
+  not_purchased: "sản phẩm này không thể đánh giá vì bạn chưa mua"
+
+

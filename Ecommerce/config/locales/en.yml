@@ -33,6 +33,7 @@ en:
   admin:
     actions:
       ShowOrderItem:
+
         title: 'title'
       show_order_item:
         breadcrumb: "Purchase orders"
@@ -42,7 +43,9 @@ en:
       month_year: "Statistic about product of the month, year"
       revenue: "Revenue"
       sold_product: "Sold product"
+
       total_order_cancel : "Total order cancel"
+
       total_product_system: "Product in system"
       best_selling: "Best selling"
       best_Keyword_search: "Best Keyword search"
@@ -52,8 +55,10 @@ en:
       top_availability_best_selling: "Top availability best selling"
       top_availability_is_ordering: "Top availability is ordering"
       total_service_shipping: "Total service Shipping in system"
+
       top_service_shipping : "Top service Shipping"
       about_order_for_the_week : "About order for the week"
+
       about_order_status: "About order status"
       about_statistical_admin_user: "About statistical user/admin"
       about_product_for_brand: "About Product for Brand"
@@ -131,6 +136,7 @@ en:
   blog: "Blog"
   blog_list: "Blog List"
   contacts:
+
      contact: "Contact"
      write_info: "GET IN TOUCH"
      information: "Contact information" 
@@ -175,11 +181,16 @@ en:
      voucher: "Voucher"
      payment: "Total payment"
      search_month: "Search month"
+
   blogs:
     category: "Category"
     post_best_view: "Post Best View"
     list_post: "List Post"
     read_more: "Read More"
+
+
+  notification_swal:
+    notification_success: "successfully"
   city: "City"
   forgot_password: "Forgot password"
   send_email_your_password: "Send email your password"
@@ -192,3 +203,33 @@ en:
   new_user_signup: "New User Signup!"
   login_btn: "Login"
   sigin_btn: "Sigin"
+  select_city: "Select city:"
+  example_password: "Example Password:"
+  sign_up: "Sign up"
+  keep_me_signed_in: "Keep me signed in"
+  service: "Service"
+  quock_shop: "Quock Shop"
+  policies: "POLICIES"
+  about_mrkatsu: "ABOUT MR.KATSU"
+  Online_Help: "Online Help"
+  Contact_Us: "Contact Us"
+  Order_Status: "Order Status"
+  Change_Location: "Change_Location"
+  Mens: "Mens"
+  Womans: "Womans"
+  Gift_Cards: "Gift Cards"
+  Shoes: "Shoes"
+
+  Terms_of_Use: "Terms of Use"
+  Privecy_Policy: "Privecy Policy"
+  Refund_Policy: "Refund Policy"
+  Billing_System: "Billing System"
+  Ticket_System: "Ticket System"
+  Company_Information: "Company Information"
+  Careers: "Careers"
+  Store_Location: "Store Location"
+  Affillate_Program: "Affillate Program"
+  Copyright: "Copyright"
+  Designed: "Designed by"
+  not_purchased: "You have not purchased this product so cannot rated"
+
