@@ -1,0 +1,1603 @@
+Started GET "/?locale=en" for ::1 at 2022-03-25 02:46:58 +0700
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by HomeController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[36mAvailability Load (0.3ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE (product_sold > 0) ORDER BY `availabilities`.`product_sold` DESC LIMIT 5[0m
+  ↳ app/controllers/home_controller.rb:13:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `sliders`[0m
+  ↳ app/views/home/_slider.html.erb:13
+  Rendered home/_slider.html.erb (Duration: 4.9ms | Allocations: 1946)
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT `categories`.* FROM `categories` WHERE `categories`.`categories_id` IS NULL LIMIT 4[0m
+  ↳ app/views/home/_category.html.erb:2
+  Rendered home/_category.html.erb (Duration: 8.1ms | Allocations: 3879)
+  [1m[36mBrand Load (0.3ms)[0m  [1m[34mSELECT `brands`.* FROM `brands`[0m
+  ↳ app/views/home/_brands.html.erb:3
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 1[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 2[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 3[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 4[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 5[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 6[0m
+  ↳ app/views/home/_brands.html.erb:4
+  Rendered home/_brands.html.erb (Duration: 65.6ms | Allocations: 69394)
+  Rendered home/_product_hot.erb (Duration: 0.4ms | Allocations: 362)
+  Rendered home/_sales.html.erb (Duration: 0.2ms | Allocations: 107)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 0 LIMIT 9 OFFSET 0[0m
+  ↳ app/views/home/_features_items.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 1 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 17 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mAvailability Load (0.4ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 20 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  Rendered home/_features_items.html.erb (Duration: 80.7ms | Allocations: 39508)
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 1[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 5[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 1 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 17 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:24
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 9[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 10[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  Rendered home/_category_tab.html.erb (Duration: 34.7ms | Allocations: 15938)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 1 LIMIT 3[0m
+  ↳ app/views/home/_recommended_items.html.erb:8
+  Rendered home/_recommended_items.html.erb (Duration: 3.3ms | Allocations: 1459)
+  Rendered home/index.html.erb within layouts/application (Duration: 1374.3ms | Allocations: 1471548)
+Started GET "/" for ::1 at 2022-03-25 02:47:08 +0700
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by HomeController#index as HTML
+  [1m[36mAvailability Load (0.3ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE (product_sold > 0) ORDER BY `availabilities`.`product_sold` DESC LIMIT 5[0m
+  ↳ app/controllers/home_controller.rb:13:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `sliders`[0m
+  ↳ app/views/home/_slider.html.erb:13
+  Rendered home/_slider.html.erb (Duration: 6.8ms | Allocations: 1946)
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT `categories`.* FROM `categories` WHERE `categories`.`categories_id` IS NULL LIMIT 4[0m
+  ↳ app/views/home/_category.html.erb:2
+  Rendered home/_category.html.erb (Duration: 8.4ms | Allocations: 3603)
+  [1m[36mBrand Load (0.3ms)[0m  [1m[34mSELECT `brands`.* FROM `brands`[0m
+  ↳ app/views/home/_brands.html.erb:3
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 1[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 2[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 3[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 4[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 5[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 6[0m
+  ↳ app/views/home/_brands.html.erb:4
+  Rendered home/_brands.html.erb (Duration: 29.2ms | Allocations: 28665)
+  Rendered home/_product_hot.erb (Duration: 0.7ms | Allocations: 362)
+  Rendered home/_sales.html.erb (Duration: 0.4ms | Allocations: 107)
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 0 LIMIT 9 OFFSET 0[0m
+  ↳ app/views/home/_features_items.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 1 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 17 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mAvailability Load (0.3ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 20 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  Rendered home/_features_items.html.erb (Duration: 70.4ms | Allocations: 36074)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 1[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 5[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 1 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 17 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:24
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 9[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 10[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  Rendered home/_category_tab.html.erb (Duration: 34.0ms | Allocations: 13711)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 1 LIMIT 3[0m
+  ↳ app/views/home/_recommended_items.html.erb:8
+  Rendered home/_recommended_items.html.erb (Duration: 2.9ms | Allocations: 1459)
+  Rendered home/index.html.erb within layouts/application (Duration: 264.5ms | Allocations: 421503)
+  Rendered layouts/_header.html.erb (Duration: 4.5ms | Allocations: 2930)
+  Rendered layouts/_footer.html.erb (Duration: 1.8ms | Allocations: 1234)
+  Rendered layout layouts/application.html.erb (Duration: 2002.3ms | Allocations: 947137)
+Completed 200 OK in 2044ms (Views: 1985.5ms | ActiveRecord: 24.1ms | Allocations: 969284)
+
+
+Started GET "/" for ::1 at 2022-03-25 02:47:10 +0700
+Processing by HomeController#index as HTML
+  [1m[36mAvailability Load (0.4ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE (product_sold > 0) ORDER BY `availabilities`.`product_sold` DESC LIMIT 5[0m
+  ↳ app/controllers/home_controller.rb:13:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `sliders`[0m
+  ↳ app/views/home/_slider.html.erb:13
+  Rendered home/_slider.html.erb (Duration: 2.4ms | Allocations: 919)
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT `categories`.* FROM `categories` WHERE `categories`.`categories_id` IS NULL LIMIT 4[0m
+  ↳ app/views/home/_category.html.erb:2
+  Rendered home/_category.html.erb (Duration: 2.6ms | Allocations: 889)
+  [1m[36mBrand Load (0.5ms)[0m  [1m[34mSELECT `brands`.* FROM `brands`[0m
+  ↳ app/views/home/_brands.html.erb:3
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 1[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 2[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 3[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 4[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 5[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 6[0m
+  ↳ app/views/home/_brands.html.erb:4
+  Rendered home/_brands.html.erb (Duration: 21.5ms | Allocations: 5630)
+  Rendered home/_product_hot.erb (Duration: 0.1ms | Allocations: 39)
+  Rendered home/_sales.html.erb (Duration: 0.1ms | Allocations: 39)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 0 LIMIT 9 OFFSET 0[0m
+  ↳ app/views/home/_features_items.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 1 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 17 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mAvailability Load (0.5ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 20 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  Rendered home/_features_items.html.erb (Duration: 21.7ms | Allocations: 7197)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 1[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 5[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 1 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 17 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:24
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 9[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 10[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  Rendered home/_category_tab.html.erb (Duration: 18.4ms | Allocations: 7096)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 1 LIMIT 3[0m
+  ↳ app/views/home/_recommended_items.html.erb:8
+  Rendered home/_recommended_items.html.erb (Duration: 2.9ms | Allocations: 824)
+  Rendered home/index.html.erb within layouts/application (Duration: 72.0ms | Allocations: 23192)
+  Rendered layouts/_header.html.erb (Duration: 2.2ms | Allocations: 808)
+  Rendered layouts/_footer.html.erb (Duration: 0.6ms | Allocations: 367)
+  Rendered layout layouts/application.html.erb (Duration: 95.0ms | Allocations: 48127)
+Completed 200 OK in 103ms (Views: 88.1ms | ActiveRecord: 8.0ms | Allocations: 52710)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ed44e879f32b8c6e38ca7e4f0879f0e45b46fb13/2547f7bde8a919ceb7fdd6f701a3fc7f.jpeg?locale=en" for ::1 at 2022-03-25 02:47:10 +0700
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a1340f52f95830a2d7cbc3dc3f02605589c7d6cb/download.jpeg?locale=en" for ::1 at 2022-03-25 02:47:10 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"locale"=>"en", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ed44e879f32b8c6e38ca7e4f0879f0e45b46fb13", "filename"=>"2547f7bde8a919ceb7fdd6f701a3fc7f"}
+  Parameters: {"locale"=>"en", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a1340f52f95830a2d7cbc3dc3f02605589c7d6cb", "filename"=>"download"}
+  [1m[36mActiveStorage::Blob Load (1.3ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 17 LIMIT 1[0m
+[36m  Disk Storage (0.7ms) [0m[34mGenerated URL for file at key: hbw7pi2rqwigxhp4b61c304hhchc (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhhR0ozTjNCcE1uSnhkMmxuZUdod05HSTJNV016TURSb2FHTm9Zd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpJMU5EZG1OMkprWlRoaE9URTVZMlZpTjJaa1pEWm1OekF4WVRObVl6ZG1MbXB3WldjaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp6STFORGRtTjJKa1pUaGhPVEU1WTJWaU4yWmtaRFptTnpBeFlUTm1ZemRtTG1wd1pXY0dPd1pVT2hGamIyNTBaVzUwWDNSNWNHVkpJZzlwYldGblpTOXFjR1ZuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wMy0yNFQxOTo1MjoxMC45MDlaIiwicHVyIjoiYmxvYl9rZXkifX0=--a7970e4c36ad45c5a10e1515b55f06264a10adb5/2547f7bde8a919ceb7fdd6f701a3fc7f.jpeg)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhhR0ozTjNCcE1uSnhkMmxuZUdod05HSTJNV016TURSb2FHTm9Zd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpJMU5EZG1OMkprWlRoaE9URTVZMlZpTjJaa1pEWm1OekF4WVRObVl6ZG1MbXB3WldjaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp6STFORGRtTjJKa1pUaGhPVEU1WTJWaU4yWmtaRFptTnpBeFlUTm1ZemRtTG1wd1pXY0dPd1pVT2hGamIyNTBaVzUwWDNSNWNHVkpJZzlwYldGblpTOXFjR1ZuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wMy0yNFQxOTo1MjoxMC45MDlaIiwicHVyIjoiYmxvYl9rZXkifX0=--a7970e4c36ad45c5a10e1515b55f06264a10adb5/2547f7bde8a919ceb7fdd6f701a3fc7f.jpeg
+Completed 302 Found in 18ms (ActiveRecord: 1.3ms | Allocations: 3592)
+
+
+  [1m[36mActiveStorage::Blob Load (3.2ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 20 LIMIT 1[0m
+[36m  Disk Storage (0.4ms) [0m[34mGenerated URL for file at key: vkvejojqbhxlw64a0sg4k46b2q0c (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhkbXQyWldwdmFuRmlhSGhzZHpZMFlUQnpaelJyTkRaaU1uRXdZd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlJ2ZDI1c2IyRmtMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDIyLTAzLTI0VDE5OjUyOjEwLjkyMloiLCJwdXIiOiJibG9iX2tleSJ9fQ==--908df4be75a79a82981e2c2ea1f0ed0cef2b18d1/download.jpeg)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhkbXQyWldwdmFuRmlhSGhzZHpZMFlUQnpaelJyTkRaaU1uRXdZd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlJ2ZDI1c2IyRmtMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDIyLTAzLTI0VDE5OjUyOjEwLjkyMloiLCJwdXIiOiJibG9iX2tleSJ9fQ==--908df4be75a79a82981e2c2ea1f0ed0cef2b18d1/download.jpeg
+Completed 302 Found in 29ms (ActiveRecord: 7.7ms | Allocations: 7945)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhhR0ozTjNCcE1uSnhkMmxuZUdod05HSTJNV016TURSb2FHTm9Zd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpJMU5EZG1OMkprWlRoaE9URTVZMlZpTjJaa1pEWm1OekF4WVRObVl6ZG1MbXB3WldjaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp6STFORGRtTjJKa1pUaGhPVEU1WTJWaU4yWmtaRFptTnpBeFlUTm1ZemRtTG1wd1pXY0dPd1pVT2hGamIyNTBaVzUwWDNSNWNHVkpJZzlwYldGblpTOXFjR1ZuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wMy0yNFQxOTo1MjoxMC45MDlaIiwicHVyIjoiYmxvYl9rZXkifX0=--a7970e4c36ad45c5a10e1515b55f06264a10adb5/2547f7bde8a919ceb7fdd6f701a3fc7f.jpeg" for ::1 at 2022-03-25 02:47:10 +0700
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhkbXQyWldwdmFuRmlhSGhzZHpZMFlUQnpaelJyTkRaaU1uRXdZd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlJ2ZDI1c2IyRmtMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDIyLTAzLTI0VDE5OjUyOjEwLjkyMloiLCJwdXIiOiJibG9iX2tleSJ9fQ==--908df4be75a79a82981e2c2ea1f0ed0cef2b18d1/download.jpeg" for ::1 at 2022-03-25 02:47:10 +0700
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"2547f7bde8a919ceb7fdd6f701a3fc7f"}
+Completed 200 OK in 2ms (ActiveRecord: 0.0ms | Allocations: 370)
+
+
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"download"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 307)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 02:47:11 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 02:47:11 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 02:47:11 +0700
+Started GET "/" for ::1 at 2022-03-25 10:53:01 +0700
+  [1m[35m (77.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by HomeController#index as HTML
+  [1m[36mAvailability Load (10.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE (product_sold > 0) ORDER BY `availabilities`.`product_sold` DESC LIMIT 5[0m
+  ↳ app/controllers/home_controller.rb:13:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[35m (21.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `sliders`[0m
+  ↳ app/views/home/_slider.html.erb:13
+  Rendered home/_slider.html.erb (Duration: 41.1ms | Allocations: 1946)
+  [1m[36mCategory Load (14.3ms)[0m  [1m[34mSELECT `categories`.* FROM `categories` WHERE `categories`.`categories_id` IS NULL LIMIT 4[0m
+  ↳ app/views/home/_category.html.erb:2
+  Rendered home/_category.html.erb (Duration: 41.7ms | Allocations: 3603)
+  [1m[36mBrand Load (19.0ms)[0m  [1m[34mSELECT `brands`.* FROM `brands`[0m
+  ↳ app/views/home/_brands.html.erb:3
+  [1m[35m (18.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 1[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 2[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 3[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 4[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 5[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 6[0m
+  ↳ app/views/home/_brands.html.erb:4
+  Rendered home/_brands.html.erb (Duration: 257.5ms | Allocations: 28666)
+  Rendered home/_product_hot.erb (Duration: 30.8ms | Allocations: 362)
+  Rendered home/_sales.html.erb (Duration: 55.0ms | Allocations: 107)
+  [1m[36mProduct Load (0.9ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 0 LIMIT 9 OFFSET 0[0m
+  ↳ app/views/home/_features_items.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (3.1ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 1 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (18.1ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 17 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mAvailability Load (0.7ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.7ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 20 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  Rendered home/_features_items.html.erb (Duration: 407.5ms | Allocations: 36091)
+  [1m[36mProduct Load (7.7ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 1[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 5[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 1 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 17 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:24
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 9[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 10[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  Rendered home/_category_tab.html.erb (Duration: 53.4ms | Allocations: 13711)
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 1 LIMIT 3[0m
+  ↳ app/views/home/_recommended_items.html.erb:8
+  Rendered home/_recommended_items.html.erb (Duration: 9.4ms | Allocations: 1459)
+  Rendered home/index.html.erb within layouts/application (Duration: 1404.2ms | Allocations: 421797)
+  Rendered layouts/_header.html.erb (Duration: 10.4ms | Allocations: 2930)
+  Rendered layouts/_footer.html.erb (Duration: 12.2ms | Allocations: 1234)
+  Rendered layout layouts/application.html.erb (Duration: 2406.4ms | Allocations: 539523)
+Completed 200 OK in 2544ms (Views: 2298.9ms | ActiveRecord: 169.7ms | Allocations: 558880)
+
+
+Started GET "/" for ::1 at 2022-03-25 10:53:04 +0700
+Processing by HomeController#index as HTML
+  [1m[36mAvailability Load (0.3ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE (product_sold > 0) ORDER BY `availabilities`.`product_sold` DESC LIMIT 5[0m
+  ↳ app/controllers/home_controller.rb:13:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `sliders`[0m
+  ↳ app/views/home/_slider.html.erb:13
+  Rendered home/_slider.html.erb (Duration: 3.5ms | Allocations: 919)
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT `categories`.* FROM `categories` WHERE `categories`.`categories_id` IS NULL LIMIT 4[0m
+  ↳ app/views/home/_category.html.erb:2
+  Rendered home/_category.html.erb (Duration: 3.7ms | Allocations: 889)
+  [1m[36mBrand Load (0.4ms)[0m  [1m[34mSELECT `brands`.* FROM `brands`[0m
+  ↳ app/views/home/_brands.html.erb:3
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 1[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 2[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 3[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 4[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 5[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 6[0m
+  ↳ app/views/home/_brands.html.erb:4
+  Rendered home/_brands.html.erb (Duration: 21.9ms | Allocations: 5630)
+  Rendered home/_product_hot.erb (Duration: 0.1ms | Allocations: 39)
+  Rendered home/_sales.html.erb (Duration: 0.1ms | Allocations: 39)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 0 LIMIT 9 OFFSET 0[0m
+  ↳ app/views/home/_features_items.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 1 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 17 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mAvailability Load (0.5ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 20 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  Rendered home/_features_items.html.erb (Duration: 26.2ms | Allocations: 7197)
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 1[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 5[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 1 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 17 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:24
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 9[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 10[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  Rendered home/_category_tab.html.erb (Duration: 32.7ms | Allocations: 7096)
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 1 LIMIT 3[0m
+  ↳ app/views/home/_recommended_items.html.erb:8
+  Rendered home/_recommended_items.html.erb (Duration: 4.0ms | Allocations: 824)
+  Rendered home/index.html.erb within layouts/application (Duration: 95.8ms | Allocations: 23192)
+  Rendered layouts/_header.html.erb (Duration: 1.9ms | Allocations: 808)
+  Rendered layouts/_footer.html.erb (Duration: 0.6ms | Allocations: 367)
+  Rendered layout layouts/application.html.erb (Duration: 120.5ms | Allocations: 48041)
+Completed 200 OK in 126ms (Views: 111.3ms | ActiveRecord: 10.3ms | Allocations: 49825)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ed44e879f32b8c6e38ca7e4f0879f0e45b46fb13/2547f7bde8a919ceb7fdd6f701a3fc7f.jpeg?locale=en" for ::1 at 2022-03-25 10:53:05 +0700
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a1340f52f95830a2d7cbc3dc3f02605589c7d6cb/download.jpeg?locale=en" for ::1 at 2022-03-25 10:53:05 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"locale"=>"en", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a1340f52f95830a2d7cbc3dc3f02605589c7d6cb", "filename"=>"download"}
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"locale"=>"en", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ed44e879f32b8c6e38ca7e4f0879f0e45b46fb13", "filename"=>"2547f7bde8a919ceb7fdd6f701a3fc7f"}
+  [1m[36mActiveStorage::Blob Load (1.2ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 20 LIMIT 1[0m
+[36m  Disk Storage (1.0ms) [0m[34mGenerated URL for file at key: vkvejojqbhxlw64a0sg4k46b2q0c (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhkbXQyWldwdmFuRmlhSGhzZHpZMFlUQnpaelJyTkRaaU1uRXdZd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlJ2ZDI1c2IyRmtMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDIyLTAzLTI1VDAzOjU4OjA1LjYwOFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--2c24030b886d5c181f113c97cf53c7d6199774d9/download.jpeg)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhkbXQyWldwdmFuRmlhSGhzZHpZMFlUQnpaelJyTkRaaU1uRXdZd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlJ2ZDI1c2IyRmtMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDIyLTAzLTI1VDAzOjU4OjA1LjYwOFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--2c24030b886d5c181f113c97cf53c7d6199774d9/download.jpeg
+Completed 302 Found in 25ms (ActiveRecord: 1.2ms | Allocations: 4868)
+
+
+  [1m[36mActiveStorage::Blob Load (2.6ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 17 LIMIT 1[0m
+[36m  Disk Storage (0.9ms) [0m[34mGenerated URL for file at key: hbw7pi2rqwigxhp4b61c304hhchc (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhhR0ozTjNCcE1uSnhkMmxuZUdod05HSTJNV016TURSb2FHTm9Zd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpJMU5EZG1OMkprWlRoaE9URTVZMlZpTjJaa1pEWm1OekF4WVRObVl6ZG1MbXB3WldjaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp6STFORGRtTjJKa1pUaGhPVEU1WTJWaU4yWmtaRFptTnpBeFlUTm1ZemRtTG1wd1pXY0dPd1pVT2hGamIyNTBaVzUwWDNSNWNHVkpJZzlwYldGblpTOXFjR1ZuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wMy0yNVQwMzo1ODowNS42MTlaIiwicHVyIjoiYmxvYl9rZXkifX0=--8394427506cea197807e970335130c109d3bbe51/2547f7bde8a919ceb7fdd6f701a3fc7f.jpeg)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhhR0ozTjNCcE1uSnhkMmxuZUdod05HSTJNV016TURSb2FHTm9Zd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpJMU5EZG1OMkprWlRoaE9URTVZMlZpTjJaa1pEWm1OekF4WVRObVl6ZG1MbXB3WldjaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp6STFORGRtTjJKa1pUaGhPVEU1WTJWaU4yWmtaRFptTnpBeFlUTm1ZemRtTG1wd1pXY0dPd1pVT2hGamIyNTBaVzUwWDNSNWNHVkpJZzlwYldGblpTOXFjR1ZuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wMy0yNVQwMzo1ODowNS42MTlaIiwicHVyIjoiYmxvYl9rZXkifX0=--8394427506cea197807e970335130c109d3bbe51/2547f7bde8a919ceb7fdd6f701a3fc7f.jpeg
+Completed 302 Found in 21ms (ActiveRecord: 5.8ms | Allocations: 4617)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 10:53:05 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 10:53:05 +0700
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhkbXQyWldwdmFuRmlhSGhzZHpZMFlUQnpaelJyTkRaaU1uRXdZd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlJ2ZDI1c2IyRmtMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDIyLTAzLTI1VDAzOjU4OjA1LjYwOFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--2c24030b886d5c181f113c97cf53c7d6199774d9/download.jpeg" for ::1 at 2022-03-25 10:53:05 +0700
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhhR0ozTjNCcE1uSnhkMmxuZUdod05HSTJNV016TURSb2FHTm9Zd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpJMU5EZG1OMkprWlRoaE9URTVZMlZpTjJaa1pEWm1OekF4WVRObVl6ZG1MbXB3WldjaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp6STFORGRtTjJKa1pUaGhPVEU1WTJWaU4yWmtaRFptTnpBeFlUTm1ZemRtTG1wd1pXY0dPd1pVT2hGamIyNTBaVzUwWDNSNWNHVkpJZzlwYldGblpTOXFjR1ZuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wMy0yNVQwMzo1ODowNS42MTlaIiwicHVyIjoiYmxvYl9rZXkifX0=--8394427506cea197807e970335130c109d3bbe51/2547f7bde8a919ceb7fdd6f701a3fc7f.jpeg" for ::1 at 2022-03-25 10:53:05 +0700
+Processing by ActiveStorage::DiskController#show as JPEG
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 10:53:05 +0700
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"download"}
+Completed 200 OK in 2ms (ActiveRecord: 0.0ms | Allocations: 371)
+
+
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"2547f7bde8a919ceb7fdd6f701a3fc7f"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 372)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/assets/ico/favicon.ico"):
+  
+Started GET "/en/users/carts" for ::1 at 2022-03-25 10:53:06 +0700
+Processing by CartsController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[35m (12.8ms)[0m  [1m[34mSELECT `product_views`.`product_id` FROM `product_views` LEFT OUTER JOIN `products` ON `products`.`id` = `product_views`.`product_id` WHERE `product_views`.`user_id` IS NULL ORDER BY `product_views`.`updated_at` DESC[0m
+  ↳ app/helpers/product_view_helper.rb:6:in `product_history_view'
+  Rendering layout layouts/application.html.erb
+  Rendering carts/index.html.erb within layouts/application
+  [1m[36mProductView Load (0.5ms)[0m  [1m[34mSELECT `product_views`.* FROM `product_views` WHERE `product_views`.`user_id` IS NULL AND 1=1 ORDER BY `product_views`.`updated_at` DESC LIMIT 4 OFFSET 0[0m
+  ↳ app/views/home/_history_view_product.html.erb:1
+  Rendered home/_history_view_product.html.erb (Duration: 12.5ms | Allocations: 2632)
+  Rendered carts/index.html.erb within layouts/application (Duration: 21.7ms | Allocations: 4794)
+  Rendered layouts/_header.html.erb (Duration: 1.3ms | Allocations: 768)
+  Rendered layouts/_footer.html.erb (Duration: 0.9ms | Allocations: 370)
+  Rendered layout layouts/application.html.erb (Duration: 47.5ms | Allocations: 29613)
+Completed 200 OK in 145ms (Views: 48.4ms | ActiveRecord: 31.6ms | Allocations: 42004)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 10:53:07 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 10:53:07 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 10:53:07 +0700
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7066343cca71bf030baa6f2841fd27f9a603b7d7/2547f7bde8a919ceb7fdd6f701a3fc7f.jpeg?locale=vi" for ::1 at 2022-03-25 10:53:07 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"locale"=>"vi", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7066343cca71bf030baa6f2841fd27f9a603b7d7", "filename"=>"2547f7bde8a919ceb7fdd6f701a3fc7f"}
+Filter chain halted as :set_blob rendered or redirected
+Completed 404 Not Found in 1ms (ActiveRecord: 0.0ms | Allocations: 646)
+
+
+Started GET "/vi/users/carts" for ::1 at 2022-03-25 10:53:16 +0700
+Processing by CartsController#index as HTML
+  Parameters: {"locale"=>"vi"}
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT `product_views`.`product_id` FROM `product_views` LEFT OUTER JOIN `products` ON `products`.`id` = `product_views`.`product_id` WHERE `product_views`.`user_id` IS NULL ORDER BY `product_views`.`updated_at` DESC[0m
+  ↳ app/helpers/product_view_helper.rb:6:in `product_history_view'
+  Rendering layout layouts/application.html.erb
+  Rendering carts/index.html.erb within layouts/application
+  [1m[36mProductView Load (0.8ms)[0m  [1m[34mSELECT `product_views`.* FROM `product_views` WHERE `product_views`.`user_id` IS NULL AND 1=1 ORDER BY `product_views`.`updated_at` DESC LIMIT 4 OFFSET 0[0m
+  ↳ app/views/home/_history_view_product.html.erb:1
+  Rendered home/_history_view_product.html.erb (Duration: 5.4ms | Allocations: 852)
+  Rendered carts/index.html.erb within layouts/application (Duration: 8.5ms | Allocations: 1382)
+  Rendered layouts/_header.html.erb (Duration: 1.7ms | Allocations: 744)
+  Rendered layouts/_footer.html.erb (Duration: 0.7ms | Allocations: 369)
+  Rendered layout layouts/application.html.erb (Duration: 36.8ms | Allocations: 26230)
+Completed 200 OK in 48ms (Views: 39.5ms | ActiveRecord: 1.4ms | Allocations: 28866)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 10:53:17 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 10:53:17 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 10:53:17 +0700
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7066343cca71bf030baa6f2841fd27f9a603b7d7/2547f7bde8a919ceb7fdd6f701a3fc7f.jpeg?locale=vi" for ::1 at 2022-03-25 10:53:17 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"locale"=>"vi", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7066343cca71bf030baa6f2841fd27f9a603b7d7", "filename"=>"2547f7bde8a919ceb7fdd6f701a3fc7f"}
+Filter chain halted as :set_blob rendered or redirected
+Completed 404 Not Found in 1ms (ActiveRecord: 0.0ms | Allocations: 631)
+
+
+Started GET "/vi/users/carts" for ::1 at 2022-03-25 11:10:36 +0700
+Processing by CartsController#index as HTML
+  Parameters: {"locale"=>"vi"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `product_views`.`product_id` FROM `product_views` LEFT OUTER JOIN `products` ON `products`.`id` = `product_views`.`product_id` WHERE `product_views`.`user_id` IS NULL ORDER BY `product_views`.`updated_at` DESC[0m
+  ↳ app/helpers/product_view_helper.rb:6:in `product_history_view'
+  Rendering layout layouts/application.html.erb
+  Rendering carts/index.html.erb within layouts/application
+  [1m[36mProductView Load (0.5ms)[0m  [1m[34mSELECT `product_views`.* FROM `product_views` WHERE `product_views`.`user_id` IS NULL AND 1=1 ORDER BY `product_views`.`updated_at` DESC LIMIT 4 OFFSET 0[0m
+  ↳ app/views/home/_history_view_product.html.erb:1
+  Rendered home/_history_view_product.html.erb (Duration: 3.3ms | Allocations: 1277)
+  Rendered carts/index.html.erb within layouts/application (Duration: 136.6ms | Allocations: 335773)
+  Rendered layouts/_header.html.erb (Duration: 3.0ms | Allocations: 2643)
+  Rendered layouts/_footer.html.erb (Duration: 1.3ms | Allocations: 1168)
+  Rendered layout layouts/application.html.erb (Duration: 167.3ms | Allocations: 364265)
+Completed 200 OK in 202ms (Views: 169.2ms | ActiveRecord: 7.8ms | Allocations: 378276)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 11:10:37 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 11:10:37 +0700
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7066343cca71bf030baa6f2841fd27f9a603b7d7/2547f7bde8a919ceb7fdd6f701a3fc7f.jpeg?locale=vi" for ::1 at 2022-03-25 11:10:37 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 11:10:37 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"locale"=>"vi", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7066343cca71bf030baa6f2841fd27f9a603b7d7", "filename"=>"2547f7bde8a919ceb7fdd6f701a3fc7f"}
+Filter chain halted as :set_blob rendered or redirected
+Completed 404 Not Found in 26ms (ActiveRecord: 0.0ms | Allocations: 8398)
+
+
+Started GET "/vi/users/carts" for ::1 at 2022-03-25 11:10:57 +0700
+Processing by CartsController#index as HTML
+  Parameters: {"locale"=>"vi"}
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `product_views`.`product_id` FROM `product_views` LEFT OUTER JOIN `products` ON `products`.`id` = `product_views`.`product_id` WHERE `product_views`.`user_id` IS NULL ORDER BY `product_views`.`updated_at` DESC[0m
+  ↳ app/helpers/product_view_helper.rb:6:in `product_history_view'
+  Rendering layout layouts/application.html.erb
+  Rendering carts/index.html.erb within layouts/application
+  [1m[36mProductView Load (0.3ms)[0m  [1m[34mSELECT `product_views`.* FROM `product_views` WHERE `product_views`.`user_id` IS NULL AND 1=1 ORDER BY `product_views`.`updated_at` DESC LIMIT 4 OFFSET 0[0m
+  ↳ app/views/home/_history_view_product.html.erb:1
+  Rendered home/_history_view_product.html.erb (Duration: 2.5ms | Allocations: 859)
+  Rendered carts/index.html.erb within layouts/application (Duration: 105.3ms | Allocations: 333950)
+  Rendered layouts/_header.html.erb (Duration: 1.7ms | Allocations: 1548)
+  Rendered layouts/_footer.html.erb (Duration: 0.6ms | Allocations: 387)
+  Rendered layout layouts/application.html.erb (Duration: 133.7ms | Allocations: 359566)
+Completed 200 OK in 162ms (Views: 134.1ms | ActiveRecord: 6.7ms | Allocations: 371536)
+
+
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 11:10:57 +0700
+Started GET "/images/prev.png" for ::1 at 2022-03-25 11:10:57 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 11:10:57 +0700
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7066343cca71bf030baa6f2841fd27f9a603b7d7/2547f7bde8a919ceb7fdd6f701a3fc7f.jpeg?locale=vi" for ::1 at 2022-03-25 11:10:57 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"locale"=>"vi", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7066343cca71bf030baa6f2841fd27f9a603b7d7", "filename"=>"2547f7bde8a919ceb7fdd6f701a3fc7f"}
+Filter chain halted as :set_blob rendered or redirected
+Completed 404 Not Found in 12ms (ActiveRecord: 0.0ms | Allocations: 4032)
+
+
+Started GET "/vi/users/carts" for ::1 at 2022-03-25 11:16:19 +0700
+Processing by CartsController#index as HTML
+  Parameters: {"locale"=>"vi"}
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `product_views`.`product_id` FROM `product_views` LEFT OUTER JOIN `products` ON `products`.`id` = `product_views`.`product_id` WHERE `product_views`.`user_id` IS NULL ORDER BY `product_views`.`updated_at` DESC[0m
+  ↳ app/helpers/product_view_helper.rb:6:in `product_history_view'
+  Rendering layout layouts/application.html.erb
+  Rendering carts/index.html.erb within layouts/application
+  [1m[36mProductView Load (0.5ms)[0m  [1m[34mSELECT `product_views`.* FROM `product_views` WHERE `product_views`.`user_id` IS NULL AND 1=1 ORDER BY `product_views`.`updated_at` DESC LIMIT 4 OFFSET 0[0m
+  ↳ app/views/home/_history_view_product.html.erb:1
+  Rendered home/_history_view_product.html.erb (Duration: 3.7ms | Allocations: 1275)
+  Rendered carts/index.html.erb within layouts/application (Duration: 113.8ms | Allocations: 336005)
+  Rendered layouts/_header.html.erb (Duration: 2.9ms | Allocations: 2644)
+  Rendered layouts/_footer.html.erb (Duration: 1.4ms | Allocations: 1194)
+  Rendered layout layouts/application.html.erb (Duration: 143.1ms | Allocations: 364524)
+Completed 200 OK in 170ms (Views: 145.2ms | ActiveRecord: 1.2ms | Allocations: 377379)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 11:16:20 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 11:16:20 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 11:16:20 +0700
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7066343cca71bf030baa6f2841fd27f9a603b7d7/2547f7bde8a919ceb7fdd6f701a3fc7f.jpeg?locale=vi" for ::1 at 2022-03-25 11:16:20 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"locale"=>"vi", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7066343cca71bf030baa6f2841fd27f9a603b7d7", "filename"=>"2547f7bde8a919ceb7fdd6f701a3fc7f"}
+Filter chain halted as :set_blob rendered or redirected
+Completed 404 Not Found in 14ms (ActiveRecord: 0.0ms | Allocations: 4042)
+
+
+Started GET "/en/users/carts" for ::1 at 2022-03-25 11:16:24 +0700
+Processing by CartsController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT `product_views`.`product_id` FROM `product_views` LEFT OUTER JOIN `products` ON `products`.`id` = `product_views`.`product_id` WHERE `product_views`.`user_id` IS NULL ORDER BY `product_views`.`updated_at` DESC[0m
+  ↳ app/helpers/product_view_helper.rb:6:in `product_history_view'
+  Rendering layout layouts/application.html.erb
+  Rendering carts/index.html.erb within layouts/application
+  [1m[36mProductView Load (0.6ms)[0m  [1m[34mSELECT `product_views`.* FROM `product_views` WHERE `product_views`.`user_id` IS NULL AND 1=1 ORDER BY `product_views`.`updated_at` DESC LIMIT 4 OFFSET 0[0m
+  ↳ app/views/home/_history_view_product.html.erb:1
+  Rendered home/_history_view_product.html.erb (Duration: 4.4ms | Allocations: 853)
+  Rendered carts/index.html.erb within layouts/application (Duration: 7.4ms | Allocations: 1372)
+  Rendered layouts/_header.html.erb (Duration: 1.2ms | Allocations: 741)
+  Rendered layouts/_footer.html.erb (Duration: 0.5ms | Allocations: 385)
+  Rendered layout layouts/application.html.erb (Duration: 33.0ms | Allocations: 26227)
+Completed 200 OK in 47ms (Views: 36.6ms | ActiveRecord: 1.3ms | Allocations: 28830)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 11:16:25 +0700
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7066343cca71bf030baa6f2841fd27f9a603b7d7/2547f7bde8a919ceb7fdd6f701a3fc7f.jpeg?locale=vi" for ::1 at 2022-03-25 11:16:25 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"locale"=>"vi", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7066343cca71bf030baa6f2841fd27f9a603b7d7", "filename"=>"2547f7bde8a919ceb7fdd6f701a3fc7f"}
+Filter chain halted as :set_blob rendered or redirected
+Completed 404 Not Found in 1ms (ActiveRecord: 0.0ms | Allocations: 631)
+
+
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 11:16:25 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 11:16:25 +0700
+Started GET "/vi/users/carts" for ::1 at 2022-03-25 11:16:28 +0700
+Processing by CartsController#index as HTML
+  Parameters: {"locale"=>"vi"}
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT `product_views`.`product_id` FROM `product_views` LEFT OUTER JOIN `products` ON `products`.`id` = `product_views`.`product_id` WHERE `product_views`.`user_id` IS NULL ORDER BY `product_views`.`updated_at` DESC[0m
+  ↳ app/helpers/product_view_helper.rb:6:in `product_history_view'
+  Rendering layout layouts/application.html.erb
+  Rendering carts/index.html.erb within layouts/application
+  [1m[36mProductView Load (0.8ms)[0m  [1m[34mSELECT `product_views`.* FROM `product_views` WHERE `product_views`.`user_id` IS NULL AND 1=1 ORDER BY `product_views`.`updated_at` DESC LIMIT 4 OFFSET 0[0m
+  ↳ app/views/home/_history_view_product.html.erb:1
+  Rendered home/_history_view_product.html.erb (Duration: 5.5ms | Allocations: 852)
+  Rendered carts/index.html.erb within layouts/application (Duration: 7.7ms | Allocations: 1267)
+  Rendered layouts/_header.html.erb (Duration: 1.4ms | Allocations: 743)
+  Rendered layouts/_footer.html.erb (Duration: 0.5ms | Allocations: 383)
+  Rendered layout layouts/application.html.erb (Duration: 45.4ms | Allocations: 25987)
+Completed 200 OK in 55ms (Views: 45.8ms | ActiveRecord: 1.5ms | Allocations: 27643)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 11:16:28 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 11:16:28 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 11:16:28 +0700
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7066343cca71bf030baa6f2841fd27f9a603b7d7/2547f7bde8a919ceb7fdd6f701a3fc7f.jpeg?locale=vi" for ::1 at 2022-03-25 11:16:28 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"locale"=>"vi", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7066343cca71bf030baa6f2841fd27f9a603b7d7", "filename"=>"2547f7bde8a919ceb7fdd6f701a3fc7f"}
+Filter chain halted as :set_blob rendered or redirected
+Completed 404 Not Found in 5ms (ActiveRecord: 0.0ms | Allocations: 1416)
+
+
+Started GET "/en/users/carts" for ::1 at 2022-03-25 11:16:31 +0700
+Processing by CartsController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT `product_views`.`product_id` FROM `product_views` LEFT OUTER JOIN `products` ON `products`.`id` = `product_views`.`product_id` WHERE `product_views`.`user_id` IS NULL ORDER BY `product_views`.`updated_at` DESC[0m
+  ↳ app/helpers/product_view_helper.rb:6:in `product_history_view'
+  Rendering layout layouts/application.html.erb
+  Rendering carts/index.html.erb within layouts/application
+  [1m[36mProductView Load (0.9ms)[0m  [1m[34mSELECT `product_views`.* FROM `product_views` WHERE `product_views`.`user_id` IS NULL AND 1=1 ORDER BY `product_views`.`updated_at` DESC LIMIT 4 OFFSET 0[0m
+  ↳ app/views/home/_history_view_product.html.erb:1
+  Rendered home/_history_view_product.html.erb (Duration: 5.8ms | Allocations: 852)
+  Rendered carts/index.html.erb within layouts/application (Duration: 8.7ms | Allocations: 1266)
+  Rendered layouts/_header.html.erb (Duration: 1.3ms | Allocations: 741)
+  Rendered layouts/_footer.html.erb (Duration: 0.8ms | Allocations: 383)
+  Rendered layout layouts/application.html.erb (Duration: 35.3ms | Allocations: 25913)
+Completed 200 OK in 46ms (Views: 35.6ms | ActiveRecord: 1.7ms | Allocations: 27557)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 11:16:31 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 11:16:32 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 11:16:32 +0700
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7066343cca71bf030baa6f2841fd27f9a603b7d7/2547f7bde8a919ceb7fdd6f701a3fc7f.jpeg?locale=vi" for ::1 at 2022-03-25 11:16:32 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"locale"=>"vi", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7066343cca71bf030baa6f2841fd27f9a603b7d7", "filename"=>"2547f7bde8a919ceb7fdd6f701a3fc7f"}
+Filter chain halted as :set_blob rendered or redirected
+Completed 404 Not Found in 1ms (ActiveRecord: 0.0ms | Allocations: 631)
+
+
+Started GET "/vi/users/carts" for ::1 at 2022-03-25 11:16:35 +0700
+Processing by CartsController#index as HTML
+  Parameters: {"locale"=>"vi"}
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `product_views`.`product_id` FROM `product_views` LEFT OUTER JOIN `products` ON `products`.`id` = `product_views`.`product_id` WHERE `product_views`.`user_id` IS NULL ORDER BY `product_views`.`updated_at` DESC[0m
+  ↳ app/helpers/product_view_helper.rb:6:in `product_history_view'
+  Rendering layout layouts/application.html.erb
+  Rendering carts/index.html.erb within layouts/application
+  [1m[36mProductView Load (0.6ms)[0m  [1m[34mSELECT `product_views`.* FROM `product_views` WHERE `product_views`.`user_id` IS NULL AND 1=1 ORDER BY `product_views`.`updated_at` DESC LIMIT 4 OFFSET 0[0m
+  ↳ app/views/home/_history_view_product.html.erb:1
+  Rendered home/_history_view_product.html.erb (Duration: 4.1ms | Allocations: 852)
+  Rendered carts/index.html.erb within layouts/application (Duration: 5.9ms | Allocations: 1267)
+  Rendered layouts/_header.html.erb (Duration: 1.8ms | Allocations: 743)
+  Rendered layouts/_footer.html.erb (Duration: 0.7ms | Allocations: 383)
+  Rendered layout layouts/application.html.erb (Duration: 32.5ms | Allocations: 26003)
+Completed 200 OK in 40ms (Views: 32.7ms | ActiveRecord: 1.1ms | Allocations: 27647)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 11:16:35 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 11:16:35 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 11:16:35 +0700
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7066343cca71bf030baa6f2841fd27f9a603b7d7/2547f7bde8a919ceb7fdd6f701a3fc7f.jpeg?locale=vi" for ::1 at 2022-03-25 11:16:35 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"locale"=>"vi", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7066343cca71bf030baa6f2841fd27f9a603b7d7", "filename"=>"2547f7bde8a919ceb7fdd6f701a3fc7f"}
+Filter chain halted as :set_blob rendered or redirected
+Completed 404 Not Found in 2ms (ActiveRecord: 0.0ms | Allocations: 688)
+
+
+Started GET "/en/users/carts" for ::1 at 2022-03-25 11:16:41 +0700
+Processing by CartsController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT `product_views`.`product_id` FROM `product_views` LEFT OUTER JOIN `products` ON `products`.`id` = `product_views`.`product_id` WHERE `product_views`.`user_id` IS NULL ORDER BY `product_views`.`updated_at` DESC[0m
+  ↳ app/helpers/product_view_helper.rb:6:in `product_history_view'
+  Rendering layout layouts/application.html.erb
+  Rendering carts/index.html.erb within layouts/application
+  [1m[36mProductView Load (0.7ms)[0m  [1m[34mSELECT `product_views`.* FROM `product_views` WHERE `product_views`.`user_id` IS NULL AND 1=1 ORDER BY `product_views`.`updated_at` DESC LIMIT 4 OFFSET 0[0m
+  ↳ app/views/home/_history_view_product.html.erb:1
+  Rendered home/_history_view_product.html.erb (Duration: 4.0ms | Allocations: 852)
+  Rendered carts/index.html.erb within layouts/application (Duration: 6.6ms | Allocations: 1266)
+  Rendered layouts/_header.html.erb (Duration: 1.0ms | Allocations: 741)
+  Rendered layouts/_footer.html.erb (Duration: 0.5ms | Allocations: 383)
+  Rendered layout layouts/application.html.erb (Duration: 29.3ms | Allocations: 25913)
+Completed 200 OK in 39ms (Views: 29.6ms | ActiveRecord: 1.6ms | Allocations: 27557)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 11:16:41 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 11:16:41 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 11:16:41 +0700
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7066343cca71bf030baa6f2841fd27f9a603b7d7/2547f7bde8a919ceb7fdd6f701a3fc7f.jpeg?locale=vi" for ::1 at 2022-03-25 11:16:41 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"locale"=>"vi", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7066343cca71bf030baa6f2841fd27f9a603b7d7", "filename"=>"2547f7bde8a919ceb7fdd6f701a3fc7f"}
+Filter chain halted as :set_blob rendered or redirected
+Completed 404 Not Found in 1ms (ActiveRecord: 0.0ms | Allocations: 631)
+
+
+Started GET "/vi/users/carts" for ::1 at 2022-03-25 11:38:27 +0700
+Processing by CartsController#index as HTML
+  Parameters: {"locale"=>"vi"}
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT `product_views`.`product_id` FROM `product_views` LEFT OUTER JOIN `products` ON `products`.`id` = `product_views`.`product_id` WHERE `product_views`.`user_id` IS NULL ORDER BY `product_views`.`updated_at` DESC[0m
+  ↳ app/helpers/product_view_helper.rb:6:in `product_history_view'
+  Rendering layout layouts/application.html.erb
+  Rendering carts/index.html.erb within layouts/application
+  [1m[36mProductView Load (0.4ms)[0m  [1m[34mSELECT `product_views`.* FROM `product_views` WHERE `product_views`.`user_id` IS NULL AND 1=1 ORDER BY `product_views`.`updated_at` DESC LIMIT 4 OFFSET 0[0m
+  ↳ app/views/home/_history_view_product.html.erb:1
+  Rendered home/_history_view_product.html.erb (Duration: 4.5ms | Allocations: 1266)
+  Rendered carts/index.html.erb within layouts/application (Duration: 9.1ms | Allocations: 2927)
+  Rendered layouts/_header.html.erb (Duration: 2.5ms | Allocations: 1867)
+  Rendered layouts/_footer.html.erb (Duration: 1.3ms | Allocations: 1181)
+  Rendered layout layouts/application.html.erb (Duration: 41.9ms | Allocations: 30668)
+Completed 200 OK in 57ms (Views: 44.2ms | ActiveRecord: 1.7ms | Allocations: 33697)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 11:38:27 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 11:38:27 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 11:38:27 +0700
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7066343cca71bf030baa6f2841fd27f9a603b7d7/2547f7bde8a919ceb7fdd6f701a3fc7f.jpeg?locale=vi" for ::1 at 2022-03-25 11:38:27 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"locale"=>"vi", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7066343cca71bf030baa6f2841fd27f9a603b7d7", "filename"=>"2547f7bde8a919ceb7fdd6f701a3fc7f"}
+Filter chain halted as :set_blob rendered or redirected
+Completed 404 Not Found in 1ms (ActiveRecord: 0.0ms | Allocations: 631)
+
+
+Started GET "/?locale=vi" for ::1 at 2022-03-25 11:38:33 +0700
+Processing by HomeController#index as HTML
+  Parameters: {"locale"=>"vi"}
+  [1m[36mAvailability Load (0.5ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE (product_sold > 0) ORDER BY `availabilities`.`product_sold` DESC LIMIT 5[0m
+  ↳ app/controllers/home_controller.rb:13:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `sliders`[0m
+  ↳ app/views/home/_slider.html.erb:13
+  Rendered home/_slider.html.erb (Duration: 4.5ms | Allocations: 1808)
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT `categories`.* FROM `categories` WHERE `categories`.`categories_id` IS NULL LIMIT 4[0m
+  ↳ app/views/home/_category.html.erb:2
+  Rendered home/_category.html.erb (Duration: 9.1ms | Allocations: 3089)
+  [1m[36mBrand Load (0.5ms)[0m  [1m[34mSELECT `brands`.* FROM `brands`[0m
+  ↳ app/views/home/_brands.html.erb:3
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 1[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 2[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 3[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 4[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 5[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 6[0m
+  ↳ app/views/home/_brands.html.erb:4
+  Rendered home/_brands.html.erb (Duration: 24.3ms | Allocations: 7798)
+  Rendered home/_product_hot.erb (Duration: 0.9ms | Allocations: 351)
+  Rendered home/_sales.html.erb (Duration: 0.5ms | Allocations: 105)
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 0 LIMIT 9 OFFSET 0[0m
+  ↳ app/views/home/_features_items.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.9ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 1 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 17 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mAvailability Load (0.4ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 20 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  Rendered home/_features_items.html.erb (Duration: 69.0ms | Allocations: 28300)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 1[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mProduct Load (0.8ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 5[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 1 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 17 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:24
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 9[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 10[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  Rendered home/_category_tab.html.erb (Duration: 27.0ms | Allocations: 11207)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 1 LIMIT 3[0m
+  ↳ app/views/home/_recommended_items.html.erb:8
+  Rendered home/_recommended_items.html.erb (Duration: 4.8ms | Allocations: 1433)
+  Rendered home/index.html.erb within layouts/application (Duration: 146.7ms | Allocations: 56002)
+  Rendered layouts/_header.html.erb (Duration: 1.7ms | Allocations: 820)
+  Rendered layouts/_footer.html.erb (Duration: 0.9ms | Allocations: 387)
+  Rendered layout layouts/application.html.erb (Duration: 171.8ms | Allocations: 80807)
+Completed 200 OK in 193ms (Views: 150.1ms | ActiveRecord: 27.5ms | Allocations: 89303)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ed44e879f32b8c6e38ca7e4f0879f0e45b46fb13/2547f7bde8a919ceb7fdd6f701a3fc7f.jpeg?locale=vi" for ::1 at 2022-03-25 11:38:34 +0700
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a1340f52f95830a2d7cbc3dc3f02605589c7d6cb/download.jpeg?locale=vi" for ::1 at 2022-03-25 11:38:34 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"locale"=>"vi", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ed44e879f32b8c6e38ca7e4f0879f0e45b46fb13", "filename"=>"2547f7bde8a919ceb7fdd6f701a3fc7f"}
+  [1m[36mActiveStorage::Blob Load (1.2ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 17 LIMIT 1[0m
+[36m  Disk Storage (0.9ms) [0m[34mGenerated URL for file at key: hbw7pi2rqwigxhp4b61c304hhchc (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhhR0ozTjNCcE1uSnhkMmxuZUdod05HSTJNV016TURSb2FHTm9Zd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpJMU5EZG1OMkprWlRoaE9URTVZMlZpTjJaa1pEWm1OekF4WVRObVl6ZG1MbXB3WldjaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp6STFORGRtTjJKa1pUaGhPVEU1WTJWaU4yWmtaRFptTnpBeFlUTm1ZemRtTG1wd1pXY0dPd1pVT2hGamIyNTBaVzUwWDNSNWNHVkpJZzlwYldGblpTOXFjR1ZuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wMy0yNVQwNDo0MzozNC4wNjBaIiwicHVyIjoiYmxvYl9rZXkifX0=--f8f0d1dae30fae06ac284fd368f905cfb06f0012/2547f7bde8a919ceb7fdd6f701a3fc7f.jpeg)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhhR0ozTjNCcE1uSnhkMmxuZUdod05HSTJNV016TURSb2FHTm9Zd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpJMU5EZG1OMkprWlRoaE9URTVZMlZpTjJaa1pEWm1OekF4WVRObVl6ZG1MbXB3WldjaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp6STFORGRtTjJKa1pUaGhPVEU1WTJWaU4yWmtaRFptTnpBeFlUTm1ZemRtTG1wd1pXY0dPd1pVT2hGamIyNTBaVzUwWDNSNWNHVkpJZzlwYldGblpTOXFjR1ZuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wMy0yNVQwNDo0MzozNC4wNjBaIiwicHVyIjoiYmxvYl9rZXkifX0=--f8f0d1dae30fae06ac284fd368f905cfb06f0012/2547f7bde8a919ceb7fdd6f701a3fc7f.jpeg
+Completed 302 Found in 11ms (ActiveRecord: 1.2ms | Allocations: 4175)
+
+
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"locale"=>"vi", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a1340f52f95830a2d7cbc3dc3f02605589c7d6cb", "filename"=>"download"}
+  [1m[36mActiveStorage::Blob Load (5.1ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 20 LIMIT 1[0m
+[36m  Disk Storage (0.5ms) [0m[34mGenerated URL for file at key: vkvejojqbhxlw64a0sg4k46b2q0c (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhkbXQyWldwdmFuRmlhSGhzZHpZMFlUQnpaelJyTkRaaU1uRXdZd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlJ2ZDI1c2IyRmtMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDIyLTAzLTI1VDA0OjQzOjM0LjA4OFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--873e8564df4e362ef6b899dbb31df3d7698554d6/download.jpeg)[0m
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhhR0ozTjNCcE1uSnhkMmxuZUdod05HSTJNV016TURSb2FHTm9Zd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpJMU5EZG1OMkprWlRoaE9URTVZMlZpTjJaa1pEWm1OekF4WVRObVl6ZG1MbXB3WldjaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp6STFORGRtTjJKa1pUaGhPVEU1WTJWaU4yWmtaRFptTnpBeFlUTm1ZemRtTG1wd1pXY0dPd1pVT2hGamIyNTBaVzUwWDNSNWNHVkpJZzlwYldGblpTOXFjR1ZuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wMy0yNVQwNDo0MzozNC4wNjBaIiwicHVyIjoiYmxvYl9rZXkifX0=--f8f0d1dae30fae06ac284fd368f905cfb06f0012/2547f7bde8a919ceb7fdd6f701a3fc7f.jpeg" for ::1 at 2022-03-25 11:38:34 +0700
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhkbXQyWldwdmFuRmlhSGhzZHpZMFlUQnpaelJyTkRaaU1uRXdZd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlJ2ZDI1c2IyRmtMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDIyLTAzLTI1VDA0OjQzOjM0LjA4OFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--873e8564df4e362ef6b899dbb31df3d7698554d6/download.jpeg
+Completed 302 Found in 19ms (ActiveRecord: 5.9ms | Allocations: 6580)
+
+
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"2547f7bde8a919ceb7fdd6f701a3fc7f"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 348)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 11:38:34 +0700
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhkbXQyWldwdmFuRmlhSGhzZHpZMFlUQnpaelJyTkRaaU1uRXdZd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlJ2ZDI1c2IyRmtMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDIyLTAzLTI1VDA0OjQzOjM0LjA4OFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--873e8564df4e362ef6b899dbb31df3d7698554d6/download.jpeg" for ::1 at 2022-03-25 11:38:34 +0700
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"download"}
+Completed 200 OK in 2ms (ActiveRecord: 0.0ms | Allocations: 301)
+
+
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 11:38:34 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 11:38:34 +0700
+Started GET "/login?locale=vi" for ::1 at 2022-03-25 11:38:47 +0700
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"locale"=>"vi"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.4ms | Allocations: 224)
+  Rendered devise/shared/_links.html.erb (Duration: 1.3ms | Allocations: 799)
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 41)
+  [1m[36mCity Load (14.5ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  ↳ app/views/devise/sessions/new.html.erb:66
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 48.3ms | Allocations: 9044)
+  Rendered layouts/_header.html.erb (Duration: 2.2ms | Allocations: 796)
+  Rendered layouts/_footer.html.erb (Duration: 1.3ms | Allocations: 390)
+  Rendered layout layouts/application.html.erb (Duration: 73.4ms | Allocations: 33880)
+Completed 200 OK in 97ms (Views: 61.5ms | ActiveRecord: 22.0ms | Allocations: 46517)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 11:38:47 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 11:38:47 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 11:38:47 +0700
+Started GET "/?locale=vi" for ::1 at 2022-03-25 11:38:53 +0700
+Processing by HomeController#index as HTML
+  Parameters: {"locale"=>"vi"}
+  [1m[36mAvailability Load (1.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE (product_sold > 0) ORDER BY `availabilities`.`product_sold` DESC LIMIT 5[0m
+  ↳ app/controllers/home_controller.rb:13:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM `sliders`[0m
+  ↳ app/views/home/_slider.html.erb:13
+  Rendered home/_slider.html.erb (Duration: 7.3ms | Allocations: 920)
+  [1m[36mCategory Load (1.2ms)[0m  [1m[34mSELECT `categories`.* FROM `categories` WHERE `categories`.`categories_id` IS NULL LIMIT 4[0m
+  ↳ app/views/home/_category.html.erb:2
+  Rendered home/_category.html.erb (Duration: 7.9ms | Allocations: 890)
+  [1m[36mBrand Load (1.1ms)[0m  [1m[34mSELECT `brands`.* FROM `brands`[0m
+  ↳ app/views/home/_brands.html.erb:3
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 1[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 2[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 3[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 4[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 5[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 6[0m
+  ↳ app/views/home/_brands.html.erb:4
+  Rendered home/_brands.html.erb (Duration: 21.1ms | Allocations: 5630)
+  Rendered home/_product_hot.erb (Duration: 0.1ms | Allocations: 39)
+  Rendered home/_sales.html.erb (Duration: 0.1ms | Allocations: 39)
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 0 LIMIT 9 OFFSET 0[0m
+  ↳ app/views/home/_features_items.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 1 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 17 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mAvailability Load (0.4ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 20 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  Rendered home/_features_items.html.erb (Duration: 23.6ms | Allocations: 7200)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 1[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 5[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 1 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 17 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:24
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 9[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 10[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  Rendered home/_category_tab.html.erb (Duration: 21.3ms | Allocations: 7097)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 1 LIMIT 3[0m
+  ↳ app/views/home/_recommended_items.html.erb:8
+  Rendered home/_recommended_items.html.erb (Duration: 2.3ms | Allocations: 824)
+  Rendered home/index.html.erb within layouts/application (Duration: 87.2ms | Allocations: 23198)
+  Rendered layouts/_header.html.erb (Duration: 1.6ms | Allocations: 807)
+  Rendered layouts/_footer.html.erb (Duration: 0.6ms | Allocations: 387)
+  Rendered layout layouts/application.html.erb (Duration: 114.2ms | Allocations: 47960)
+Completed 200 OK in 124ms (Views: 104.5ms | ActiveRecord: 11.8ms | Allocations: 49775)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhhR0ozTjNCcE1uSnhkMmxuZUdod05HSTJNV016TURSb2FHTm9Zd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpJMU5EZG1OMkprWlRoaE9URTVZMlZpTjJaa1pEWm1OekF4WVRObVl6ZG1MbXB3WldjaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp6STFORGRtTjJKa1pUaGhPVEU1WTJWaU4yWmtaRFptTnpBeFlUTm1ZemRtTG1wd1pXY0dPd1pVT2hGamIyNTBaVzUwWDNSNWNHVkpJZzlwYldGblpTOXFjR1ZuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wMy0yNVQwNDo0MzozNC4wNjBaIiwicHVyIjoiYmxvYl9rZXkifX0=--f8f0d1dae30fae06ac284fd368f905cfb06f0012/2547f7bde8a919ceb7fdd6f701a3fc7f.jpeg" for ::1 at 2022-03-25 11:38:54 +0700
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhkbXQyWldwdmFuRmlhSGhzZHpZMFlUQnpaelJyTkRaaU1uRXdZd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlJ2ZDI1c2IyRmtMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDIyLTAzLTI1VDA0OjQzOjM0LjA4OFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--873e8564df4e362ef6b899dbb31df3d7698554d6/download.jpeg" for ::1 at 2022-03-25 11:38:54 +0700
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"2547f7bde8a919ceb7fdd6f701a3fc7f"}
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"download"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 429)
+
+
+Completed 200 OK in 4ms (ActiveRecord: 0.0ms | Allocations: 1741)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 11:38:54 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 11:38:54 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 11:38:54 +0700
+Started GET "/login?locale=vi" for ::1 at 2022-03-25 11:38:55 +0700
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"locale"=>"vi"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.2ms | Allocations: 44)
+  Rendered devise/shared/_links.html.erb (Duration: 1.0ms | Allocations: 248)
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.2ms | Allocations: 41)
+  [1m[36mCity Load (0.7ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  ↳ app/views/devise/sessions/new.html.erb:66
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 13.7ms | Allocations: 2491)
+  Rendered layouts/_header.html.erb (Duration: 2.0ms | Allocations: 762)
+  Rendered layouts/_footer.html.erb (Duration: 0.9ms | Allocations: 383)
+  Rendered layout layouts/application.html.erb (Duration: 44.4ms | Allocations: 27136)
+Completed 200 OK in 47ms (Views: 44.7ms | ActiveRecord: 0.7ms | Allocations: 27864)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 11:38:56 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 11:38:56 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 11:38:56 +0700
+Started GET "/vi/users" for ::1 at 2022-03-25 11:39:02 +0700
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"locale"=>"vi"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 44)
+  Rendered devise/shared/_links.html.erb (Duration: 0.5ms | Allocations: 248)
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 41)
+  [1m[36mCity Load (0.7ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  ↳ app/views/devise/sessions/new.html.erb:66
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 9.2ms | Allocations: 2491)
+  Rendered layouts/_header.html.erb (Duration: 1.3ms | Allocations: 762)
+  Rendered layouts/_footer.html.erb (Duration: 0.5ms | Allocations: 383)
+  Rendered layout layouts/application.html.erb (Duration: 48.3ms | Allocations: 27215)
+Completed 200 OK in 51ms (Views: 48.3ms | ActiveRecord: 0.7ms | Allocations: 27943)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 11:39:02 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 11:39:02 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 11:39:02 +0700
+Started GET "/vi/users" for ::1 at 2022-03-25 11:39:29 +0700
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"locale"=>"vi"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.2ms | Allocations: 44)
+  Rendered devise/shared/_links.html.erb (Duration: 1.1ms | Allocations: 248)
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 41)
+  [1m[36mCity Load (0.4ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  ↳ app/views/devise/sessions/new.html.erb:66
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 12.0ms | Allocations: 2491)
+  Rendered layouts/_header.html.erb (Duration: 1.5ms | Allocations: 762)
+  Rendered layouts/_footer.html.erb (Duration: 0.7ms | Allocations: 383)
+  Rendered layout layouts/application.html.erb (Duration: 40.0ms | Allocations: 27217)
+Completed 200 OK in 44ms (Views: 40.9ms | ActiveRecord: 0.4ms | Allocations: 27946)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 11:39:29 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 11:39:29 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 11:39:29 +0700
+Started GET "/vi/users" for ::1 at 2022-03-25 11:39:33 +0700
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"locale"=>"vi"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.2ms | Allocations: 44)
+  Rendered devise/shared/_links.html.erb (Duration: 0.8ms | Allocations: 248)
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 41)
+  [1m[36mCity Load (0.6ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  ↳ app/views/devise/sessions/new.html.erb:66
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 13.5ms | Allocations: 2491)
+  Rendered layouts/_header.html.erb (Duration: 1.2ms | Allocations: 762)
+  Rendered layouts/_footer.html.erb (Duration: 0.7ms | Allocations: 383)
+  Rendered layout layouts/application.html.erb (Duration: 39.1ms | Allocations: 27136)
+Completed 200 OK in 43ms (Views: 40.1ms | ActiveRecord: 0.6ms | Allocations: 27863)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 11:39:33 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 11:39:33 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 11:39:33 +0700
+Started GET "/en/users" for ::1 at 2022-03-25 11:39:36 +0700
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"locale"=>"en"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.2ms | Allocations: 44)
+  Rendered devise/shared/_links.html.erb (Duration: 0.6ms | Allocations: 248)
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 41)
+  [1m[36mCity Load (0.6ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  ↳ app/views/devise/sessions/new.html.erb:66
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 11.3ms | Allocations: 2696)
+  Rendered layouts/_header.html.erb (Duration: 1.1ms | Allocations: 762)
+  Rendered layouts/_footer.html.erb (Duration: 0.7ms | Allocations: 383)
+  Rendered layout layouts/application.html.erb (Duration: 36.3ms | Allocations: 27565)
+Completed 200 OK in 49ms (Views: 46.1ms | ActiveRecord: 0.6ms | Allocations: 30630)
+
+
+Started GET "/vi/users" for ::1 at 2022-03-25 11:39:38 +0700
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"locale"=>"vi"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.2ms | Allocations: 44)
+  Rendered devise/shared/_links.html.erb (Duration: 0.8ms | Allocations: 248)
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.2ms | Allocations: 41)
+  [1m[36mCity Load (0.6ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  ↳ app/views/devise/sessions/new.html.erb:66
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 10.4ms | Allocations: 2491)
+  Rendered layouts/_header.html.erb (Duration: 1.4ms | Allocations: 762)
+  Rendered layouts/_footer.html.erb (Duration: 0.5ms | Allocations: 383)
+  Rendered layout layouts/application.html.erb (Duration: 39.0ms | Allocations: 27146)
+Completed 200 OK in 42ms (Views: 39.2ms | ActiveRecord: 0.6ms | Allocations: 27876)
+
+
+Started GET "/vi/users" for ::1 at 2022-03-25 11:39:40 +0700
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"locale"=>"vi"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 44)
+  Rendered devise/shared/_links.html.erb (Duration: 0.5ms | Allocations: 248)
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 41)
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  ↳ app/views/devise/sessions/new.html.erb:66
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 6.9ms | Allocations: 2491)
+  Rendered layouts/_header.html.erb (Duration: 1.3ms | Allocations: 762)
+  Rendered layouts/_footer.html.erb (Duration: 0.9ms | Allocations: 383)
+  Rendered layout layouts/application.html.erb (Duration: 27.1ms | Allocations: 27213)
+Completed 200 OK in 29ms (Views: 27.5ms | ActiveRecord: 0.3ms | Allocations: 27940)
+
+
+Started GET "/vi/users" for ::1 at 2022-03-25 11:39:57 +0700
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"locale"=>"vi"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.7ms | Allocations: 251)
+  Rendered devise/shared/_links.html.erb (Duration: 1.4ms | Allocations: 811)
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 41)
+  [1m[36mCity Load (0.6ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  ↳ app/views/devise/sessions/new.html.erb:66
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 119.2ms | Allocations: 342735)
+  Rendered layouts/_header.html.erb (Duration: 2.5ms | Allocations: 2849)
+  Rendered layouts/_footer.html.erb (Duration: 1.6ms | Allocations: 1286)
+  Rendered layout layouts/application.html.erb (Duration: 253.7ms | Allocations: 460266)
+Completed 200 OK in 281ms (Views: 256.8ms | ActiveRecord: 4.7ms | Allocations: 474911)
+
+
+Started GET "/?locale=vi" for ::1 at 2022-03-25 11:39:59 +0700
+Processing by HomeController#index as HTML
+  Parameters: {"locale"=>"vi"}
+  [1m[36mAvailability Load (0.2ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE (product_sold > 0) ORDER BY `availabilities`.`product_sold` DESC LIMIT 5[0m
+  ↳ app/controllers/home_controller.rb:13:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `sliders`[0m
+  ↳ app/views/home/_slider.html.erb:13
+  Rendered home/_slider.html.erb (Duration: 3.8ms | Allocations: 1873)
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT `categories`.* FROM `categories` WHERE `categories`.`categories_id` IS NULL LIMIT 4[0m
+  ↳ app/views/home/_category.html.erb:2
+  Rendered home/_category.html.erb (Duration: 6.0ms | Allocations: 3392)
+  [1m[36mBrand Load (0.4ms)[0m  [1m[34mSELECT `brands`.* FROM `brands`[0m
+  ↳ app/views/home/_brands.html.erb:3
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 1[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 2[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 3[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 4[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 5[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 6[0m
+  ↳ app/views/home/_brands.html.erb:4
+  Rendered home/_brands.html.erb (Duration: 47.8ms | Allocations: 28792)
+  Rendered home/_product_hot.erb (Duration: 0.8ms | Allocations: 363)
+  Rendered home/_sales.html.erb (Duration: 0.3ms | Allocations: 109)
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 0 LIMIT 9 OFFSET 0[0m
+  ↳ app/views/home/_features_items.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 1 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 17 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mAvailability Load (0.4ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 20 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  Rendered home/_features_items.html.erb (Duration: 65.5ms | Allocations: 35926)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 1[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 5[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 1 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 17 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:21
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_category_tab.html.erb:24
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 9[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 10[0m
+  ↳ app/views/home/_category_tab.html.erb:15
+  Rendered home/_category_tab.html.erb (Duration: 26.4ms | Allocations: 13708)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 1 LIMIT 3[0m
+  ↳ app/views/home/_recommended_items.html.erb:8
+  Rendered home/_recommended_items.html.erb (Duration: 3.4ms | Allocations: 1459)
+  Rendered home/index.html.erb within layouts/application (Duration: 158.8ms | Allocations: 87592)
+  Rendered layouts/_header.html.erb (Duration: 1.6ms | Allocations: 824)
+  Rendered layouts/_footer.html.erb (Duration: 0.6ms | Allocations: 387)
+  Rendered layout layouts/application.html.erb (Duration: 179.1ms | Allocations: 112473)
+Completed 200 OK in 223ms (Views: 160.7ms | ActiveRecord: 25.1ms | Allocations: 129127)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhhR0ozTjNCcE1uSnhkMmxuZUdod05HSTJNV016TURSb2FHTm9Zd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpJMU5EZG1OMkprWlRoaE9URTVZMlZpTjJaa1pEWm1OekF4WVRObVl6ZG1MbXB3WldjaU95Qm1hV3hsYm1GdFpTbzlWVlJHTFRnbkp6STFORGRtTjJKa1pUaGhPVEU1WTJWaU4yWmtaRFptTnpBeFlUTm1ZemRtTG1wd1pXY0dPd1pVT2hGamIyNTBaVzUwWDNSNWNHVkpJZzlwYldGblpTOXFjR1ZuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wMy0yNVQwNDo0MzozNC4wNjBaIiwicHVyIjoiYmxvYl9rZXkifX0=--f8f0d1dae30fae06ac284fd368f905cfb06f0012/2547f7bde8a919ceb7fdd6f701a3fc7f.jpeg" for ::1 at 2022-03-25 11:39:59 +0700
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhkbXQyWldwdmFuRmlhSGhzZHpZMFlUQnpaelJyTkRaaU1uRXdZd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW1SdmQyNXNiMkZrTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMlJ2ZDI1c2IyRmtMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDIyLTAzLTI1VDA0OjQzOjM0LjA4OFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--873e8564df4e362ef6b899dbb31df3d7698554d6/download.jpeg" for ::1 at 2022-03-25 11:39:59 +0700
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"download"}
+Completed 200 OK in 2ms (ActiveRecord: 0.0ms | Allocations: 509)
+
+
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"2547f7bde8a919ceb7fdd6f701a3fc7f"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 303)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 11:39:59 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 11:39:59 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 11:39:59 +0700
+Started GET "/profile" for ::1 at 2022-03-25 11:40:06 +0700
+Processing by Users::RegistrationsController#edit as HTML
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms | Allocations: 364)
+
+
+Started GET "/login" for ::1 at 2022-03-25 11:40:06 +0700
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 44)
+  Rendered devise/shared/_links.html.erb (Duration: 0.5ms | Allocations: 248)
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 41)
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  ↳ app/views/devise/sessions/new.html.erb:66
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 7.1ms | Allocations: 2709)
+  Rendered layouts/_header.html.erb (Duration: 1.2ms | Allocations: 762)
+  Rendered layouts/_footer.html.erb (Duration: 0.6ms | Allocations: 385)
+  Rendered layout layouts/application.html.erb (Duration: 25.0ms | Allocations: 27564)
+Completed 200 OK in 31ms (Views: 29.1ms | ActiveRecord: 0.3ms | Allocations: 30639)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 11:40:07 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 11:40:07 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 11:40:07 +0700
+Started POST "/login?locale=en" for ::1 at 2022-03-25 11:40:15 +0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"", "password"=>"[FILTERED]"}, "commit"=>"", "locale"=>"en"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 426)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"", "password"=>"[FILTERED]"}, "commit"=>"", "locale"=>"en"}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms | Allocations: 644)
+
+
+  
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+  
+actionpack (6.1.4.1) lib/action_controller/metal/request_forgery_protection.rb:211:in `handle_unverified_request'
+actionpack (6.1.4.1) lib/action_controller/metal/request_forgery_protection.rb:243:in `handle_unverified_request'
+devise (4.8.0) lib/devise/controllers/helpers.rb:255:in `handle_unverified_request'
+actionpack (6.1.4.1) lib/action_controller/metal/request_forgery_protection.rb:238:in `verify_authenticity_token'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:427:in `block in make_lambda'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:198:in `block (2 levels) in halting'
+actionpack (6.1.4.1) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:199:in `block in halting'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:512:in `block in invoke_before'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:512:in `each'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:512:in `invoke_before'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:115:in `block in run_callbacks'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:137:in `run_callbacks'
+actionpack (6.1.4.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (6.1.4.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (6.1.4.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (6.1.4.1) lib/active_support/notifications.rb:203:in `block in instrument'
+activesupport (6.1.4.1) lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+activesupport (6.1.4.1) lib/active_support/notifications.rb:203:in `instrument'
+actionpack (6.1.4.1) lib/action_controller/metal/instrumentation.rb:33:in `process_action'
+actionpack (6.1.4.1) lib/action_controller/metal/params_wrapper.rb:249:in `process_action'
+activerecord (6.1.4.1) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.1.4.1) lib/abstract_controller/base.rb:165:in `process'
+actionview (6.1.4.1) lib/action_view/rendering.rb:39:in `process'
+actionpack (6.1.4.1) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.4.1) lib/action_controller/metal.rb:238:in `block in action'
+devise (4.8.0) lib/devise/failure_app.rb:74:in `recall'
+devise (4.8.0) lib/devise/failure_app.rb:41:in `respond'
+actionpack (6.1.4.1) lib/abstract_controller/base.rb:228:in `process_action'
+actionpack (6.1.4.1) lib/abstract_controller/base.rb:165:in `process'
+actionpack (6.1.4.1) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.4.1) lib/action_controller/metal.rb:238:in `block in action'
+devise (4.8.0) lib/devise/failure_app.rb:23:in `call'
+devise (4.8.0) lib/devise/delegator.rb:7:in `call'
+warden (1.2.9) lib/warden/manager.rb:143:in `call_failure_app'
+warden (1.2.9) lib/warden/manager.rb:129:in `process_unauthenticated'
+warden (1.2.9) lib/warden/manager.rb:44:in `call'
+rack (2.2.3) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/http/permissions_policy.rb:22:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.2.3) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.3) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/cookies.rb:689:in `call'
+activerecord (6.1.4.1) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.4.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.4.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.4.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.4.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+rack-mini-profiler (2.3.3) lib/mini_profiler/profiler.rb:393:in `call'
+webpacker (5.4.3) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.7.0) lib/rack/proxy.rb:63:in `call'
+railties (6.1.4.1) lib/rails/engine.rb:539:in `call'
+puma (5.5.2) lib/puma/configuration.rb:249:in `call'
+puma (5.5.2) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.5.2) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.5.2) lib/puma/request.rb:76:in `handle_request'
+puma (5.5.2) lib/puma/server.rb:447:in `process_client'
+puma (5.5.2) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/login" for ::1 at 2022-03-25 11:40:25 +0700
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.2ms | Allocations: 44)
+  Rendered devise/shared/_links.html.erb (Duration: 1.4ms | Allocations: 248)
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.3ms | Allocations: 41)
+  [1m[36mCity Load (0.5ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  ↳ app/views/devise/sessions/new.html.erb:66
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 12.9ms | Allocations: 2490)
+  Rendered layouts/_header.html.erb (Duration: 1.2ms | Allocations: 762)
+  Rendered layouts/_footer.html.erb (Duration: 0.6ms | Allocations: 383)
+  Rendered layout layouts/application.html.erb (Duration: 35.7ms | Allocations: 27223)
+Completed 200 OK in 39ms (Views: 36.4ms | ActiveRecord: 0.5ms | Allocations: 27953)
+
+
+Started POST "/login?locale=en" for ::1 at 2022-03-25 11:40:27 +0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"", "password"=>"[FILTERED]"}, "commit"=>"", "locale"=>"en"}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms | Allocations: 396)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"", "password"=>"[FILTERED]"}, "commit"=>"", "locale"=>"en"}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 2ms (ActiveRecord: 0.0ms | Allocations: 615)
+
+
+  
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+  
+actionpack (6.1.4.1) lib/action_controller/metal/request_forgery_protection.rb:211:in `handle_unverified_request'
+actionpack (6.1.4.1) lib/action_controller/metal/request_forgery_protection.rb:243:in `handle_unverified_request'
+devise (4.8.0) lib/devise/controllers/helpers.rb:255:in `handle_unverified_request'
+actionpack (6.1.4.1) lib/action_controller/metal/request_forgery_protection.rb:238:in `verify_authenticity_token'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:427:in `block in make_lambda'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:198:in `block (2 levels) in halting'
+actionpack (6.1.4.1) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:199:in `block in halting'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:512:in `block in invoke_before'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:512:in `each'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:512:in `invoke_before'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:115:in `block in run_callbacks'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:137:in `run_callbacks'
+actionpack (6.1.4.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (6.1.4.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (6.1.4.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (6.1.4.1) lib/active_support/notifications.rb:203:in `block in instrument'
+activesupport (6.1.4.1) lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+activesupport (6.1.4.1) lib/active_support/notifications.rb:203:in `instrument'
+actionpack (6.1.4.1) lib/action_controller/metal/instrumentation.rb:33:in `process_action'
+actionpack (6.1.4.1) lib/action_controller/metal/params_wrapper.rb:249:in `process_action'
+activerecord (6.1.4.1) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.1.4.1) lib/abstract_controller/base.rb:165:in `process'
+actionview (6.1.4.1) lib/action_view/rendering.rb:39:in `process'
+actionpack (6.1.4.1) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.4.1) lib/action_controller/metal.rb:238:in `block in action'
+devise (4.8.0) lib/devise/failure_app.rb:74:in `recall'
+devise (4.8.0) lib/devise/failure_app.rb:41:in `respond'
+actionpack (6.1.4.1) lib/abstract_controller/base.rb:228:in `process_action'
+actionpack (6.1.4.1) lib/abstract_controller/base.rb:165:in `process'
+actionpack (6.1.4.1) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.4.1) lib/action_controller/metal.rb:238:in `block in action'
+devise (4.8.0) lib/devise/failure_app.rb:23:in `call'
+devise (4.8.0) lib/devise/delegator.rb:7:in `call'
+warden (1.2.9) lib/warden/manager.rb:143:in `call_failure_app'
+warden (1.2.9) lib/warden/manager.rb:129:in `process_unauthenticated'
+warden (1.2.9) lib/warden/manager.rb:44:in `call'
+rack (2.2.3) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/http/permissions_policy.rb:22:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.2.3) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.3) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/cookies.rb:689:in `call'
+activerecord (6.1.4.1) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.4.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.4.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.4.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.4.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+rack-mini-profiler (2.3.3) lib/mini_profiler/profiler.rb:393:in `call'
+webpacker (5.4.3) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.7.0) lib/rack/proxy.rb:63:in `call'
+railties (6.1.4.1) lib/rails/engine.rb:539:in `call'
+puma (5.5.2) lib/puma/configuration.rb:249:in `call'
+puma (5.5.2) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.5.2) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.5.2) lib/puma/request.rb:76:in `handle_request'
+puma (5.5.2) lib/puma/server.rb:447:in `process_client'
+puma (5.5.2) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/login" for ::1 at 2022-03-25 11:40:29 +0700
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 44)
+  Rendered devise/shared/_links.html.erb (Duration: 0.6ms | Allocations: 248)
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 41)
+  [1m[36mCity Load (0.4ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  ↳ app/views/devise/sessions/new.html.erb:66
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 7.9ms | Allocations: 2494)
+  Rendered layouts/_header.html.erb (Duration: 1.3ms | Allocations: 764)
+  Rendered layouts/_footer.html.erb (Duration: 0.6ms | Allocations: 383)
+  Rendered layout layouts/application.html.erb (Duration: 30.1ms | Allocations: 27230)
+Completed 200 OK in 32ms (Views: 30.4ms | ActiveRecord: 0.4ms | Allocations: 27968)
+
+
+Started GET "/vi/users" for ::1 at 2022-03-25 11:40:36 +0700
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"locale"=>"vi"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 44)
+  Rendered devise/shared/_links.html.erb (Duration: 0.6ms | Allocations: 248)
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 41)
+  [1m[36mCity Load (0.4ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  ↳ app/views/devise/sessions/new.html.erb:66
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 5.9ms | Allocations: 2491)
+  Rendered layouts/_header.html.erb (Duration: 1.8ms | Allocations: 762)
+  Rendered layouts/_footer.html.erb (Duration: 0.7ms | Allocations: 383)
+  Rendered layout layouts/application.html.erb (Duration: 26.4ms | Allocations: 27136)
+Completed 200 OK in 28ms (Views: 26.7ms | ActiveRecord: 0.4ms | Allocations: 27865)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 11:40:36 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 11:40:36 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 11:40:36 +0700
+Started GET "/vi/users" for ::1 at 2022-03-25 11:51:14 +0700
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"locale"=>"vi"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.2ms | Allocations: 44)
+  Rendered devise/shared/_links.html.erb (Duration: 0.6ms | Allocations: 248)
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 41)
+  [1m[36mCity Load (0.5ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  ↳ app/views/devise/sessions/new.html.erb:66
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 10.9ms | Allocations: 2609)
+  Rendered layouts/_header.html.erb (Duration: 1.2ms | Allocations: 762)
+  Rendered layouts/_footer.html.erb (Duration: 0.6ms | Allocations: 383)
+  Rendered layout layouts/application.html.erb (Duration: 32.1ms | Allocations: 27254)
+Completed 200 OK in 35ms (Views: 33.5ms | ActiveRecord: 0.9ms | Allocations: 27979)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 11:51:14 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 11:51:14 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 11:51:14 +0700
+Started GET "/vi/users" for ::1 at 2022-03-25 11:51:17 +0700
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"locale"=>"vi"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.2ms | Allocations: 44)
+  Rendered devise/shared/_links.html.erb (Duration: 1.1ms | Allocations: 248)
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 41)
+  [1m[36mCity Load (0.4ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  ↳ app/views/devise/sessions/new.html.erb:66
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 12.2ms | Allocations: 2491)
+  Rendered layouts/_header.html.erb (Duration: 1.1ms | Allocations: 762)
+  Rendered layouts/_footer.html.erb (Duration: 0.8ms | Allocations: 383)
+  Rendered layout layouts/application.html.erb (Duration: 39.6ms | Allocations: 27220)
+Completed 200 OK in 43ms (Views: 40.7ms | ActiveRecord: 0.4ms | Allocations: 27948)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 11:51:18 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 11:51:18 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 11:51:18 +0700
+Started GET "/vi/users" for ::1 at 2022-03-25 13:06:09 +0700
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"locale"=>"vi"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 1.0ms | Allocations: 213)
+  Rendered devise/shared/_links.html.erb (Duration: 1.8ms | Allocations: 674)
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.2ms | Allocations: 41)
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  ↳ app/views/devise/sessions/new.html.erb:66
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 15.1ms | Allocations: 4193)
+  Rendered layouts/_header.html.erb (Duration: 2.8ms | Allocations: 1889)
+  Rendered layouts/_footer.html.erb (Duration: 1.6ms | Allocations: 1181)
+  Rendered layout layouts/application.html.erb (Duration: 44.9ms | Allocations: 31822)
+Completed 200 OK in 52ms (Views: 50.5ms | ActiveRecord: 0.6ms | Allocations: 35231)
+
+
+Started GET "/images/next.png" for ::1 at 2022-03-25 13:06:09 +0700
+Started GET "/images/prev.png" for ::1 at 2022-03-25 13:06:09 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 13:06:09 +0700
+Started GET "/vi/users" for ::1 at 2022-03-25 13:06:11 +0700
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"locale"=>"vi"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.2ms | Allocations: 44)
+  Rendered devise/shared/_links.html.erb (Duration: 0.8ms | Allocations: 248)
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.2ms | Allocations: 41)
+  [1m[36mCity Load (0.5ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  ↳ app/views/devise/sessions/new.html.erb:66
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 13.0ms | Allocations: 2495)
+  Rendered layouts/_header.html.erb (Duration: 2.8ms | Allocations: 764)
+  Rendered layouts/_footer.html.erb (Duration: 1.2ms | Allocations: 383)
+  Rendered layout layouts/application.html.erb (Duration: 65.9ms | Allocations: 27143)
+Completed 200 OK in 70ms (Views: 66.7ms | ActiveRecord: 0.5ms | Allocations: 27878)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 13:06:11 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 13:06:11 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 13:06:11 +0700
+Started GET "/vi/users" for ::1 at 2022-03-25 13:07:31 +0700
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"locale"=>"vi"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.5ms | Allocations: 251)
+  Rendered devise/shared/_links.html.erb (Duration: 1.7ms | Allocations: 811)
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 41)
+  [1m[36mCity Load (0.4ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  ↳ app/views/devise/sessions/new.html.erb:66
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 126.9ms | Allocations: 342820)
+  Rendered layouts/_header.html.erb (Duration: 3.4ms | Allocations: 2855)
+  Rendered layouts/_footer.html.erb (Duration: 1.5ms | Allocations: 1310)
+  Rendered layout layouts/application.html.erb (Duration: 276.2ms | Allocations: 460429)
+Completed 200 OK in 304ms (Views: 278.6ms | ActiveRecord: 5.2ms | Allocations: 475066)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 13:07:31 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 13:07:31 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 13:07:31 +0700
+Started GET "/vi/users" for ::1 at 2022-03-25 13:07:33 +0700
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"locale"=>"vi"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.2ms | Allocations: 44)
+  Rendered devise/shared/_links.html.erb (Duration: 0.8ms | Allocations: 248)
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.3ms | Allocations: 41)
+  [1m[36mCity Load (0.7ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  ↳ app/views/devise/sessions/new.html.erb:66
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 15.9ms | Allocations: 2496)
+  Rendered layouts/_header.html.erb (Duration: 1.5ms | Allocations: 764)
+  Rendered layouts/_footer.html.erb (Duration: 0.6ms | Allocations: 383)
+  Rendered layout layouts/application.html.erb (Duration: 55.0ms | Allocations: 27150)
+Completed 200 OK in 59ms (Views: 55.7ms | ActiveRecord: 0.7ms | Allocations: 27891)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-03-25 13:07:33 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 13:07:33 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 13:07:33 +0700
+Started GET "/vi/users" for ::1 at 2022-03-25 13:09:01 +0700
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"locale"=>"vi"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.2ms | Allocations: 44)
+  Rendered devise/shared/_links.html.erb (Duration: 0.9ms | Allocations: 248)
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.2ms | Allocations: 41)
+  [1m[36mCity Load (0.5ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  ↳ app/views/devise/sessions/new.html.erb:66
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 12.2ms | Allocations: 2495)
+  Rendered layouts/_header.html.erb (Duration: 1.2ms | Allocations: 764)
+  Rendered layouts/_footer.html.erb (Duration: 0.4ms | Allocations: 383)
+  Rendered layout layouts/application.html.erb (Duration: 44.5ms | Allocations: 27167)
+Completed 200 OK in 47ms (Views: 45.0ms | ActiveRecord: 0.5ms | Allocations: 27910)
+
+
+Started GET "/images/next.png" for ::1 at 2022-03-25 13:09:01 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 13:09:01 +0700
+Started GET "/images/prev.png" for ::1 at 2022-03-25 13:09:01 +0700
+Started GET "/vi/users" for ::1 at 2022-03-25 13:09:02 +0700
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"locale"=>"vi"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.2ms | Allocations: 44)
+  Rendered devise/shared/_links.html.erb (Duration: 1.3ms | Allocations: 248)
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.2ms | Allocations: 41)
+  [1m[36mCity Load (0.6ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  ↳ app/views/devise/sessions/new.html.erb:66
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 13.6ms | Allocations: 2491)
+  Rendered layouts/_header.html.erb (Duration: 1.3ms | Allocations: 762)
+  Rendered layouts/_footer.html.erb (Duration: 0.9ms | Allocations: 383)
+  Rendered layout layouts/application.html.erb (Duration: 45.8ms | Allocations: 27164)
+Completed 200 OK in 49ms (Views: 46.3ms | ActiveRecord: 0.6ms | Allocations: 27892)
+
+
+Started GET "/images/loading.gif" for ::1 at 2022-03-25 13:09:02 +0700
+Started GET "/images/next.png" for ::1 at 2022-03-25 13:09:02 +0700
+Started GET "/images/prev.png" for ::1 at 2022-03-25 13:09:02 +0700
+Started GET "/vi/users" for ::1 at 2022-03-25 13:09:03 +0700
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"locale"=>"vi"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.3ms | Allocations: 44)
+  Rendered devise/shared/_links.html.erb (Duration: 1.3ms | Allocations: 248)
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.2ms | Allocations: 41)
+  [1m[36mCity Load (0.6ms)[0m  [1m[34mSELECT `cities`.* FROM `cities`[0m
+  ↳ app/views/devise/sessions/new.html.erb:66
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 15.3ms | Allocations: 2491)
+  Rendered layouts/_header.html.erb (Duration: 1.3ms | Allocations: 762)
+  Rendered layouts/_footer.html.erb (Duration: 0.9ms | Allocations: 383)
+  Rendered layout layouts/application.html.erb (Duration: 45.0ms | Allocations: 27229)
+Completed 200 OK in 48ms (Views: 45.5ms | ActiveRecord: 0.6ms | Allocations: 27958)
+
+

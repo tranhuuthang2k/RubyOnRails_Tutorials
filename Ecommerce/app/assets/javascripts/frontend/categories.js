@@ -213,12 +213,6 @@ function Category(options) {
                       avg: data.data.avg,
                     })
                   );
-                // Swal.fire({
-                //   icon: "success",
-                //   title: "Rate successfully..",
-                // }).then(() => {
-                //   window.location.reload(true);
-                // });
                 var pathname = window.location.pathname;
                 var foundString = pathname.substr(pathname.indexOf("/en"), (2, 3));
                 if (foundString === "/en") {
