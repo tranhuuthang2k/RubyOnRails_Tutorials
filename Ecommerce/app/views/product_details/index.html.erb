@@ -214,7 +214,7 @@
                                                                           color: black;
                                                                           outline: medium none;
                                                                           border: 1px solid;" 
-                                                placeholder="Please enter your comment" />
+                                                placeholder= "<%= t "inputComment.Pleaseenteryourcomment"%>" />
                                                 <label for="csv" class="form-label"><%= t "comments.upload_image"%> </label>
                                                 <input id="csv" name="csv" type="file"  style="
                                                                           width: 100%;
@@ -233,7 +233,10 @@
                                                                         background: #FE980F;
                                                                         border-radius: 10px;
                                                                         margin-left: 0;"
-                                                                        value="Send review"/> 
+                                                                       value="<%= t "inputComment.sendreview" %>"
+                                                                        
+                                                                        /> 
+                                                                        <!-- value="Send review" -->
                                             </form>
                                           </span>
 
@@ -321,7 +324,7 @@
                                     </div>
                                     
                                       <div class="full-tbl" style="display:block">
-                                         <textarea  id="fieldReplyComment" placeholder="Write a comment..." style="padding-top: 15px"  ></textarea>
+                                         <textarea  id="fieldReplyComment" placeholder="<%= t "inputComment.write_a_comment" %>" style="padding-top: 15px"  ></textarea>
                                          <span class="inp-grp-sub"><button type="submit" id="send_reply_comment"><%= t 'comments.send' %></button></span>
                                       </div>
                                     </div>
@@ -436,11 +439,7 @@
       }
 }
      
-
-
 </style>
-
-
 <script type="text/javascript">
 function auto_grow(element) {
     element.style.height = "1px";
@@ -502,8 +501,8 @@ $(".image")
         </div>
       </div>
     <div class="full-tbl" style="display:block">
-        <textarea  id="fieldReplyComment" placeholder="Write a comment..."  style="padding-top: 15px" ></textarea>
-        <span class="inp-grp-sub"><button type="submit" id="send_reply_comment">Send</button></span>
+        <textarea  id="fieldReplyComment" placeholder="<%= t "inputComment.write_a_comment" %>"  style="padding-top: 15px" ></textarea>
+        <span class="inp-grp-sub"><button type="submit" id="send_reply_comment"><%= t "inputComment.sendreview" %></button></span>
     </div>
       </div>
     </li>
