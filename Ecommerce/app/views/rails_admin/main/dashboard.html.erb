@@ -82,7 +82,7 @@
       </div>
       <div class="c-dashboardInfo col-lg-3 col-md-6 col-xs-3">
         <div class="wrap">
-          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title" style="margin-top: 30px"><%= t "admin.statistic_product.voucher"%><%= @result[:month] %>/<%= @result[:year] %> <svg
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title" style="margin-top: 30px"><%= t "admin.statistic_product.voucher"%>: <%= @result[:month] %>/<%= @result[:year] %> <svg
               class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
             </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%= @result[:statistic_products][:vouchers] > 0 ? @result[:statistic_products][:vouchers] : 0 %></span>
         </div>

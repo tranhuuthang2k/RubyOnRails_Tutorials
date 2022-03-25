@@ -442,7 +442,6 @@
   .blog-post-area .single-blog-post p {
     /* text-align: center; */
   }
-
   #reviews form span input {
     width: 100%;
     margin-bottom: 20px;
@@ -500,6 +499,9 @@
 .order-message {
   display: inline-block;
 }
+/* .response-area .media img {
+        width: auto;
+    } */
 
 .media-object {
   width: 100%;

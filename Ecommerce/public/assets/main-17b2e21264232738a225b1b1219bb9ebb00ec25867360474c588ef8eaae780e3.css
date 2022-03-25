@@ -1,4 +1,4 @@
-﻿/*************************
+/*************************
 *******Typography******
 **************************/
 
@@ -287,7 +287,7 @@ a#scrollUp i {
   background-color: #fff;
 }
 
-.nav.navbar-nav > li:hover > ul.sub-menu {
+.nav.navbar-nav>li:hover>ul.sub-menu {
   display: block;
   -webkit-animation: fadeInUp 400ms;
   animation: fadeInUp 400ms;
@@ -730,7 +730,7 @@ h2.title:before {
   text-transform: uppercase;
 }
 
-.panel-group .panel-heading + .panel-collapse .panel-body {
+.panel-group .panel-heading+.panel-collapse .panel-body {
   border-top: 0 none;
 }
 
@@ -1069,8 +1069,7 @@ h2.title {
   background: #ccccc6;
 }
 
-.recommended_items h2 {
-}
+.recommended_items h2 {}
 
 .our_partners {
   overflow: hidden;
@@ -1437,11 +1436,9 @@ h2.title {
   overflow: hidden;
 }
 
-.login-form {
-}
+.login-form {}
 
-.signup-form {
-}
+.signup-form {}
 
 .login-form h2,
 .signup-form h2 {
@@ -1499,6 +1496,7 @@ h2.title {
   font-family: "Roboto", sans-serif;
   padding: 6px 25px;
 }
+
 
 .login-form label input {
   border: medium none;
@@ -1558,7 +1556,7 @@ h2.title {
   left: 82px;
 }
 
-.breadcrumbs .breadcrumb > li + li:before {
+.breadcrumbs .breadcrumb>li+li:before {
   content: " ";
 }
 
@@ -1741,13 +1739,12 @@ h2.title {
   border: 1px solid#F0F0E9;
 }
 
-.user_info > li {
+.user_info>li {
   float: left;
   margin-right: 10px;
 }
 
-.user_info > li > span {
-}
+.user_info>li>span {}
 
 .user_info input,
 select,
@@ -1902,10 +1899,10 @@ textarea {
   width: 47%;
 }
 
-.shopper-info > form > input,
-.form-two > form > select,
-.form-two > form > input,
-.form-one > form > input {
+.shopper-info>form>input,
+.form-two>form>select,
+.form-two>form>input,
+.form-one>form>input {
   background: #f0f0e9;
   border: 0 none;
   margin-bottom: 10px;
@@ -1914,7 +1911,7 @@ textarea {
   font-weight: 300;
 }
 
-.form-two > form > select {
+.form-two>form>select {
   padding: 10px 5px;
 }
 
@@ -1990,8 +1987,7 @@ textarea {
   margin-bottom: 17px;
 }
 
-.single-blog-post > a {
-}
+.single-blog-post>a {}
 
 .blog-post-area .single-blog-post a img {
   border: 1px solid #f7f7f0;
@@ -2371,9 +2367,7 @@ textarea {
   top: 25px;
   left: 5px;
 }
-.trix-content {
-  font-size: 15px;
-}
+
 /*************************
 ******* Contact CSS ********
 **************************/
@@ -2572,100 +2566,6 @@ article {
   align-items: center;
 }
 
-#fieldReplyComment {
-  width: 100%;
-  height: 50px;
-}
-.comment_children {
-  display: flex;
-  margin-bottom: 10px;
-}
-.list-edit-comment-children {
-  padding-left: 10px;
-}
-
-.product-information {
-  border: 1px solid #f7f7f0;
-  overflow: hidden;
-  padding-bottom: 60px;
-  padding-top: 25px;
-  position: relative;
-}
-#heart-red {
-  font-size: 20px;
-  padding-left: 10px;
-  cursor: pointer;
-  color: red;
-}
-#heart,
-#hear-f {
-  color: #fe980f;
-  font-size: 20px;
-  padding-left: 10px;
-  cursor: pointer;
-}
-#icon_name {
-  color: #fe980f;
-  margin-right: 10px;
-  margin-top: 3px;
-}
-#heart.red {
-  color: red;
-}
-
-.checked {
-  color: orange;
-}
-
-.qcont {
-  text-transform: capitalize;
-}
-.sprd-select__items {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  margin-bottom: 0.5rem;
-  justify-content: center;
-}
-.button {
-  background-color: #fff;
-  height: 30px;
-  width: 30px;
-  margin-top: 5px;
-  border: 2px solid #e7e7e7;
-  margin-right: 10px;
-  text-align: center;
-  line-height: 28px;
-  cursor: pointer;
-}
-.button.active {
-  border: 2px solid #00b2a5;
-}
-#image_children_comment {
-  margin-right: 10px;
-}
-#content_comment {
-  margin-top: 4px;
-}
-.reply_comment {
-  background: #fe980f;
-  width: 100%;
-  height: auto;
-  text-align: center;
-  border-radius: 0%;
-  color: white;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-@media (max-width: 480px) {
-  .sinlge-post-meta {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    flex-wrap: wrap;
-  }
-}
 
 /* Styling */
 
@@ -2687,6 +2587,7 @@ article {
   overflow: hidden;
   text-align: center;
   display: flex;
+
 }
 
 .home-slider #loader {
@@ -2705,7 +2606,7 @@ div.ldr {
 
 div.ldr:before,
 div.ldr:after {
-  content: "";
+  content: '';
   width: 6vmax;
   height: 6vmax;
   display: block;
@@ -2801,7 +2702,7 @@ div.ldr {
 
 div.ldr:before,
 div.ldr:after {
-  content: "";
+  content: '';
   width: 6vmax;
   height: 6vmax;
   display: block;
@@ -2920,4 +2821,9 @@ h2 {
     width: 100%;
     height: auto;
   }
+
 }
+
+
+
+
