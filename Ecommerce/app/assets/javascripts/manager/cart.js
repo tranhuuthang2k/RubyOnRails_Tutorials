@@ -58,7 +58,9 @@ function Cart(options) {
       product = shopping_carts.find((e) => e.id === id_product);
       if (product) {
         product.quantity++;
-        product.total_price = product.quantity * parseFloat(price_product);
+        product.total_price = (
+          product.quantity * parseFloat(price_product)
+        ).toFixed(2);
         setCart(shopping_carts);
 
         Swal.fire({
@@ -77,7 +79,7 @@ function Cart(options) {
         price_product,
         image_product,
         quantity: 1,
-        total_price: parseFloat(price_product),
+        total_price: parseFloat(price_product).toFixed(2),
       };
       shopping_carts.push(shopping_cart);
       setCart(shopping_carts);
@@ -121,7 +123,7 @@ function Cart(options) {
           $(".shipping-cost").css("display", "none");
         }
         $(".totalOrder").get(0).innerText =
-          "$" + parseFloat(shipping + getTotal());
+          "$" + parseFloat(shipping + getTotal()).toFixed(2);
         $("#lblCartCount").get(0).innerText = shopping_carts.length;
         $(".price_shipping").get(0).innerText = "$" + shipping;
       }
@@ -151,20 +153,22 @@ function Cart(options) {
           if (product) {
             totalCart = 0;
             product.quantity++;
-            product.total_price = quantityInput * parseFloat(price_product);
+            product.total_price = (
+              quantityInput * parseFloat(price_product)
+            ).toFixed(2);
             el.find(".cart_quantity_input").val(quantityInput);
             setCart(shopping_carts);
             $(".Cart_Sub_Total").get(0).innerText = "$" + getTotal();
             $(".price_shipping").get(0).innerText = "$" + shipping;
 
             $(".totalOrder").get(0).innerText =
-              "$" + parseFloat(shipping + getTotal());
+              "$" + parseFloat(shipping + getTotal()).toFixed(2);
 
             $(elLiscart)
               .find(".cart_total")
               .find(".cart_total_price")
               .get(0).innerText =
-              "$" + quantityInput * parseFloat(price_product);
+              "$" + (quantityInput * parseFloat(price_product)).toFixed(2);
             module.incrementCart();
             return shopping_carts;
           }
@@ -201,17 +205,20 @@ function Cart(options) {
         if (product) {
           totalCart = 0;
           product.quantity--;
-          product.total_price = quantityInput * parseFloat(price_product);
+          product.total_price = (
+            quantityInput * parseFloat(price_product)
+          ).toFixed(2);
           el.find(".cart_quantity_input").val(quantityInput);
           setCart(shopping_carts);
           $(".Cart_Sub_Total").get(0).innerText = "$" + getTotal();
           $(".price_shipping").get(0).innerText = "$" + shipping;
           $(".totalOrder").get(0).innerText =
-            "$" + parseFloat(shipping + getTotal());
+            "$" + parseFloat(shipping + getTotal()).toFixed(2);
           $(elLiscart)
             .find(".cart_total")
             .find(".cart_total_price")
-            .get(0).innerText = "$" + quantityInput * parseFloat(price_product);
+            .get(0).innerText =
+            "$" + (quantityInput * parseFloat(price_product)).toFixed(2);
           module.decrementCart();
           return shopping_carts;
         }
@@ -246,7 +253,7 @@ function Cart(options) {
             $(elLiscart)
               .find(".cart_total")
               .find(".cart_total_price")
-              .get(0).innerText = "$" + parseFloat(price_product);
+              .get(0).innerText = "$" + parseFloat(price_product).toFixed(2);
             return shopping_carts;
           }
         } else {
@@ -254,16 +261,18 @@ function Cart(options) {
           if (product) {
             el.find(".cart_quantity_input").val(quantityInput);
             product.quantity = quantityInput;
-            product.total_price = quantityInput * parseFloat(price_product);
+            product.total_price = (
+              quantityInput * parseFloat(price_product)
+            ).toFixed(2);
             setCart(shopping_carts);
             $(".Cart_Sub_Total").get(0).innerText = "$" + getTotal();
             $(".totalOrder").get(0).innerText =
-              "$" + parseFloat(shipping + getTotal());
+              "$" + parseFloat(shipping + getTotal()).toFixed(2);
             $(elLiscart)
               .find(".cart_total")
               .find(".cart_total_price")
               .get(0).innerText =
-              "$" + quantityInput * parseFloat(price_product);
+              "$" + (quantityInput * parseFloat(price_product)).toFixed(2);
             return shopping_carts;
           }
         }
@@ -285,7 +294,7 @@ function Cart(options) {
           shopping_carts?.length > 0 ? shopping_carts.length : "";
         $(".Cart_Sub_Total").get(0).innerText = "$" + getTotal();
         $(".totalOrder").get(0).innerText =
-          "$" + parseFloat(shipping + getTotal());
+          "$" + parseFloat(shipping + getTotal()).toFixed(2);
         module.removeCart();
         shopping_carts.length < 1 && module.showCarts();
       });
@@ -365,8 +374,9 @@ function Cart(options) {
         product = shopping_carts.find((e) => e.id === id_product);
         if (product) {
           (product.quantity += quantity_product_input),
-            (product.total_price =
-              product.quantity * parseFloat(price_product));
+            (product.total_price = (
+              product.quantity * parseFloat(price_product)
+            ).toFixed(2));
           setCart(shopping_carts);
           Swal.fire({
             position: "top-end",
@@ -442,7 +452,6 @@ function Cart(options) {
               icon: "error",
               title: check_i18n()
                 ? "Shopping cart is invalid or Out of stock"
-
                 : "Giỏ hàng không hợp lệ hoặc hết hàng",
 
               text: check_i18n()

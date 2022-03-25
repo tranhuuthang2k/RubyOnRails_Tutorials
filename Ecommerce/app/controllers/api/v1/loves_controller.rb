@@ -33,7 +33,7 @@ module Api
 
       def comment
         unless params[:content].present? && params[:content].present? && params[:product_id]
-          return       render json: error_message('Please write your content')
+          return render json: error_message('Please write your content')
         end
 
         comment = @user.comments.new(content: params[:content], product_id: params[:product_id], user_id: @user.id)
@@ -137,7 +137,7 @@ module Api
                                                                                                   each_serializer: RateSerializer) })
           end
         else
-          render json: error_message('Not')
+          render json: error_message('Error message')
           # render :json => { :success => false, :message=> I18n.t('not_purchased') }, :status => 401
         end
       end

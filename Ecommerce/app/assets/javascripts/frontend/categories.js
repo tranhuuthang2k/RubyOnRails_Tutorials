@@ -81,6 +81,15 @@ function Category(options) {
       });
     });
   };
+  check_i18n = function () {
+    return true
+      ? window.location.pathname.substr(
+          window.location.pathname.indexOf("/en"),
+          (2, 3)
+        ) === "/en"
+      : false;
+  };
+
   module.clickEventComments = function () {
     $("#form_comment").submit(function (evt) {
       evt.preventDefault();
@@ -109,7 +118,7 @@ function Category(options) {
           processData: false,
           success: function (data) {
             if (data.code == 200) {
-              alert("successfully");
+              alert(check_i18n() ? "successfully" : "Thanh cong");
 
               $("#exampleModal").modal("hide");
               $("#close").trigger("click");
@@ -142,9 +151,10 @@ function Category(options) {
             } else {
               Swal.fire({
                 icon: "error",
-                title: data.message,
+                title: check_i18n()
+                  ? data.message
+                  : "Làm ơn viết nội dung của bạn",
               });
-
               $(ele).find(".buttonload").css("display", "none");
               $(ele).find("#btn_send_comment").show();
             }
@@ -214,7 +224,10 @@ function Category(options) {
                     })
                   );
                 var pathname = window.location.pathname;
-                var foundString = pathname.substr(pathname.indexOf("/en"), (2, 3));
+                var foundString = pathname.substr(
+                  pathname.indexOf("/en"),
+                  (2, 3)
+                );
                 if (foundString === "/en") {
                   Swal.fire({
                     icon: "success",
@@ -230,12 +243,12 @@ function Category(options) {
                     window.location = "/login?locale=vi";
                   });
                 }
-
-
               } else {
                 Swal.fire({
                   icon: "error",
-                  title: data.message,
+                  title: check_i18n()
+                    ? "You have not purchased this product so cannot rated"
+                    : "Sản phẩm này không thể đánh giá vì bạn chưa mua",
                 });
               }
             },
@@ -368,7 +381,7 @@ function Category(options) {
   module.deleteComment = function () {
     $(document).on("click", ".delete-comment", function () {
       ele = $(this).closest(".delete_comment");
-      ele.css("display","none")
+      ele.css("display", "none");
       comment_id = $(ele).find(".edit-comment").attr("id").split("-")[1];
       $.ajax({
         url: module.settings.api.delete_comment,
@@ -537,7 +550,7 @@ function Category(options) {
   module.deleteCommentChildren = function () {
     $(document).on("click", ".delete_comment_children", function () {
       ele = $(this);
-      ele.css("display","none")
+      ele.css("display", "none");
       comment_id = $(this).attr("id");
       $.ajax({
         url: module.settings.api.delete_comment_children,
@@ -620,22 +633,22 @@ function Category(options) {
             //   title: 'Successfully',
             // });
             var pathname = window.location.pathname;
-    var foundString = pathname.substr(pathname.indexOf("/en"), (2, 3));
-    if (foundString === "/en") {
-      Swal.fire({
-        icon: "success",
-        title: "Successfully...",
-      }).then(() => {
-        // window.location = "/login?locale=en";
-      });
-    } else {
-      Swal.fire({
-        icon: "success",
-        title: "Bình luận thành công",
-      }).then(() => {
-        // window.location = "/login?locale=vi";
-      });
-    }
+            var foundString = pathname.substr(pathname.indexOf("/en"), (2, 3));
+            if (foundString === "/en") {
+              Swal.fire({
+                icon: "success",
+                title: "Successfully...",
+              }).then(() => {
+                // window.location = "/login?locale=en";
+              });
+            } else {
+              Swal.fire({
+                icon: "success",
+                title: "Bình luận thành công",
+              }).then(() => {
+                // window.location = "/login?locale=vi";
+              });
+            }
             var template_comment_childen = Handlebars.compile(
               module.settings.template.list_children_comment.html()
             );

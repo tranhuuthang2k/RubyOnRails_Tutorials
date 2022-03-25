@@ -87,7 +87,12 @@ en:
     login: "Login"
     logout: "Logout"
     register: "register"
+    password: "password"
     forgot_password: "Forgot password"
+    sign_in_with_facebook: "Sign in with facebook"
+    sign_in_with_facebook_OmniAuth: "Sign in with {OmniAuth}"
+    enter_email: "Enter email"
+    enter_password: "Enter password"
   product:
     image: "Image"
     name: "Name"
@@ -136,7 +141,6 @@ en:
   blog: "Blog"
   blog_list: "Blog List"
   contacts:
-
      contact: "Contact"
      write_info: "GET IN TOUCH"
      information: "Contact information" 
@@ -187,8 +191,12 @@ en:
     post_best_view: "Post Best View"
     list_post: "List Post"
     read_more: "Read More"
-
-
+  validate:
+    Name: "Name"
+    Mobile: "Mobile"
+    Email: "Email"
+    password: "Password"
+    confirm_password: "Confirm password"
   notification_swal:
     notification_success: "successfully"
   city: "City"
@@ -235,3 +243,12 @@ en:
   description_update_site: "Get the most recent updates from 
   our site and be updated your self.."
   description_mrkatsu_footer: "Mr.Katsu is a brand about Black Liberation, economic and social justice, peace and love."
+  OR: "OR"
+  inputComment:
+    sendreview: "Send comment"
+    Pleaseenteryourcomment: "Please enter your comment"
+    write_a_comment: "Write a comment..."
+  alert:
+    Please_write_your_content: "Please write your content"
+    
+    
