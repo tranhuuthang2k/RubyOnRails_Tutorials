@@ -10,10 +10,10 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
   has_many :product_favorites
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :product_rates
   has_many :order_items
-  has_many :posts
+  has_many :posts, dependent: :destroy
   validates :city, presence: true
   belongs_to :city
   validates :username, presence: true, length: { maximum: 20 }
@@ -56,6 +56,18 @@ class User < ApplicationRecord
              BCrypt::Engine.cost
            end
     BCrypt::Password.create string, cost: cost
+  end
+
+  rails_admin do
+    edit do
+      include_all_fields # all other default fields will be added after, conveniently
+      field :admin, :enum do
+        enum do
+          [['User', 0], ['Admin', 1]]
+        end
+      end
+      exclude_fields :created_at, :product_sizes, :product_favorites, :comments, :product_rates, :description # but you still can remove fields
+    end
   end
 
   private

@@ -199,13 +199,9 @@
 	}
 </style>
 <script>
-	// $(".in-search").on('keypress',function(e) {
-	//     if(e.which == 13) {
-	// 		key_word = $('.in-search').val();
-	//         location.href = "/search?query=" + key_word
-	//     }
-	// });
-
+	$(document).off().on("click", ".navbar-toggle",function(e) {
+		 $(this).attr("show-dropdown", true)
+	});
 	function myFunction() {
 		var x = document.getElementById("list-notifications");
 		if (x.style.display === "none") {
@@ -214,16 +210,4 @@
 			x.style.display = "none";
 		}
 	}
-
 </script>
-<style>
-	#menu-list {
-		margin-top: 65px
-	}
-
-	@media (max-width: 480px) {
-		#menu-list {
-			margin-top: 0px;
-		}
-	}
-</style>

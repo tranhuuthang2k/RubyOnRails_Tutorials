@@ -192,16 +192,17 @@
 
 </div>
   <h3><%= t "admin.statistic_product.about_order_for_the_week"%>  </h3>
-    <%= column_chart  OrderItem.unscoped.group_by_day_of_week(:created_at,format: "%a").count %>
+    <%= column_chart  @result[:order_for_aweek] %>
       <h3> <%= t "admin.statistic_product.about_order_status"%> </h3>
     <%=  pie_chart OrderItem.select('order_items.status').unscoped.group("order_items.status").count%>
       <p>  STATUS = { 'pending': 0, 'confirmed': 1, 'cancel': 2 } </p>
       <h3> <%= t "admin.statistic_product.about_statistical_admin_user"%>  </h3>
+      <p>  ROLES = { 'admin': 1, 'user': 0} </p>
     <%= pie_chart User.group(:admin).count %>
       <h3> <%= t "admin.statistic_product.about_product_for_brand"%> </h3>
     <%=  bar_chart Brand.select('brands.name').joins(:products).group("brands.name").count %>
       <h3>  <%= t "admin.statistic_product.about_order_for_month"%>  </h3>
-    <%= column_chart OrderItem.this_status(Product::STATUS[:confirmed]).unscoped.group_by_month(:created_at, format: "%b %Y").count%>
+    <%= column_chart @result[:order_for_month] %>
 <style>
 .c-dashboardInfo {
   margin-bottom: 15px;

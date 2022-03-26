@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_220_307_072_943) do
+ActiveRecord::Schema.define(version: 20_220_326_101_050) do
   create_table 'action_text_rich_texts', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
     t.string 'name', null: false
     t.text 'body', size: :long
@@ -290,7 +290,7 @@ ActiveRecord::Schema.define(version: 20_220_307_072_943) do
     t.string 'username'
     t.string 'mobile'
     t.string 'gender'
-    t.integer 'admin'
+    t.integer 'admin', default: 0
     t.string 'address'
     t.text 'profile'
     t.datetime 'created_at', precision: 6, null: false

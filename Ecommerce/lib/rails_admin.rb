@@ -33,6 +33,10 @@ module RailsAdmin
                                                   .by_orders(month, year)
               top_service_shipping = data_order_item.unscoped.this_status(Product::STATUS[:confirmed])
                                                     .by_orders(month, year).group('service')
+              order_for_aweek = data_order_item.unscoped.by_orders(month, year).group_by_day_of_week(:created_at,
+                                                                                                     format: '%a')
+              order_for_month = data_order_item.unscoped.by_orders(month, year).group_by_month(:created_at,
+                                                                                               format: '%b %Y')
               fee_ship = order_items.pluck('fee').sum
               voucher = order_items.pluck('voucher').sum
 
@@ -40,7 +44,9 @@ module RailsAdmin
                 order_items: order_items,
                 fee_ship_voucher: fee_ship - voucher,
                 total_order_cancel: total_order_cancel,
-                top_service_shipping: top_service_shipping
+                top_service_shipping: top_service_shipping,
+                order_for_aweek: order_for_aweek,
+                order_for_month: order_for_month
               }
             end
 
@@ -107,6 +113,8 @@ module RailsAdmin
                 sold: order_items(data[:order_items]).size,
                 total_order_cancel: order_items(data[:total_order_cancel]).size,
                 top_service_shipping: data[:top_service_shipping].size,
+                order_for_aweek: data[:order_for_aweek].size,
+                order_for_month: data[:order_for_month].size,
                 year: year,
                 month: month,
                 statistic_products: statistic_products(data[:order_items], params[:month_year])

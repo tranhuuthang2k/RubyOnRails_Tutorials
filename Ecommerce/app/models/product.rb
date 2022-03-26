@@ -4,7 +4,7 @@ class Product < ApplicationRecord
   # https://stackoverflow.com/questions/12165405/is-there-a-way-to-pass-html-css-options-to-rails-admin-inputs/12428986
   SHOW_HOME = { feature: 1, recomand: 0 }.freeze
   STATUS = { 'pending': 0, 'confirmed': 1, 'cancel': 2 }.freeze # 0 -> pending, 1 -> confirm, 2 -> cancel
-  scope :show_products, ->(val) { where.not(show_home: val.to_s).limit(val === 0 ? 9 : 3) }
+  scope :show_products, ->(val) { where.not(show_home: val.to_s).limit(val === 0 ? 9 : 6) }
   scope :by_ids, ->(ids) { where(id: ids) }
 
   has_rich_text :content
@@ -13,6 +13,7 @@ class Product < ApplicationRecord
   validates :title, presence: true, length: { maximum: 40 }
   validates :price, numericality: true
   validates :content, presence: true
+  validates :image, presence: true
   validates :sizes, presence: true
   has_many :product_categories
   has_many :categories, through: :product_categories
@@ -62,6 +63,11 @@ class Product < ApplicationRecord
 
       field :availability
       field :categories
+      field :categories_id, :enum do
+        enum do
+          Category.all.collect { |c| [c.name, c.id] }
+        end
+      end
       field :image
       field :brand_id, :enum do
         enum do
@@ -87,7 +93,16 @@ class Product < ApplicationRecord
 
     edit do
       include_all_fields # all other default fields will be added after, conveniently
-
+      field :show_home, :enum do
+        enum do
+          [['FEATURES', 1], ['RECOMMENDED', 0]]
+        end
+      end
+      field :categories_id, :enum do
+        enum do
+          Category.all.collect { |c| [c.name, c.id] }
+        end
+      end
       exclude_fields :created_at, :product_sizes, :product_favorites, :comments, :product_rates, :description # but you still can remove fields
     end
 

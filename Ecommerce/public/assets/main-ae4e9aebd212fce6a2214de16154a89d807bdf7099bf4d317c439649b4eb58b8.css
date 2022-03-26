@@ -1,4 +1,4 @@
-﻿/*************************
+/*************************
 *******Typography******
 **************************/
 
@@ -1556,15 +1556,7 @@ h2.title {
   top: 11px;
   left: 82px;
 }
-#menu-list {
-  margin-top: 65px;
-}
 
-@media (max-width: 480px) {
-  #menu-list {
-    margin-top: 0px;
-  }
-}
 .breadcrumbs .breadcrumb > li + li:before {
   content: " ";
 }

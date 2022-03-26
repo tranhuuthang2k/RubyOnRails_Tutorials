@@ -86,7 +86,7 @@ en:
   action: 
     login: "Login"
     logout: "Logout"
-    register: "register"
+    register: "Register"
     password: "password"
     forgot_password: "Forgot password"
     sign_in_with_facebook: "Sign in with facebook"
