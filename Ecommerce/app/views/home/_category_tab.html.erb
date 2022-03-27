@@ -1,40 +1,39 @@
 <div class="category-tab">
-    <!--category-tab-->
-    <div class="col-sm-12">
-        <ul class="nav nav-tabs">
-            <% @results[:categories].each.with_index do |item, index| %>
-            <li class="<%= index === 0 ? "active" : "" %> "><a href="#category<%=item.id %>"
+  <!--category-tab-->
+  <div class="col-sm-12">
+    <ul class="nav nav-tabs">
+      <% @results[:categories].each.with_index do |item, index| %>
+        <li class="<%= index === 0 ? "active" : "" %> "><a href="#category<%=item.id %>"
                     data-toggle="tab"><%=item.name %></a></li>
-            <% end %>
-        </ul>
-    </div>
-
-    <div class="tab-content">
-        <%  @results[:categories].each.with_index do |c, index| %>
-            <div class="tab-pane fade <%=index === 0 ? "active in" : ''%> " id="category<%=c.id  %>">
-                <% c.products.each do |item| %>
-                    <div class="col-sm-3 col-xs-6">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <input type="hidden" id="<%= item.id %>" class="id" value="">
-                                    <a href="/<%=I18n.locale %>/product-details/<%= item.title.parameterize %>~<%=item.id%>"> <img class="imageProduct" src="<%= url_for(item.image) if item.image.attached? %>" alt="" /></a>
-                                    <h2 class="price">$<%= item.price  %></h2>
-                                    <p class="title"><%= item.title  %></p>
-                                    <% if  item.availability&.status.to_i > 0%>
-                                        <a href="javascript:void(0)" class="btn btn-default add-to-cart">
-                                        <i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    <% else %>
-                                        <a href="javascript:void(0)" class="btn btn-danger out-of-stock">
-                                        Out of stock</a>
-                                    <% end %>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <% end %>
+      <% end %>
+    </ul>
+  </div>
+  <div class="tab-content">
+    <%  @results[:categories].each.with_index do |c, index| %>
+      <div class="tab-pane fade <%=index === 0 ? "active in" : ''%> " id="category<%=c.id  %>">
+        <% c.products.each do |item| %>
+          <div class="col-sm-3 col-xs-6">
+            <div class="product-image-wrapper">
+              <div class="single-products">
+                <div class="productinfo text-center">
+                  <input type="hidden" id="<%= item.id %>" class="id" value="">
+                  <a href="/<%=I18n.locale %>/product-details/<%= item.title.parameterize %>~<%=item.id%>"> <img class="imageProduct" src="<%= url_for(item.image) if item.image.attached? %>" alt="" /></a>
+                  <h2 class="price">$<%= item.price  %></h2>
+                  <p class="title"><%= item.title  %></p>
+                  <% if  item.availability&.status.to_i > 0%>
+                    <a href="javascript:void(0)" class="btn btn-default add-to-cart">
+                      <i class="fa fa-shopping-cart"></i>Add to cart</a>
+                  <% else %>
+                    <a href="javascript:void(0)" class="btn btn-danger out-of-stock">
+                      Out of stock</a>
+                  <% end %>
+                </div>
+              </div>
             </div>
+          </div>
         <% end %>
-    </div>
+      </div>
+    <% end %>
+  </div>
 </div>
 <!--/category-tab-->

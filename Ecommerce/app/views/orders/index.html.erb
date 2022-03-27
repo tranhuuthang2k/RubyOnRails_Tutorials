@@ -66,14 +66,14 @@
                     <% when 1 %>
                     <p class=""><%= t("status.confirmed") %></p>
                     <% when 2 %>
-                    <p class=""><%= t("status.cancel") %><</p>
+                    <p class=""><%= t("status.cancel") %></p>
                   <% end %>
                 </td>
                 <td class="cart_description">
                   <p><%= order[:order].created_at.strftime("%d/%m/%Y") %></p>
                 </td>
-                <% if order[:order].status != 1 %>
-                      <td><button class="submit_delete btn btn-danger"  product_id="<%= c["id"] %>" order_id="<%= order[:order].id %>"  > X </button> </td>
+                <% if order[:order].status == Product::STATUS["pending"].to_i  %>
+                    <td><button class="submit_delete btn btn-danger"  product_id="<%= c["id"] %>" order_id="<%= order[:order].id %>"  > X </button> </td>
                 <% end %>
               </tr>
                

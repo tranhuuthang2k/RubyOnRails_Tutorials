@@ -10,10 +10,7 @@ module Api
         secretKey = 'K951B6PE1waDMi640xX08PD3vg6EkVlz'
         rawSignature = 'http://localhost:3000/api/v1/checkout_success?partnerCode=MOMO&orderId=595f5241-2c47-47d9-af2f-a6b586a2aa29&requestId=2159428c-037d-4c92-8d9e-d4c77b369418&amount=60000&orderInfo=pay+with+MoMo&orderType=momo_wallet&transId=2644569745&resultCode=0&message=Giao+d%E1%BB%8Bch+th%C3%A0nh+c%C3%B4ng.&payType=qr&responseTime=1645076866338&extraData=&signature=92b4c1e15e093ea457955d7533347cc64ea28f8a0c0f9e11dcf89b9051177d9e'
         signature = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), secretKey, rawSignature)
-        if params[:resultCode] == '0'
-          # session[:current_user_id]
-          render json: success_message('Successfully')
-        end
+        render json: success_message('Successfully') if params[:resultCode] == '0'
         # render json: error_message('error_message')
       end
 
@@ -29,11 +26,6 @@ module Api
 
         temp_carts.map do |p|
           product = products[p[:id].to_i]
-
-          # update quantity product is buyer is needing
-          availabilities = product.availability.present? && product.availability.update_attribute(:is_ordering,
-                                                                                                  product.availability.is_ordering + p[:quantity].to_i)
-
           if product.availability&.status == OrderItem::STOCK[:Outstock] || product.availability&.number_instock.to_i < p['quantity'].to_i
             return result = { carts_order: [] }
           end
@@ -41,6 +33,16 @@ module Api
           if product.nil? || product.price != p[:price_product].to_f || product.title != p[:name_product] || p[:image_product] != url_for(product.image)
             carts_order = []
             return
+          end
+          number_instock_product = product.availability.number_instock - p[:quantity].to_i
+          if number_instock_product == OrderItem::STOCK[:Outstock]
+            product.availability&.update_columns(number_instock: number_instock_product.to_i,
+                                                 is_ordering: product.availability.is_ordering + p[:quantity].to_i,
+                                                 status: OrderItem::STOCK[:Outstock])
+          else
+            product.availability.update_columns(number_instock: number_instock_product,
+                                                is_ordering: product.availability.is_ordering + p[:quantity].to_i,
+                                                status: OrderItem::STOCK[:Instock])
           end
 
           carts_order << { id: p[:id],
@@ -115,7 +117,7 @@ module Api
         accessKey = 'F8BBA842ECF85'
         secretKey = 'K951B6PE1waDMi640xX08PD3vg6EkVlz'
         orderInfo = 'pay with MoMo'
-        redirectUrl = users_carts_path
+        redirectUrl = 'http://shopmrkatsu.tk/en/users/carts'
         ipnUrl = users_carts_path
         amount = (total_order * 22.790 * 1000).to_i.to_s
         orderId = SecureRandom.uuid

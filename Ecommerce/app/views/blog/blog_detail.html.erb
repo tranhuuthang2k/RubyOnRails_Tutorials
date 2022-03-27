@@ -1,125 +1,115 @@
 <section>
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-3">
-					<div class="left-sidebar">
-						<div class="brands_products">
-						<h2>Category</h2>
-						  <%= render 'home/category_blog' %>
-						</br>
-                        <h2>Post Best View</h2>
-						<%= render 'home/best_view_blog' %>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-9">
-					<div class="blog-post-area">
-						<h2 class="title text-center"><%= @results[:post].title %></h2>
-						<div class="single-blog-post">
-							<div class="post-meta">
-								<ul>
-									<li><i class="fa fa-user"></i> <%=  @results[:post].user.username %></li>
-									<li><i class="fa fa-calendar"></i> <%=  @results[:post].created_at.strftime("%d/%m/%Y") %></li>
-									<li><i class="fa fa-eye"></i> <%= @results[:post].product_views.count %></li>
-								</ul>
-								<span>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-half-o"></i>
-								</span>
-							</div>
-							<a href="">
-								<img src="<%= url_for( @results[:post].image) if  @results[:post].image.attached? %>" alt="">
-							</a>
-                            <span style="word-wrap: break-word;"> <%=  @results[:post].body.body%></span>
-							
-							<div class="pager-area">
-								<ul class="pager pull-right">
-									<li><a href="<%= blog_path %>">Pre</a></li>
-									<li><a href="#">Next</a></li>
-								</ul>
-							</div>
-						</div>
-					</div><!--/blog-post-area-->
-
-					<div class="rating-area">
-						<ul class="ratings">
-							<li class="rate-this">Rate this item:</li>
-							<li>
-								<i class="fa fa-star color"></i>
-								<i class="fa fa-star color"></i>
-								<i class="fa fa-star color"></i>
-								<i class="fa fa-star color"></i>
-								<i class="fa fa-star color"></i>
-							</li>
-							<li class="color">(5 votes)</li>
-						</ul>
-						<ul class="tag">
-							<li>TAG: </li>
-							<li><a class="color" href="#"> <%=  @results[:post].category_post.name %> </a></li>
-
-						</ul>
-					</div><!--/rating-area-->
-
-					<div class="socials-share">
-						<a href=""><img src="images/blog/socials.png" alt=""></a>
-					</div><!--/socials-share-->
-
-					<div class="media commnets">
-						<a class="pull-left col-1" href="#" >
-							<img class="media-object" src="<%= url_for( @results[:post].user.avatar) if  @results[:post].user.avatar.attached? %>" alt="">
-						</a>
-						<div class="media-body col-11" >
-							<h4 class="media-heading">Athor: <span style="color: #FE980F;"><%=  @results[:post].user.username %></span></h4>
-							<p><%=  @results[:post].user.profile %></p>
-							<div class="blog-socials">
-								<ul>
-									<li><a href="https://www.facebook.com/thangneymar44/"><i class="fa fa-facebook"></i></a></li>
-									<!--<li><a href=""><i class="fa fa-twitter"></i></a></li>
-									<li><a href=""><i class="fa fa-dribbble"></i></a></li>
-									<li><a href=""><i class="fa fa-google-plus"></i></a></li>
-									-->
-								</ul>
-							</div>
-						</div>		
-				</div>	
-					<h2 class="title text-center">Other Posts</h2>
-					<div class="row">
-						<div class="multiple-items" >
-							<% @results[:post_other].each do |item| %>
-								<a  href="/<%=I18n.locale %>/blog_detail/<%= item.title.parameterize%>~<%=item.id %>" class= "col-sm-3">
-										<img style="width: 100%" src="<%= url_for(item.image) if item.image.attached? %>" alt="Image">
-										<h5 class="title_post"> <%= item.title %> </h5>
-								</a>
-							<% end %>
-						</div>
-					</div>
-			</div>
-</section>
-<style>
-.current{
-	width: 50px;
-    height: 40px;
-    text-align: center;
-    line-height: 26px;
-}
-.title_post{
-	font-size: 16px;
-    font-family: auto;
-    text-align: center;
-    color: black;
-    font-weight: 700;
-}
-</style>
-<script>
-$('.multiple-items').slick({
-	slidesToShow: 2,
-	slidesToScroll: 2,
-	autoplay: true,
-	autoplaySpeed: 2000,
-    prevArrow: false,
-    nextArrow: false,
-});
-</script>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="left-sidebar">
+          <div class="brands_products">
+            <h2>Category</h2>
+            <%= render 'home/category_blog' %>
+          </br>
+          <h2>Post Best View</h2>
+          <%= render 'home/best_view_blog' %>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-9">
+      <div class="blog-post-area">
+        <h2 class="title text-center"><%= @results[:post].title %></h2>
+        <div class="single-blog-post">
+          <div class="post-meta">
+            <ul>
+              <li><i class="fa fa-user"></i> <%=  @results[:post].user.username %></li>
+              <li><i class="fa fa-calendar"></i> <%=  @results[:post].created_at.strftime("%d/%m/%Y") %></li>
+              <li><i class="fa fa-eye"></i> <%= @results[:post].product_views.count %></li>
+            </ul>
+            <span>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star-half-o"></i>
+            </span>
+          </div>
+          <a href="">
+            <img src="<%= url_for( @results[:post].image) if  @results[:post].image.attached? %>" alt="">
+          </a>
+          <span style="word-wrap: break-word;"> <%=  @results[:post].body.body%></span>
+          <div class="pager-area">
+            <ul class="pager pull-right">
+              <li><a href="<%= blog_path %>">Pre</a></li>
+              <li><a href="#">Next</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--/blog-post-area-->
+      <div class="rating-area">
+        <ul class="ratings">
+          <li class="rate-this">Rate this item:</li>
+          <li>
+            <i class="fa fa-star color"></i>
+            <i class="fa fa-star color"></i>
+            <i class="fa fa-star color"></i>
+            <i class="fa fa-star color"></i>
+            <i class="fa fa-star color"></i>
+          </li>
+          <li class="color">(5 votes)</li>
+        </ul>
+        <ul class="tag">
+          <li>TAG: </li>
+          <li><a class="color" href="#"> <%=  @results[:post].category_post.name %> </a></li>
+        </ul>
+      </div>
+      <!--/rating-area-->
+      <div class="socials-share">
+        <a href=""><img src="images/blog/socials.png" alt=""></a>
+      </div>
+      <!--/socials-share-->
+      <div class="media commnets">
+        <a class="pull-left col-1" href="#" >
+          <img class="media-object" src="<%= url_for( @results[:post].user.avatar) if  @results[:post].user.avatar.attached? %>" alt="">
+        </a>
+        <div class="media-body col-11" >
+          <h4 class="media-heading">Author: <span style="color: #FE980F;"><%=  @results[:post].user.username %></span></h4>
+            <p><%= @results[:post].user.profile %></p>
+          <h4 class="media-heading">Facebook: <a href="https://www.facebook.com/thangneymar44/"><i class="fa fa-facebook"></i></a> </h4>
+        </div>
+      </div>
+      <h2 class="title text-center">Other Posts</h2>
+      <div class="row">
+        <div class="multiple-items" >
+          <% @results[:post_other].each do |item| %>
+            <a  href="/<%=I18n.locale %>/blog_detail/<%= item.title.parameterize%>~<%=item.id %>" class= "col-sm-3">
+              <img style="width: 100%" src="<%= url_for(item.image) if item.image.attached? %>" alt="Image">
+              <h5 class="title_post"> <%= item.title %> </h5>
+            </a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+  <style>
+    .current{
+    	width: 50px;
+        height: 40px;
+        text-align: center;
+        line-height: 26px;
+    }
+    .title_post{
+    	font-size: 16px;
+        font-family: auto;
+        text-align: center;
+        color: black;
+        font-weight: 700;
+    }
+  </style>
+  <script>
+    $('.multiple-items').slick({
+    	slidesToShow: 2,
+    	slidesToScroll: 2,
+    	autoplay: true,
+    	autoplaySpeed: 2000,
+        prevArrow: false,
+        nextArrow: false,
+    });
+  </script>

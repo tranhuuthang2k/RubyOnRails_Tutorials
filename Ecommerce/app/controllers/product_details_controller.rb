@@ -32,6 +32,7 @@ class ProductDetailsController < ApplicationController
     avg = count_product.zero? ? 5 : sum_rate / count_product
     brands = Brand.all
     notifications = Notification.newest.limit(5)
+    availabilities = Availability.by_product_sold(0).order(product_sold: :desc).sample(5)
 
     @results = {
       avg: avg,
@@ -42,7 +43,8 @@ class ProductDetailsController < ApplicationController
       recommend_items: recommend_items,
       comments: comments,
       brands: brands,
-      notifications: notifications
+      notifications: notifications,
+      availabilities: availabilities
     }
   end
 end

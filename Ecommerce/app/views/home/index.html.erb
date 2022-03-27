@@ -1,31 +1,31 @@
 <%= render 'home/slider' %>
 <section>
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-3">
-					<div class="left-sidebar">
-                        <!--category-->
-						<h2><%= t 'slide_bar.category' %></h2>
-                          <%= render 'home/category' %>
-                        <!--/category-->
-
-                        <!--brands_products-->
-						<div class="brands_products">
-							<h2><%= t 'slide_bar.brand' %></h2>
-							<%= render 'home/brands' %>
-						</div>
-						<h2 style="margin-top: 40px"><%= t 'slide_bar.hot_product' %></h2>
-						  <%= render 'home/product_hot' %>
-						<h2 style="margin-top: 40px"><%= t 'slide_bar.super_sale' %></h2>
-				  	  <%= render 'home/sales' %>
-					</div>
-				</div>
-				
-				<div class="col-sm-9 padding-right">
-					<%= render 'home/features_items' %>
-                    <%= render 'home/category_tab' %>
-					<%= render 'home/recommended_items' %>
-				</div>
-			</div>
-		</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="left-sidebar">
+          <!--category-->
+          <h2><%= t 'slide_bar.category' %></h2>
+          <%= render 'home/category' %>
+          <!--/category-->
+          <!--brands_products-->
+          <div class="brands_products">
+            <h2><%= t 'slide_bar.brand' %></h2>
+            <%= render 'home/brands' %>
+          </div>
+          <h2 style="margin-top: 40px"><%= t 'slide_bar.hot_product' %></h2>
+           <%= render 'home/product_hot' %>
+          <h2 style="margin-top: 40px"><%= t 'slide_bar.super_sale' %></h2>
+            <%= render 'home/sales' %>
+          <h2 style="margin-top: 40px"><%= t 'slide_bar.fanpage' %></h2>
+           <%= render 'home/fanpage' %>
+        </div>
+      </div>
+      <div class="col-sm-9 padding-right">
+        <%= render 'home/features_items' %>
+        <%= render 'home/category_tab' %>
+        <%= render 'home/recommended_items' %>
+      </div>
+    </div>
+  </div>
 </section>

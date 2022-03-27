@@ -42,10 +42,10 @@ class BlogController < ApplicationController
   private
 
   def load_layout
-    posts = Post.newest.page(params[:page]).per(3)
+    posts = Post.newest.page(params[:page]).per(15)
     categoies_post = CategoryPost.all
     product_views = ProductView.select(:post_id).where.not(post_id: nil).group(:post_id).order('post_id DESC')
-    post_ids = product_views.size.values.sort.reverse.take(5).map { |item| product_views.size.key(item) }
+    post_ids = product_views.size.values.sort.reverse.take(10).map { |item| product_views.size.key(item) }
     best_view_post = product_views.where(post_id: post_ids)
     @results = {
       categoies_post: categoies_post,

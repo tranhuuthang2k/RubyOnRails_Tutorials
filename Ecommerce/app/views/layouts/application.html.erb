@@ -1,112 +1,107 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Home | Mr.Katsu</title>
-  <meta id="metaDescription" name="description" content="Trần Hữu Thắng, shop mr.katsu, buy everything your need">
-  <meta property="og:description" content="Trần Hữu Thắng, shop mr.katsu, shopmrkatsu.tk, shopmrkatsu" />
-  <meta property="og:type" content="website" /> 
-  <meta property="og:url" content="http://shopmrkatsu.tk/" />
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'jquery' %>
-  <%= javascript_include_tag 'bootstrap.min' %>
-  <%= javascript_include_tag 'jquery-filterable' %>
-  <link rel="shortcut icon" href="/assets/ico/favicon.ico">
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/ico/apple-touch-icon-144-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/ico/apple-touch-icon-114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/ico/apple-touch-icon-72-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" href="/assets/ico/apple-touch-icon-57-precomposed.png">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js" integrity="sha512-aUhL2xOCrpLEuGD5f6tgHbLYEXRpYZ8G5yD+WlFrXrPy2IrWBlu6bih5C9H6qGsgqnU6mgx6KtU8TreHpASprw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://twitter.github.io/typeahead.js/js/handlebars.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="//cdn.jsdelivr.net/npm/js-cookie@3.0.1"></script>
-  <%=javascript_include_tag('frontend/categories.js') %>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/chartkick/1.3.0/chartkick.min.js" integrity="sha512-yZq6Kg/RKA6FcdT1iQcce5DN5WqzlzuVDpEWa3dWwpqcArOkiE/1ueacDGZ0LHVIP+7jJLSYETeOD1lEqQMIjA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
-  <%=stylesheet_link_tag('price-range.css') %>
-  <%=stylesheet_link_tag('font-awesome.min.css') %>
-  <%=stylesheet_link_tag('animate.css') %>
-  <%=javascript_include_tag('jquery.js') %>
-  <%=javascript_include_tag('bootstrap.min.js') %>
-  <%=javascript_include_tag('jquery.scrollUp.min.js') %>
-  <%=javascript_include_tag('price-range.js') %>
-  <%=javascript_include_tag('jquery.prettyPhoto.js') %>
-  <%=javascript_include_tag('manager/product.js') %>
-  <%# <script src="https://tranhuuthang.com/cart.js"></script> %>
-  <%=javascript_include_tag('manager/cart.js') %>
-  <script src="https://cdn.jsdelivr.net/gh/igorlino/elevatezoom-plus@1.2.3/src/jquery.ez-plus.js"></script>
-  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-  <%=javascript_include_tag('lightbox.min.js') %>
-  <%=stylesheet_link_tag('lightbox.min.css') %>
-</head>
-
-<body>
-  <!-- LOADER -->
-  <%= render 'layouts/header' %>
-
-  <% if notice%>
-    <div id="notice_wraper">
-      <p class="notice"><%= notice %></p>
+  <head>
+    <title>Home | Mr.Katsu</title>
+    <meta id="metaDescription" name="description" content="Trần Hữu Thắng, shop mr.katsu, buy everything your need">
+    <meta property="og:description" content="Trần Hữu Thắng, shop mr.katsu, shopmrkatsu.tk, shopmrkatsu" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://shopmrkatsu.tk/" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'jquery' %>
+    <%= javascript_include_tag 'bootstrap.min' %>
+    <%= javascript_include_tag 'jquery-filterable' %>
+    <link rel="shortcut icon" href="/assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/assets/ico/apple-touch-icon-57-precomposed.png">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.jsdelivr.net/npm/js-cookie@3.0.1"></script>
+    <%=javascript_include_tag('frontend/categories.js') %>
+    <%=stylesheet_link_tag('price-range.css') %>
+    <%=stylesheet_link_tag('font-awesome.min.css') %>
+    <%=stylesheet_link_tag('animate.css') %>
+    <%=javascript_include_tag('jquery.js') %>
+    <%=javascript_include_tag('bootstrap.min.js') %>
+    <%=javascript_include_tag('jquery.scrollUp.min.js') %>
+    <%=javascript_include_tag('price-range.js') %>
+    <%=javascript_include_tag('jquery.prettyPhoto.js') %>
+    <%=javascript_include_tag('manager/product.js') %>
+    <%=javascript_include_tag('manager/cart.js') %>
+    <%=javascript_include_tag('lightbox.min.js') %>
+    <%=stylesheet_link_tag('lightbox.min.css') %>
+    <%=javascript_include_tag('handlerbar.js') %>
+    <%=javascript_include_tag('query.ez-plus.js') %>
+    <%=javascript_include_tag('chartkick.min.js') %>
+    <%=javascript_include_tag('jquery.cookie.js') %>
+    <%=stylesheet_link_tag('slick.css') %>
+    <%=javascript_include_tag('slick.min.js') %>
+  </head>
+  <body>
+    <!-- LOADER -->
+    <%= render 'layouts/header' %>
+    <% if notice%>
+      <div id="notice_wraper">
+        <p class="notice"><%= notice %></p>
+      </div>
+    <% elsif flash %>
+      <% flash.each do |message_type, message| %>
+        <div  style="align-items: center;text-align: center;background: #e8a62d59;color: red;" class="alert alert-<%= message_type %>"><span><%= message %></span></div>
+      <% end %>
+    <% end %>
+    <div id="loader" style="display: flex;justify-content: center;align-items: center;">
+      <div class="position-center-center">
+        <div class="ldr"></div>
+      </div>
     </div>
-  <% elsif flash %>
-    <% flash.each do |message_type, message| %>
-      <div  style="align-items: center;text-align: center;background: #e8a62d59;color: red;" class="alert alert-<%= message_type %>"><span><%= message %></span></div>
-    <% end %> 
-  <% end %>
-  <div id="loader" style="display: flex;justify-content: center;align-items: center;">
-    <div class="position-center-center">
-      <div class="ldr"></div>
-    </div>
-  </div>
-  <div class="show_body" style="display:none">
-    <script>
-      $("#loader").fadeOut("slow");
-      $(".show_body").css("display","block")
-    </script>
-     <%= yield %>
-     <script>
-      setTimeout(function() {
-        $('#notice_wraper').fadeOut("slow", function () {
-          $(this).remove();
-        });
-      }, 2000);
+    <div class="show_body" style="display:none">
+      <script>
+        $("#loader").fadeOut("slow");
+        $(".show_body").css("display","block")
       </script>
-     <script>
-    </script>
-  </div>
-  <%= render 'layouts/footer' %>
-</body>
-</html>
-<!-- Messenger Plugin chat Code -->
-    <div id="fb-root"></div>
-    <!-- Your Plugin chat code -->
-    <div id="fb-customer-chat" class="fb-customerchat">
+      <%= yield %>
+      <script>
+        setTimeout(function() {
+          $('#notice_wraper').fadeOut("slow", function () {
+            $(this).remove();
+          });
+        }, 2000);
+      </script>
     </div>
-    <script>
-      var chatbox = document.getElementById('fb-customer-chat');
-      chatbox.setAttribute("page_id", "2741635706062292");
-      chatbox.setAttribute("attribution", "biz_inbox");
-    </script>
-    <!-- Your SDK code -->
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          xfbml            : true,
-          version          : 'v12.0'
-        });
-      };
+    <%= render 'layouts/footer' %>
+  </body>
+</html>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v13.0&appId=219816340114971&autoLogAppEvents=1" nonce="WK7rdaIn"></script>
+<!-- Messenger Plugin chat Code -->
+<div id="fb-root"></div>
+<!-- Your Plugin chat code -->
+<div id="fb-customer-chat" class="fb-customerchat">
+</div>
+<script>
+  var chatbox = document.getElementById('fb-customer-chat');
+  chatbox.setAttribute("page_id", "2741635706062292");
+  chatbox.setAttribute("attribution", "biz_inbox");
+</script>
+<!-- Your SDK code -->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      xfbml            : true,
+      version          : 'v12.0'
+    });
+  };
 
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-    </script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
 <script id="list-search-template" type="text/x-handlebars-template">
   <div class="features_items">
     <h2 class="title text-center"> Result search for {{keyword}}</h2>
@@ -130,7 +125,7 @@
             </div>
         </div>
       </div>
-      {{/each}}  
+      {{/each}}
     </div>
   {{else}}
     <div class="features_items">

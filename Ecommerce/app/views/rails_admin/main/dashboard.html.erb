@@ -99,7 +99,7 @@
         <div class="wrap">
           <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"><%= t "admin.statistic_product.top_availability_best_selling"%> <svg
               class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
-            </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%=  Availability.present? ? Availability.find_by(product_sold: Availability.maximum("product_sold")).name : '' %></span>
+            </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%=  @result[:statistic_products][:best_availability]  ? @result[:statistic_products][:best_availability]&.name : 'NULL' %></span>
         </div>
       </div>
 
@@ -107,7 +107,7 @@
         <div class="wrap">
           <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"><%= t "admin.statistic_product.top_availability_is_ordering"%> <svg
               class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
-            </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%=  Availability.present? ? Availability.find_by(is_ordering: Availability.maximum("is_ordering")).name : '' %></span>
+            </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%=  @result[:statistic_products][:best_availability_ordering]  ? @result[:statistic_products][:best_availability_ordering]&.name : 'NULL' %></span>
         </div>
       </div>
 

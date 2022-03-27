@@ -4,13 +4,13 @@ class HomeController < ApplicationController
   before_action :build_jwt_token, only: %i[index]
 
   def index
-    features_items =  Product.show_products Product::SHOW_HOME[:recomand] 
+    features_items =  Product.show_products Product::SHOW_HOME[:recomand]
     recommend_items = Product.show_products Product::SHOW_HOME[:feature]
     categories = Category.show_category.limit(4)
     sliders = Slider.all
     brands = Brand.all
     notifications = Notification.newest.limit(5)
-    availabilities = Availability.by_product_sold(0).order(product_sold: :desc).limit(5).shuffle
+    availabilities = Availability.by_product_sold(0).order(product_sold: :desc).sample(5)
 
     @results = {
       features_items: features_items.page(params[:page]).per(9),

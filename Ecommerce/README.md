@@ -103,7 +103,7 @@ Things you may want to cover:
 ----------------------------------------------------------------------------------
 - Youtude demo : https://youtu.be/YARRuNM518o 
 - facebook: https://facebook.com/thangneymar44
-- Web demo : http://shopmrkatsu.herokuapp.com/
+- Web demo : http://shopmrkatsu.tk
 ----------------------------------------------------------------------------------
 - Run commanlines need to run project 
 - bundle install

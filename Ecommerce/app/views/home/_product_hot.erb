@@ -2,59 +2,57 @@
   <div class="slider">
     <% @results[:availabilities].each do |item| %>
       <% if item.product_sold > 0  && item.product.image.attached? %>
-         <div style="display: flex"> 
-            <a href="/<%=I18n.locale %>/product-details/<%= item.product.title.parameterize%>~<%=item.product.id%>"><img src="<%=  url_for(item.product.image)  %>"  width="100" alt="" /></a>
-            <a href="/<%=I18n.locale %>/product-details/<%= item.product.title.parameterize%>~<%=item.product.id%>" style="color: black ">
-                <div class="list-item">
-                    <p class="title"><%= item.product.title  %> </p>
-                    <h2 class="price">$<%= item.product.price  %></h2>
-                    <p class="title">Sold: <%= item.product_sold %> products</p>
-                </div>
-            </a>
+        <div style="display: flex">
+          <a href="/<%=I18n.locale %>/product-details/<%= item.product.title.parameterize%>~<%=item.product.id%>"><img src="<%=  url_for(item.product.image)  %>"  width="100" alt="" /></a>
+          <a href="/<%=I18n.locale %>/product-details/<%= item.product.title.parameterize%>~<%=item.product.id%>" style="color: black ">
+            <div class="list-item">
+              <p class="title"><%= item.product.title  %> </p>
+              <h2 class="price">$<%= item.product.price  %></h2>
+              <p class="title">Sold: <%= item.product_sold %> products</p>
+            </div>
+          </a>
         </div>
       <% end %>
     <% end %>
   </div>
 </div>
 <style>
-.slick-vertical .slick-slide {
-  border-top: 1px solid #EEE;
-  border-bottom: 1px solid #EEE;
-}
-.list-item{
-    padding-left: 5px;
-    text-align: center;
-}
-.list-item h5{
-font-size: 16px;
-    font-weight: 700;
-}
-.slick-vertical .slick-slide {
-  border-top: 1px solid #EEE;
-  border-bottom: 1px solid #EEE;
-}
+  .slick-vertical .slick-slide {
+    border-top: 1px solid #EEE;
+    border-bottom: 1px solid #EEE;
+  }
+  .list-item{
+      padding-left: 5px;
+      text-align: center;
+  }
+  .list-item h5{
+  font-size: 16px;
+      font-weight: 700;
+  }
+  .slick-vertical .slick-slide {
+    border-top: 1px solid #EEE;
+    border-bottom: 1px solid #EEE;
+  }
 
-.slick-vertical .slick-current {
-  border-top-color: #000;
-  border-bottom-color: #000;
-}
+  .slick-vertical .slick-current {
+    border-top-color: #000;
+    border-bottom-color: #000;
+  }
 
-.slick-track {
-    margin-top: 14.5px;
-}
-
+  .slick-track {
+      margin-top: 14.5px;
+  }
 </style>
 <script>
- $('.slider').slick({
-    infinite: true,
-    vertical: true,
-    verticalSwiping: true,
-    slidesToShow:3, 
-    slidesToScroll: 3,
-    dots: false,
-    prevArrow: false,
-    nextArrow: false,
-    autoplay:true,
- });
-
+  $('.slider').slick({
+     infinite: true,
+     vertical: true,
+     verticalSwiping: true,
+     slidesToShow:3,
+     slidesToScroll: 3,
+     dots: false,
+     prevArrow: false,
+     nextArrow: false,
+     autoplay:true,
+  });
 </script>

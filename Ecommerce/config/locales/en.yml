@@ -43,9 +43,7 @@ en:
       month_year: "Statistic about product of the month, year"
       revenue: "Revenue"
       sold_product: "Sold product"
-
       total_order_cancel : "Total order cancel"
-
       total_product_system: "Product in system"
       best_selling: "Best selling"
       best_Keyword_search: "Best Keyword search"
@@ -55,10 +53,8 @@ en:
       top_availability_best_selling: "Top availability best selling"
       top_availability_is_ordering: "Top availability is ordering"
       total_service_shipping: "Total service Shipping in system"
-
       top_service_shipping : "Top service Shipping"
       about_order_for_the_week : "About order for the week"
-
       about_order_status: "About order status"
       about_statistical_admin_user: "About statistical user/admin"
       about_product_for_brand: "About Product for Brand"
@@ -71,6 +67,9 @@ en:
     brand: "Brands"
     hot_product: "Hot Products"
     super_sale: "Super sale"
+    fanpage: "Fanpage facebook" 
+    group: "Group facebook"
+    youtube: "Youtube"
   menu:
     home: "Home"
     shop: "Shop"
@@ -120,7 +119,7 @@ en:
     review: "Reviews"
     see_more: "See more"
     recommend: "Recommend"
-    search:  "Search product"
+    search:  "Product name or price"
     note: "Notes"
     message_note: "During checkout, if you wait more than 10 seconds, please re-login and order again. the reason is that you log into your account on multiple devices.."
     git_voucher: "Use discount code (if any)"
@@ -174,6 +173,7 @@ en:
      you_must_login_to_the_checkout : "You Must Login To The Checkout"
      shopping_cart_empty: "Shopping cart is empty"
      address_not_exitst:  "Please add your address before while checkout"
+     loggin_message: "You must be logged in to perform this function"
   status:
      pending: "Pending"
      confirmed: "Confirmed"
@@ -185,7 +185,6 @@ en:
      voucher: "Voucher"
      payment: "Total payment"
      search_month: "Search month"
-
   blogs:
     category: "Category"
     post_best_view: "Post Best View"
@@ -227,7 +226,6 @@ en:
   Womans: "Womans"
   Gift_Cards: "Gift Cards"
   Shoes: "Shoes"
-
   Terms_of_Use: "Terms of Use"
   Privecy_Policy: "Privecy Policy"
   Refund_Policy: "Refund Policy"

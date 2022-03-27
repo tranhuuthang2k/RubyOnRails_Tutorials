@@ -1,70 +1,69 @@
 <div id="contact-page" class="container">
-    <div class="bg">
-        <div class="row">    		
-            <div class="col-sm-12">    			   			
-                <h2 class="title text-center"><%= t "contacts.contact"%></h2>    			    				    				
-                <div id="gmap" class="contact-map">
-                </div>
-            </div>			 		
-        </div>    	
-        <div class="row">  	
-            <div class="col-sm-8">
-                <div class="contact-form">
-                    <h2 class="title text-center"><%= t "contacts.write_info"%></h2>
-                    <div class="status alert alert-success" style="display: none"></div>
-                      <%= form_with(url: contact_path , remote: true) do |f| %>
-                            <div class="form-group col-md-6">
-                                <input type="text" name="name" class="form-control" required="required" placeholder="<%= t "contacts.name"%>">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <input type="email" name="email" class="form-control" required="required" placeholder="<%= t "contacts.email"%>">
-                            </div>
-                            <div class="form-group col-md-12">
-                                <input type="text" name="subject" class="form-control" required="required" placeholder="<%= t "contacts.subject"%>">
-                            </div>
-                            <div class="form-group col-md-12">
-                                <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="<%= t "contacts.message"%>"></textarea>
-                            </div>                        
-                            <div class="form-group col-md-12">
-                                <%= f.submit t("contacts.contact_now") , class: 'btn btn-primary btn-sm' %>
-                            </div>
-                     <% end %>
-                </div>
+  <div class="bg">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2 class="title text-center"><%= t "contacts.contact"%></h2>
+        <div id="gmap" class="contact-map">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="contact-form">
+          <h2 class="title text-center"><%= t "contacts.write_info"%></h2>
+          <div class="status alert alert-success" style="display: none"></div>
+          <%= form_with(url: contact_path , remote: true) do |f| %>
+            <div class="form-group col-md-6">
+              <input type="text" name="name" class="form-control" required="required" placeholder="<%= t "contacts.name"%>">
             </div>
-
-
-            <div class="col-sm-4">
-                <div class="contact-info">
-                    <h2 class="title text-center"><%= t "contacts.information" %></h2>
-                    <address>
-                        <p>Mr.Katsu Inc.</p>
-                        <p><%= t "contacts.address" %>: 270 Truong Chinh, Thanh Khe, Da Nang</p>
-                        <p><%= t "contacts.country" %>: VietNam</p>
-                        <p><%= t "contacts.mobile" %>: +84 37296 4842</p>
-                        <p><%= t "contacts.email" %>: tranhuuthangcoi@gmail.com</p>
-                    </address>
-                    <div class="social-networks">
-                        <h2 class="title text-center"><%= t "contacts.social_networking" %></h2>
-                        <ul>
-                            <li>
-                                <a href="https://www.facebook.com/thangneymar44/"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-google-plus"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-youtube"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>    			
-        </div>  
-    </div>	
-</div><!--/#contact-page-->
+            <div class="form-group col-md-6">
+              <input type="email" name="email" class="form-control" required="required" placeholder="<%= t "contacts.email"%>">
+            </div>
+            <div class="form-group col-md-12">
+              <input type="text" name="subject" class="form-control" required="required" placeholder="<%= t "contacts.subject"%>">
+            </div>
+            <div class="form-group col-md-12">
+              <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="<%= t "contacts.message"%>"></textarea>
+            </div>
+            <div class="form-group col-md-12">
+              <%= f.submit t("contacts.contact_now") , class: 'btn btn-primary btn-sm' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="contact-info">
+          <h2 class="title text-center"><%= t "contacts.information" %></h2>
+          <address>
+            <p>Mr.Katsu Inc.</p>
+            <p><%= t "contacts.address" %>: 270 Truong Chinh, Thanh Khe, Da Nang</p>
+            <p><%= t "contacts.country" %>: VietNam</p>
+            <p><%= t "contacts.mobile" %>: +84 37296 4842</p>
+            <p><%= t "contacts.email" %>: tranhuuthangcoi@gmail.com</p>
+          </address>
+          <div class="social-networks">
+            <h2 class="title text-center"><%= t "contacts.social_networking" %></h2>
+            <ul>
+              <li>
+                <a href="https://www.facebook.com/thangneymar44/"><i class="fa fa-facebook"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="fa fa-google-plus"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="fa fa-youtube"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/#contact-page-->
 <script src="/assets/frontend/jquery.js"></script>
 <script src="/assets/bootstrap.min.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>

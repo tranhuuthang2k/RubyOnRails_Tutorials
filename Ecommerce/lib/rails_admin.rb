@@ -39,7 +39,6 @@ module RailsAdmin
                                                                                                format: '%b %Y')
               fee_ship = order_items.pluck('fee').sum
               voucher = order_items.pluck('voucher').sum
-
               {
                 order_items: order_items,
                 fee_ship_voucher: fee_ship - voucher,
@@ -55,26 +54,17 @@ module RailsAdmin
               product_view_ids = product_views.present? && product_views.pluck('product_id').compact.each_with_object(Hash.new(0)) do |c, counts|
                 counts[c] += 1
               end
-              max_product_id_view = if product_view_ids.present?
-                                      product_view_ids.max_by do |_k, v|
-                                        v
-                                      end [0]
-                                    else
-                                      product_view_ids
-                                    end
-
-              if product_id != {}
-                products = Product.by_ids([product_id, max_product_id_view])
-                result = products.find_by!(id: product_id)
-              else
-
-                result = nil
-              end
+              availabilities = Availability.by_month_year(month, year)
+              best_availability = availabilities.find_by(product_sold: availabilities.maximum('product_sold'))
+              best_id_views = product_view_ids.present? ? product_view_ids.max_by { |_k, v| v }[0] : {}
+              best_availability_ordering = availabilities.find_by(is_ordering: availabilities.maximum('is_ordering'))
               keywords = KeywordSearch.by_keywords(month, year)
               {
-                best_seller: result,
+                best_seller: product_id.present? ? Product.find(product_id) : nil,
                 best_keyword_search: keywords.present? ? keywords.find_by!(count: keywords.pluck('count').max) : nil,
-                best_product_views: products.present? ? products.find_by(id: product_view_ids) : {},
+                best_product_views: best_id_views ? Product.find_by(id: best_id_views) : {},
+                best_availability: best_availability,
+                best_availability_ordering: best_availability_ordering,
                 vouchers: Voucher.by_vouchers(month, year).size
               }
             end
@@ -88,7 +78,6 @@ module RailsAdmin
                 product_id = order_items(order_items).pluck('id').each_with_object(Hash.new(0)) do |product, counts|
                                counts[product] += 1
                              end.max_by { |_k, v| v }[0] # count product_id of order_item when customer order is statistic best seller
-
                 if month_year.present? # month_year exists
                   base_statistic_products(product_id, params['month_year'].split('-')[1],
                                           params['month_year'].split('-')[0])

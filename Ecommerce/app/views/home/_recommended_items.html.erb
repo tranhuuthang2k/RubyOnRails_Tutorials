@@ -1,67 +1,46 @@
 <div class="recommended_items">
-    <!--recommended_items-->
-    <h2 class="title text-center"><%= t 'product.recommend' %></h2>
-
-    <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="item active">
-                <% @results[:recommend_items].each do |item| %>
-                    <% if item.availability&.status.to_i > 0  %>
-                        <div class="col-sm-4 col-xs-6">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <input type="hidden" id="<%= item.id %>" class="id" value="">
-                                        <a href="/<%=I18n.locale %>/product-details/<%= item.title.parameterize%>~<%=item.id%>"> 
-                                            <%= image_tag url_for(item.image) , alt: "img",  class: "imageProduct" %>
-                                        </a>
-                                        <p class="title"><%= item.title  %></p>
-                                        <h2 class="price">$<%= item.price %></h2>
-                                        <a href="javascript:void(0)" class="btn btn-default add-to-cart"><i
-                                                class="fa fa-shopping-cart"></i><%= t "product.add_to_cart" %></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+  <!--recommended_items-->
+  <h2 class="title text-center"><%= t 'product.recommend' %></h2>
+  <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="item active">
+        <% @results[:recommend_items].each do |item| %>
+          <div class="col-sm-4 col-xs-6">
+            <div class="product-image-wrapper">
+              <div class="single-products">
+                <div class="productinfo text-center">
+                  <input type="hidden" id="<%= item.id %>" class="id" value="">
+                  <a href="/<%=I18n.locale %>/product-details/<%= item.title.parameterize%>~<%=item.id%>">
+                    <%= image_tag url_for(item.image) , alt: "img",  class: "imageProduct" %>
+                  </a>
+                    <h2 class="price">$<%= item.price %></h2>
+                    <p class="title"><%= item.title  %></p>
+                    <div>
+                      <i class="fa fa-star" style="color: #fe950f;"></i>
+                      <i class="fa fa-star" style="color: #fe950f;"></i>
+                      <i class="fa fa-star" style="color: #fe950f;"></i>
+                      <i class="fa fa-star" style="color: #fe950f;"></i>
+                      <i class="fa fa-star" style="color: #fe950f;"></i>
+                    </div>
+                    <% if item.availability&.product_sold.to_i > 0 %>
+                      <p class="title"><%= t 'product.sold' %>: <%= item.availability&.product_sold %> <%= t 'product.product' %></p>
+                    <% else %>
+                      <p class="title"> &nbsp;</p>
                     <% end %>
-                <% end %>
-            </div>
-            <div class="item">
-                <% @results[:recommend_items].each do |item| %>
-                    <% if item.availability&.status.to_i > 0  %>
-                        <div class="col-sm-4 col-xs-6">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <input type="hidden" id="<%= item.id %>" class="id" value="">
-                                        <a href="/<%=I18n.locale %>/product-details/<%= item.title.parameterize%>~<%=item.id%>"> 
-                                        <img class="imageProduct" src="<%= url_for(item.image) %>" alt="" /></a>
-                                        <p class="title"><%= item.title  %></p>
-                                        <h2 class="price">$<%= item.price %></h2>
-                                        <div>
-                                            <i class="fa fa-star" style="color: #fe950f;"></i>
-                                            <i class="fa fa-star" style="color: #fe950f;"></i>
-                                            <i class="fa fa-star" style="color: #fe950f;"></i>
-                                            <i class="fa fa-star" style="color: #fe950f;"></i>
-                                            <i class="fa fa-star" style="color: #fe950f;"></i>
-                                        </div>
-                                            <p class="title"><%= t 'product.sold' %>: <%= item.availability&.product_sold %> <%= t 'product.product' %></p>
-                                            <a href="javascript:void(0)" class="btn btn-default add-to-cart">
-                                            <i class="fa fa-shopping-cart"></i><%= t 'product.add_to_cart' %></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <% if  item.availability&.status.to_i == OrderItem::STOCK[:Instock].to_i %>
+                      <a href="javascript:void(0)" class="btn btn-default add-to-cart">
+                        <i class="fa fa-shopping-cart"></i><%= t 'product.add_to_cart' %></a>
+                    <% else %>
+                      <a href="javascript:void(0)" class="btn btn-danger out-of-stock">
+                        <%= t 'product.out_of_stock' %></a>
                     <% end %>
-                <% end %>
+                </div>
+              </div>
             </div>
-        </div>
-        <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-            <i class="fa fa-angle-left"></i>
-        </a>
-        <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-            <i class="fa fa-angle-right"></i>
-        </a>
+          </div>
+        <% end %>
+      </div>
     </div>
+  </div>
 </div>
 <!--/recommended_items-->

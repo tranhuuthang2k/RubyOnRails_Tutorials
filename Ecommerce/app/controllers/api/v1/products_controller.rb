@@ -44,7 +44,23 @@ module Api
       def delete_order
         order_item = OrderItem.find_by(id: params[:order_id])
         unless order_item.nil?
-          product_order = JSON.parse(order_item.product_order).reject { |h| h['id'] == params[:product_id] }
+          order_items = JSON.parse(order_item.product_order)
+          product_order = order_items.reject { |h| h['id'] == params[:product_id] }
+          quantity =  order_items.select { |h| h['id'] == params[:product_id] }.pluck('quantity').first.to_i
+          product = Product.find(params[:product_id])
+          if order_item.status == Product::STATUS[:confirmed]
+            render json: error_message('Your order has been confirmed and cannot be canceled')
+            return
+          end
+          if product.availability.status = OrderItem::STOCK[:Outstock]
+            product.availability.update_columns(number_instock: product.availability.number_instock + quantity.to_i,
+                                                is_ordering: product.availability.is_ordering - quantity.to_i, status: OrderItem::STOCK[:Instock])
+
+          elsif product.availability.status = OrderItem::STOCK[:Instock]
+            product.availability.update_columns(number_instock: product.availability.number_instock + quantity,
+                                                is_ordering: product.availability.is_ordering - p[:quantity].to_i)
+          end
+
           if product_order.length.positive?
             order_item.update_attribute(:product_order, product_order.to_json)
           else

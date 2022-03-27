@@ -7,14 +7,17 @@
                     <!--category-->
                     <h2><%= t 'slide_bar.category' %></h2>
                     <%= render "home/category" %>
-                    <!--/category-->
-
                     <!--brands_products-->
                     <div class="brands_products">
                       <h2><%= t 'slide_bar.brand' %></h2>
                         <%= render "home/brands" %>
                     </div>
-                    <!--/brands_products-->
+                    <!--hot_product-->
+                    <h2 style="margin-top: 40px"><%= t 'slide_bar.hot_product' %></h2>
+                       <%= render 'home/product_hot' %>
+                    <!--super_sale-->
+                    <h2 style="margin-top: 40px"><%= t 'slide_bar.super_sale' %></h2>
+                       <%= render 'home/sales' %>
                 </div>
             </div>
 
@@ -81,7 +84,7 @@
                                 <% end %>
                               <% end %> 
                             </div>
-                             <div style="display: flex; justify-content: center;">
+                             <div style="display: flex; justify-content: center; cursor: pointer;">
                                 <% for i in 1..5 %>
                                   <span style="margin-right: 10px" class="fa fa-star <%= "checked" if @results[:avg] >= i %>" id="star-<%= i %>"></span>
                                 <% end %>
@@ -98,7 +101,7 @@
                                     <% end %>
                                     
                                 <% else %>
-                                    <i class="fa fa-heart" id="hear-f" onclick="return confirm('You must be logged in to perform this function')" ></i>
+                                    <i class="fa fa-heart" id="hear-f" onclick="return confirm('<%= t'messages.loggin_message' %>')" ></i>
                              <% end %>
                             </span>   
                          
@@ -136,7 +139,7 @@
                             <p><b><%= t 'product.status' %>:</b>  <%= @results[:product].availability.status == "1" ? "Instock" : "OutStock" if @results[:product].availability.present? %></p>
                             <p><b><%= t 'product.brand' %>:</b> <%= @results[:product].brand ? @results[:product].brand.name : "" %></p>
                             <p><b><%= t 'product.view' %>: </b> <%= @results[:product].product_views.count %> <i class="fa fa-eye"></i></p>
-                            <p><b><%= t 'product.share' %>:</b> <a href="https://www.facebook.com/share.php?u=https://shopmrkatsu.herokuapp.com/product-details/<%= @results[:product].title.parameterize %>~<%= @results[:product].id %>"><i class="fa fa-facebook-square fa-2x facebook" style="font-size: 1.5em;"></i></a></p>
+                            <p><b><%= t 'product.share' %>:</b> <a href="https://www.facebook.com/share.php?u=http://shopmrkatsu.tk/<%=I18n.locale%>/product-details/<%= @results[:product].title.parameterize %>~<%= @results[:product].id %>"><i class="fa fa-facebook-square fa-2x facebook" style="font-size: 1.5em;"></i></a></p>
                         </div>
                         <!--/product-information-->
                     </div>
@@ -452,4 +455,17 @@ $(".image")
     </div>
 
   </div>
+</script>
+<script>
+  $(document).off().on("click", ".navbar-toggle",function(e) {
+  	 $(this).attr("show-dropdown", true)
+  });
+  function myFunction() {
+  	var x = document.getElementById("list-notifications");
+  	if (x.style.display === "none") {
+  		x.style.display = "block";
+  	} else {
+  		x.style.display = "none";
+  	}
+  }
 </script>

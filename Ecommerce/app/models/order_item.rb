@@ -20,14 +20,30 @@ class OrderItem < ApplicationRecord
       field :title
       field :content
     end
-
+    list do
+      field :id
+      field :user
+      field :product_order
+      field :voucher
+      field :fee
+      field :status, :enum do
+        enum do
+          [['Pending', 0], ['Confirmed', 1], ['Cancel', 2]]
+        end
+        help 'When canceling an order, leave the order status as pending and then choose to cancel the order 1 times.'
+      end
+      field :service
+      field :total_order
+      field :created_at
+      field :updated_at
+    end
     edit do
       include_all_fields # all other default fields will be added after, conveniently
       field :status, :enum do
         enum do
           [['Pending', 0], ['Confirmed', 1], ['Cancel', 2]]
         end
-        help 'Pending -> 0, confirmed -> 1, cancel -> 2'
+        help 'When canceling an order, leave the order status as pending and then choose to cancel the order 1 times.'
       end
       exclude_fields :created_at # but you still can remove fields
     end
@@ -45,14 +61,20 @@ class OrderItem < ApplicationRecord
 
   def increment(availability, quantily, status)
     availability.update_columns(product_sold: availability.product_sold + quantily,
-                                number_instock: availability.number_instock - quantily,
+                                is_ordering: availability.is_ordering - quantily,
                                 status: status)
   end
 
   def decrement(availability, quantily, status)
     availability.update_columns(product_sold: availability.product_sold - quantily,
-                                number_instock: availability.number_instock + quantily,
+                                is_ordering: availability.is_ordering + quantily,
                                 status: status)
+  end
+
+  def cancle(availability, quantily)
+    availability.update_columns(number_instock: availability.number_instock + quantily,
+                                is_ordering: availability.is_ordering - quantily >= 0 ? availability.is_ordering - quantily : availability.is_ordering,
+                                status: OrderItem::STOCK[:Instock])
   end
 
   def check_status
@@ -63,7 +85,10 @@ class OrderItem < ApplicationRecord
       product_orders.each do |product_order|
         product = products.find(product_order['id'])
         availability = product.availability
-        update_attribute(:status, '0') if availability.number_product < product_order['quantity'].to_i
+        if availability.number_product < product_order['quantity'].to_i
+          update_attribute(:status,
+                           Product::STATUS[:pending])
+        end
       end
     end
   end
@@ -83,7 +108,7 @@ class OrderItem < ApplicationRecord
           elsif availability.number_product == availability.product_sold + product_order['quantity'].to_i
             increment(availability, product_order['quantity'].to_i,  OrderItem::STOCK[:Outstock])
           end
-        elsif status == Product::STATUS[:pending] || status == Product::STATUS[:cancel]
+        elsif status == Product::STATUS[:pending]
           if (availability.product_sold - product_order['quantity'].to_i) > -1 &&
              availability.number_product > (availability.product_sold - product_order['quantity'].to_i)
             decrement(availability, product_order['quantity'].to_i,  OrderItem::STOCK[:Instock])
@@ -92,6 +117,8 @@ class OrderItem < ApplicationRecord
             increment(availability, product_order['quantity'].to_i, OrderItem::STOCK[:Outstock])
 
           end
+        elsif status == Product::STATUS[:cancel]
+          cancle(availability, product_order['quantity'].to_i)
         end
       end
     end

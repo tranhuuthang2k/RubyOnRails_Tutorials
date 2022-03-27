@@ -1,91 +1,93 @@
 <section>
-		<div class="container">
-			<div class="row">
-                <div class="col-sm-3">
-					<div class="left-sidebar">
-						<div class="brands_products">
-						<h2><%= t("blogs.category")%></h2>
-						<%= render 'home/category_blog' %>
-             </br>
-             <h2><%= t("blogs.post_best_view")%></h2>
-						<%= render 'home/best_view_blog' %>
-						</div>
-					</div>
-				</div>
-                <div class= col-sm-9>
-                    <h2 class="title text-center"><%= t("blogs.list_post") %></h2>
-                    <% @results[:posts].each do |item| %>
-                        <a href="/<%=I18n.locale %>/blog_detail/<%= item.title.parameterize%>~<%=item.id %>" style="color: black">
-                            <article>
-                                <img src="<%= url_for(item.image) if item.image.attached? %>" alt="Image" class="list_post">
-                                <div class="text">
-                                    <h4><%= item.title %></h4>
-                                    <p>
-                                    <i class="fa fa-calendar"></i> <%= item.created_at.strftime("%d/%m/%Y") %>
-                                    <i class="fa fa-user"></i> <%= item.user.username %>
-                                    </p>
-                                    <p><%= item.content %></p>
-
-                                    <a  class="btn btn-primary" href="/<%=I18n.locale %>/blog_detail/<%= item.title.parameterize%>~<%=item.id %>"><%= t("blogs.read_more") %></a>
-
-                                </div>
-                            </article>
-                        </a>
-                    <% end %>
-			<div style="text-align: center">
-				<%= paginate @results[:posts], theme: 'twitter-bootstrap-4' %>
-			</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="left-sidebar">
+          <div class="brands_products">
+            <h2><%= t("blogs.category")%></h2>
+            <%= render 'home/category_blog' %>
+          </br>
+          <h2><%= t("blogs.post_best_view")%></h2>
+            <%= render 'home/best_view_blog' %>
+          <h2><%= t 'slide_bar.fanpage' %></h2>
+            <%= render 'home/fanpage' %>
+          <h2 style="margin-top: 10px"><%= t 'slide_bar.group' %></h2>
+            <%= render 'home/group_facebook' %>
+          <h2><%= t 'slide_bar.youtube' %></h2>
+          <%= render 'home/youtube' %>
         </div>
-</section>
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <!--         <h4 class="modal-title">Modal Header</h4> -->
-      </div>
-      <div class="modal-body text-center">
-        <h1>📝NỘI DUNG HỌC CỦA KHÓA SUPER PPT THI E-ELEARNING CẤP QUẬN, HUYỆN, THÀNH PHỐ, QUỐC GIA VỚI LỘ TRÌNH 150 TIẾNG TẤT CẢ CÁC THỂ LOẠI PHẦN MỀM GIÁO DỤC, ỨNG DỤNG CHO GV 4.0</h1>
-        <a class="pre-order-btn" href="https://www.facebook.com/groups/1011713702919105/posts/1031047020985773" >XEM CHI TIẾT TẠI ĐÂY </a>
-      </div>
-      <div class="modal-footer">
-        <!--         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
       </div>
     </div>
-
+    <div class= col-sm-9>
+      <h2 class="title text-center"><%= t("blogs.list_post") %></h2>
+    <% @results[:posts].each do |item| %>
+        <a href="/<%=I18n.locale %>/blog_detail/<%= item.title.parameterize%>~<%=item.id %>" style="color: black">
+          <article>
+            <img src="<%= url_for(item.image) if item.image.attached? %>" alt="Image" class="list_post">
+            <div class="text">
+              <h4><%= item.title %></h4>
+              <p>
+                <i class="fa fa-calendar"></i> <%= item.created_at.strftime("%d/%m/%Y") %>
+                <i class="fa fa-user"></i> <%= item.user.username %>
+              </p>
+              <p><%= item.content %></p>
+              <a  class="btn btn-primary" href="/<%=I18n.locale %>/blog_detail/<%= item.title.parameterize%>~<%=item.id %>"><%= t("blogs.read_more") %></a>
+            </div>
+          </article>
+        </a>
+      <% end %>
+      <div style="text-align: center">
+        <%= paginate @results[:posts], theme: 'twitter-bootstrap-4' %>
+      </div>
+    </div>
+  </section>
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <!--         <h4 class="modal-title">Modal Header</h4> -->
+        </div>
+        <div class="modal-body text-center">
+          <h1>📝NỘI DUNG HỌC CỦA KHÓA SUPER PPT THI E-ELEARNING CẤP QUẬN, HUYỆN, THÀNH PHỐ, QUỐC GIA VỚI LỘ TRÌNH 150 TIẾNG TẤT CẢ CÁC THỂ LOẠI PHẦN MỀM GIÁO DỤC, ỨNG DỤNG CHO GV 4.0</h1>
+          <a class="pre-order-btn" href="https://www.facebook.com/groups/1011713702919105/posts/1031047020985773" >XEM CHI TIẾT TẠI ĐÂY </a>
+        </div>
+        <div class="modal-footer">
+          <!--         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-<style>
-.modal-body h1 {
-	 font-weight: 900;
-	 font-size: 1.3em;
-	 text-transform: uppercase;
-   line-height: 4.3rem;
-}
- .modal-body a.pre-order-btn {
-	 color: #000;
-	 background-color: gold;
-	 border-radius: 1em;
-	 padding: 1em;
-	 display: block;
-	 margin: 2em auto;
-	 width: 50%;
-	 font-size: 1.25em;
-	 font-weight: 6600;
-}
- .modal-body a.pre-order-btn:hover {
-	 background-color: #000;
-	 text-decoration: none;
-	 color: gold;
-}
-
-</style>
-<script>
-$(document).ready(function () {
-    if (!sessionStorage.getItem('isModalOpen')) {
-        $("#myModal").modal();
-        sessionStorage.setItem('isModalOpen', true);
+  <style>
+    .modal-body h1 {
+    	 font-weight: 900;
+    	 font-size: 1.3em;
+    	 text-transform: uppercase;
+       line-height: 4.3rem;
     }
-});
-</script>
+     .modal-body a.pre-order-btn {
+    	 color: #000;
+    	 background-color: gold;
+    	 border-radius: 1em;
+    	 padding: 1em;
+    	 display: block;
+    	 margin: 2em auto;
+    	 width: 50%;
+    	 font-size: 1.25em;
+    	 font-weight: 6600;
+    }
+     .modal-body a.pre-order-btn:hover {
+    	 background-color: #000;
+    	 text-decoration: none;
+    	 color: gold;
+    }
+  </style>
+  <script>
+    $(document).ready(function () {
+        if (!sessionStorage.getItem('isModalOpen')) {
+            $("#myModal").modal();
+            sessionStorage.setItem('isModalOpen', true);
+        }
+    });
+  </script>

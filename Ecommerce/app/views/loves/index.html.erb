@@ -1,58 +1,59 @@
 <section>
-<div class="container">
-  <div class="row">
-    <div class="col-sm-3">
-      <div class="left-sidebar">
-      <%= render 'orders/left' %>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="left-sidebar">
+          <%= render 'orders/left' %>
+        </div>
       </div>
-    </div>
-    
-    <div class="col-sm-9 padding-right">
-    <section id="cart_items">
-		<div class="">
-			<div class="table-responsive cart_info">
-				<table class="table table-condensed">
-					<thead>
-						<tr class="cart_menu">
-            	<td class="id">ID</td>
-							<td class="image"><%= t "product.image"%></td>
-							<td class="description"><%= t "product.name"%></td>
-              <td class="description"><%= t "product.price"%></td>
-              <td class="date"><%= t "product.date" %><td>
-							<td></td>
-						</tr>
-					</thead>
-					<tbody>
-          <% @results[:product_favorites].each do |love| %>
-              <tr>
-                <td><p><%=love.product_id%></p></td>
-                <td class="cart_product">
-                <% if love.product&.image&.attached? %>
-                  <a href="/<%=I18n.locale %>/product-details/<%= love.product.title.parameterize%>~<%=love.product_id%>"><img src="<%= url_for(love.product.image) %>" alt=""width="110" height="110"></a>
-                <% end %>
-                </td>
-                <% if love.product   %>
-                  <td class="cart_title">
-                    <h4>  <a  style="color: black; font-size: 15px"  href="/<%=I18n.locale %>/product-details/<%= love.product%>~<%=love.product_id%>"><%=   love.product.title %></h4>
-                  </td>
-                  <td class="cart_title">
-                    <h4>  <a   style="color: black; font-size: 15px" href="/<%=I18n.locale %>/product-details/<%= love.product%>~<%=love.product_id%>"><%=  love.product.price %></h4>
-                  </td>
-                <% end %>
-
-                <td><%= love.created_at.strftime("%d/%m/%Y") %></td>
-              </tr>
-          <% end %>
-					</tbody>
-				</table>
-        <div style="text-align: center">
-          <%= paginate @results[:product_favorites], theme: 'twitter-bootstrap-4'  %>
-        <div>
-			</div>
-		</div>
-	</section> <!--/#cart_items-->
-      
-    </div>
-  </div>
-</div>
-</section>
+      <div class="col-sm-9 padding-right">
+        <section id="cart_items">
+          <div class="">
+            <div class="table-responsive cart_info">
+              <table class="table table-condensed">
+                <thead>
+                  <tr class="cart_menu">
+                    <td class="id">ID</td>
+                    <td class="image"><%= t "product.image"%></td>
+                    <td class="description"><%= t "product.name"%></td>
+                    <td class="description"><%= t "product.price"%></td>
+                    <td class="date"><%= t "product.date" %>
+                      <td>
+                        <td></td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @results[:product_favorites].each do |love| %>
+                        <tr>
+                          <td>
+                            <p><%=love.product_id%></p>
+                          </td>
+                          <td class="cart_product">
+                            <% if love.product&.image&.attached? %>
+                              <a href="/<%=I18n.locale %>/product-details/<%= love.product.title.parameterize%>~<%=love.product_id%>"><img src="<%= url_for(love.product.image) %>" alt=""width="110" height="110"></a>
+                            <% end %>
+                          </td>
+                          <% if love.product   %>
+                            <td class="cart_title">
+                              <h4>  <a  style="color: black; font-size: 15px"  href="/<%=I18n.locale %>/product-details/<%= love.product%>~<%=love.product_id%>"><%=   love.product.title %></h4>
+                              </td>
+                              <td class="cart_title">
+                                <h4>  <a   style="color: black; font-size: 15px" href="/<%=I18n.locale %>/product-details/<%= love.product%>~<%=love.product_id%>"><%=  love.product.price %></h4>
+                                </td>
+                              <% end %>
+                              <td><%= love.created_at.strftime("%d/%m/%Y") %></td>
+                            </tr>
+                          <% end %>
+                        </tbody>
+                      </table>
+                      <div style="text-align: center">
+                        <%= paginate @results[:product_favorites], theme: 'twitter-bootstrap-4'  %>
+                        <div>
+                        </div>
+                      </div>
+                    </section>
+                    <!--/#cart_items-->
+                  </div>
+                </div>
+              </div>
+            </section>

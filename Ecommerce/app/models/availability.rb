@@ -6,6 +6,9 @@ class Availability < ApplicationRecord
   validates :number_product, presence: true
   validates :status, presence: true
   scope :by_product_sold, ->(product_sold) { where('product_sold > ?', product_sold) }
+  scope :by_month_year, lambda { |month, year|
+    where('extract(year from created_at) = ? and extract(month from created_at) = ?', year, month)
+  }
   # after_update :update_availability, if: :published_changed?
 
   after_create do

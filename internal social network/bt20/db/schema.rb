@@ -42,22 +42,22 @@ ActiveRecord::Schema.define(version: 20_210_904_053_503) do
     t.index %w[blob_id variation_digest], name: 'index_active_storage_variant_records_uniqueness', unique: true
   end
 
-  create_table 'comments', charset: 'utf8mb3', force: :cascade do |t|
-    t.integer 'user_id'
-    t.integer 'micropost_id'
-    t.text 'content'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index %w[user_id micropost_id], name: 'index_comments_on_user_id_and_micropost_id'
-  end
+  # create_table 'comments', charset: 'utf8mb3', force: :cascade do |t|
+  #   t.integer 'user_id'
+  #   t.integer 'micropost_id'
+  #   t.text 'content'
+  #   t.datetime 'created_at', precision: 6, null: false
+  #   t.datetime 'updated_at', precision: 6, null: false
+  #   t.index %w[user_id micropost_id], name: 'index_comments_on_user_id_and_micropost_id'
+  # end
 
-  create_table 'microposts', charset: 'utf8mb3', force: :cascade do |t|
-    t.integer 'user_id'
-    t.text 'content'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index %w[user_id created_at], name: 'index_microposts_on_user_id_and_created_at'
-  end
+  # create_table 'microposts', charset: 'utf8mb3', force: :cascade do |t|
+  #   t.integer 'user_id'
+  #   t.text 'content'
+  #   t.datetime 'created_at', precision: 6, null: false
+  #   t.datetime 'updated_at', precision: 6, null: false
+  #   t.index %w[user_id created_at], name: 'index_microposts_on_user_id_and_created_at'
+  # end
 
   create_table 'notifications', charset: 'utf8mb3', force: :cascade do |t|
     t.integer 'sender_id'
@@ -67,16 +67,16 @@ ActiveRecord::Schema.define(version: 20_210_904_053_503) do
     t.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table 'order_items', charset: 'utf8mb3', force: :cascade do |t|
-    t.integer 'product_id'
-    t.integer 'user_id'
-    t.integer 'order_id'
-    t.float 'unit_price'
-    t.integer 'quantity'
-    t.float 'total_price'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-  end
+  # create_table 'order_items', charset: 'utf8mb3', force: :cascade do |t|
+  #   t.integer 'product_id'
+  #   t.integer 'user_id'
+  #   t.integer 'order_id'
+  #   t.float 'unit_price'
+  #   t.integer 'quantity'
+  #   t.float 'total_price'
+  #   t.datetime 'created_at', precision: 6, null: false
+  #   t.datetime 'updated_at', precision: 6, null: false
+  # end
 
   create_table 'orders', charset: 'utf8mb3', force: :cascade do |t|
     t.float 'subtotal'
