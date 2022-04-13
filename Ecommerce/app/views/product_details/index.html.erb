@@ -281,7 +281,7 @@
                                         <li><i class="fa fa-clock-o"></i><%= comment.created_at.strftime("%I:%M %p") %></li>    
                                         <li><i class="fa fa-calendar"></i><%= comment.created_at.strftime("%d/%m/%Y") %></li>
                                         <% if user_signed_in? && comment.user_id == current_user.id %>
-                                          <li><a class="delete-comment"><i style="color:white; cursor: pointer" class="fa fa-trash"></i> </a></li>
+                                          <li><a class="delete-comment"><i style="color:white; cursor: pointer" class="fa fa-trash-o"></i> </a></li>
                                           <li><a class="edit-comment" id="comment-<%= comment.id %>" > <i style="color:white; cursor: pointer" class="fa fa-edit"></i></a></li>
                                           <!-- <input type="text"  class="form-control in-comment-edit" value="<%= comment.content %>" style="display:none" /> -->
                                           <textarea type="text"  placeholder="Please write a content"  class="form-control in-comment-edit" value="<%= comment.content %>" style="
@@ -307,7 +307,7 @@
                                             <span><i class="fa fa-calendar" style="color: #fe980f;cursor: pointer;font-size: 16px;margin-left: 10px;margin-right: 10px;"></i><%= item.created_at.strftime("%d/%m/%Y") %></span>
                             
                                             <% if user_signed_in? && item.user_id == current_user.id %>
-                                              <span>  <i style="color: #fe980f;cursor: pointer;font-size: 16px;margin-left: 10px;margin-right: 10px;" class="fa fa-trash delete_comment_children"  id="<%= item.id %>"></i><span>
+                                              <span>  <i style="color: #fe980f;cursor: pointer;font-size: 16px;margin-left: 10px;margin-right: 10px;" class="fa fa-trash-o delete_comment_children"  id="<%= item.id %>"></i><span>
                                               <span class="edit">  <i style="color: #fe980f;cursor: pointer;font-size: 16px;" class="fa fa-edit"></i><span>
                                             <% end %>
                                             <p class="list-edit-comment-children" id="content_comment"  style="line-break:anywhere"> <%= item.content%> </p>
@@ -384,7 +384,7 @@ $(".image")
         <li><i class="fa fa-user"></i>{{ name }}</li>
         <li><i class="fa fa-clock-o"></i>{{ comment.created_at_clock }}</li>
         <li><i class="fa fa-calendar"></i>{{ comment.created_at }}</li>
-        <li><a class="delete-comment"><i style="color:white; cursor: pointer; font-size: 14px" class="fa fa-trash"></i></a></li>
+        <li><a class="delete-comment"><i style="color:white; cursor: pointer; font-size: 14px" class="fa fa-trash-o"></i></a></li>
         <li><a class="edit-comment" id= "comment-{{comment.id}}" ><i style="color:white; cursor: pointer; font-size: 14px" class="fa fa-edit"></i></a> </li>
         <!-- <input type="text"  class="form-control in-comment-edit" value="{{ comment.content }}" style="display:none"/> -->
         <textarea  placeholder="Please write a content"  class="form-control in-comment-edit" value="{{ comment.content }}" style="overflow: hidden;
@@ -434,15 +434,9 @@ $(".image")
       <span> <i class="fa fa-user" id="icon_name"></i> <span>{{name}}</span> <span>
       <span> <i class="fa fa-clock-o" style="color: #fe980f;cursor: pointer;font-size: 16px;margin-left: 10px;margin-right: 5px;"></i> <span>{{ comment_children.created_at_clock }}</span> <span>
       <span><i class="fa fa-calendar" style="color: #fe980f;cursor: pointer;font-size: 16px;margin-left: 10px;margin-right: 10px;"></i>{{ comment_children.created_at }}</span>
-      <span>  <i style="color: #fe980f;cursor: pointer;font-size: 16px;margin-left: 10px;margin-right: 10px;" class="fa fa-trash delete_comment_children"  id="{{ comment_children.id }}"></i><span>
+      <span>  <i style="color: #fe980f;cursor: pointer;font-size: 16px;margin-left: 10px;margin-right: 10px;" class="fa fa-trash-o delete_comment_children"  id="{{ comment_children.id }}"></i><span>
       <span class="edit">  <i style="color: #fe980f;cursor: pointer;font-size: 16px;" class="fa fa-edit"></i><span>
-        <!-- <p class="list-edit-comment-children" id="content_comment"  style="display:block">{{ comment_children.content }} </p>
-        <input type="text" id="{{comment_children.id}}"  class="form-control comment-children-edit" value="{{ comment_children.content }}" style="display:none" /> -->
-
       <p class="list-edit-comment-children" id="content_comment"  style="line-break:anywhere">{{ comment_children.content }} </p>
-      <!-- <input type="text" id="{{comment_children.id}}"  class="form-control comment-children-edit" value="{{ comment_children.content }}" style="display:none" /> -->
-
-      <!-- <textarea type="text" id="{{comment_children.id}}" class="form-control comment-children-edit"  style=" display:none; color:black">{{ comment_children.content }}</textarea> -->
       <textarea type="text"  id="{{comment_children.id}}" placeholder="Please write a content"  class="form-control comment-children-edit" value="{{ comment_children.content }}" style="overflow: hidden;
         min-height:50px;
         max-height: 200px;

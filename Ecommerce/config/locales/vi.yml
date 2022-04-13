@@ -195,6 +195,8 @@ vi:
     post_best_view: "Xem nhiều nhất"
     list_post: "Danh sách bài viết"
     read_more: "Xem chi tiết"
+    other_post: "Bài đăng khác"
+    search_post: "Nhập tên bài viết"
   validate:
     Name: "Tên"
     Mobile: "Số điện thoại"
@@ -248,7 +250,7 @@ vi:
   description_mrkatsu_footer: "Mr.Katsu là thương hiệu về Giải phóng da đen, công bằng kinh tế và xã hội, hòa bình và tình yêu."
   OR: "Hoặc"
   inputComment:
-    sendreview: "Gửi bình luận"
+    sendreview: "Gửi"
     Pleaseenteryourcomment: "Vui lòng viết bình luận"
     write_a_comment: "Viết bình luận..."
   alert:

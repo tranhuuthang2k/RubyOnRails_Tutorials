@@ -190,6 +190,8 @@ en:
     post_best_view: "Post Best View"
     list_post: "List Post"
     read_more: "Read More"
+    other_post: "Other Post"
+    search_post: "Search Post"
   validate:
     Name: "Name"
     Mobile: "Mobile"
@@ -243,7 +245,7 @@ en:
   description_mrkatsu_footer: "Mr.Katsu is a brand about Black Liberation, economic and social justice, peace and love."
   OR: "OR"
   inputComment:
-    sendreview: "Send comment"
+    sendreview: "Send"
     Pleaseenteryourcomment: "Please enter your comment"
     write_a_comment: "Write a comment..."
   alert:

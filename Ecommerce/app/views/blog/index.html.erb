@@ -8,34 +8,39 @@
             <%= render 'home/category_blog' %>
           </br>
           <h2><%= t("blogs.post_best_view")%></h2>
-            <%= render 'home/best_view_blog' %>
+          <%= render 'home/best_view_blog' %>
           <h2><%= t 'slide_bar.fanpage' %></h2>
-            <%= render 'home/fanpage' %>
+          <%= render 'home/fanpage' %>
           <h2 style="margin-top: 10px"><%= t 'slide_bar.group' %></h2>
-            <%= render 'home/group_facebook' %>
+          <%= render 'home/group_facebook' %>
           <h2><%= t 'slide_bar.youtube' %></h2>
           <%= render 'home/youtube' %>
         </div>
       </div>
     </div>
     <div class= col-sm-9>
-      <h2 class="title text-center"><%= t("blogs.list_post") %></h2>
-    <% @results[:posts].each do |item| %>
-        <a href="/<%=I18n.locale %>/blog_detail/<%= item.title.parameterize%>~<%=item.id %>" style="color: black">
-          <article>
-            <img src="<%= url_for(item.image) if item.image.attached? %>" alt="Image" class="list_post">
-            <div class="text">
-              <h4><%= item.title %></h4>
-              <p>
-                <i class="fa fa-calendar"></i> <%= item.created_at.strftime("%d/%m/%Y") %>
-                <i class="fa fa-user"></i> <%= item.user.username %>
-              </p>
-              <p><%= item.content %></p>
-              <a  class="btn btn-primary" href="/<%=I18n.locale %>/blog_detail/<%= item.title.parameterize%>~<%=item.id %>"><%= t("blogs.read_more") %></a>
-            </div>
-          </article>
-        </a>
-      <% end %>
+      <div class="search_box pull-right">
+        <input class="in-search-blog" id="search-blog" data-autocomplete-source="<%= Post.order("title").map(&:title)%>" type="text" style="color: #000; font-weight: 700;" placeholder="<%= t 'blogs.search_post' %>">
+      </div>
+      <h2 class="title text-center" ><%= t("blogs.list_post") %></h2>
+      <div class="list-post">
+        <% @results[:posts].each do |item| %>
+          <a href="/<%=I18n.locale %>/blog_detail/<%= item.title.parameterize%>~<%=item.id %>" style="color: black">
+            <article>
+              <img src="<%= url_for(item.image) if item.image.attached? %>" alt="Image" class="list_post">
+              <div class="text">
+                <h4><%= item.title %></h4>
+                <p>
+                  <i class="fa fa-calendar"></i> <%= item.created_at.strftime("%d/%m/%Y") %>
+                  <i class="fa fa-user"></i> <%= item.user.username %>
+                </p>
+                <p><%= item.content %></p>
+                <a  class="btn btn-primary" href="/<%=I18n.locale %>/blog_detail/<%= item.title.parameterize%>~<%=item.id %>"><%= t("blogs.read_more") %></a>
+              </div>
+            </article>
+          </a>
+        <% end %>
+      </div>
       <div style="text-align: center">
         <%= paginate @results[:posts], theme: 'twitter-bootstrap-4' %>
       </div>
@@ -60,34 +65,73 @@
     </div>
   </div>
   <style>
-    .modal-body h1 {
-    	 font-weight: 900;
-    	 font-size: 1.3em;
-    	 text-transform: uppercase;
-       line-height: 4.3rem;
+    @media (max-width: 480px) {
+    .in-search-blog {
+        color: #000;
+        font-weight: 700;
+        margin-top: 22px;
+        margin-bottom: 15px;
+        position: absolute;
+        left: 15px;
+      }
     }
-     .modal-body a.pre-order-btn {
-    	 color: #000;
-    	 background-color: gold;
-    	 border-radius: 1em;
-    	 padding: 1em;
-    	 display: block;
-    	 margin: 2em auto;
-    	 width: 50%;
-    	 font-size: 1.25em;
-    	 font-weight: 6600;
-    }
-     .modal-body a.pre-order-btn:hover {
-    	 background-color: #000;
-    	 text-decoration: none;
-    	 color: gold;
-    }
+      .modal-body h1 {
+      	 font-weight: 900;
+      	 font-size: 1.3em;
+      	 text-transform: uppercase;
+         line-height: 4.3rem;
+      }
+       .modal-body a.pre-order-btn {
+      	 color: #000;
+      	 background-color: gold;
+      	 border-radius: 1em;
+      	 padding: 1em;
+      	 display: block;
+      	 margin: 2em auto;
+      	 width: 50%;
+      	 font-size: 1.25em;
+      	 font-weight: 6600;
+      }
+       .modal-body a.pre-order-btn:hover {
+      	 background-color: #000;
+      	 text-decoration: none;
+      	 color: gold;
+      }
   </style>
+  <script id="list-search-blog-template" type="text/x-handlebars-template">
+    {{#each blogs}}
+         <a href="/<%=I18n.locale %>/blog_detail/{{title}}~{{id}}" style="color: black">
+           <article>
+             <img src="{{image_url}}" alt="Image" class="list_post">
+             <div class="text">
+               <h4>{{title}}</h4>
+               <p>
+                 <i class="fa fa-calendar"></i> {{created_at}}
+                 <i class="fa fa-user"></i> {{username}}
+               </p>
+               <p> {{content}}</p>
+               <a  class="btn btn-primary" href="/<%=I18n.locale %>/blog_detail/{{title}}~{{id}}"><%= t("blogs.read_more") %></a>
+             </div>
+           </article>
+         </a>
+    {{/each}}
+  </script>
   <script>
     $(document).ready(function () {
         if (!sessionStorage.getItem('isModalOpen')) {
             $("#myModal").modal();
             sessionStorage.setItem('isModalOpen', true);
         }
+    });
+    $(".in-search").css("display", "none");
+    $( function() {
+      $( "#search-blog" ).autocomplete({
+        maxResults: 5,
+        minLength: 2,
+        source:  function(request, response) {
+        var results = $.ui.autocomplete.filter( $("#search-blog").data("autocomplete-source"), request.term);
+        response(results.slice(0, this.options.maxResults));
+        } ,
+      });
     });
   </script>

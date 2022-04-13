@@ -45,7 +45,7 @@ Things you may want to cover:
 23. Roles ( admin, user...)
 24. Brands
 25. Product category
-26. Search Product,price, brand
+26. Search Product,price, brand, suggest search
 27. Product details
 28. Manage size products
 29. Manage Category

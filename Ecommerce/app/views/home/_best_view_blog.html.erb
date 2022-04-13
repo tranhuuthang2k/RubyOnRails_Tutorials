@@ -3,7 +3,7 @@
     <% @results[:best_view_post].each do |item| %>
       <% if item.post.present? %>
         <div style="display: flex">
-          <a href="/<%=I18n.locale %>/blog_detail/<%= item.post.title.parameterize%>~<%=item.post.id%>"><img src="<%=  url_for(item.post.image)  %>"  width="125" alt="" /></a>
+          <a href="/<%=I18n.locale %>/blog_detail/<%= item.post.title.parameterize%>~<%=item.post.id%>"><img src="<%=  url_for(item.post.image) if item.post.image.attached? %>"  width="125" alt="" /></a>
           <a href="/<%=I18n.locale %>/blog_detail/<%= item.post.title.parameterize%>~<%=item.post.id%>" style="color: black ">
             <div class="list-item">
               <p class="title" style="font-weight: 700"><%= item.post.title  %> </p>
