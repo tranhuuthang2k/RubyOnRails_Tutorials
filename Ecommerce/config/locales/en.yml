@@ -117,7 +117,7 @@ en:
     detail: "Detail"
     other: "Product Other"
     review: "Reviews"
-    see_more: "See more"
+    see_more: "See Detail"
     recommend: "Recommend"
     search:  "Product name or price"
     note: "Notes"
@@ -250,5 +250,7 @@ en:
     write_a_comment: "Write a comment..."
   alert:
     Please_write_your_content: "Please write your content"
+  loadMore:
+    text: "Load More"
     
     

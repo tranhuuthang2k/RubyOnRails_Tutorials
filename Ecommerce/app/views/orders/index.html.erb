@@ -43,23 +43,23 @@
                 <td class="cart_product">
                   <a href="/<%=I18n.locale %>/product-details/<%= c["name_product"] %>~<%=c["id"] %>"> <%= image_tag c["image_product"], size: "110x110", alt: "Image" %></a>
                 </td>
-                <td class="cart_description">
+                <td class="name_product">
                   <h4><a href=""><%= c["name_product"] %></a></h4>
                   <p>Orders ID: <%= order[:order].id %></p>
                 </td>
-                <td class="cart_description">
+                <td class="size_product">
                   <p><%= c["size_product"] %></p>
                 </td>
-                <td class="cart_description">
+                <td class="quantity">
                   <p><%= c["quantity"] %></p>
                 </td>
-                 <td class="cart_description">
+                 <td class="price_product">
                   <p><%= c["price_product"] %></p>
                 </td>
-                <td class="cart_description">
+                <td class="cart_total_price">
                   <p class="cart_total_price">$<%= c["total"] %></p>
                 </td>
-                <td class="cart_description">
+                <td class="status_order">
                   <% case order[:order].status %>
                   <% when 0 %>
                     <p class=""><%= t("status.pending") %></p>
@@ -69,7 +69,7 @@
                     <p class=""><%= t("status.cancel") %></p>
                   <% end %>
                 </td>
-                <td class="cart_description">
+                <td class="created_at">
                   <p><%= order[:order].created_at.strftime("%d/%m/%Y") %></p>
                 </td>
                 <% if order[:order].status == Product::STATUS["pending"].to_i  %>

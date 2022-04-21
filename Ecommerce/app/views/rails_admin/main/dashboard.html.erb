@@ -56,7 +56,7 @@
           <div class="wrap">
             <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"><%= t "admin.statistic_product.best_Keyword_search"%> <%= @result[:month] %>/<%= @result[:year] %>
               <% if  @result[:statistic_products][:best_keyword_search].present? %>
-                    </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"><%= @result[:statistic_products][:best_keyword_search].key_word%></span>
+                    </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count" style="height: 95px;"><%= @result[:statistic_products][:best_keyword_search].key_word%></span>
               <% else %>
                 </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count"></span>
               <% end %>

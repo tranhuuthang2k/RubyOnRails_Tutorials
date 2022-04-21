@@ -226,6 +226,7 @@ function Product(options) {
           error: function () {},
         });
       });
+    module.LoadMore();
   };
 
   module.init = function () {

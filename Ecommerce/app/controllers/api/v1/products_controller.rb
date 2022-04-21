@@ -45,7 +45,9 @@ module Api
         order_item = OrderItem.find_by(id: params[:order_id])
         unless order_item.nil?
           order_items = JSON.parse(order_item.product_order)
-          product_order = order_items.reject { |h| h['id'] == params[:product_id] }
+          product_order = order_items.reject do |h|
+            h['id'] == params[:product_id] && h['size_product'] == params[:size_product]
+          end
           quantity =  order_items.select { |h| h['id'] == params[:product_id] }.pluck('quantity').first.to_i
           product = Product.find(params[:product_id])
           if order_item.status == Product::STATUS[:confirmed]
@@ -68,6 +70,14 @@ module Api
           end
           render json: success_message('Successfully', 'success')
         end
+      end
+
+      def more_product
+        products = Product.show_products Product::SHOW_HOME[:recomand]
+        features_items = products.page(params[:page]).per(6)
+        render json: success_message('Successfully',
+                                     { products: ActiveModelSerializers::SerializableResource.new(features_items,
+                                                                                                  each_serializer: ProductSerializer) })
       end
 
       private

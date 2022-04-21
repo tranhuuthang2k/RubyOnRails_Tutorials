@@ -69,6 +69,7 @@ Rails.application.routes.draw do
       post '/voucher', to: 'products#voucher'
       post '/delete_order', to: 'products#delete_order'
       post '/search_blog', to: 'blogs#search'
+      get '/load_more_product', to: 'products#more_product'
     end
   end
 end

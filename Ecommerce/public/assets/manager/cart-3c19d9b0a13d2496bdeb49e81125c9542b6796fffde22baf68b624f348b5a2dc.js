@@ -286,25 +286,23 @@ function Cart(options) {
       .off()
       .on("click", function () {
         el = $(this).closest(".list-cart");
-        productId = parseFloat(el.attr("id"));
+        productId = parseFloat(el.attr("id")).toString();
         size_product = el.find(".size_product").get(0).innerText;
-        duplicate_productId = shopping_carts.filter((e) => e.id === productId);
-
         shopping_carts = shopping_carts.filter(
-          (e) => e.size_product !== size_product || e.id !== productId
+          (e) => e.size_product !== size_product && e.id !== productId
         );
-
         setCart(shopping_carts);
         $(el).remove();
         $("#lblCartCount").get(0).innerText =
           shopping_carts?.length > 0 ? shopping_carts.length : "";
         $(".Cart_Sub_Total").get(0).innerText = "$" + getTotal();
         $(".totalOrder").get(0).innerText =
-          "$" + parseFloat(shipping + getTotal());
+          "$" + parseFloat(shipping + getTotal()).toFixed(2);
         module.removeCart();
         shopping_carts.length < 1 && module.showCarts();
       });
   };
+
   check_i18n = function () {
     return true
       ? window.location.pathname.substr(

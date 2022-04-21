@@ -45,6 +45,59 @@
 <% end %>
 </div>
 <div style="text-align: center">
-  <%= paginate @results[:features_items], theme: 'twitter-bootstrap-4' %>
+  <button class="load_more spinner-border btn btn-warning" style="margin: 0 auto; background-color: #fe980f; margin-bottom: 15px;" data-style="expand-left"  ><%= t 'loadMore.text' %></button>
+  <div id="load" style="display:none">
+    <img src="//s.svgbox.net/loaders.svg?fill=maroon&ic=tail-spin" 
+         style="width:24px">
+  </div>
+  <%# <%= paginate @results[:features_items], theme: 'twitter-bootstrap-4'  %>
 </div>
 <!--features_items-->
+<script id="list-more-product-template" type="text/x-handlebars-template">
+  {{#if products.length }}
+    {{#each products}}
+    <div class="col-sm-4 col-xs-6 list-product">
+      <div class="product-image-wrapper">
+        <div class="single-products">
+          <div class="productinfo text-center">
+            <input type="hidden" id="{{id}}" class="id" value="">
+            <a href="/<%=I18n.locale %>/product-details/{{title}}~{{id}}">
+                  <img class="imageProduct" src="{{image_url1}}" alt="" />
+            </a>
+              <h2 class="price">${{price}}</h2>
+              <p class="title">{{title}}</p>
+            <div>
+              <i class="fa fa-star" style="color: #fe950f;"></i>
+              <i class="fa fa-star" style="color: #fe950f;"></i>
+              <i class="fa fa-star" style="color: #fe950f;"></i>
+              <i class="fa fa-star" style="color: #fe950f;"></i>
+              <i class="fa fa-star" style="color: #fe950f;"></i>
+            </div>
+          {{#if  product_sold }}
+              <p class="title"><%= t 'product.sold' %>: {{product_sold}} <%= t 'product.product' %></p>
+          {{else}}
+              <p class="title"> &nbsp;</p>
+          {{/if}}
+          {{#if  stock }}
+              <a href="javascript:void(0)" class="btn btn-default add-to-cart">
+                <i class="fa fa-shopping-cart"></i><%= t 'product.add_to_cart' %></a>
+          {{else}}
+              <a href="javascript:void(0)" class="btn btn-danger out-of-stock">
+                <%= t 'product.out_of_stock' %></a>
+          {{/if}}
+          </div>
+        </div>
+        <div class="choose">
+          <ul class="nav nav-pills nav-justified">
+            <li><a href="/<%=I18n.locale %>/product-details/{{title}}~{{id}}"><i class="fa fa-plus-square"></i> See more</a></li>
+        </ul>
+      </div>
+    </div>
+      </div>
+    {{/each}}
+    {{else}}
+  <div class="features_items">
+    <h2 style=" text-align: center;"> LOADING PRODUCT FAILED </h2>
+  </div>
+    {{/if}}
+</script>

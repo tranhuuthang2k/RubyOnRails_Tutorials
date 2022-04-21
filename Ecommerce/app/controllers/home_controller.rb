@@ -13,7 +13,7 @@ class HomeController < ApplicationController
     availabilities = Availability.by_product_sold(0).order(product_sold: :desc).sample(5)
 
     @results = {
-      features_items: features_items.page(params[:page]).per(9),
+      features_items: features_items.page(params[:page]).per(6),
       recommend_items: recommend_items,
       categories: categories,
       sliders: sliders,

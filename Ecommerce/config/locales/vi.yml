@@ -122,7 +122,7 @@ vi:
     detail: "Chi tiết"
     other: "Sản phẩm liên quan"
     review: "Nhận xét"
-    see_more: "Xem thêm"
+    see_more: "Xem Thi Tiết"
     search:  "Tên hoặc giá sản phẩm"
     note: "Lưu ý"
     message_note: "Trong quá trình thanh toán, nếu mà đợi nhiều hơn 10 giây, vui lòng đăng nhập lại và đặt hàng lại, lý do là bạn đăng nhập tài khoản trên nhiều thiết bị.."
@@ -255,3 +255,5 @@ vi:
     write_a_comment: "Viết bình luận..."
   alert:
     Please_write_your_content: "Làm ơn viết nội dung của bạn"
+  loadMore:
+    text: "Xem Thêm"
