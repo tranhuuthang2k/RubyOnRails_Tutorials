@@ -25,14 +25,16 @@ class ProductDetailsController < ApplicationController
     categories = Category.show_category.limit(4)
     products = Product.where(categories_id: product.categories_id).limit(4)
     comment_user = Comment.includes(:user)
-    comments = comment_user.where(product_id: id).where(main_id: comment_user.pluck('main_id').compact).page(params[:page]).per(6)
+    comment_all = comment_user.where(product_id: id).where(main_id: comment_user.pluck('main_id').compact)
+    comments = comment_all.page(1).per(3)
+    show_btn_loadcomment = comment_all.page(2).per(3).present? ? true : false
     product_rates = ProductRate.where(product_id: id)
     sum_rate = product_rates.sum(&:rate)
     count_product = product_rates.size
     avg = count_product.zero? ? 5 : sum_rate / count_product
     brands = Brand.all
     notifications = Notification.newest.limit(5)
-    availabilities = Availability.by_product_sold(0).order(product_sold: :desc).sample(5)
+    availabilities = Availability.by_product_sold(10).order(product_sold: :desc).sample(5)
 
     @results = {
       avg: avg,
@@ -42,6 +44,8 @@ class ProductDetailsController < ApplicationController
       categories: categories,
       recommend_items: recommend_items,
       comments: comments,
+      comment_all: comment_all,
+      show_btn_loadcomment: show_btn_loadcomment,
       brands: brands,
       notifications: notifications,
       availabilities: availabilities

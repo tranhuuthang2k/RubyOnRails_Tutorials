@@ -4,7 +4,7 @@ module Api
   module V1
     class ProductsController < Api::V1::BaseController
       skip_before_action :require_jwt
-      before_action :load_user, only: %i[products_of_month search]
+      before_action :load_user, only: %i[products_of_month]
 
       def products_of_month
         product_of_month = OrderItem.where(user_id: @user.id)
@@ -75,9 +75,49 @@ module Api
       def more_product
         products = Product.show_products Product::SHOW_HOME[:recomand]
         features_items = products.page(params[:page]).per(6)
+        page_next = params[:page].to_i + 1
+        show_btn_load = products.page(page_next).per(6)
         render json: success_message('Successfully',
-                                     { products: ActiveModelSerializers::SerializableResource.new(features_items,
+                                     { show_btn_load: show_btn_load.size.positive? ? true : false,
+                                       products: ActiveModelSerializers::SerializableResource.new(features_items,
                                                                                                   each_serializer: ProductSerializer) })
+      end
+
+      def quick_review
+        env_http_forwarded = request.env['HTTP_X_FORWARDED_FOR']
+        client_ip = if env_http_forwarded
+                      env_http_forwarded.split(',').first
+                    else
+                      request.remote_ip
+                    end
+        id = params[:productId].to_i
+        product_view = ProductView.new(product_id: id, ip_address: client_ip, city: request.location.city, user_id: current_user ? current_user.id : '') # when user don't login or was logged before ago
+        p_view = ProductView.find_by(ip_address: client_ip, product_id: id)
+        if current_user && p_view&.ip_address == client_ip # && p_view.user_id.blank? # when user login
+          p_view.update_attribute(:user_id, current_user.id)
+        end
+        product_view.save(validate: false) unless p_view
+        p_view&.touch(:updated_at) if p_view&.user_id == current_user&.id # update updated_at viewing history
+        product = Product.find(id)
+        product_rates = ProductRate.where(product_id: id)
+        sum_rate = product_rates.sum(&:rate)
+        count_product = product_rates.size
+        size = product.sizes.pluck('name')
+        avg = count_product.zero? ? 5 : sum_rate / count_product
+        render json: success_message('Successfully', {
+                                       id: product.id,
+                                       name: product.title,
+                                       price: product.price,
+                                       price_old: product.price_old.positive? ? product.price_old : 0,
+                                       image_url: "/rails#{url_for(product.image).split('/rails')[1]}",
+                                       status: product.availability&.number_instock.positive? ? 'Intock' : 'OutStock',
+                                       number_instock: product.availability&.number_instock,
+                                       availability: product.availability&.name,
+                                       size: size,
+                                       brand: product.brand&.name,
+                                       avg: avg || '0',
+                                       views: product.product_views&.count
+                                     })
       end
 
       private

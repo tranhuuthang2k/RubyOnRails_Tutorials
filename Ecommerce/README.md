@@ -18,7 +18,7 @@ Things you may want to cover:
 * Heroku
 
 * ...
-# Total 78 Functions of Ecommerce Shop Mr.Katsu
+# Total 82 Functions of Ecommerce Shop Mr.Katsu
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 1. Login (email, password, facebook)
 2. Register
@@ -45,7 +45,7 @@ Things you may want to cover:
 23. Roles ( admin, user...)
 24. Brands
 25. Product category
-26. Search Product,price, brand, suggest search
+26. Search Product,price, brand, autocomplete search
 27. Product details
 28. Manage size products
 29. Manage Category
@@ -79,7 +79,10 @@ Things you may want to cover:
 57. Export Invoice
 58. Most Hot Product sold
 59. Most viewed blog
-60. Dashboard 
+60. Load more products, comments
+61. Pagination
+63. Quickly View 
+64. Dashboard 
     + Revenue of each month, year...
     + Hot selling products
     + Total products in the system
@@ -125,12 +128,17 @@ Refresh && update my code heroku
 - step 2: heroku restart
 + Migrate db in heroku 
 - heroku rake db:migrate
++ Release & rollback 
+- https://devcenter.heroku.com/articles/releases
++ Stop Build_ID deploying
+- step 1: heroku plugins:install heroku-builds
+- Step 2: heroku builds:cancel BUILD_ID -a YOUR_HEROKU_APP_NAME
 ----------------------------------------------------------------------------------
 Sidekiq config heroku 
 + Document:  https://www.bigbinary.com/learn-rubyonrails-book/sidekiq-in-heroku 
 + Youtube: https://www.youtube.com/watch?v=5wwhmgGZJbI
 ----------------------------------------------------------------------------------
-Connect sidekid
+Connect sidekiq
 + Step 1: http://shopmrkatsu.tk/sidekiq
 + Step 2:
   + Username: sidekiq

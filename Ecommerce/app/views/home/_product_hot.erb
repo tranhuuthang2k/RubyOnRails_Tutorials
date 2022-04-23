@@ -1,14 +1,14 @@
 <div class="main">
   <div class="slider">
     <% @results[:availabilities].each do |item| %>
-      <% if item.product_sold > 0  && item.product.image.attached? %>
+      <% if item.product&.image&.attached? %>
         <div style="display: flex">
-          <a href="/<%=I18n.locale %>/product-details/<%= item.product.title.parameterize%>~<%=item.product.id%>"><img src="<%=  url_for(item.product.image)  %>"  width="100" alt="" /></a>
-          <a href="/<%=I18n.locale %>/product-details/<%= item.product.title.parameterize%>~<%=item.product.id%>" style="color: black ">
+          <a href="/<%=I18n.locale %>/product-details/<%= item.product&.title.parameterize%>~<%=item.product.id%>"><img src="<%=  url_for(item.product.image)  %>"  width="100" alt="" /></a>
+          <a href="/<%=I18n.locale %>/product-details/<%= item.product&.title.parameterize%>~<%=item.product.id%>" style="color: black ">
             <div class="list-item">
               <p class="title"><%= item.product.title  %> </p>
               <h2 class="price">$<%= item.product.price  %></h2>
-              <p class="title">Sold: <%= item.product_sold %> products</p>
+              <p class="title"> <%= t "product.sold" %>: <%= item.product_sold %> products</p>
             </div>
           </a>
         </div>

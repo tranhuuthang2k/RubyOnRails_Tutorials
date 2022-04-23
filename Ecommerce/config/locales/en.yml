@@ -131,6 +131,8 @@ en:
     shipping_cost: "Shipping cost"
     total_payment: "Total payment"
     date: "Date"
+    recommend: "Recommend" 
+    detail: "Product detail"
   comments:
     write: "Wrire your comment"
     upload_image: "Upload images"
@@ -174,6 +176,8 @@ en:
      shopping_cart_empty: "Shopping cart is empty"
      address_not_exitst:  "Please add your address before while checkout"
      loggin_message: "You must be logged in to perform this function"
+     blog: "Couldn't find any posts with the keyword"
+     search_product: "Your product not find"
   status:
      pending: "Pending"
      confirmed: "Confirmed"
@@ -212,6 +216,7 @@ en:
   new_user_signup: "New User Signup!"
   login_btn: "Login"
   sigin_btn: "Sigin"
+  clear_cart: "Clear All"
   select_city: "Select city:"
   example_password: "Example Password:"
   sign_up: "Sign up"
@@ -252,5 +257,8 @@ en:
     Please_write_your_content: "Please write your content"
   loadMore:
     text: "Load More"
-    
+  loadComment:
+    text: "Load comment"
+  quick_view:
+    text: "Quick View"
     

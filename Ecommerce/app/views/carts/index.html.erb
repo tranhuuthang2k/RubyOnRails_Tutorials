@@ -19,8 +19,10 @@
             <td></td>
           </tr>
         </thead>
-        <tbody class="tbody"> </tbody>
+        <tbody class="tbody"> 
+        </tbody>
       </table>
+      <button class="btn btn-default clear-cart" id="clear_cart" onclick="deleteItems()" style="margin: 0 auto;"> <%= t "clear_cart" %></button>
     </div>
   </div>
 </section>
@@ -147,11 +149,13 @@
       </tr>
   {{/each}}
   {{else}}
-  <style type="text/css">
-  thead,.voucher, .checkout_with_momo{
+  <style >
+  thead,.voucher, .checkout_with_momo, #clear_cart{
       display:none
   }
+
   </style>
+
   <h2 style=" text-align: center; padding-top: 15px;"> <%= t ("messages.shopping_cart_empty") %></h2>
   {{/if}}
 </script>
@@ -206,8 +210,7 @@
   	color: #3e4555;
      font-size: 16px;
   }
-  }
-
+  
   .service-5 .linking:hover{
   	color: #316ce8;
   }
@@ -223,6 +226,17 @@
   .service-5 .subtitle {
      color: #8d97ad;
      line-height: 24px;
+  }
+  .clear-cart{
+    display: flex;
+    justify-content: center;
+    background: #fe980f;
+    border-radius: 0;
+    color: #ffffff;
+    margin-top: 18px;
+    border: none;
+    padding: 5px 15px;
+    margin-left: 20px;
   }
 
   .service-5 .card.card-shadow {
@@ -284,4 +298,9 @@
   '<i class="fa fa-circle-o-notch fa-spin"></i> creating bill && send mail order ...'
   );
   });
+  function deleteItems() {
+    // Clear localStorage items 
+     localStorage.clear();
+     location.reload();
+  }
 </script>

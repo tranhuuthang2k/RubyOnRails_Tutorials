@@ -41,7 +41,7 @@
           </a>
         <% end %>
       </div>
-      <div style="text-align: center">
+      <div style="text-align: center" class="pagination-blog">
         <%= paginate @results[:posts], theme: 'twitter-bootstrap-4' %>
       </div>
     </div>
@@ -55,12 +55,12 @@
           <!--         <h4 class="modal-title">Modal Header</h4> -->
         </div>
         <div class="modal-body text-center">
-          <%# <h1>📝NỘI DUNG HỌC CỦA KHÓA SUPER PPT THI E-ELEARNING CẤP QUẬN, HUYỆN, THÀNH PHỐ, QUỐC GIA VỚI LỘ TRÌNH 150 TIẾNG TẤT CẢ CÁC THỂ LOẠI PHẦN MỀM GIÁO DỤC, ỨNG DỤNG CHO GV 4.0</h1> %>
-        <p style="font-size: 20px;font-weight: 700;">Edulive | Nền tảng dạy học trực tuyến toàn diện </p>
-        <a href="https://edulive.net/landing-thu-vien-bai-giang?type=teacher&utm_source=wb&utm_medium=sd&utm_campaign=pXp&utm_term=tranhuuthang">
-        <img src="https://i.ibb.co/XFFCyJx/200422-baner.png" alt="Italian Trulli" style="width: 100%;height: 100%;">
-          <a class="pre-order-btn" href="https://edulive.net/thu-vien-bai-giang-tieu-hoc?type=teacher&utm_source=wb&utm_medium=pr&utm_campaign=shopmrkatsu" >XEM CHI TIẾT </a>
-        </div>
+          <h1>📝NỘI DUNG HỌC CỦA KHÓA SUPER PPT THI E-ELEARNING CẤP QUẬN, HUYỆN, THÀNH PHỐ, QUỐC GIA VỚI LỘ TRÌNH 140 TIẾNG TẤT CẢ CÁC THỂ LOẠI PHẦN MỀM GIÁO DỤC, ỨNG DỤNG CHO GV 4.0, LỘ TRÌNH TỪ A -Z & CHUYÊN POWERPOINT NÂNG CAO</h1>
+          <%# <p style="font-size: 20px;font-weight: 700;">Edulive | Nền tảng dạy học trực tuyến toàn diện </p> %>
+          <a href="https://www.facebook.com/groups/1011713702919105/posts/1031047020985773/">
+            <img src="https://i.ibb.co/0KnLK59/156073071-1382460285435247-5907950937426473973-n.jpg" alt="Italian Trulli" style="width: 100%;height: 100%;">
+            <a class="pre-order-btn" href="https://www.facebook.com/groups/1011713702919105/posts/1031047020985773/" >NHẤN VÀO ĐỂ XEM NỘI DUNG KHÓA SUPER PPT</a>
+          </div>
         </a>
         <div class="modal-footer">
           <!--         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
@@ -103,22 +103,32 @@
       }
   </style>
   <script id="list-search-blog-template" type="text/x-handlebars-template">
-    {{#each blogs}}
-         <a href="/<%=I18n.locale %>/blog_detail/{{title}}~{{id}}" style="color: black">
-           <article>
-             <img src="{{image_url}}" alt="Image" class="list_post">
-             <div class="text">
-               <h4>{{title}}</h4>
-               <p>
-                 <i class="fa fa-calendar"></i> {{created_at}}
-                 <i class="fa fa-user"></i> {{username}}
-               </p>
-               <p> {{content}}</p>
-               <a  class="btn btn-primary" href="/<%=I18n.locale %>/blog_detail/{{title}}~{{id}}"><%= t("blogs.read_more") %></a>
-             </div>
-           </article>
-         </a>
-    {{/each}}
+    {{#if blogs }}
+      {{#each blogs}}
+           <a href="/<%=I18n.locale %>/blog_detail/{{title}}~{{id}}" style="color: black">
+             <article>
+               <img src="{{image_url}}" alt="Image" class="list_post">
+               <div class="text">
+                 <h4>{{title}}</h4>
+                 <p>
+                   <i class="fa fa-calendar"></i> {{created_at}}
+                   <i class="fa fa-user"></i> {{username}}
+                 </p>
+                 <p> {{content}}</p>
+                 <a  class="btn btn-primary" href="/<%=I18n.locale %>/blog_detail/{{title}}~{{id}}"><%= t("blogs.read_more") %></a>
+               </div>
+             </article>
+           </a>
+      {{/each}}
+    {{else}}
+    <h1 style="text-align: center;"> <%= t("messages.blog") %> "{{keyword}}"  </h1>
+      <style>
+       .pagination-blog
+       {
+         display: none;
+       }
+      </style>
+     {{/if}}
   </script>
   <script>
     $(document).ready(function () {

@@ -119,6 +119,27 @@ module Api
         end
       end
 
+      def more_comment
+        product_id = params[:product_id].match(/\d+$/)[0].to_i
+        comment_user = Comment.includes(:user)
+        comment_users = comment_user.where(product_id: product_id).where(main_id: comment_user.pluck('main_id').compact)
+        comments = comment_users.page(params[:page]).per(3)
+        page_next = params[:page].to_i + 1
+        show_btn_load = comment_users.page(page_next).per(3)
+
+        data = []
+        comments.each do |comment|
+          data << {
+            'comment_parent' => ActiveModelSerializers::SerializableResource.new(comment,
+                                                                                 each_serializer: CommentSerializer),
+            'comment_childrens' => ActiveModelSerializers::SerializableResource.new(comment.comment_childrens,
+                                                                                    each_serializer: CommentSerializer)
+          }
+        end
+        render json: success_message('Successfully',
+                                     { data: data, 'show_btn_load' => show_btn_load.size.positive? ? true : false })
+      end
+
       def rate
         data = []
         data << @user.order_items.this_status(OrderItem::STOCK[:Instock]).pluck('product_order').map do |x|

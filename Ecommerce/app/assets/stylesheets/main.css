@@ -1178,7 +1178,7 @@ h2.title {
 
 .view-product img {
   border: 1px solid #f7f7f0;
-  height: 380px;
+  /* height: 380px; */
   width: 100%;
 }
 

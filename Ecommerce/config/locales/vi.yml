@@ -122,7 +122,7 @@ vi:
     detail: "Chi tiết"
     other: "Sản phẩm liên quan"
     review: "Nhận xét"
-    see_more: "Xem Thi Tiết"
+    see_more: "Xem Chi Tiết"
     search:  "Tên hoặc giá sản phẩm"
     note: "Lưu ý"
     message_note: "Trong quá trình thanh toán, nếu mà đợi nhiều hơn 10 giây, vui lòng đăng nhập lại và đặt hàng lại, lý do là bạn đăng nhập tài khoản trên nhiều thiết bị.."
@@ -136,6 +136,7 @@ vi:
     total_payment: "Tổng tiền phải thanh toán"
     date: "Ngày"
     recommend: "Sản phẩm gợi ý" 
+    detail: "Product detail"
   comments:
     write: "Viết bình luận của bạn"
     upload_image: "Tải lên hình ảnh"
@@ -179,6 +180,8 @@ vi:
      shopping_cart_empty: "Bạn chưa có sản phẩm trong giỏ hàng"
      address_not_exitst:  "Vui lòng thêm địa chỉ của bạn trước khi thanh toán"
      loggin_message: "Bạn phải đăng nhập để thực hiện chức năng này"
+     blog: "Không tìm thấy bài với từ khóa: "
+     search_product: "Sản phẩm không tìm thấy"
   status:
      pending: "Đang chờ xác nhận"
      confirmed: "Đã xác nhận"
@@ -217,6 +220,7 @@ vi:
   new_user_signup: "Đăng ký"
   login_btn: "Đăng nhập"
   sigin_btn: "Đăng ký"
+  clear_cart: "Xóa toàn bộ giỏ"
   select_city: "Chọn thành phố :"
   example_password: "Mật khẩu ví dụ:"
   sign_up: "Đăng kí"
@@ -245,8 +249,7 @@ vi:
   Copyright: "Lưu bản sao"
   Designed: "Được thiết kế bởi"
   not_purchased: "sản phẩm này không thể đánh giá vì bạn chưa mua"
-  description_update_site: "Nhận các bản cập nhật gần đây nhất từ
-  trang web của chúng tôi và được cập nhật bản thân của bạn."
+  description_update_site: "Nhận các bản cập nhật gần đây nhất từ trang web của chúng tôi và được cập nhật bản thân của bạn."
   description_mrkatsu_footer: "Mr.Katsu là thương hiệu về Giải phóng da đen, công bằng kinh tế và xã hội, hòa bình và tình yêu."
   OR: "Hoặc"
   inputComment:
@@ -257,3 +260,7 @@ vi:
     Please_write_your_content: "Làm ơn viết nội dung của bạn"
   loadMore:
     text: "Xem Thêm"
+  loadComment:
+    text: "Xem thêm bình luận"
+  quick_view:
+    text: "Xem Nhanh"

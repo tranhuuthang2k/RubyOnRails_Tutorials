@@ -54,14 +54,22 @@ module RailsAdmin
               product_view_ids = product_views.present? && product_views.pluck('product_id').compact.each_with_object(Hash.new(0)) do |c, counts|
                 counts[c] += 1
               end
+              if product_id.present?
+                product = Product.find(product_id)
+                best_availability = product.availability
+              end
+
               availabilities = Availability.by_month_year(month, year)
-              best_availability = availabilities.find_by(product_sold: availabilities.maximum('product_sold'))
+              if availabilities.present? && (availabilities&.maximum('product_sold').positive? || availabilities&.maximum('is_ordering').positive?)
+                best_availability_ordering = availabilities.find_by(is_ordering: availabilities.maximum('is_ordering'))
+              end
+
               best_id_views = product_view_ids.present? ? product_view_ids.max_by { |_k, v| v }[0] : {}
-              best_availability_ordering = availabilities.find_by(is_ordering: availabilities.maximum('is_ordering'))
               keywords = KeywordSearch.by_keywords(month, year)
+
               {
-                best_seller: product_id.present? ? Product.find(product_id) : nil,
-                best_keyword_search: keywords.present? ? keywords.find_by!(count: keywords.pluck('count').max) : nil,
+                best_seller: product.present? ? product : nil,
+                best_keyword_search: keywords.present? ? keywords.find_by!(count: keywords.pluck('count').max) : {},
                 best_product_views: best_id_views ? Product.find_by(id: best_id_views) : {},
                 best_availability: best_availability,
                 best_availability_ordering: best_availability_ordering,

@@ -26,11 +26,15 @@ module Api
 
         temp_carts.map do |p|
           product = products[p[:id].to_i]
+          return  @negative = true if p['quantity'].to_i.negative?
+
           if product.availability&.status == OrderItem::STOCK[:Outstock] || product.availability&.number_instock.to_i < p['quantity'].to_i
             return result = { carts_order: [] }
           end
 
-          if product.nil? || product.price != p[:price_product].to_f || product.title != p[:name_product] || p[:image_product] != url_for(product.image)
+          product_size = product.sizes&.pluck(:name)
+
+          if product.nil? || product_size.include?(p[:size_product]) != true || product.price != p[:price_product].to_f || product.title != p[:name_product] || p[:image_product] != url_for(product.image)
             carts_order = []
             return
           end
@@ -49,7 +53,7 @@ module Api
                            name_product: p[:name_product],
                            price_product: p[:price_product],
                            size_product: p[:size_product],
-                           quantity: p[:quantity],
+                           quantity: p[:quantity].to_i,
                            image_product: p[:image_product],
                            total: p[:price_product].to_f * p[:quantity].to_i }
         end
@@ -63,6 +67,10 @@ module Api
 
       def checkout
         data = base_checkout(params[:data], params[:voucher_code], params[:method_shipping])
+        if @negative
+          render json: error_message('negative')
+          return
+        end
         if data[:carts_order].size.positive? && data[:check_shipping]
           product_order = @user.order_items.new(user_id: @user.id, status: Product::STATUS[:pending],
                                                 product_order: data[:carts_order].to_json,
@@ -95,8 +103,9 @@ module Api
 
         temp_carts.map do |p|
           product = products[p[:id].to_i]
+          product_size = product.sizes&.pluck(:name)
 
-          if product.nil? || product.price != p[:price_product].to_f || product.title != p[:name_product] || p[:image_product] != url_for(product.image)
+          if product.nil? || product_size.include?(p[:size_product]) != true || product.price != p[:price_product].to_f || product.title != p[:name_product] || p[:image_product] != url_for(product.image)
             carts_order = []
             return
           end

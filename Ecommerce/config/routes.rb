@@ -70,6 +70,8 @@ Rails.application.routes.draw do
       post '/delete_order', to: 'products#delete_order'
       post '/search_blog', to: 'blogs#search'
       get '/load_more_product', to: 'products#more_product'
+      get '/load-more-comment', to: 'loves#more_comment'
+      get '/quick-review', to: 'products#quick_review'
     end
   end
 end

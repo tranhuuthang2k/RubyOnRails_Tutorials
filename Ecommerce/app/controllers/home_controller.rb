@@ -10,11 +10,11 @@ class HomeController < ApplicationController
     sliders = Slider.all
     brands = Brand.all
     notifications = Notification.newest.limit(5)
-    availabilities = Availability.by_product_sold(0).order(product_sold: :desc).sample(5)
-
+    availabilities = Availability.by_product_sold(10).order(product_sold: :desc).sample(5)
     @results = {
       features_items: features_items.page(params[:page]).per(6),
       recommend_items: recommend_items,
+      show_load_more: features_items.page(2).per(6).present? ? true : false,
       categories: categories,
       sliders: sliders,
       brands: brands,

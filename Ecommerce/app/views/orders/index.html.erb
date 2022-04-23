@@ -44,7 +44,7 @@
                   <a href="/<%=I18n.locale %>/product-details/<%= c["name_product"] %>~<%=c["id"] %>"> <%= image_tag c["image_product"], size: "110x110", alt: "Image" %></a>
                 </td>
                 <td class="name_product">
-                  <h4><a href=""><%= c["name_product"] %></a></h4>
+                  <h4><a href="/<%=I18n.locale %>/product-details/<%= c["name_product"] %>~<%=c["id"] %>""><%= c["name_product"] %></a></h4>
                   <p>Orders ID: <%= order[:order].id %></p>
                 </td>
                 <td class="size_product">

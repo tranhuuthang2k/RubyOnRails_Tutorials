@@ -22,10 +22,10 @@
                   <p class="title"><%= item.title  %></p>
                   <% if  item.availability&.status.to_i > 0%>
                     <a href="javascript:void(0)" class="btn btn-default add-to-cart">
-                      <i class="fa fa-shopping-cart"></i>Add to cart</a>
+                      <i class="fa fa-shopping-cart"></i><%= t 'product.add_to_cart' %></a>
                   <% else %>
                     <a href="javascript:void(0)" class="btn btn-danger out-of-stock">
-                      Out of stock</a>
+                       <%= t 'product.out_of_stock' %></a>
                   <% end %>
                 </div>
               </div>

@@ -38,14 +38,20 @@
         <div class="choose">
           <ul class="nav nav-pills nav-justified">
             <li><a href="/<%=I18n.locale %>/product-details/<%= item.title.parameterize%>~<%=item.id%>"><i class="fa fa-plus-square"></i> <%= t 'product.see_more' %></a></a></li>
+          <li><a href="javascript:void(0)" class="quick_view"  product-id= "<%=item.id%>" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-plus-square"></i> <%= t 'quick_view.text' %></a></li>
         </ul>
       </div>
     </div>
   </div>
 <% end %>
+<!-- Modal -->
+<div class="modal fade product-details"  id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+</div>
 </div>
 <div style="text-align: center">
-  <button class="load_more spinner-border btn btn-warning" style="margin: 0 auto; background-color: #fe980f; margin-bottom: 15px;" data-style="expand-left"  ><%= t 'loadMore.text' %></button>
+  <% if  @results[:show_load_more ] %>
+    <button class="load_more spinner-border btn btn-warning" style="margin: 0 auto; background-color: #fe980f; margin-bottom: 15px;" data-style="expand-left"  ><%= t 'loadMore.text' %></button>
+  <% end %>
   <div id="load" style="display:none">
     <img src="//s.svgbox.net/loaders.svg?fill=maroon&ic=tail-spin" 
          style="width:24px">
@@ -79,7 +85,7 @@
               <p class="title"> &nbsp;</p>
           {{/if}}
           {{#if  stock }}
-              <a href="javascript:void(0)" class="btn btn-default add-to-cart">
+              <a href="javascript:void(0)" class="btn btn-default add-to-cart" >
                 <i class="fa fa-shopping-cart"></i><%= t 'product.add_to_cart' %></a>
           {{else}}
               <a href="javascript:void(0)" class="btn btn-danger out-of-stock">
@@ -89,15 +95,163 @@
         </div>
         <div class="choose">
           <ul class="nav nav-pills nav-justified">
-            <li><a href="/<%=I18n.locale %>/product-details/{{title}}~{{id}}"><i class="fa fa-plus-square"></i> See more</a></li>
+            <li><a href="/<%=I18n.locale %>/product-details/{{title}}~{{id}}"><i class="fa fa-plus-square"></i> <%= t 'product.see_more' %> </a></li>
+            <li><a href="javascript:void(0)" class="quick_view" product-id= "{{id}}" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-plus-square"></i> <%= t 'quick_view.text' %></a></li>
         </ul>
       </div>
     </div>
       </div>
     {{/each}}
     {{else}}
-  <div class="features_items">
-    <h2 style=" text-align: center;"> LOADING PRODUCT FAILED </h2>
-  </div>
+    <div class="features_items">
+      <h2 style=" text-align: center;"> LOADING PRODUCT FAILED </h2>
+    </div>
     {{/if}}
 </script>
+<script id="list-detail-quick-review-template" type="text/x-handlebars-template">
+  {{#if products }}
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="display:none">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><%= t'product.detail' %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div style="text-align: center">
+            <div id="load" style="display:block">
+              <img src="//s.svgbox.net/loaders.svg?fill=maroon&ic=tail-spin"
+                  style="width:24px">
+            </div>
+        </div>
+       <div class="">
+            <div class="img-review col-sm-5" >
+            <div class="view-product">
+                <img id="zoom_01" class="imageProduct" src="{{products.image_url}}" alt="">
+                    <a href="{{products.image_url}}" rel="prettyPhoto" id="image-review"  class="zoom-image">
+                    <h3>ZOOM</h3>
+                </a>
+            </div>
+        <div id="similar-product" class="carousel slide" data-ride="carousel">
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+
+                <div class="item active">
+                </div>
+
+                <div class="item">
+                </div>
+            </div>
+
+                <!-- Controls -->
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <div class="product-information ">
+                <!--/product-information-->
+                <input type="hidden" id="{{products.id}}" class="id" value="">
+                <img src="/assets/product-details/new.jpg" class="newarrival" alt="">
+                <h2 style="text-align: center" class="title">{{products.name}}</h2>
+                <div class="list-rate">
+                </div>
+                  <div style="display: flex; justify-content: center; cursor: pointer;">
+                      <span style="margin-right: 10px" class="fa fa-star" id="star-1"></span>
+                      <span style="margin-right: 10px" class="fa fa-star" id="star-2"></span>
+                      <span style="margin-right: 10px" class="fa fa-star" id="star-3"></span>
+                      <span style="margin-right: 10px" class="fa fa-star" id="star-4"></span>
+                      <span style="margin-right: 10px" class="fa fa-star" id="star-5"></span>
+                        <span>({{products.avg}}/5)</span>
+
+                  </div>
+
+                <span class="product_love" style="text-align: center">
+                        <i class="fa fa-heart" id="hear-f" onclick="return confirm('You must be logged in to perform this function')"></i>
+                </span>
+
+                <span>
+                    <span style="text-align: center; width: 100%" class="price">USD ${{products.price}}
+                          {{#when products.price_old 'gt' 0 }}
+                            <del class="price_old">${{products.price_old}}</del>
+                          {{else}}
+                            <del class="price_old"></del>
+                          {{/when}}
+                      </span>
+
+                    <label style="font-size:15px">Quantity:</label>
+                    <input type="number" name= "my-input" id="numberInput" class="quantity" value="1" min="1" max="{{products.number_intock}}">
+                       {{#when products.number_instock 'gt' 0 }}
+                        <button type="submit" class="btn btn-fefault cart add-to-cart-detail" locale="<%=I18n.locale %>">
+                            <i class="fa fa-shopping-cart"></i>
+                            <%= t 'product.add_to_cart' %>
+                        </button>
+                        {{else}}
+                          <button type="submit" class="btn btn-danger">
+                                <i class="fa fa-shopping-cart"></i>
+                                <%= t 'product.out_of_stock' %>:
+                          </button>
+                        {{/when}}
+                </span>
+                <div>
+                <span style="font-size:15px"> <b> <%= t 'product.choose_size' %> </b> </span>
+
+                  <div class="sprd-select__items">
+                    {{#each products.size}}
+                      {{#when @index 'eq' 0}}
+                            <div class="button active">{{this}} </div>
+                        {{/when}}
+                        {{#when @index 'gt' 0}}
+                            <div class="button ">{{this}} </div>
+                        {{/when}}
+                    {{/each}}
+                  </div>
+                </div>
+                <p><b>Availability:</b> {{products.availability}}</p>
+                <p><b>Number instock:</b>  {{products.number_instock}}</p>
+                <p><b>Status:</b>  {{products.status}}</p>
+                <p><b>Brands:</b> {{products.brand}}</p>
+                <p><b>Views: </b> {{products.views}} <i class="fa fa-eye"></i></p>
+                <p><b>Share:</b> <a href="https://www.facebook.com/share.php?u=http://shopmrkatsu.tk/en/product-details/shirt~1"><i class="fa fa-facebook-square fa-2x facebook" style="font-size: 1.5em;"></i></a></p>
+            </div>
+            <!--/product-information-->
+        </div>
+     </div>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" style="margin-top: -15px;" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+    {{else}}
+    <div style="text-align: center">
+          <button class="load_more spinner-border btn btn-warning" style="margin: 0 auto; background-color: #fe980f; margin-bottom: 15px;" data-style="expand-left"  ><%= t 'loadMore.text' %></button>
+          <div id="load" style="display:none">
+            <img src="//s.svgbox.net/loaders.svg?fill=maroon&ic=tail-spin"
+                style="width:24px">
+          </div>
+          <%# <%= paginate @results[:features_items], theme: 'twitter-bootstrap-4'  %>
+    </div>
+  {{/if}}
+</script>
+<script >
+  $(document).on("click", ".button", function() {
+         $(this).addClass('active').siblings().removeClass('active');
+     });
+   $(document).on("click", ".image", function () {
+     imageSmallUrl = $(this).attr("src")
+     $(".view-product").find(".imageProduct").attr("src", imageSmallUrl )
+     $(".zoom-image").attr("href", imageSmallUrl)
+     $('#zoom_01').ezPlus();
+  });
+</script>
+<style>
+  /* Important part */
+  .modal-dialog{
+      overflow-y: initial !important
+  }
+  .modal-body{
+      height: 50vh;
+      overflow-y: auto;
+  }
+</style>

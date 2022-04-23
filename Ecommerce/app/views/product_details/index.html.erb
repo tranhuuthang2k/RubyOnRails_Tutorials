@@ -113,12 +113,10 @@
                                  </span>
 
                                 <label style="font-size:15px"><%= t 'product.quantity' %>:</label>
-                                <input type="number" id="numberInput" class="quantity" value="1" min="1"  onchange=" this.value > <%= @results[:product].availability.number_instock if @results[:product].availability.present? %>  &&  myFunction(<%= @results[:product].availability.number_instock if @results[:product].availability.present? %>) " max=" <%= @results[:product].availability if @results[:product].availability.present? %>" />
+                                <input type="number" id="numberInput" class="quantity" value="1" min="1"  onchange=" this.value > <%= @results[:product].availability.number_instock if @results[:product].availability.present? %>  &&  myFunction(<%= @results[:product].availability.number_instock if @results[:product].availability.present? %>) " max=" <%=@results[:product].availability.number_instock if @results[:product].availability.present? %>" />
                                <% if @results[:product].availability&.status.to_i > 0 %>
-                                  <button type="submit" class="btn btn-fefault cart add-to-cart-detail">
-                                      <i class="fa fa-shopping-cart"></i>
-                                      <%= t 'product.add_to_cart' %>:
-                                  </button>
+                                   <a href="javascript:void(0)" id="add-to-cart-detail" name="add-to-cart-detail" class="btn btn-fefault cart add-to-cart-detail">
+                                    <i class="fa fa-shopping-cart"></i> <%= t 'product.add_to_cart' %></a>
                                 <% else %>
                                  <button type="submit" class="btn btn-danger">
                                       <i class="fa fa-shopping-cart"></i>
@@ -152,7 +150,7 @@
                         <ul class="nav nav-tabs">
                             <li class="active" ><a href="#details" data-toggle="tab"><%= t "product.detail" %></a></li>
                             <li><a href="#product_orther" data-toggle="tab"><%= t "product.other" %></a></li>
-                            <li><a href="#reviews" data-toggle="tab"><%= t "product.review" %> </a></li>   
+                            <li><a href="#reviews" data-toggle="tab"><%= t "product.review" %> (<%= @results[:comment_all].size > 0 ? @results[:comment_all].size : 0 %>)</a></li>   
                         </ul>
                     </div>
                     <div class="tab-content">
@@ -207,27 +205,25 @@
                       </button>
                     </div>
                     <div class="modal-body">
+                        <span class="comments" id= "<%= @results[:product].id %>">
+                              <form id="form_comment">
                                   <span class="comments" id= "<%= @results[:product].id %>">
-                                        <form id="form_comment">
-                                          <span class="comments" id= "<%= @results[:product].id %>">
-                                              <div class="mb-3">
-                                                <input type="text"  class="form-control in-comment" style="
+                                    <div class="mb-3">
+                                          <input type="text"  class="form-control in-comment" style="
                                                                           width: 100%;
                                                                           background: none;
                                                                           color: black;
                                                                           outline: medium none;
                                                                           border: 1px solid;" 
                                                 placeholder= "<%= t "inputComment.Pleaseenteryourcomment"%>" />
-                                                <label for="csv" class="form-label"><%= t "comments.upload_image"%> </label>
-                                                <input id="csv" name="csv" type="file"  style="
+                                            <label for="csv" class="form-label"><%= t "comments.upload_image"%> </label>
+                                            <input id="csv" name="csv" type="file"  style="
                                                                           width: 100%;
                                                                           background: none;
                                                                           outline: medium none;
                                                                           margin-left: 0px;
                                                                         ;" /></td>
-                                              </div>
-
-
+                                            </div>
                                             <div>
                                             <div class="buttonload" style="display:none"><i class="fa fa-spinner fa-spin"></i> is sending,please wait... </div>
                                             </div>
@@ -242,26 +238,23 @@
                                                                         <!-- value="Send review" -->
                                             </form>
                                           </span>
+                          <div class="loader">
+                            <% if user_signed_in? %>
+                                        <span class = "login" id = "<%= 1 %>"></span>
+                              <% else %>
+                                        <span class = "login" id = "<%= 2 %>"></span>
+                              <% end %>
 
-                                          <div class="loader">
-                               <% if user_signed_in? %>
-                                            <span class = "login" id = "<%= 1 %>"></span>
-                                 <% else %>
-                                            <span class = "login" id = "<%= 2 %>"></span>
-                                 <% end %>
-
-                    </div>
+                          </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal"><%= t "comments.close" %></button>
                     </div>
                   </div>
                 </div>
               </div>
-
               </div>
 
                     <div class="response-area">
-
                             <h5 class="view_more">​</h5>
                               <ul class="media-list list-comment" >
                                 <% @results[:comments].each do |comment| %>
@@ -334,8 +327,17 @@
                                   </li>
                                 <% end %>
                               </ul>
+                              <% if @results[:show_btn_loadcomment] %>
+                                <div style="text-align: center">
+                                  <button class="load_more_comment spinner-border btn btn-warning" style="margin: 0 auto; background-color: #fe980f; margin-bottom: 15px;" data-style="expand-left"  > <%= t 'loadComment.text' %></button>
+                                    <div id="load" style="display:none">
+                                      <img src="//s.svgbox.net/loaders.svg?fill=maroon&ic=tail-spin" 
+                                          style="width:24px">
+                                    </div>
+                                </div>
+                              <% end %>
                               <div style="text-align: center">
-                                  <%= paginate @results[:comments], theme: "twitter-bootstrap-4", style: "text-align:center" %>
+                                  <%# <%= paginate @results[:comments], theme: "twitter-bootstrap-4", style: "text-align:center" %> 
                               </div>
                           </div>
                         </div>
@@ -462,4 +464,65 @@ $(".image")
   		x.style.display = "none";
   	}
   }
+</script>
+<script id="load-more-comment-template" type="text/x-handlebars-template">
+  {{#if comments.length }}
+    {{#each comments}}
+        <li class="media delete_comment" id="{{ comment_parent.id }}" style="width:100%">
+              <a class="pull-left" href="#" style="display:flex; justify-content: center">
+              <img class="media-object-avatar" src="{{ comment_parent.avatar }}" alt="" width="50" height="50" style="border-radius: 25%">
+              </a>
+              <div class="media-body comments">
+                <ul class="sinlge-post-meta">
+                <li><i class="fa fa-user"></i>{{ comment_parent.name }}</li>
+                <li><i class="fa fa-clock-o"></i>{{ comment_parent.created_at_clock }}</li>
+                <li><i class="fa fa-calendar"></i>{{ comment_parent.created_at }}</li>
+                {{#when comment_parent.user_id 'eq' <%= user_signed_in? && current_user.id %>}}
+                  <li><a class="delete-comment"><i style="color:white; cursor: pointer; font-size: 14px" class="fa fa-trash-o"></i></a></li>
+                  <li><a class="edit-comment" id= "comment-{{comment_parent.id}}" ><i style="color:white; cursor: pointer; font-size: 14px" class="fa fa-edit"></i></a> </li>    
+                {{/when}}
+                <textarea  placeholder="Please write a content"  class="form-control in-comment-edit" value="{{ comment_parent.content }}" style="overflow: hidden;
+                  min-height:50px;
+                  max-height: 200px;
+                  height:50px;
+                  display:none;
+                  color:black
+              "  
+              oninput="auto_grow(this)">{{ comment_parent.content }}</textarea>
+                </ul>    
+              <p class="list-edit-comment" style="line-break: anywhere;">{{ comment_parent.content }}</p>
+              <a href="{{ comment_parent.image }}" data-lightbox="example-2" > <img class="media-object" data-lightbox="image-1" data-title="My caption" src="{{ comment_parent.image }}" alt="" width="50%" height="auto" ></a>
+              </br>
+            <p class="reply_comment"> <%= t 'comments.reply' %> <p>
+              <div class="list_comment_chidren" >                                
+                {{#each comment_childrens}}
+                        <div class="comment_children_item comment_children" >
+                              <img src="{{avatar}}" id="image_children_comment" width="50" height="50" alt="" />
+                              <span> <i class="fa fa-user" id="icon_name"></i> <span>{{name}}</span> <span>
+                              <span> <i class="fa fa-clock-o" style="color: #fe980f;cursor: pointer;font-size: 16px;margin-left: 10px;margin-right: 5px;"></i> <span>{{created_at_clock}}</span> <span>
+                              <span><i class="fa fa-calendar" style="color: #fe980f;cursor: pointer;font-size: 16px;margin-left: 10px;margin-right: 10px;"></i>{{created_at}}</span>
+                              {{#when user_id 'eq' <%= user_signed_in? && current_user.id %>}}
+                                  <span>  <i style="color: #fe980f;cursor: pointer;font-size: 16px;margin-left: 10px;margin-right: 10px;" class="fa fa-trash-o delete_comment_children"  id="{{id}}"></i><span>
+                                  <span class="edit">  <i style="color: #fe980f;cursor: pointer;font-size: 16px;" class="fa fa-edit"></i><span>
+                              {{/when}}
+                              <p class="list-edit-comment-children" id="content_comment"  style="line-break:anywhere"> {{content}} </p>
+                              <textarea type="text"  id="{{id}}" placeholder="Please write a content"  class="form-control comment-children-edit" value="{{content}}" style="                              
+                                min-height:50px;
+                                max-height: 200px;
+                                height:50px;
+                                display:none;
+                                color:black
+                            "  
+                            oninput="auto_grow(this)">{{content}}</textarea>
+                        </div>
+                {{/each}}
+                </div>
+              <div class="full-tbl" style="display:block">
+                  <textarea  id="fieldReplyComment" placeholder="<%= t "inputComment.write_a_comment" %>"  style="padding-top: 15px" ></textarea>
+                  <span class="inp-grp-sub"><button type="submit" id="send_reply_comment"><%= t "inputComment.sendreview" %></button></span>
+              </div>
+              </div>
+          </li>
+    {{/each}}
+  {{/if}}
 </script>
