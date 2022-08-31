@@ -13,7 +13,7 @@ class BlogController < ApplicationController
                   request.remote_ip
                 end
     id = params[:id].match(/\d+$/)[0].to_i
-    post_view = ProductView.new(post_id: id, ip_post: client_ip, city: request.location.city)
+    post_view = ProductView.new(post_id: id, ip_post: client_ip, city: request.location&.city)
     p_view = ProductView.find_by(ip_post: client_ip, post_id: id)
     post_view.save(validate: false) unless p_view
     post = Post.find(id)
