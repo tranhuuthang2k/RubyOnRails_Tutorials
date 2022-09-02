@@ -1,0 +1,1621 @@
+Started GET "/" for ::1 at 2022-09-02 10:52:52 +0700
+  [1m[35m (6.8ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by HomeController#index as HTML
+  [1m[36mAvailability Load (1.4ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE (product_sold > 10) ORDER BY `availabilities`.`product_sold` DESC[0m
+  ↳ app/controllers/home_controller.rb:13:in `index'
+  [1m[36mProduct Load (1.6ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 0 LIMIT 6 OFFSET 6[0m
+  ↳ app/controllers/home_controller.rb:17:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[35m (6.9ms)[0m  [1m[34mSELECT COUNT(*) FROM `sliders`[0m
+  ↳ app/views/home/_slider.html.erb:12
+  Rendered home/_slider.html.erb (Duration: 31.3ms | Allocations: 1946)
+  [1m[36mCategory Load (1.2ms)[0m  [1m[34mSELECT `categories`.* FROM `categories` WHERE `categories`.`categories_id` IS NULL LIMIT 4[0m
+  ↳ app/views/home/_category.html.erb:2
+  Rendered home/_category.html.erb (Duration: 8.6ms | Allocations: 3145)
+  [1m[36mBrand Load (1.9ms)[0m  [1m[34mSELECT `brands`.* FROM `brands`[0m
+  ↳ app/views/home/_brands.html.erb:3
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 1[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 2[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 3[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 4[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 5[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 6[0m
+  ↳ app/views/home/_brands.html.erb:4
+  Rendered home/_brands.html.erb (Duration: 95.2ms | Allocations: 69386)
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`availability_id` = '3' LIMIT 1[0m
+  ↳ app/views/home/_product_hot.erb:4
+  [1m[36mActiveStorage::Attachment Load (2.4ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 3 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_product_hot.erb:4
+  [1m[36mActiveStorage::Blob Load (4.8ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 13 LIMIT 1[0m
+  ↳ app/views/home/_product_hot.erb:6
+  Rendered home/_product_hot.erb (Duration: 109.3ms | Allocations: 30951)
+  Rendered home/_sales.html.erb (Duration: 0.6ms | Allocations: 113)
+  Rendered home/_fanpage.html.erb (Duration: 0.7ms | Allocations: 112)
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 0 LIMIT 6 OFFSET 0[0m
+  ↳ app/views/home/_features_items.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 1 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 12 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mAvailability Load (0.5ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 3 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 13 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mAvailability Load (0.5ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 3 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 14 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mAvailability Load (0.6ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 2 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 5 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 9 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 2 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 6 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (1.7ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 10 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 3 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  Rendered home/_features_items.html.erb (Duration: 80.2ms | Allocations: 18902)
+  [1m[36mProduct Load (1.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 1[0m
+  ↳ app/views/home/_category_tab.html.erb:14
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 5[0m
+  ↳ app/views/home/_category_tab.html.erb:14
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 9[0m
+  ↳ app/views/home/_category_tab.html.erb:14
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 10[0m
+  ↳ app/views/home/_category_tab.html.erb:14
+  Rendered home/_category_tab.html.erb (Duration: 42.3ms | Allocations: 13040)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 1 LIMIT 12[0m
+  ↳ app/views/home/_recommended_items.html.erb:7
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 7 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_recommended_items.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 11 LIMIT 1[0m
+  ↳ app/views/home/_recommended_items.html.erb:14
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 2 LIMIT 1[0m
+  ↳ app/views/home/_recommended_items.html.erb:25
+  Rendered home/_recommended_items.html.erb (Duration: 19.1ms | Allocations: 4315)
+  Rendered home/index.html.erb within layouts/application (Duration: 1772.3ms | Allocations: 1481647)
+Started GET "/" for ::1 at 2022-09-02 10:53:25 +0700
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by HomeController#index as HTML
+  [1m[36mAvailability Load (0.4ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE (product_sold > 10) ORDER BY `availabilities`.`product_sold` DESC[0m
+  ↳ app/controllers/home_controller.rb:13:in `index'
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 0 LIMIT 6 OFFSET 6[0m
+  ↳ app/controllers/home_controller.rb:17:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `sliders`[0m
+  ↳ app/views/home/_slider.html.erb:12
+  Rendered home/_slider.html.erb (Duration: 6.3ms | Allocations: 1946)
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT `categories`.* FROM `categories` WHERE `categories`.`categories_id` IS NULL LIMIT 4[0m
+  ↳ app/views/home/_category.html.erb:2
+  Rendered home/_category.html.erb (Duration: 7.3ms | Allocations: 3146)
+  [1m[36mBrand Load (0.5ms)[0m  [1m[34mSELECT `brands`.* FROM `brands`[0m
+  ↳ app/views/home/_brands.html.erb:3
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 1[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 2[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 3[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 4[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 5[0m
+  ↳ app/views/home/_brands.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products` WHERE `products`.`brand_id` = 6[0m
+  ↳ app/views/home/_brands.html.erb:4
+  Rendered home/_brands.html.erb (Duration: 45.9ms | Allocations: 28656)
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`availability_id` = '3' LIMIT 1[0m
+  ↳ app/views/home/_product_hot.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 3 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_product_hot.erb:4
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 13 LIMIT 1[0m
+  ↳ app/views/home/_product_hot.erb:6
+  Rendered home/_product_hot.erb (Duration: 61.2ms | Allocations: 27494)
+  Rendered home/_sales.html.erb (Duration: 0.4ms | Allocations: 111)
+  Rendered home/_fanpage.html.erb (Duration: 0.4ms | Allocations: 112)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 0 LIMIT 6 OFFSET 0[0m
+  ↳ app/views/home/_features_items.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 1 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 12 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mAvailability Load (0.4ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 1 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 3 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 13 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mAvailability Load (0.4ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 3 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 14 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mAvailability Load (0.4ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 2 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 5 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 9 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 2 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 6 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 10 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:12
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 3 LIMIT 1[0m
+  ↳ app/views/home/_features_items.html.erb:24
+  Rendered home/_features_items.html.erb (Duration: 67.7ms | Allocations: 18572)
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 1[0m
+  ↳ app/views/home/_category_tab.html.erb:14
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 5[0m
+  ↳ app/views/home/_category_tab.html.erb:14
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 9[0m
+  ↳ app/views/home/_category_tab.html.erb:14
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT `products`.* FROM `products` INNER JOIN `product_categories` ON `products`.`id` = `product_categories`.`product_id` WHERE `product_categories`.`category_id` = 10[0m
+  ↳ app/views/home/_category_tab.html.erb:14
+  Rendered home/_category_tab.html.erb (Duration: 29.4ms | Allocations: 10813)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` WHERE `products`.`show_home` != 1 LIMIT 12[0m
+  ↳ app/views/home/_recommended_items.html.erb:7
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 7 AND `active_storage_attachments`.`record_type` = 'Product' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_recommended_items.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 11 LIMIT 1[0m
+  ↳ app/views/home/_recommended_items.html.erb:14
+  [1m[36mCACHE Availability Load (0.0ms)[0m  [1m[34mSELECT `availabilities`.* FROM `availabilities` WHERE `availabilities`.`id` = 2 LIMIT 1[0m
+  ↳ app/views/home/_recommended_items.html.erb:25
+  Rendered home/_recommended_items.html.erb (Duration: 16.6ms | Allocations: 4315)
+  Rendered home/index.html.erb within layouts/application (Duration: 378.9ms | Allocations: 431175)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` ORDER BY title[0m
+  ↳ app/views/layouts/_header.html.erb:170:in `map'
+  Rendered layouts/_header.html.erb (Duration: 15.4ms | Allocations: 3819)
+  Rendered layouts/_footer.html.erb (Duration: 23.0ms | Allocations: 1289)
+  Rendered layout layouts/application.html.erb (Duration: 2880.2ms | Allocations: 1070271)
+Completed 200 OK in 2935ms (Views: 2855.2ms | ActiveRecord: 36.1ms | Allocations: 1094595)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBFdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f7b38c322dcd074e459e024aae9f1b3660c5400e/Screenshot%20from%202022-03-30%2021-28-04.png?locale=en" for ::1 at 2022-09-02 10:53:29 +0700
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBFZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--fa67b9a3e3f9075bdff6a1890caaa1296031bc27/Screenshot%20from%202022-04-08%2021-31-57.png?locale=en" for ::1 at 2022-09-02 10:53:29 +0700
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--53b0e6e18db37c74e699152fea07770542922a9d/Screenshot%20from%202022-04-18%2015-37-06.png?locale=en" for ::1 at 2022-09-02 10:53:29 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as PNG
+  Parameters: {"locale"=>"en", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBFZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--fa67b9a3e3f9075bdff6a1890caaa1296031bc27", "filename"=>"Screenshot from 2022-04-08 21-31-57"}
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--22e669d381f3ab644530479283c2453c68aa9d40/Screenshot%20from%202022-04-18%2015-37-08.png?locale=en" for ::1 at 2022-09-02 10:53:29 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as PNG
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBFQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--e590454154aa94d205c7e4e49f82e6df910a7d1f/Screenshot%20from%202022-04-18%2011-07-12.png?locale=en" for ::1 at 2022-09-02 10:53:29 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as PNG
+  Parameters: {"locale"=>"en", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--53b0e6e18db37c74e699152fea07770542922a9d", "filename"=>"Screenshot from 2022-04-18 15-37-06"}
+Processing by ActiveStorage::Blobs::RedirectController#show as PNG
+  Parameters: {"locale"=>"en", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBFdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f7b38c322dcd074e459e024aae9f1b3660c5400e", "filename"=>"Screenshot from 2022-03-30 21-28-04"}
+Processing by ActiveStorage::Blobs::RedirectController#show as PNG
+  Parameters: {"locale"=>"en", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--22e669d381f3ab644530479283c2453c68aa9d40", "filename"=>"Screenshot from 2022-04-18 15-37-08"}
+  [1m[36mActiveStorage::Blob Load (3.6ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 13 LIMIT 1[0m
+[36m  Disk Storage (1.0ms) [0m[34mGenerated URL for file at key: xm54j8q401dv2i29z44wmjm9pv3m (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhlRzAxTkdvNGNUUXdNV1IyTW1reU9YbzBOSGR0YW0wNWNIWXpiUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWxOamNtVmxibk5vYjNRZ1puSnZiU0F5TURJeUxUQTBMVEE0SURJeExUTXhMVFUzTG5CdVp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25VMk55WldWdWMyaHZkQ1V5TUdaeWIyMGxNakF5TURJeUxUQTBMVEE0SlRJd01qRXRNekV0TlRjdWNHNW5CanNHVkRvUlkyOXVkR1Z1ZEY5MGVYQmxTU0lPYVcxaFoyVXZjRzVuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wOS0wMlQwMzo1ODoyOS4xNjFaIiwicHVyIjoiYmxvYl9rZXkifX0=--3d90746113119e5be1bcecc9edaae34348019184/Screenshot%20from%202022-04-08%2021-31-57.png)[0m
+  Parameters: {"locale"=>"en", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBFQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--e590454154aa94d205c7e4e49f82e6df910a7d1f", "filename"=>"Screenshot from 2022-04-18 11-07-12"}
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhlRzAxTkdvNGNUUXdNV1IyTW1reU9YbzBOSGR0YW0wNWNIWXpiUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWxOamNtVmxibk5vYjNRZ1puSnZiU0F5TURJeUxUQTBMVEE0SURJeExUTXhMVFUzTG5CdVp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25VMk55WldWdWMyaHZkQ1V5TUdaeWIyMGxNakF5TURJeUxUQTBMVEE0SlRJd01qRXRNekV0TlRjdWNHNW5CanNHVkRvUlkyOXVkR1Z1ZEY5MGVYQmxTU0lPYVcxaFoyVXZjRzVuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wOS0wMlQwMzo1ODoyOS4xNjFaIiwicHVyIjoiYmxvYl9rZXkifX0=--3d90746113119e5be1bcecc9edaae34348019184/Screenshot%20from%202022-04-08%2021-31-57.png
+Completed 302 Found in 27ms (ActiveRecord: 3.6ms | Allocations: 7187)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBFUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f832ca2202fba2920d8dd0d31e19eded563d6747/Screenshot%20from%202022-04-18%2015-36-12.png?locale=en" for ::1 at 2022-09-02 10:53:29 +0700
+  [1m[36mActiveStorage::Blob Load (8.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 9 LIMIT 1[0m
+  [1m[36mActiveStorage::Blob Load (7.9ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 14 LIMIT 1[0m
+Processing by ActiveStorage::Blobs::RedirectController#show as PNG
+[36m  Disk Storage (0.8ms) [0m[34mGenerated URL for file at key: qal8b1v606nivvp3c4kqw1afawvd (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhjV0ZzT0dJeGRqWXdObTVwZG5ad00yTTBhM0YzTVdGbVlYZDJaQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWxOamNtVmxibk5vYjNRZ1puSnZiU0F5TURJeUxUQTBMVEU0SURFMUxUTTNMVEEyTG5CdVp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25VMk55WldWdWMyaHZkQ1V5TUdaeWIyMGxNakF5TURJeUxUQTBMVEU0SlRJd01UVXRNemN0TURZdWNHNW5CanNHVkRvUlkyOXVkR1Z1ZEY5MGVYQmxTU0lPYVcxaFoyVXZjRzVuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wOS0wMlQwMzo1ODoyOS4xNzlaIiwicHVyIjoiYmxvYl9rZXkifX0=--4ad111aad80532ca7f77a3e990fb1f45231c7dd2/Screenshot%20from%202022-04-18%2015-37-06.png)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhjV0ZzT0dJeGRqWXdObTVwZG5ad00yTTBhM0YzTVdGbVlYZDJaQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWxOamNtVmxibk5vYjNRZ1puSnZiU0F5TURJeUxUQTBMVEU0SURFMUxUTTNMVEEyTG5CdVp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25VMk55WldWdWMyaHZkQ1V5TUdaeWIyMGxNakF5TURJeUxUQTBMVEU0SlRJd01UVXRNemN0TURZdWNHNW5CanNHVkRvUlkyOXVkR1Z1ZEY5MGVYQmxTU0lPYVcxaFoyVXZjRzVuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wOS0wMlQwMzo1ODoyOS4xNzlaIiwicHVyIjoiYmxvYl9rZXkifX0=--4ad111aad80532ca7f77a3e990fb1f45231c7dd2/Screenshot%20from%202022-04-18%2015-37-06.png
+Completed 302 Found in 32ms (ActiveRecord: 14.0ms | Allocations: 7654)
+
+
+  [1m[36mActiveStorage::Blob Load (3.2ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 10 LIMIT 1[0m
+[36m  Disk Storage (0.7ms) [0m[34mGenerated URL for file at key: yoj95nfw49uc7b2yhota5z7uj94r (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhlVzlxT1RWdVpuYzBPWFZqTjJJeWVXaHZkR0UxZWpkMWFqazBjZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWxOamNtVmxibk5vYjNRZ1puSnZiU0F5TURJeUxUQXpMVE13SURJeExUSTRMVEEwTG5CdVp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25VMk55WldWdWMyaHZkQ1V5TUdaeWIyMGxNakF5TURJeUxUQXpMVE13SlRJd01qRXRNamd0TURRdWNHNW5CanNHVkRvUlkyOXVkR1Z1ZEY5MGVYQmxTU0lPYVcxaFoyVXZjRzVuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wOS0wMlQwMzo1ODoyOS4xODFaIiwicHVyIjoiYmxvYl9rZXkifX0=--a88ec73e1828a6d2f646b25c5b02dd082b2ebc5b/Screenshot%20from%202022-03-30%2021-28-04.png)[0m
+[36m  Disk Storage (0.7ms) [0m[34mGenerated URL for file at key: 4x8l16dhbr3oslu52sq281whdjv5 (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhOSGc0YkRFMlpHaGljak52YzJ4MU5USnpjVEk0TVhkb1pHcDJOUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWxOamNtVmxibk5vYjNRZ1puSnZiU0F5TURJeUxUQTBMVEU0SURFMUxUTTNMVEE0TG5CdVp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25VMk55WldWdWMyaHZkQ1V5TUdaeWIyMGxNakF5TURJeUxUQTBMVEU0SlRJd01UVXRNemN0TURndWNHNW5CanNHVkRvUlkyOXVkR1Z1ZEY5MGVYQmxTU0lPYVcxaFoyVXZjRzVuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wOS0wMlQwMzo1ODoyOS4xOTBaIiwicHVyIjoiYmxvYl9rZXkifX0=--43d3b826015f92f71bf30962c0c3b80aa78c2ae8/Screenshot%20from%202022-04-18%2015-37-08.png)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhOSGc0YkRFMlpHaGljak52YzJ4MU5USnpjVEk0TVhkb1pHcDJOUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWxOamNtVmxibk5vYjNRZ1puSnZiU0F5TURJeUxUQTBMVEU0SURFMUxUTTNMVEE0TG5CdVp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25VMk55WldWdWMyaHZkQ1V5TUdaeWIyMGxNakF5TURJeUxUQTBMVEU0SlRJd01UVXRNemN0TURndWNHNW5CanNHVkRvUlkyOXVkR1Z1ZEY5MGVYQmxTU0lPYVcxaFoyVXZjRzVuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wOS0wMlQwMzo1ODoyOS4xOTBaIiwicHVyIjoiYmxvYl9rZXkifX0=--43d3b826015f92f71bf30962c0c3b80aa78c2ae8/Screenshot%20from%202022-04-18%2015-37-08.png
+  Parameters: {"locale"=>"en", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBFUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f832ca2202fba2920d8dd0d31e19eded563d6747", "filename"=>"Screenshot from 2022-04-18 15-36-12"}
+  [1m[36mActiveStorage::Blob Load (8.5ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 11 LIMIT 1[0m
+Completed 302 Found in 36ms (ActiveRecord: 11.2ms | Allocations: 8798)
+
+
+[36m  Disk Storage (0.7ms) [0m[34mGenerated URL for file at key: 5b3gxke3n7nenkhqi2w8medpysqi (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhOV0l6WjNoclpUTnVOMjVsYm10b2NXa3lkemh0WldSd2VYTnhhUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWxOamNtVmxibk5vYjNRZ1puSnZiU0F5TURJeUxUQTBMVEU0SURFeExUQTNMVEV5TG5CdVp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25VMk55WldWdWMyaHZkQ1V5TUdaeWIyMGxNakF5TURJeUxUQTBMVEU0SlRJd01URXRNRGN0TVRJdWNHNW5CanNHVkRvUlkyOXVkR1Z1ZEY5MGVYQmxTU0lPYVcxaFoyVXZjRzVuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wOS0wMlQwMzo1ODoyOS4xOTZaIiwicHVyIjoiYmxvYl9rZXkifX0=--3112961314b3d99d5d58995cf0c98624f1be8e88/Screenshot%20from%202022-04-18%2011-07-12.png)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhlVzlxT1RWdVpuYzBPWFZqTjJJeWVXaHZkR0UxZWpkMWFqazBjZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWxOamNtVmxibk5vYjNRZ1puSnZiU0F5TURJeUxUQXpMVE13SURJeExUSTRMVEEwTG5CdVp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25VMk55WldWdWMyaHZkQ1V5TUdaeWIyMGxNakF5TURJeUxUQXpMVE13SlRJd01qRXRNamd0TURRdWNHNW5CanNHVkRvUlkyOXVkR1Z1ZEY5MGVYQmxTU0lPYVcxaFoyVXZjRzVuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wOS0wMlQwMzo1ODoyOS4xODFaIiwicHVyIjoiYmxvYl9rZXkifX0=--a88ec73e1828a6d2f646b25c5b02dd082b2ebc5b/Screenshot%20from%202022-03-30%2021-28-04.png
+  [1m[36mActiveStorage::Blob Load (2.2ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 12 LIMIT 1[0m
+Completed 302 Found in 45ms (ActiveRecord: 13.6ms | Allocations: 11001)
+
+
+[36m  Disk Storage (0.7ms) [0m[34mGenerated URL for file at key: izusxjq7dm73dr1lldeffcupy208 (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhhWHAxYzNocWNUZGtiVGN6WkhJeGJHeGtaV1ptWTNWd2VUSXdPQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWxOamNtVmxibk5vYjNRZ1puSnZiU0F5TURJeUxUQTBMVEU0SURFMUxUTTJMVEV5TG5CdVp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25VMk55WldWdWMyaHZkQ1V5TUdaeWIyMGxNakF5TURJeUxUQTBMVEU0SlRJd01UVXRNell0TVRJdWNHNW5CanNHVkRvUlkyOXVkR1Z1ZEY5MGVYQmxTU0lPYVcxaFoyVXZjRzVuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wOS0wMlQwMzo1ODoyOS4yMDNaIiwicHVyIjoiYmxvYl9rZXkifX0=--b479050e17e0d60b75f6cade36c8f0b26cd99d60/Screenshot%20from%202022-04-18%2015-36-12.png)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhOV0l6WjNoclpUTnVOMjVsYm10b2NXa3lkemh0WldSd2VYTnhhUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWxOamNtVmxibk5vYjNRZ1puSnZiU0F5TURJeUxUQTBMVEU0SURFeExUQTNMVEV5TG5CdVp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25VMk55WldWdWMyaHZkQ1V5TUdaeWIyMGxNakF5TURJeUxUQTBMVEU0SlRJd01URXRNRGN0TVRJdWNHNW5CanNHVkRvUlkyOXVkR1Z1ZEY5MGVYQmxTU0lPYVcxaFoyVXZjRzVuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wOS0wMlQwMzo1ODoyOS4xOTZaIiwicHVyIjoiYmxvYl9rZXkifX0=--3112961314b3d99d5d58995cf0c98624f1be8e88/Screenshot%20from%202022-04-18%2011-07-12.png
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhhWHAxYzNocWNUZGtiVGN6WkhJeGJHeGtaV1ptWTNWd2VUSXdPQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWxOamNtVmxibk5vYjNRZ1puSnZiU0F5TURJeUxUQTBMVEU0SURFMUxUTTJMVEV5TG5CdVp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25VMk55WldWdWMyaHZkQ1V5TUdaeWIyMGxNakF5TURJeUxUQTBMVEU0SlRJd01UVXRNell0TVRJdWNHNW5CanNHVkRvUlkyOXVkR1Z1ZEY5MGVYQmxTU0lPYVcxaFoyVXZjRzVuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wOS0wMlQwMzo1ODoyOS4yMDNaIiwicHVyIjoiYmxvYl9rZXkifX0=--b479050e17e0d60b75f6cade36c8f0b26cd99d60/Screenshot%20from%202022-04-18%2015-36-12.png
+Completed 302 Found in 42ms (ActiveRecord: 12.0ms | Allocations: 10396)
+
+
+Completed 302 Found in 14ms (ActiveRecord: 2.2ms | Allocations: 3581)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhlRzAxTkdvNGNUUXdNV1IyTW1reU9YbzBOSGR0YW0wNWNIWXpiUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWxOamNtVmxibk5vYjNRZ1puSnZiU0F5TURJeUxUQTBMVEE0SURJeExUTXhMVFUzTG5CdVp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25VMk55WldWdWMyaHZkQ1V5TUdaeWIyMGxNakF5TURJeUxUQTBMVEE0SlRJd01qRXRNekV0TlRjdWNHNW5CanNHVkRvUlkyOXVkR1Z1ZEY5MGVYQmxTU0lPYVcxaFoyVXZjRzVuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wOS0wMlQwMzo1ODoyOS4xNjFaIiwicHVyIjoiYmxvYl9rZXkifX0=--3d90746113119e5be1bcecc9edaae34348019184/Screenshot%20from%202022-04-08%2021-31-57.png" for ::1 at 2022-09-02 10:53:29 +0700
+Processing by ActiveStorage::DiskController#show as PNG
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhjV0ZzT0dJeGRqWXdObTVwZG5ad00yTTBhM0YzTVdGbVlYZDJaQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWxOamNtVmxibk5vYjNRZ1puSnZiU0F5TURJeUxUQTBMVEU0SURFMUxUTTNMVEEyTG5CdVp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25VMk55WldWdWMyaHZkQ1V5TUdaeWIyMGxNakF5TURJeUxUQTBMVEU0SlRJd01UVXRNemN0TURZdWNHNW5CanNHVkRvUlkyOXVkR1Z1ZEY5MGVYQmxTU0lPYVcxaFoyVXZjRzVuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wOS0wMlQwMzo1ODoyOS4xNzlaIiwicHVyIjoiYmxvYl9rZXkifX0=--4ad111aad80532ca7f77a3e990fb1f45231c7dd2/Screenshot%20from%202022-04-18%2015-37-06.png" for ::1 at 2022-09-02 10:53:29 +0700
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhhWHAxYzNocWNUZGtiVGN6WkhJeGJHeGtaV1ptWTNWd2VUSXdPQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWxOamNtVmxibk5vYjNRZ1puSnZiU0F5TURJeUxUQTBMVEU0SURFMUxUTTJMVEV5TG5CdVp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25VMk55WldWdWMyaHZkQ1V5TUdaeWIyMGxNakF5TURJeUxUQTBMVEU0SlRJd01UVXRNell0TVRJdWNHNW5CanNHVkRvUlkyOXVkR1Z1ZEY5MGVYQmxTU0lPYVcxaFoyVXZjRzVuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wOS0wMlQwMzo1ODoyOS4yMDNaIiwicHVyIjoiYmxvYl9rZXkifX0=--b479050e17e0d60b75f6cade36c8f0b26cd99d60/Screenshot%20from%202022-04-18%2015-36-12.png" for ::1 at 2022-09-02 10:53:29 +0700
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhOV0l6WjNoclpUTnVOMjVsYm10b2NXa3lkemh0WldSd2VYTnhhUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWxOamNtVmxibk5vYjNRZ1puSnZiU0F5TURJeUxUQTBMVEU0SURFeExUQTNMVEV5TG5CdVp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25VMk55WldWdWMyaHZkQ1V5TUdaeWIyMGxNakF5TURJeUxUQTBMVEU0SlRJd01URXRNRGN0TVRJdWNHNW5CanNHVkRvUlkyOXVkR1Z1ZEY5MGVYQmxTU0lPYVcxaFoyVXZjRzVuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wOS0wMlQwMzo1ODoyOS4xOTZaIiwicHVyIjoiYmxvYl9rZXkifX0=--3112961314b3d99d5d58995cf0c98624f1be8e88/Screenshot%20from%202022-04-18%2011-07-12.png" for ::1 at 2022-09-02 10:53:29 +0700
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Screenshot from 2022-04-18 11-07-12"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 365)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhOSGc0YkRFMlpHaGljak52YzJ4MU5USnpjVEk0TVhkb1pHcDJOUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWxOamNtVmxibk5vYjNRZ1puSnZiU0F5TURJeUxUQTBMVEU0SURFMUxUTTNMVEE0TG5CdVp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25VMk55WldWdWMyaHZkQ1V5TUdaeWIyMGxNakF5TURJeUxUQTBMVEU0SlRJd01UVXRNemN0TURndWNHNW5CanNHVkRvUlkyOXVkR1Z1ZEY5MGVYQmxTU0lPYVcxaFoyVXZjRzVuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wOS0wMlQwMzo1ODoyOS4xOTBaIiwicHVyIjoiYmxvYl9rZXkifX0=--43d3b826015f92f71bf30962c0c3b80aa78c2ae8/Screenshot%20from%202022-04-18%2015-37-08.png" for ::1 at 2022-09-02 10:53:29 +0700
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Screenshot from 2022-04-18 15-37-08"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 301)
+
+
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Screenshot from 2022-04-18 15-36-12"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 301)
+
+
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Screenshot from 2022-04-18 15-37-06"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 301)
+
+
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Screenshot from 2022-04-08 21-31-57"}
+Completed 200 OK in 5ms (ActiveRecord: 0.0ms | Allocations: 653)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhlVzlxT1RWdVpuYzBPWFZqTjJJeWVXaHZkR0UxZWpkMWFqazBjZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWxOamNtVmxibk5vYjNRZ1puSnZiU0F5TURJeUxUQXpMVE13SURJeExUSTRMVEEwTG5CdVp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25VMk55WldWdWMyaHZkQ1V5TUdaeWIyMGxNakF5TURJeUxUQXpMVE13SlRJd01qRXRNamd0TURRdWNHNW5CanNHVkRvUlkyOXVkR1Z1ZEY5MGVYQmxTU0lPYVcxaFoyVXZjRzVuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wOS0wMlQwMzo1ODoyOS4xODFaIiwicHVyIjoiYmxvYl9rZXkifX0=--a88ec73e1828a6d2f646b25c5b02dd082b2ebc5b/Screenshot%20from%202022-03-30%2021-28-04.png" for ::1 at 2022-09-02 10:53:29 +0700
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Screenshot from 2022-03-30 21-28-04"}
+Completed 200 OK in 2ms (ActiveRecord: 0.0ms | Allocations: 431)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhlRzAxTkdvNGNUUXdNV1IyTW1reU9YbzBOSGR0YW0wNWNIWXpiUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpZjJsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWxOamNtVmxibk5vYjNRZ1puSnZiU0F5TURJeUxUQTBMVEE0SURJeExUTXhMVFUzTG5CdVp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25VMk55WldWdWMyaHZkQ1V5TUdaeWIyMGxNakF5TURJeUxUQTBMVEE0SlRJd01qRXRNekV0TlRjdWNHNW5CanNHVkRvUlkyOXVkR1Z1ZEY5MGVYQmxTU0lPYVcxaFoyVXZjRzVuQmpzR1ZEb1JjMlZ5ZG1salpWOXVZVzFsT2dwc2IyTmhiQT09IiwiZXhwIjoiMjAyMi0wOS0wMlQwMzo1ODoyOS4xNjFaIiwicHVyIjoiYmxvYl9rZXkifX0=--3d90746113119e5be1bcecc9edaae34348019184/Screenshot%20from%202022-04-08%2021-31-57.png" for ::1 at 2022-09-02 10:53:29 +0700
+Started GET "/images/prev.png" for ::1 at 2022-09-02 10:53:29 +0700
+Processing by ActiveStorage::DiskController#show as PNG
+Started GET "/images/next.png" for ::1 at 2022-09-02 10:53:29 +0700
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"Screenshot from 2022-04-08 21-31-57"}
+Started GET "/images/loading.gif" for ::1 at 2022-09-02 10:53:29 +0700
+Completed 200 OK in 5ms (ActiveRecord: 0.0ms | Allocations: 1107)
+
+
+Started GET "/Roboto-Regular.ttf" for ::1 at 2022-09-02 10:53:29 +0700
+  
+ActionController::RoutingError (No route matches [GET] "/Roboto-Regular.ttf"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/assets/ico/favicon.ico"):
+  
+Started GET "/en/blog" for ::1 at 2022-09-02 10:53:31 +0700
+Processing by BlogController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `load_layout'
+  [1m[35mCACHE  (0.3ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  [1m[36mCategoryPost Load (4.8ms)[0m  [1m[34mSELECT `category_posts`.* FROM `category_posts`[0m
+  ↳ app/views/home/_category_blog.html.erb:3
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT COUNT(*) FROM `posts` WHERE `posts`.`category_post_id` = 1[0m
+  ↳ app/views/home/_category_blog.html.erb:4
+  Rendered home/_category_blog.html.erb (Duration: 29.6ms | Allocations: 4128)
+  [1m[36mProductView Load (0.6ms)[0m  [1m[34mSELECT `product_views`.`post_id` FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL AND `product_views`.`post_id` IN (4, 4) GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/views/home/_best_view_blog.html.erb:3
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 4 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_views` WHERE `product_views`.`post_id` = 4[0m
+  ↳ app/views/home/_best_view_blog.html.erb:10
+  Rendered home/_best_view_blog.html.erb (Duration: 57.4ms | Allocations: 13486)
+  Rendered home/_fanpage.html.erb (Duration: 0.3ms | Allocations: 40)
+  Rendered home/_group_facebook.html.erb (Duration: 0.8ms | Allocations: 111)
+  Rendered home/_youtube.html.erb (Duration: 0.8ms | Allocations: 116)
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY title[0m
+  ↳ app/views/blog/index.html.erb:23:in `map'
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY `posts`.`created_at` DESC LIMIT 10 OFFSET 0[0m
+  ↳ app/views/blog/index.html.erb:27
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  Rendered blog/index.html.erb within layouts/application (Duration: 170.8ms | Allocations: 35650)
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT `products`.* FROM `products` ORDER BY title[0m
+  ↳ app/views/layouts/_header.html.erb:170:in `map'
+  Rendered layouts/_header.html.erb (Duration: 7.7ms | Allocations: 1657)
+  Rendered layouts/_footer.html.erb (Duration: 1.1ms | Allocations: 389)
+  Rendered layout layouts/application.html.erb (Duration: 222.9ms | Allocations: 74034)
+Completed 200 OK in 274ms (Views: 197.7ms | ActiveRecord: 42.9ms | Allocations: 83889)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6aad5af4b8d10a83dfcff601f2238330510b7492/639-e_commerce.webp?locale=en" for ::1 at 2022-09-02 10:53:32 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as */*
+  Parameters: {"locale"=>"en", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6aad5af4b8d10a83dfcff601f2238330510b7492", "filename"=>"639-e_commerce"}
+Started GET "/en/Roboto-Regular.ttf" for ::1 at 2022-09-02 10:53:32 +0700
+  [1m[36mActiveStorage::Blob Load (0.7ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  
+ActionController::RoutingError (No route matches [GET] "/en/Roboto-Regular.ttf"):
+  
+[36m  Disk Storage (0.8ms) [0m[34mGenerated URL for file at key: 15huhiseiwjyggpsfygmuhbdqjqp (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDM6NTg6MzIuMjg3WiIsInB1ciI6ImJsb2Jfa2V5In19--5cbaf607edd62681849913c050becee241c4769c/639-e_commerce.webp)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDM6NTg6MzIuMjg3WiIsInB1ciI6ImJsb2Jfa2V5In19--5cbaf607edd62681849913c050becee241c4769c/639-e_commerce.webp
+Completed 302 Found in 36ms (ActiveRecord: 0.7ms | Allocations: 12068)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDM6NTg6MzIuMjg3WiIsInB1ciI6ImJsb2Jfa2V5In19--5cbaf607edd62681849913c050becee241c4769c/639-e_commerce.webp" for ::1 at 2022-09-02 10:53:32 +0700
+Processing by ActiveStorage::DiskController#show as */*
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"639-e_commerce"}
+Completed 200 OK in 15ms (ActiveRecord: 0.0ms | Allocations: 9695)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDM6NTg6MzIuMjg3WiIsInB1ciI6ImJsb2Jfa2V5In19--5cbaf607edd62681849913c050becee241c4769c/639-e_commerce.webp" for ::1 at 2022-09-02 10:53:32 +0700
+Processing by ActiveStorage::DiskController#show as */*
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"639-e_commerce"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 301)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-09-02 10:53:32 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-09-02 10:53:32 +0700
+Started GET "/images/next.png" for ::1 at 2022-09-02 10:53:32 +0700
+Started GET "/en/blog" for ::1 at 2022-09-02 10:53:36 +0700
+Processing by BlogController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  [1m[36mCategoryPost Load (0.4ms)[0m  [1m[34mSELECT `category_posts`.* FROM `category_posts`[0m
+  ↳ app/views/home/_category_blog.html.erb:3
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `posts` WHERE `posts`.`category_post_id` = 1[0m
+  ↳ app/views/home/_category_blog.html.erb:4
+  Rendered home/_category_blog.html.erb (Duration: 7.3ms | Allocations: 1567)
+  [1m[36mProductView Load (0.6ms)[0m  [1m[34mSELECT `product_views`.`post_id` FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL AND `product_views`.`post_id` IN (4, 4) GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/views/home/_best_view_blog.html.erb:3
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 4 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_views` WHERE `product_views`.`post_id` = 4[0m
+  ↳ app/views/home/_best_view_blog.html.erb:10
+  Rendered home/_best_view_blog.html.erb (Duration: 18.7ms | Allocations: 4751)
+  Rendered home/_fanpage.html.erb (Duration: 0.1ms | Allocations: 40)
+  Rendered home/_group_facebook.html.erb (Duration: 0.1ms | Allocations: 38)
+  Rendered home/_youtube.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY title[0m
+  ↳ app/views/blog/index.html.erb:23:in `map'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY `posts`.`created_at` DESC LIMIT 10 OFFSET 0[0m
+  ↳ app/views/blog/index.html.erb:27
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  Rendered blog/index.html.erb within layouts/application (Duration: 50.5ms | Allocations: 13180)
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT `products`.* FROM `products` ORDER BY title[0m
+  ↳ app/views/layouts/_header.html.erb:170:in `map'
+  Rendered layouts/_header.html.erb (Duration: 5.6ms | Allocations: 1642)
+  Rendered layouts/_footer.html.erb (Duration: 0.7ms | Allocations: 389)
+  Rendered layout layouts/application.html.erb (Duration: 103.0ms | Allocations: 51440)
+Completed 200 OK in 113ms (Views: 98.5ms | ActiveRecord: 5.8ms | Allocations: 54335)
+
+
+Started GET "/en/Roboto-Regular.ttf" for ::1 at 2022-09-02 10:53:37 +0700
+  
+ActionController::RoutingError (No route matches [GET] "/en/Roboto-Regular.ttf"):
+  
+Started GET "/images/prev.png" for ::1 at 2022-09-02 10:53:37 +0700
+Started GET "/images/next.png" for ::1 at 2022-09-02 10:53:37 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-09-02 10:53:37 +0700
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDM6NTg6MzIuMjg3WiIsInB1ciI6ImJsb2Jfa2V5In19--5cbaf607edd62681849913c050becee241c4769c/639-e_commerce.webp" for ::1 at 2022-09-02 10:53:37 +0700
+Processing by ActiveStorage::DiskController#show as */*
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"639-e_commerce"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 301)
+
+
+Started GET "/en/blog" for ::1 at 2022-09-02 10:53:42 +0700
+Processing by BlogController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  [1m[36mCategoryPost Load (0.3ms)[0m  [1m[34mSELECT `category_posts`.* FROM `category_posts`[0m
+  ↳ app/views/home/_category_blog.html.erb:3
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `posts` WHERE `posts`.`category_post_id` = 1[0m
+  ↳ app/views/home/_category_blog.html.erb:4
+  Rendered home/_category_blog.html.erb (Duration: 8.7ms | Allocations: 1567)
+  [1m[36mProductView Load (0.5ms)[0m  [1m[34mSELECT `product_views`.`post_id` FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL AND `product_views`.`post_id` IN (4, 4) GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/views/home/_best_view_blog.html.erb:3
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 4 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[36mActiveStorage::Blob Load (4.8ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_views` WHERE `product_views`.`post_id` = 4[0m
+  ↳ app/views/home/_best_view_blog.html.erb:10
+  Rendered home/_best_view_blog.html.erb (Duration: 27.1ms | Allocations: 4750)
+  Rendered home/_fanpage.html.erb (Duration: 0.4ms | Allocations: 40)
+  Rendered home/_group_facebook.html.erb (Duration: 0.1ms | Allocations: 38)
+  Rendered home/_youtube.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY title[0m
+  ↳ app/views/blog/index.html.erb:23:in `map'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY `posts`.`created_at` DESC LIMIT 10 OFFSET 0[0m
+  ↳ app/views/blog/index.html.erb:27
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  Rendered blog/index.html.erb within layouts/application (Duration: 64.7ms | Allocations: 13177)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` ORDER BY title[0m
+  ↳ app/views/layouts/_header.html.erb:170:in `map'
+  Rendered layouts/_header.html.erb (Duration: 5.0ms | Allocations: 1641)
+  Rendered layouts/_footer.html.erb (Duration: 0.9ms | Allocations: 389)
+  Rendered layout layouts/application.html.erb (Duration: 122.8ms | Allocations: 51543)
+Completed 200 OK in 135ms (Views: 114.0ms | ActiveRecord: 9.9ms | Allocations: 54433)
+
+
+Started GET "/en/Roboto-Regular.ttf" for ::1 at 2022-09-02 10:53:42 +0700
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDM6NTg6MzIuMjg3WiIsInB1ciI6ImJsb2Jfa2V5In19--5cbaf607edd62681849913c050becee241c4769c/639-e_commerce.webp" for ::1 at 2022-09-02 10:53:42 +0700
+Processing by ActiveStorage::DiskController#show as */*
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"639-e_commerce"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 301)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/en/Roboto-Regular.ttf"):
+  
+Started GET "/images/prev.png" for ::1 at 2022-09-02 10:53:42 +0700
+Started GET "/images/next.png" for ::1 at 2022-09-02 10:53:42 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-09-02 10:53:42 +0700
+Started GET "/en/blog" for ::1 at 2022-09-02 10:54:09 +0700
+Processing by BlogController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  [1m[35mCACHE  (0.1ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  [1m[36mCategoryPost Load (0.4ms)[0m  [1m[34mSELECT `category_posts`.* FROM `category_posts`[0m
+  ↳ app/views/home/_category_blog.html.erb:3
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `posts` WHERE `posts`.`category_post_id` = 1[0m
+  ↳ app/views/home/_category_blog.html.erb:4
+  Rendered home/_category_blog.html.erb (Duration: 10.8ms | Allocations: 1567)
+  [1m[36mProductView Load (0.6ms)[0m  [1m[34mSELECT `product_views`.`post_id` FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL AND `product_views`.`post_id` IN (4, 4) GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/views/home/_best_view_blog.html.erb:3
+  [1m[36mPost Load (1.3ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 4 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_views` WHERE `product_views`.`post_id` = 4[0m
+  ↳ app/views/home/_best_view_blog.html.erb:10
+  Rendered home/_best_view_blog.html.erb (Duration: 37.0ms | Allocations: 4751)
+  Rendered home/_fanpage.html.erb (Duration: 0.2ms | Allocations: 40)
+  Rendered home/_group_facebook.html.erb (Duration: 0.2ms | Allocations: 38)
+  Rendered home/_youtube.html.erb (Duration: 0.2ms | Allocations: 38)
+  [1m[36mPost Load (6.8ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY title[0m
+  ↳ app/views/blog/index.html.erb:23:in `map'
+  [1m[36mPost Load (5.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY `posts`.`created_at` DESC LIMIT 10 OFFSET 0[0m
+  ↳ app/views/blog/index.html.erb:27
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  Rendered blog/index.html.erb within layouts/application (Duration: 114.9ms | Allocations: 13178)
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT `products`.* FROM `products` ORDER BY title[0m
+  ↳ app/views/layouts/_header.html.erb:170:in `map'
+  Rendered layouts/_header.html.erb (Duration: 8.1ms | Allocations: 1642)
+  Rendered layouts/_footer.html.erb (Duration: 1.3ms | Allocations: 389)
+  Rendered layout layouts/application.html.erb (Duration: 201.4ms | Allocations: 51535)
+Completed 200 OK in 224ms (Views: 184.3ms | ActiveRecord: 19.2ms | Allocations: 54428)
+
+
+Started GET "/en/Roboto-Regular.ttf" for ::1 at 2022-09-02 10:54:10 +0700
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDM6NTg6MzIuMjg3WiIsInB1ciI6ImJsb2Jfa2V5In19--5cbaf607edd62681849913c050becee241c4769c/639-e_commerce.webp" for ::1 at 2022-09-02 10:54:10 +0700
+Processing by ActiveStorage::DiskController#show as */*
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"639-e_commerce"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 301)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/en/Roboto-Regular.ttf"):
+  
+Started GET "/images/prev.png" for ::1 at 2022-09-02 10:54:10 +0700
+Started GET "/images/next.png" for ::1 at 2022-09-02 10:54:10 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-09-02 10:54:10 +0700
+Started GET "/en/blog" for ::1 at 2022-09-02 11:08:25 +0700
+Processing by BlogController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  [1m[36mCategoryPost Load (0.5ms)[0m  [1m[34mSELECT `category_posts`.* FROM `category_posts`[0m
+  ↳ app/views/home/_category_blog.html.erb:3
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `posts` WHERE `posts`.`category_post_id` = 1[0m
+  ↳ app/views/home/_category_blog.html.erb:4
+  Rendered home/_category_blog.html.erb (Duration: 8.9ms | Allocations: 1745)
+  [1m[36mProductView Load (0.5ms)[0m  [1m[34mSELECT `product_views`.`post_id` FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL AND `product_views`.`post_id` IN (4, 4) GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/views/home/_best_view_blog.html.erb:3
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 4 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_views` WHERE `product_views`.`post_id` = 4[0m
+  ↳ app/views/home/_best_view_blog.html.erb:10
+  Rendered home/_best_view_blog.html.erb (Duration: 23.2ms | Allocations: 5022)
+  Rendered home/_fanpage.html.erb (Duration: 0.4ms | Allocations: 113)
+  Rendered home/_group_facebook.html.erb (Duration: 0.5ms | Allocations: 108)
+  Rendered home/_youtube.html.erb (Duration: 0.5ms | Allocations: 114)
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY title[0m
+  ↳ app/views/blog/index.html.erb:23:in `map'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY `posts`.`created_at` DESC LIMIT 10 OFFSET 0[0m
+  ↳ app/views/blog/index.html.erb:27
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  Rendered blog/index.html.erb within layouts/application (Duration: 70.1ms | Allocations: 15926)
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT `products`.* FROM `products` ORDER BY title[0m
+  ↳ app/views/layouts/_header.html.erb:170:in `map'
+  Rendered layouts/_header.html.erb (Duration: 14.1ms | Allocations: 2748)
+  Rendered layouts/_footer.html.erb (Duration: 2.8ms | Allocations: 1177)
+  Rendered layout layouts/application.html.erb (Duration: 146.4ms | Allocations: 57489)
+Completed 200 OK in 162ms (Views: 144.3ms | ActiveRecord: 6.8ms | Allocations: 61734)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6aad5af4b8d10a83dfcff601f2238330510b7492/639-e_commerce.webp?locale=en" for ::1 at 2022-09-02 11:08:25 +0700
+Started GET "/en/Roboto-Regular.ttf" for ::1 at 2022-09-02 11:08:25 +0700
+  
+ActionController::RoutingError (No route matches [GET] "/en/Roboto-Regular.ttf"):
+  
+Processing by ActiveStorage::Blobs::RedirectController#show as */*
+  Parameters: {"locale"=>"en", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6aad5af4b8d10a83dfcff601f2238330510b7492", "filename"=>"639-e_commerce"}
+Started GET "/images/prev.png" for ::1 at 2022-09-02 11:08:25 +0700
+  [1m[36mActiveStorage::Blob Load (3.2ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+[36m  Disk Storage (0.7ms) [0m[34mGenerated URL for file at key: 15huhiseiwjyggpsfygmuhbdqjqp (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDQ6MTM6MjUuODgwWiIsInB1ciI6ImJsb2Jfa2V5In19--6f4d4fcf7265894347f1e4f0046b661d260407b5/639-e_commerce.webp)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDQ6MTM6MjUuODgwWiIsInB1ciI6ImJsb2Jfa2V5In19--6f4d4fcf7265894347f1e4f0046b661d260407b5/639-e_commerce.webp
+Completed 302 Found in 57ms (ActiveRecord: 3.2ms | Allocations: 13458)
+
+
+Started GET "/images/next.png" for ::1 at 2022-09-02 11:08:25 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-09-02 11:08:25 +0700
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDQ6MTM6MjUuODgwWiIsInB1ciI6ImJsb2Jfa2V5In19--6f4d4fcf7265894347f1e4f0046b661d260407b5/639-e_commerce.webp" for ::1 at 2022-09-02 11:08:25 +0700
+Processing by ActiveStorage::DiskController#show as */*
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"639-e_commerce"}
+Completed 200 OK in 2ms (ActiveRecord: 0.0ms | Allocations: 301)
+
+
+Started GET "/en/blog" for ::1 at 2022-09-02 11:08:32 +0700
+Processing by BlogController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  [1m[36mCategoryPost Load (0.4ms)[0m  [1m[34mSELECT `category_posts`.* FROM `category_posts`[0m
+  ↳ app/views/home/_category_blog.html.erb:3
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `posts` WHERE `posts`.`category_post_id` = 1[0m
+  ↳ app/views/home/_category_blog.html.erb:4
+  Rendered home/_category_blog.html.erb (Duration: 9.9ms | Allocations: 1567)
+  [1m[36mProductView Load (0.6ms)[0m  [1m[34mSELECT `product_views`.`post_id` FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL AND `product_views`.`post_id` IN (4, 4) GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/views/home/_best_view_blog.html.erb:3
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 4 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_views` WHERE `product_views`.`post_id` = 4[0m
+  ↳ app/views/home/_best_view_blog.html.erb:10
+  Rendered home/_best_view_blog.html.erb (Duration: 23.3ms | Allocations: 4750)
+  Rendered home/_fanpage.html.erb (Duration: 0.1ms | Allocations: 40)
+  Rendered home/_group_facebook.html.erb (Duration: 0.1ms | Allocations: 38)
+  Rendered home/_youtube.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY title[0m
+  ↳ app/views/blog/index.html.erb:23:in `map'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY `posts`.`created_at` DESC LIMIT 10 OFFSET 0[0m
+  ↳ app/views/blog/index.html.erb:27
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  Rendered blog/index.html.erb within layouts/application (Duration: 71.5ms | Allocations: 13177)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` ORDER BY title[0m
+  ↳ app/views/layouts/_header.html.erb:170:in `map'
+  Rendered layouts/_header.html.erb (Duration: 6.7ms | Allocations: 1641)
+  Rendered layouts/_footer.html.erb (Duration: 1.2ms | Allocations: 389)
+  Rendered layout layouts/application.html.erb (Duration: 135.5ms | Allocations: 51543)
+Completed 200 OK in 148ms (Views: 130.7ms | ActiveRecord: 6.2ms | Allocations: 54434)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDQ6MTM6MjUuODgwWiIsInB1ciI6ImJsb2Jfa2V5In19--6f4d4fcf7265894347f1e4f0046b661d260407b5/639-e_commerce.webp" for ::1 at 2022-09-02 11:08:33 +0700
+Processing by ActiveStorage::DiskController#show as */*
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"639-e_commerce"}
+Started GET "/en/Roboto-Regular.ttf" for ::1 at 2022-09-02 11:08:33 +0700
+  
+ActionController::RoutingError (No route matches [GET] "/en/Roboto-Regular.ttf"):
+  
+Completed 200 OK in 35ms (ActiveRecord: 0.0ms | Allocations: 11907)
+
+
+Started GET "/images/next.png" for ::1 at 2022-09-02 11:08:33 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-09-02 11:08:33 +0700
+Started GET "/images/prev.png" for ::1 at 2022-09-02 11:08:33 +0700
+Started GET "/en/blog" for ::1 at 2022-09-02 11:10:26 +0700
+Processing by BlogController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  [1m[36mCategoryPost Load (0.4ms)[0m  [1m[34mSELECT `category_posts`.* FROM `category_posts`[0m
+  ↳ app/views/home/_category_blog.html.erb:3
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `posts` WHERE `posts`.`category_post_id` = 1[0m
+  ↳ app/views/home/_category_blog.html.erb:4
+  Rendered home/_category_blog.html.erb (Duration: 9.0ms | Allocations: 1745)
+  [1m[36mProductView Load (0.4ms)[0m  [1m[34mSELECT `product_views`.`post_id` FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL AND `product_views`.`post_id` IN (4, 4) GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/views/home/_best_view_blog.html.erb:3
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 4 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_views` WHERE `product_views`.`post_id` = 4[0m
+  ↳ app/views/home/_best_view_blog.html.erb:10
+  Rendered home/_best_view_blog.html.erb (Duration: 23.6ms | Allocations: 5023)
+  Rendered home/_fanpage.html.erb (Duration: 0.4ms | Allocations: 113)
+  Rendered home/_group_facebook.html.erb (Duration: 0.4ms | Allocations: 108)
+  Rendered home/_youtube.html.erb (Duration: 0.3ms | Allocations: 114)
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY title[0m
+  ↳ app/views/blog/index.html.erb:23:in `map'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY `posts`.`created_at` DESC LIMIT 10 OFFSET 0[0m
+  ↳ app/views/blog/index.html.erb:27
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  Rendered blog/index.html.erb within layouts/application (Duration: 73.2ms | Allocations: 15926)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` ORDER BY title[0m
+  ↳ app/views/layouts/_header.html.erb:170:in `map'
+  Rendered layouts/_header.html.erb (Duration: 8.6ms | Allocations: 2749)
+  Rendered layouts/_footer.html.erb (Duration: 3.1ms | Allocations: 1174)
+  Rendered layout layouts/application.html.erb (Duration: 146.7ms | Allocations: 57584)
+Completed 200 OK in 161ms (Views: 145.7ms | ActiveRecord: 5.6ms | Allocations: 61715)
+
+
+Started GET "/en/Roboto-Regular.ttf" for ::1 at 2022-09-02 11:10:26 +0700
+  
+ActionController::RoutingError (No route matches [GET] "/en/Roboto-Regular.ttf"):
+  
+Started GET "/images/prev.png" for ::1 at 2022-09-02 11:10:27 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-09-02 11:10:27 +0700
+Started GET "/images/next.png" for ::1 at 2022-09-02 11:10:27 +0700
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDQ6MTM6MjUuODgwWiIsInB1ciI6ImJsb2Jfa2V5In19--6f4d4fcf7265894347f1e4f0046b661d260407b5/639-e_commerce.webp" for ::1 at 2022-09-02 11:10:27 +0700
+Processing by ActiveStorage::DiskController#show as */*
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"639-e_commerce"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 313)
+
+
+Started GET "/en/blog" for ::1 at 2022-09-02 11:10:33 +0700
+Processing by BlogController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  [1m[36mCategoryPost Load (0.5ms)[0m  [1m[34mSELECT `category_posts`.* FROM `category_posts`[0m
+  ↳ app/views/home/_category_blog.html.erb:3
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `posts` WHERE `posts`.`category_post_id` = 1[0m
+  ↳ app/views/home/_category_blog.html.erb:4
+  Rendered home/_category_blog.html.erb (Duration: 11.6ms | Allocations: 1567)
+  [1m[36mProductView Load (0.6ms)[0m  [1m[34mSELECT `product_views`.`post_id` FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL AND `product_views`.`post_id` IN (4, 4) GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/views/home/_best_view_blog.html.erb:3
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 4 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_views` WHERE `product_views`.`post_id` = 4[0m
+  ↳ app/views/home/_best_view_blog.html.erb:10
+  Rendered home/_best_view_blog.html.erb (Duration: 21.0ms | Allocations: 4750)
+  Rendered home/_fanpage.html.erb (Duration: 0.1ms | Allocations: 40)
+  Rendered home/_group_facebook.html.erb (Duration: 0.1ms | Allocations: 38)
+  Rendered home/_youtube.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY title[0m
+  ↳ app/views/blog/index.html.erb:23:in `map'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY `posts`.`created_at` DESC LIMIT 10 OFFSET 0[0m
+  ↳ app/views/blog/index.html.erb:27
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  Rendered blog/index.html.erb within layouts/application (Duration: 72.0ms | Allocations: 13178)
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT `products`.* FROM `products` ORDER BY title[0m
+  ↳ app/views/layouts/_header.html.erb:170:in `map'
+  Rendered layouts/_header.html.erb (Duration: 8.5ms | Allocations: 1641)
+  Rendered layouts/_footer.html.erb (Duration: 1.3ms | Allocations: 389)
+  Rendered layout layouts/application.html.erb (Duration: 151.4ms | Allocations: 51456)
+Completed 200 OK in 182ms (Views: 146.5ms | ActiveRecord: 6.4ms | Allocations: 54344)
+
+
+Started GET "/en/blog" for ::1 at 2022-09-02 11:10:33 +0700
+Processing by BlogController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  [1m[36mCategoryPost Load (2.4ms)[0m  [1m[34mSELECT `category_posts`.* FROM `category_posts`[0m
+  ↳ app/views/home/_category_blog.html.erb:3
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `posts` WHERE `posts`.`category_post_id` = 1[0m
+  ↳ app/views/home/_category_blog.html.erb:4
+  Rendered home/_category_blog.html.erb (Duration: 9.1ms | Allocations: 1567)
+  [1m[36mProductView Load (0.5ms)[0m  [1m[34mSELECT `product_views`.`post_id` FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL AND `product_views`.`post_id` IN (4, 4) GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/views/home/_best_view_blog.html.erb:3
+  [1m[36mPost Load (0.8ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 4 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.9ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_views` WHERE `product_views`.`post_id` = 4[0m
+  ↳ app/views/home/_best_view_blog.html.erb:10
+  Rendered home/_best_view_blog.html.erb (Duration: 28.5ms | Allocations: 4750)
+  Rendered home/_fanpage.html.erb (Duration: 0.1ms | Allocations: 40)
+  Rendered home/_group_facebook.html.erb (Duration: 0.1ms | Allocations: 38)
+  Rendered home/_youtube.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mPost Load (2.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY title[0m
+  ↳ app/views/blog/index.html.erb:23:in `map'
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY `posts`.`created_at` DESC LIMIT 10 OFFSET 0[0m
+  ↳ app/views/blog/index.html.erb:27
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE ActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  Rendered blog/index.html.erb within layouts/application (Duration: 85.9ms | Allocations: 13177)
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDQ6MTM6MjUuODgwWiIsInB1ciI6ImJsb2Jfa2V5In19--6f4d4fcf7265894347f1e4f0046b661d260407b5/639-e_commerce.webp" for ::1 at 2022-09-02 11:10:33 +0700
+Processing by ActiveStorage::DiskController#show as */*
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"639-e_commerce"}
+Completed 200 OK in 2ms (ActiveRecord: 0.0ms | Allocations: 580)
+
+
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` ORDER BY title[0m
+  ↳ app/views/layouts/_header.html.erb:170:in `map'
+  Rendered layouts/_header.html.erb (Duration: 6.9ms | Allocations: 1641)
+  Rendered layouts/_footer.html.erb (Duration: 1.3ms | Allocations: 389)
+  Rendered layout layouts/application.html.erb (Duration: 221.0ms | Allocations: 63252)
+Completed 200 OK in 241ms (Views: 214.1ms | ActiveRecord: 10.8ms | Allocations: 66142)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDQ6MTM6MjUuODgwWiIsInB1ciI6ImJsb2Jfa2V5In19--6f4d4fcf7265894347f1e4f0046b661d260407b5/639-e_commerce.webp" for ::1 at 2022-09-02 11:10:34 +0700
+Processing by ActiveStorage::DiskController#show as */*
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"639-e_commerce"}
+Started GET "/en/Roboto-Regular.ttf" for ::1 at 2022-09-02 11:10:34 +0700
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 301)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/en/Roboto-Regular.ttf"):
+  
+Started GET "/images/prev.png" for ::1 at 2022-09-02 11:10:34 +0700
+Started GET "/images/next.png" for ::1 at 2022-09-02 11:10:34 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-09-02 11:10:34 +0700
+Started GET "/en/blog" for ::1 at 2022-09-02 11:14:11 +0700
+Processing by BlogController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  [1m[36mCategoryPost Load (0.3ms)[0m  [1m[34mSELECT `category_posts`.* FROM `category_posts`[0m
+  ↳ app/views/home/_category_blog.html.erb:3
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `posts` WHERE `posts`.`category_post_id` = 1[0m
+  ↳ app/views/home/_category_blog.html.erb:4
+  Rendered home/_category_blog.html.erb (Duration: 6.5ms | Allocations: 1745)
+  [1m[36mProductView Load (0.4ms)[0m  [1m[34mSELECT `product_views`.`post_id` FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL AND `product_views`.`post_id` IN (4, 4) GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/views/home/_best_view_blog.html.erb:3
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 4 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_views` WHERE `product_views`.`post_id` = 4[0m
+  ↳ app/views/home/_best_view_blog.html.erb:10
+  Rendered home/_best_view_blog.html.erb (Duration: 20.1ms | Allocations: 5022)
+  Rendered home/_fanpage.html.erb (Duration: 0.5ms | Allocations: 113)
+  Rendered home/_group_facebook.html.erb (Duration: 0.5ms | Allocations: 108)
+  Rendered home/_youtube.html.erb (Duration: 0.4ms | Allocations: 114)
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY title[0m
+  ↳ app/views/blog/index.html.erb:23:in `map'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY `posts`.`created_at` DESC LIMIT 10 OFFSET 0[0m
+  ↳ app/views/blog/index.html.erb:27
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  Rendered blog/index.html.erb within layouts/application (Duration: 63.1ms | Allocations: 15926)
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT `products`.* FROM `products` ORDER BY title[0m
+  ↳ app/views/layouts/_header.html.erb:170:in `map'
+  Rendered layouts/_header.html.erb (Duration: 7.6ms | Allocations: 2748)
+  Rendered layouts/_footer.html.erb (Duration: 2.9ms | Allocations: 1174)
+  Rendered layout layouts/application.html.erb (Duration: 129.8ms | Allocations: 57580)
+Completed 200 OK in 145ms (Views: 128.5ms | ActiveRecord: 5.7ms | Allocations: 61713)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6aad5af4b8d10a83dfcff601f2238330510b7492/639-e_commerce.webp?locale=en" for ::1 at 2022-09-02 11:14:11 +0700
+Processing by ActiveStorage::Blobs::RedirectController#show as */*
+  Parameters: {"locale"=>"en", "signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6aad5af4b8d10a83dfcff601f2238330510b7492", "filename"=>"639-e_commerce"}
+Started GET "/en/Roboto-Regular.ttf" for ::1 at 2022-09-02 11:14:11 +0700
+  
+ActionController::RoutingError (No route matches [GET] "/en/Roboto-Regular.ttf"):
+  
+  [1m[36mActiveStorage::Blob Load (40.7ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+[36m  Disk Storage (0.6ms) [0m[34mGenerated URL for file at key: 15huhiseiwjyggpsfygmuhbdqjqp (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDQ6MTk6MTEuODcyWiIsInB1ciI6ImJsb2Jfa2V5In19--5bd2f1993ace1721262b027ab2dbb54b7516e4ab/639-e_commerce.webp)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDQ6MTk6MTEuODcyWiIsInB1ciI6ImJsb2Jfa2V5In19--5bd2f1993ace1721262b027ab2dbb54b7516e4ab/639-e_commerce.webp
+Completed 302 Found in 58ms (ActiveRecord: 40.7ms | Allocations: 18736)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-09-02 11:14:11 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-09-02 11:14:11 +0700
+Started GET "/images/next.png" for ::1 at 2022-09-02 11:14:11 +0700
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDQ6MTk6MTEuODcyWiIsInB1ciI6ImJsb2Jfa2V5In19--5bd2f1993ace1721262b027ab2dbb54b7516e4ab/639-e_commerce.webp" for ::1 at 2022-09-02 11:14:11 +0700
+Processing by ActiveStorage::DiskController#show as */*
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"639-e_commerce"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 301)
+
+
+Started GET "/en/blog" for ::1 at 2022-09-02 11:14:15 +0700
+Processing by BlogController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  [1m[36mCategoryPost Load (0.4ms)[0m  [1m[34mSELECT `category_posts`.* FROM `category_posts`[0m
+  ↳ app/views/home/_category_blog.html.erb:3
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `posts` WHERE `posts`.`category_post_id` = 1[0m
+  ↳ app/views/home/_category_blog.html.erb:4
+  Rendered home/_category_blog.html.erb (Duration: 7.5ms | Allocations: 1567)
+  [1m[36mProductView Load (0.4ms)[0m  [1m[34mSELECT `product_views`.`post_id` FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL AND `product_views`.`post_id` IN (4, 4) GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/views/home/_best_view_blog.html.erb:3
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 4 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_views` WHERE `product_views`.`post_id` = 4[0m
+  ↳ app/views/home/_best_view_blog.html.erb:10
+  Rendered home/_best_view_blog.html.erb (Duration: 32.8ms | Allocations: 4750)
+  Rendered home/_fanpage.html.erb (Duration: 0.1ms | Allocations: 40)
+  Rendered home/_group_facebook.html.erb (Duration: 0.1ms | Allocations: 38)
+  Rendered home/_youtube.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY title[0m
+  ↳ app/views/blog/index.html.erb:23:in `map'
+  [1m[36mPost Load (1.7ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY `posts`.`created_at` DESC LIMIT 10 OFFSET 0[0m
+  ↳ app/views/blog/index.html.erb:27
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  Rendered blog/index.html.erb within layouts/application (Duration: 76.0ms | Allocations: 13177)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` ORDER BY title[0m
+  ↳ app/views/layouts/_header.html.erb:170:in `map'
+  Rendered layouts/_header.html.erb (Duration: 5.7ms | Allocations: 1641)
+  Rendered layouts/_footer.html.erb (Duration: 1.0ms | Allocations: 389)
+  Rendered layout layouts/application.html.erb (Duration: 148.0ms | Allocations: 51500)
+Completed 200 OK in 163ms (Views: 142.3ms | ActiveRecord: 7.6ms | Allocations: 54388)
+
+
+Started GET "/en/Roboto-Regular.ttf" for ::1 at 2022-09-02 11:14:16 +0700
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDQ6MTk6MTEuODcyWiIsInB1ciI6ImJsb2Jfa2V5In19--5bd2f1993ace1721262b027ab2dbb54b7516e4ab/639-e_commerce.webp" for ::1 at 2022-09-02 11:14:16 +0700
+Processing by ActiveStorage::DiskController#show as */*
+  
+ActionController::RoutingError (No route matches [GET] "/en/Roboto-Regular.ttf"):
+  
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"639-e_commerce"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 302)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-09-02 11:14:16 +0700
+Started GET "/images/next.png" for ::1 at 2022-09-02 11:14:16 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-09-02 11:14:16 +0700
+Started GET "/en/blog" for ::1 at 2022-09-02 11:14:50 +0700
+Processing by BlogController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  [1m[36mCategoryPost Load (0.3ms)[0m  [1m[34mSELECT `category_posts`.* FROM `category_posts`[0m
+  ↳ app/views/home/_category_blog.html.erb:3
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `posts` WHERE `posts`.`category_post_id` = 1[0m
+  ↳ app/views/home/_category_blog.html.erb:4
+  Rendered home/_category_blog.html.erb (Duration: 7.6ms | Allocations: 1745)
+  [1m[36mProductView Load (0.4ms)[0m  [1m[34mSELECT `product_views`.`post_id` FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL AND `product_views`.`post_id` IN (4, 4) GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/views/home/_best_view_blog.html.erb:3
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 4 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_views` WHERE `product_views`.`post_id` = 4[0m
+  ↳ app/views/home/_best_view_blog.html.erb:10
+  Rendered home/_best_view_blog.html.erb (Duration: 22.9ms | Allocations: 5022)
+  Rendered home/_fanpage.html.erb (Duration: 0.4ms | Allocations: 113)
+  Rendered home/_group_facebook.html.erb (Duration: 0.4ms | Allocations: 108)
+  Rendered home/_youtube.html.erb (Duration: 0.5ms | Allocations: 114)
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY title[0m
+  ↳ app/views/blog/index.html.erb:23:in `map'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY `posts`.`created_at` DESC LIMIT 10 OFFSET 0[0m
+  ↳ app/views/blog/index.html.erb:27
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  Rendered blog/index.html.erb within layouts/application (Duration: 71.1ms | Allocations: 15926)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` ORDER BY title[0m
+  ↳ app/views/layouts/_header.html.erb:170:in `map'
+  Rendered layouts/_header.html.erb (Duration: 7.0ms | Allocations: 2748)
+  Rendered layouts/_footer.html.erb (Duration: 2.0ms | Allocations: 1174)
+  Rendered layout layouts/application.html.erb (Duration: 134.3ms | Allocations: 57573)
+Completed 200 OK in 146ms (Views: 132.6ms | ActiveRecord: 5.5ms | Allocations: 61703)
+
+
+Started GET "/en/Roboto-Regular.ttf" for ::1 at 2022-09-02 11:14:51 +0700
+  
+ActionController::RoutingError (No route matches [GET] "/en/Roboto-Regular.ttf"):
+  
+Started GET "/images/loading.gif" for ::1 at 2022-09-02 11:14:51 +0700
+Started GET "/images/prev.png" for ::1 at 2022-09-02 11:14:51 +0700
+Started GET "/images/next.png" for ::1 at 2022-09-02 11:14:51 +0700
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDQ6MTk6MTEuODcyWiIsInB1ciI6ImJsb2Jfa2V5In19--5bd2f1993ace1721262b027ab2dbb54b7516e4ab/639-e_commerce.webp" for ::1 at 2022-09-02 11:14:51 +0700
+Processing by ActiveStorage::DiskController#show as */*
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"639-e_commerce"}
+Completed 200 OK in 2ms (ActiveRecord: 0.0ms | Allocations: 313)
+
+
+Started GET "/en/blog" for ::1 at 2022-09-02 11:14:58 +0700
+Processing by BlogController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  [1m[36mCategoryPost Load (0.4ms)[0m  [1m[34mSELECT `category_posts`.* FROM `category_posts`[0m
+  ↳ app/views/home/_category_blog.html.erb:3
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `posts` WHERE `posts`.`category_post_id` = 1[0m
+  ↳ app/views/home/_category_blog.html.erb:4
+  Rendered home/_category_blog.html.erb (Duration: 10.7ms | Allocations: 1567)
+  [1m[36mProductView Load (0.4ms)[0m  [1m[34mSELECT `product_views`.`post_id` FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL AND `product_views`.`post_id` IN (4, 4) GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/views/home/_best_view_blog.html.erb:3
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 4 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_views` WHERE `product_views`.`post_id` = 4[0m
+  ↳ app/views/home/_best_view_blog.html.erb:10
+  Rendered home/_best_view_blog.html.erb (Duration: 22.9ms | Allocations: 4750)
+  Rendered home/_fanpage.html.erb (Duration: 0.1ms | Allocations: 40)
+  Rendered home/_group_facebook.html.erb (Duration: 0.1ms | Allocations: 38)
+  Rendered home/_youtube.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY title[0m
+  ↳ app/views/blog/index.html.erb:23:in `map'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY `posts`.`created_at` DESC LIMIT 10 OFFSET 0[0m
+  ↳ app/views/blog/index.html.erb:27
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  Rendered blog/index.html.erb within layouts/application (Duration: 65.1ms | Allocations: 13177)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` ORDER BY title[0m
+  ↳ app/views/layouts/_header.html.erb:170:in `map'
+  Rendered layouts/_header.html.erb (Duration: 5.3ms | Allocations: 1641)
+  Rendered layouts/_footer.html.erb (Duration: 0.9ms | Allocations: 389)
+  Rendered layout layouts/application.html.erb (Duration: 117.7ms | Allocations: 51543)
+Completed 200 OK in 129ms (Views: 112.8ms | ActiveRecord: 6.4ms | Allocations: 54433)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDQ6MTk6MTEuODcyWiIsInB1ciI6ImJsb2Jfa2V5In19--5bd2f1993ace1721262b027ab2dbb54b7516e4ab/639-e_commerce.webp" for ::1 at 2022-09-02 11:14:58 +0700
+Processing by ActiveStorage::DiskController#show as */*
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"639-e_commerce"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 301)
+
+
+Started GET "/en/Roboto-Regular.ttf" for ::1 at 2022-09-02 11:14:58 +0700
+  
+ActionController::RoutingError (No route matches [GET] "/en/Roboto-Regular.ttf"):
+  
+Started GET "/images/next.png" for ::1 at 2022-09-02 11:14:58 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-09-02 11:14:58 +0700
+Started GET "/images/prev.png" for ::1 at 2022-09-02 11:14:58 +0700
+Started GET "/en/blog" for ::1 at 2022-09-02 11:15:16 +0700
+Processing by BlogController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  [1m[36mCategoryPost Load (0.3ms)[0m  [1m[34mSELECT `category_posts`.* FROM `category_posts`[0m
+  ↳ app/views/home/_category_blog.html.erb:3
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `posts` WHERE `posts`.`category_post_id` = 1[0m
+  ↳ app/views/home/_category_blog.html.erb:4
+  Rendered home/_category_blog.html.erb (Duration: 7.5ms | Allocations: 1567)
+  [1m[36mProductView Load (0.4ms)[0m  [1m[34mSELECT `product_views`.`post_id` FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL AND `product_views`.`post_id` IN (4, 4) GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/views/home/_best_view_blog.html.erb:3
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 4 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_views` WHERE `product_views`.`post_id` = 4[0m
+  ↳ app/views/home/_best_view_blog.html.erb:10
+  Rendered home/_best_view_blog.html.erb (Duration: 21.5ms | Allocations: 4750)
+  Rendered home/_fanpage.html.erb (Duration: 0.2ms | Allocations: 40)
+  Rendered home/_group_facebook.html.erb (Duration: 0.1ms | Allocations: 38)
+  Rendered home/_youtube.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY title[0m
+  ↳ app/views/blog/index.html.erb:23:in `map'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY `posts`.`created_at` DESC LIMIT 10 OFFSET 0[0m
+  ↳ app/views/blog/index.html.erb:27
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  Rendered blog/index.html.erb within layouts/application (Duration: 59.5ms | Allocations: 13177)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` ORDER BY title[0m
+  ↳ app/views/layouts/_header.html.erb:170:in `map'
+  Rendered layouts/_header.html.erb (Duration: 5.8ms | Allocations: 1641)
+  Rendered layouts/_footer.html.erb (Duration: 1.4ms | Allocations: 389)
+  Rendered layout layouts/application.html.erb (Duration: 127.7ms | Allocations: 51537)
+Completed 200 OK in 140ms (Views: 123.7ms | ActiveRecord: 5.3ms | Allocations: 54424)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDQ6MTk6MTEuODcyWiIsInB1ciI6ImJsb2Jfa2V5In19--5bd2f1993ace1721262b027ab2dbb54b7516e4ab/639-e_commerce.webp" for ::1 at 2022-09-02 11:15:16 +0700
+Processing by ActiveStorage::DiskController#show as */*
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"639-e_commerce"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 301)
+
+
+Started GET "/en/blog" for ::1 at 2022-09-02 11:15:57 +0700
+Processing by BlogController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  [1m[36mCategoryPost Load (0.4ms)[0m  [1m[34mSELECT `category_posts`.* FROM `category_posts`[0m
+  ↳ app/views/home/_category_blog.html.erb:3
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `posts` WHERE `posts`.`category_post_id` = 1[0m
+  ↳ app/views/home/_category_blog.html.erb:4
+  Rendered home/_category_blog.html.erb (Duration: 7.5ms | Allocations: 1746)
+  [1m[36mProductView Load (0.5ms)[0m  [1m[34mSELECT `product_views`.`post_id` FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL AND `product_views`.`post_id` IN (4, 4) GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/views/home/_best_view_blog.html.erb:3
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 4 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_views` WHERE `product_views`.`post_id` = 4[0m
+  ↳ app/views/home/_best_view_blog.html.erb:10
+  Rendered home/_best_view_blog.html.erb (Duration: 22.5ms | Allocations: 5022)
+  Rendered home/_fanpage.html.erb (Duration: 0.6ms | Allocations: 113)
+  Rendered home/_group_facebook.html.erb (Duration: 0.6ms | Allocations: 108)
+  Rendered home/_youtube.html.erb (Duration: 0.6ms | Allocations: 114)
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY title[0m
+  ↳ app/views/blog/index.html.erb:23:in `map'
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY `posts`.`created_at` DESC LIMIT 10 OFFSET 0[0m
+  ↳ app/views/blog/index.html.erb:27
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  Rendered blog/index.html.erb within layouts/application (Duration: 75.1ms | Allocations: 15931)
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT `products`.* FROM `products` ORDER BY title[0m
+  ↳ app/views/layouts/_header.html.erb:170:in `map'
+  Rendered layouts/_header.html.erb (Duration: 9.8ms | Allocations: 2770)
+  Rendered layouts/_footer.html.erb (Duration: 2.8ms | Allocations: 1174)
+  Rendered layout layouts/application.html.erb (Duration: 158.9ms | Allocations: 57521)
+Completed 200 OK in 176ms (Views: 156.8ms | ActiveRecord: 6.5ms | Allocations: 61652)
+
+
+Started GET "/en/blog" for ::1 at 2022-09-02 11:15:57 +0700
+Processing by BlogController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  [1m[36mCategoryPost Load (0.5ms)[0m  [1m[34mSELECT `category_posts`.* FROM `category_posts`[0m
+  ↳ app/views/home/_category_blog.html.erb:3
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `posts` WHERE `posts`.`category_post_id` = 1[0m
+  ↳ app/views/home/_category_blog.html.erb:4
+  Rendered home/_category_blog.html.erb (Duration: 47.0ms | Allocations: 1567)
+  [1m[36mProductView Load (1.6ms)[0m  [1m[34mSELECT `product_views`.`post_id` FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL AND `product_views`.`post_id` IN (4, 4) GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/views/home/_best_view_blog.html.erb:3
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 4 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_views` WHERE `product_views`.`post_id` = 4[0m
+  ↳ app/views/home/_best_view_blog.html.erb:10
+  Rendered home/_best_view_blog.html.erb (Duration: 31.6ms | Allocations: 4750)
+  Rendered home/_fanpage.html.erb (Duration: 0.4ms | Allocations: 40)
+  Rendered home/_group_facebook.html.erb (Duration: 0.1ms | Allocations: 38)
+  Rendered home/_youtube.html.erb (Duration: 0.1ms | Allocations: 38)
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY title[0m
+  ↳ app/views/blog/index.html.erb:23:in `map'
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY `posts`.`created_at` DESC LIMIT 10 OFFSET 0[0m
+  ↳ app/views/blog/index.html.erb:27
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  Rendered blog/index.html.erb within layouts/application (Duration: 125.7ms | Allocations: 13177)
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDQ6MTk6MTEuODcyWiIsInB1ciI6ImJsb2Jfa2V5In19--5bd2f1993ace1721262b027ab2dbb54b7516e4ab/639-e_commerce.webp" for ::1 at 2022-09-02 11:15:57 +0700
+Processing by ActiveStorage::DiskController#show as */*
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"639-e_commerce"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 301)
+
+
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` ORDER BY title[0m
+  ↳ app/views/layouts/_header.html.erb:170:in `map'
+  Rendered layouts/_header.html.erb (Duration: 5.6ms | Allocations: 1641)
+  Rendered layouts/_footer.html.erb (Duration: 1.2ms | Allocations: 389)
+  Rendered layout layouts/application.html.erb (Duration: 217.0ms | Allocations: 61479)
+Completed 200 OK in 241ms (Views: 209.2ms | ActiveRecord: 11.1ms | Allocations: 64370)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDQ6MTk6MTEuODcyWiIsInB1ciI6ImJsb2Jfa2V5In19--5bd2f1993ace1721262b027ab2dbb54b7516e4ab/639-e_commerce.webp" for ::1 at 2022-09-02 11:15:58 +0700
+Processing by ActiveStorage::DiskController#show as */*
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"639-e_commerce"}
+Started GET "/en/Roboto-Regular.ttf" for ::1 at 2022-09-02 11:15:58 +0700
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 310)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/en/Roboto-Regular.ttf"):
+  
+Started GET "/images/prev.png" for ::1 at 2022-09-02 11:15:58 +0700
+Started GET "/images/next.png" for ::1 at 2022-09-02 11:15:58 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-09-02 11:15:58 +0700
+Started GET "/en/blog" for ::1 at 2022-09-02 11:16:42 +0700
+Processing by BlogController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  [1m[36mCategoryPost Load (0.4ms)[0m  [1m[34mSELECT `category_posts`.* FROM `category_posts`[0m
+  ↳ app/views/home/_category_blog.html.erb:3
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `posts` WHERE `posts`.`category_post_id` = 1[0m
+  ↳ app/views/home/_category_blog.html.erb:4
+  Rendered home/_category_blog.html.erb (Duration: 27.2ms | Allocations: 1745)
+  [1m[36mProductView Load (0.6ms)[0m  [1m[34mSELECT `product_views`.`post_id` FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL AND `product_views`.`post_id` IN (4, 4) GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/views/home/_best_view_blog.html.erb:3
+  [1m[36mPost Load (1.9ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 4 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_views` WHERE `product_views`.`post_id` = 4[0m
+  ↳ app/views/home/_best_view_blog.html.erb:10
+  Rendered home/_best_view_blog.html.erb (Duration: 37.6ms | Allocations: 5023)
+  Rendered home/_fanpage.html.erb (Duration: 0.6ms | Allocations: 113)
+  Rendered home/_group_facebook.html.erb (Duration: 0.5ms | Allocations: 108)
+  Rendered home/_youtube.html.erb (Duration: 0.4ms | Allocations: 114)
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY title[0m
+  ↳ app/views/blog/index.html.erb:23:in `map'
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY `posts`.`created_at` DESC LIMIT 10 OFFSET 0[0m
+  ↳ app/views/blog/index.html.erb:27
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  Rendered blog/index.html.erb within layouts/application (Duration: 116.0ms | Allocations: 15928)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` ORDER BY title[0m
+  ↳ app/views/layouts/_header.html.erb:170:in `map'
+  Rendered layouts/_header.html.erb (Duration: 8.3ms | Allocations: 2748)
+  Rendered layouts/_footer.html.erb (Duration: 3.0ms | Allocations: 1174)
+  Rendered layout layouts/application.html.erb (Duration: 187.7ms | Allocations: 57597)
+Completed 200 OK in 203ms (Views: 183.7ms | ActiveRecord: 8.1ms | Allocations: 61727)
+
+
+Started GET "/en/Roboto-Regular.ttf" for ::1 at 2022-09-02 11:16:42 +0700
+  
+ActionController::RoutingError (No route matches [GET] "/en/Roboto-Regular.ttf"):
+  
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDQ6MTk6MTEuODcyWiIsInB1ciI6ImJsb2Jfa2V5In19--5bd2f1993ace1721262b027ab2dbb54b7516e4ab/639-e_commerce.webp" for ::1 at 2022-09-02 11:16:42 +0700
+Processing by ActiveStorage::DiskController#show as */*
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"639-e_commerce"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 301)
+
+
+Started GET "/images/prev.png" for ::1 at 2022-09-02 11:16:43 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-09-02 11:16:43 +0700
+Started GET "/images/next.png" for ::1 at 2022-09-02 11:16:43 +0700
+Started GET "/en/blog" for ::1 at 2022-09-02 11:17:21 +0700
+Processing by BlogController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  [1m[36mCategoryPost Load (0.4ms)[0m  [1m[34mSELECT `category_posts`.* FROM `category_posts`[0m
+  ↳ app/views/home/_category_blog.html.erb:3
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `posts` WHERE `posts`.`category_post_id` = 1[0m
+  ↳ app/views/home/_category_blog.html.erb:4
+  Rendered home/_category_blog.html.erb (Duration: 12.6ms | Allocations: 1745)
+  [1m[36mProductView Load (0.5ms)[0m  [1m[34mSELECT `product_views`.`post_id` FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL AND `product_views`.`post_id` IN (4, 4) GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/views/home/_best_view_blog.html.erb:3
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 4 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_views` WHERE `product_views`.`post_id` = 4[0m
+  ↳ app/views/home/_best_view_blog.html.erb:10
+  Rendered home/_best_view_blog.html.erb (Duration: 30.2ms | Allocations: 5022)
+  Rendered home/_fanpage.html.erb (Duration: 0.7ms | Allocations: 113)
+  Rendered home/_group_facebook.html.erb (Duration: 0.5ms | Allocations: 108)
+  Rendered home/_youtube.html.erb (Duration: 0.5ms | Allocations: 114)
+  [1m[36mPost Load (0.9ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY title[0m
+  ↳ app/views/blog/index.html.erb:23:in `map'
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY `posts`.`created_at` DESC LIMIT 10 OFFSET 0[0m
+  ↳ app/views/blog/index.html.erb:27
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  Rendered blog/index.html.erb within layouts/application (Duration: 86.7ms | Allocations: 15929)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` ORDER BY title[0m
+  ↳ app/views/layouts/_header.html.erb:170:in `map'
+  Rendered layouts/_header.html.erb (Duration: 8.2ms | Allocations: 2749)
+  Rendered layouts/_footer.html.erb (Duration: 2.3ms | Allocations: 1174)
+  Rendered layout layouts/application.html.erb (Duration: 156.7ms | Allocations: 57601)
+Completed 200 OK in 177ms (Views: 159.7ms | ActiveRecord: 6.8ms | Allocations: 61729)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDQ6MTk6MTEuODcyWiIsInB1ciI6ImJsb2Jfa2V5In19--5bd2f1993ace1721262b027ab2dbb54b7516e4ab/639-e_commerce.webp" for ::1 at 2022-09-02 11:17:21 +0700
+Processing by ActiveStorage::DiskController#show as */*
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"639-e_commerce"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 301)
+
+
+Started GET "/en/Roboto-Regular.ttf" for ::1 at 2022-09-02 11:17:21 +0700
+  
+ActionController::RoutingError (No route matches [GET] "/en/Roboto-Regular.ttf"):
+  
+Started GET "/images/prev.png" for ::1 at 2022-09-02 11:17:21 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-09-02 11:17:21 +0700
+Started GET "/images/next.png" for ::1 at 2022-09-02 11:17:21 +0700
+Started GET "/en/blog" for ::1 at 2022-09-02 11:17:45 +0700
+Processing by BlogController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  [1m[36mCategoryPost Load (0.3ms)[0m  [1m[34mSELECT `category_posts`.* FROM `category_posts`[0m
+  ↳ app/views/home/_category_blog.html.erb:3
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `posts` WHERE `posts`.`category_post_id` = 1[0m
+  ↳ app/views/home/_category_blog.html.erb:4
+  Rendered home/_category_blog.html.erb (Duration: 9.7ms | Allocations: 1745)
+  [1m[36mProductView Load (0.5ms)[0m  [1m[34mSELECT `product_views`.`post_id` FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL AND `product_views`.`post_id` IN (4, 4) GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/views/home/_best_view_blog.html.erb:3
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 4 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[36mActiveStorage::Blob Load (1.2ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_views` WHERE `product_views`.`post_id` = 4[0m
+  ↳ app/views/home/_best_view_blog.html.erb:10
+  Rendered home/_best_view_blog.html.erb (Duration: 27.8ms | Allocations: 5022)
+  Rendered home/_fanpage.html.erb (Duration: 0.6ms | Allocations: 113)
+  Rendered home/_group_facebook.html.erb (Duration: 0.5ms | Allocations: 108)
+  Rendered home/_youtube.html.erb (Duration: 0.7ms | Allocations: 114)
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY title[0m
+  ↳ app/views/blog/index.html.erb:23:in `map'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY `posts`.`created_at` DESC LIMIT 10 OFFSET 0[0m
+  ↳ app/views/blog/index.html.erb:27
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  Rendered blog/index.html.erb within layouts/application (Duration: 79.0ms | Allocations: 15927)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` ORDER BY title[0m
+  ↳ app/views/layouts/_header.html.erb:170:in `map'
+  Rendered layouts/_header.html.erb (Duration: 8.5ms | Allocations: 2748)
+  Rendered layouts/_footer.html.erb (Duration: 2.8ms | Allocations: 1174)
+  Rendered layout layouts/application.html.erb (Duration: 157.5ms | Allocations: 57574)
+Completed 200 OK in 175ms (Views: 154.9ms | ActiveRecord: 7.6ms | Allocations: 61705)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDQ6MTk6MTEuODcyWiIsInB1ciI6ImJsb2Jfa2V5In19--5bd2f1993ace1721262b027ab2dbb54b7516e4ab/639-e_commerce.webp" for ::1 at 2022-09-02 11:17:45 +0700
+Processing by ActiveStorage::DiskController#show as */*
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"639-e_commerce"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 301)
+
+
+Started GET "/en/blog" for ::1 at 2022-09-02 11:17:59 +0700
+Processing by BlogController#index as HTML
+  Parameters: {"locale"=>"en"}
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) AS count_all, `product_views`.`post_id` AS product_views_post_id FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/controllers/blog_controller.rb:48:in `block in load_layout'
+  Rendering layout layouts/application.html.erb
+  Rendering blog/index.html.erb within layouts/application
+  [1m[36mCategoryPost Load (0.4ms)[0m  [1m[34mSELECT `category_posts`.* FROM `category_posts`[0m
+  ↳ app/views/home/_category_blog.html.erb:3
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `posts` WHERE `posts`.`category_post_id` = 1[0m
+  ↳ app/views/home/_category_blog.html.erb:4
+  Rendered home/_category_blog.html.erb (Duration: 9.6ms | Allocations: 1745)
+  [1m[36mProductView Load (0.5ms)[0m  [1m[34mSELECT `product_views`.`post_id` FROM `product_views` WHERE `product_views`.`post_id` IS NOT NULL AND `product_views`.`post_id` IN (4, 4) GROUP BY `product_views`.`post_id` ORDER BY post_id DESC[0m
+  ↳ app/views/home/_best_view_blog.html.erb:3
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` WHERE `posts`.`id` = 4 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:4
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/home/_best_view_blog.html.erb:6
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_views` WHERE `product_views`.`post_id` = 4[0m
+  ↳ app/views/home/_best_view_blog.html.erb:10
+  Rendered home/_best_view_blog.html.erb (Duration: 26.8ms | Allocations: 5022)
+  Rendered home/_fanpage.html.erb (Duration: 0.9ms | Allocations: 113)
+  Rendered home/_group_facebook.html.erb (Duration: 0.5ms | Allocations: 108)
+  Rendered home/_youtube.html.erb (Duration: 1.0ms | Allocations: 114)
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY title[0m
+  ↳ app/views/blog/index.html.erb:23:in `map'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT `posts`.* FROM `posts` ORDER BY `posts`.`created_at` DESC LIMIT 10 OFFSET 0[0m
+  ↳ app/views/blog/index.html.erb:27
+  [1m[36mCACHE ActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 4 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE ActiveStorage::Blob Load (0.0ms)[0m  [1m[34mSELECT `active_storage_blobs`.* FROM `active_storage_blobs` WHERE `active_storage_blobs`.`id` = 7 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT `active_storage_attachments`.* FROM `active_storage_attachments` WHERE `active_storage_attachments`.`record_id` = 2 AND `active_storage_attachments`.`record_type` = 'Post' AND `active_storage_attachments`.`name` = 'image' LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:30
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  ↳ app/views/blog/index.html.erb:35
+  Rendered blog/index.html.erb within layouts/application (Duration: 77.8ms | Allocations: 15919)
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT `products`.* FROM `products` ORDER BY title[0m
+  ↳ app/views/layouts/_header.html.erb:170:in `map'
+  Rendered layouts/_header.html.erb (Duration: 7.7ms | Allocations: 2748)
+  Rendered layouts/_footer.html.erb (Duration: 2.8ms | Allocations: 1174)
+  Rendered layout layouts/application.html.erb (Duration: 146.1ms | Allocations: 57477)
+Completed 200 OK in 165ms (Views: 144.7ms | ActiveRecord: 6.2ms | Allocations: 61597)
+
+
+Started GET "/en/Roboto-Regular.ttf" for ::1 at 2022-09-02 11:17:59 +0700
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhNVFZvZFdocGMyVnBkMnA1WjJkd2MyWjVaMjExYUdKa2NXcHhjQVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldGMGRHRmphRzFsYm5RN0lHWnBiR1Z1WVcxbFBTSTJNemt0WlY5amIyMXRaWEpqWlM1M1pXSndJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMyTXprdFpWOWpiMjF0WlhKalpTNTNaV0p3QmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2ZDJWaWNBWTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMDktMDJUMDQ6MTk6MTEuODcyWiIsInB1ciI6ImJsb2Jfa2V5In19--5bd2f1993ace1721262b027ab2dbb54b7516e4ab/639-e_commerce.webp" for ::1 at 2022-09-02 11:17:59 +0700
+Processing by ActiveStorage::DiskController#show as */*
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"639-e_commerce"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 301)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/en/Roboto-Regular.ttf"):
+  
+Started GET "/images/prev.png" for ::1 at 2022-09-02 11:17:59 +0700
+Started GET "/images/next.png" for ::1 at 2022-09-02 11:17:59 +0700
+Started GET "/images/loading.gif" for ::1 at 2022-09-02 11:17:59 +0700
