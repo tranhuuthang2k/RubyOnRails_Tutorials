@@ -11,7 +11,7 @@ Things you may want to cover:
 
 * Amazon active storage 
 
-* PostgreSQL
+* MySQL
 
 * Redis
 
