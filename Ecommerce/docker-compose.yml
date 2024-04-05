@@ -13,6 +13,13 @@ services:
     networks:
       - test
     command: bash -c "rm -f tmp/pids/server.pid && bin/rails db:migrate && bin/rails db:seed && RAILS_ENV=development && bundle exec rails s -p 3000 -b '0.0.0.0'"
+  redis:
+    image: redis:latest
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis:/data
+    command: bundle exec sidekiq
   postgres:
     image: postgres:12
     container_name: postgres
@@ -30,6 +37,7 @@ services:
       - POSTGRES_DB=shop
 volumes:
   pg-data-shop: {}
+  redis: {}
 networks:
   test:
     driver: bridge

@@ -1,4 +1,4 @@
-# Sử dụng image base có sẵn với Ruby 2.7.5
+# Sử dụng image base có sẵn với Ruby 2.7.2
 FROM ruby:2.7.2
 
 RUN apt-get update && apt-get install -y nodejs
