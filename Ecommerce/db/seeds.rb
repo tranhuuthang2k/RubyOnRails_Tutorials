@@ -10,7 +10,7 @@
 
 City.create([
               { name: 'Da nang' },
-              { name: 'Hue' },
+              { name: 'Hue' },  
               { name: 'Can tho' }
             ])
 Shipping.create(
@@ -21,21 +21,21 @@ Shipping.create(
 )
 
 Brand.create!([
-                { id: 1, name: 'NIKE' },
-                { id: 2, name: 'T-SHIRT' },
-                { id: 3, name: 'ADDIDASS' },
-                { id: 4, name: 'SPEAKER' },
-                { id: 5, name: 'JEAN' },
-                { id: 6, name: 'TAY AU' }
+                # { id: 1, name: 'NIKE' },
+                # { id: 2, name: 'T-SHIRT' },
+                # { id: 3, name: 'ADDIDASS' },
+                # { id: 4, name: 'SPEAKER' },
+                # { id: 5, name: 'JEAN' },
+                # { id: 6, name: 'TAY AU' }
               ])
 
 User.create!([
-               { email: 'testadmin@mvmanor.co.uk', username: 'test', mobile: '12345678910', city_id: 1, gender: 'female',
-                 encrypted_password: '#$taawktljasktlw4aaglj', password: 'Thang%%%123', password_confirmation: 'Thang%%%123', reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, admin: true },
-               { email: 'testuser@mvmanor.co.uk', username: 'test', mobile: '12345678910', city_id: 2, gender: 'female',
-                 encrypted_password: '#$taawktljasktlw4aaglj', password: 'Thang%%%123', password_confirmation: 'Thang%%%123', reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, admin: false },
-               { email: 'testcustomer@customer.co.uk', username: 'test', mobile: '12345678910', city_id: 1, gender: 'female',
-                 encrypted_password: '#$taawktljasktlw4aaglj', password: 'Thang%%%123', password_confirmation: 'Thang%%%123', reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, admin: false }
+              #  { email: 'testadmin@mvmanor.co.uk', username: 'test', mobile: '12345678910', city_id: 1, gender: 'female',
+              #    encrypted_password: '#$taawktljasktlw4aaglj', password: 'Thang%%%123', password_confirmation: 'Thang%%%123', reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, admin: true },
+              #  { email: 'testuser@mvmanor.co.uk', username: 'test', mobile: '12345678910', city_id: 2, gender: 'female',
+              #    encrypted_password: '#$taawktljasktlw4aaglj', password: 'Thang%%%123', password_confirmation: 'Thang%%%123', reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, admin: false },
+              #  { email: 'testcustomer@customer.co.uk', username: 'test', mobile: '12345678910', city_id: 1, gender: 'female',
+              #    encrypted_password: '#$taawktljasktlw4aaglj', password: 'Thang%%%123', password_confirmation: 'Thang%%%123', reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, admin: false }
              ])
 
 Category.create!([
@@ -57,6 +57,20 @@ Availability.create!([
                        { name: 'Availability_name2', status: '0', number_product: 20 },
                        { name: 'Availability_name3', status: '1', number_product: 10 }
                      ])
+                     
+Size.create([
+  { name: 'XL' },
+  { name: 'S' },
+  { name: 'L' }
+])
+
+ProductCategory.create([
+                         { product_id: 1, category_id: 2 },
+                         { product_id: 2, category_id: 2 },
+                         { product_id: 3, category_id: 2 },
+                         { product_id: 3, category_id: 1 },
+                         { product_id: 1, category_id: 2 }
+                       ])
 
 Product.create!([
                   { title: 'ao so mi', price: '50', description: 'Hang VN', brand_id: 2, show_home: 1, availability_id: 1,
@@ -89,15 +103,3 @@ Product.create!([
                     categories_id: 2 }
                 ])
 
-ProductCategory.create([
-                         { product_id: 1, category_id: 2 },
-                         { product_id: 2, category_id: 2 },
-                         { product_id: 3, category_id: 2 },
-                         { product_id: 3, category_id: 1 },
-                         { product_id: 1, category_id: 2 }
-                       ])
-Size.create([
-              { name: 'XL' },
-              { name: 'S' },
-              { name: 'L' }
-            ])

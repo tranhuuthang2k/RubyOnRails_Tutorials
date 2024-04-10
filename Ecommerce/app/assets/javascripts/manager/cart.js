@@ -521,15 +521,15 @@ function Cart(options) {
               ? "An error occurred, please login again"
               : "Có lỗi xảy ra, vui lòng đăng nhập lại",
           }).then(() => {
-            document.cookie.split(";").forEach(function (c) {
-              document.cookie = c
-                .replace(/^ +/, "")
-                .replace(
-                  /=.*/,
-                  "=;expires=" + new Date().toUTCString() + ";path=/"
-                );
-              window.location = check_i18n() ? "/en/logout" : "/vi/logout";
-            });
+            // document.cookie.split(";").forEach(function (c) {
+            //   document.cookie = c
+            //     .replace(/^ +/, "")
+            //     .replace(
+            //       /=.*/,
+            //       "=;expires=" + new Date().toUTCString() + ";path=/"
+            //     );
+            //   window.location = check_i18n() ? "/en/logout" : "/vi/logout";
+            // });
           });
         },
       });

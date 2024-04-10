@@ -28,5 +28,6 @@ module FinalProject
     # config.eager_load_paths << Rails.root.join("extras")
     config.i18n.available_locales = %i[en vi]
     config.i18n.default_locale = :en
+    # config.web_console.permissions = '172.18.0.1'
   end
 end

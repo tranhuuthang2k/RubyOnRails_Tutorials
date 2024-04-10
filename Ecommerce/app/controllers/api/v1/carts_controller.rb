@@ -26,6 +26,7 @@ module Api
 
         temp_carts.map do |p|
           product = products[p[:id].to_i]
+          # byebug
           return  @negative = true if p['quantity'].to_i.negative?
 
           if product.availability&.status == OrderItem::STOCK[:Outstock] || product.availability&.number_instock.to_i < p['quantity'].to_i
@@ -79,7 +80,7 @@ module Api
                                                 service: data[:check_shipping].name,
                                                 fee: data[:check_shipping].price)
           if product_order.save
-            SendEmailJob.set(wait: 1.minutes).perform_later(@user, product_order)
+            SendEmailJob.set(wait: 1.minutes).perform_now(@user, product_order)
             render json: success_message('Successfully', product_order: product_order)
             # OrderMailer.send_order(@user, product_order).deliver
           end

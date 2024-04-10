@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   # mount ActionCable.server => '/cable'
   root 'home#index'
-
+  require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq' if defined?(Sidekiq) && defined?(Sidekiq::Web)
 
   if Rails.env.development?

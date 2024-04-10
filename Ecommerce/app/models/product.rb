@@ -12,9 +12,9 @@ class Product < ApplicationRecord
   has_one_attached :image
   validates :title, presence: true, length: { maximum: 40 }
   validates :price, numericality: true
-  validates :content, presence: true
-  validates :image, presence: true
-  validates :sizes, presence: true
+  # validates :content, presence: true
+  # validates :image, presence: true
+  # validates :sizes, presence: true
   has_many :product_categories
   has_many :categories, through: :product_categories
 
